@@ -47,6 +47,13 @@
   kind: source
   path: "/Textures/Shaders/rainbow.swsl"
 
+- type: shader
+  id: ChromaticAberration
+  kind: source
+  path: "/Textures/Shaders/chromatic_aberration.swsl"
+  params:
+    effectStrength: 1.0
+
 # sin city effect: everything is greyscale, except red
 - type: shader
   id: Noir

@@ -1,0 +1,26 @@
+uniform sampler2D SCREEN_TEXTURE;
+// Strength of the chromatic aberration effect. Between 0 and 1.
+uniform highp float effectStrength;
+
+const highp float RedOffset = 0.02;   // Red channel offset
+const highp float BlueOffset = -0.02; // Blue channel offset
+const highp float GreenOffset = 0.01; // Green channel offset
+
+void fragment() {
+    highp vec2 coord = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    
+    // Sample each color channel with different offsets
+    highp vec2 redCoord = coord + vec2(RedOffset * effectStrength, 0.0);
+    highp vec2 greenCoord = coord + vec2(GreenOffset * effectStrength, GreenOffset * effectStrength);
+    highp vec2 blueCoord = coord + vec2(BlueOffset * effectStrength, 0.0);
+    
+    highp float red = texture(SCREEN_TEXTURE, redCoord).r;
+    highp float green = texture(SCREEN_TEXTURE, greenCoord).g;
+    highp float blue = texture(SCREEN_TEXTURE, blueCoord).b;
+    
+    // Enhance the effect by increasing color separation
+    red = clamp(red * (1.0 + effectStrength * 0.5), 0.0, 1.0);
+    blue = clamp(blue * (1.0 + effectStrength * 0.5), 0.0, 1.0);
+    
+    COLOR = vec4(red, green, blue, 1.0);
+}

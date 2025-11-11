@@ -489,3 +489,19 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
+
+- type: reagent
+  id: DebugReagAbb
+  name: reagent-name-debug-reag-abb
+  group: Narcotics
+  desc: reagent-desc-debug-reag-abb
+  physicalDesc: reagent-physical-desc-unstable
+  flavor: metallic
+  color: "#ff00ff"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectChromaticAberration
+        type: Add
+        time: 10

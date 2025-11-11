@@ -79,6 +79,14 @@
   components:
   - type: SeeingRainbowsStatusEffect
 
+# Adds chromatic aberration overlay
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectChromaticAberration
+  name: visual distortion
+  components:
+  - type: ChromaticAberrationStatusEffect
+
 # Causes your vision to become blurry and gives me a headache.
 - type: entity
   parent: MobStatusEffectDebuff
