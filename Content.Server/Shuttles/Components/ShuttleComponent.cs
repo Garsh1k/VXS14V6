@@ -20,9 +20,9 @@ namespace Content.Server.Shuttles.Components
         /// Maximum velocity.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        public float BaseMaxLinearVelocity = 60f;
+        public float BaseMaxLinearVelocity = 120f; // VXS
 
-        public const float MaxAngularVelocity = 4f;
+        public const float MaxAngularVelocity = 8f; // VXS
 
         /// <summary>
         /// The cached thrust available for each cardinal direction
