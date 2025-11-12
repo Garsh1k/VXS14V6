@@ -38,5 +38,13 @@ namespace Content.Shared._VXS14.Mortar
         // Sound to play when the shell is inserted into the mortar
         [ViewVariables(VVAccess.ReadWrite), DataField("insertSound"), AutoNetworkedField]
         public string? InsertSound = "/Audio/Effects/thunk.ogg";
+
+        // Entity to spawn instead of direct explosion (for special shells like smoke, EMP, etc.)
+        [ViewVariables(VVAccess.ReadWrite), DataField("explosionEntity")]
+        public string? ExplosionEntity;
+
+        // Whether to use direct explosion (true) or spawn entity (false)
+        [ViewVariables(VVAccess.ReadWrite), DataField("useDirectExplosion")]
+        public bool UseDirectExplosion = true;
     }
 }

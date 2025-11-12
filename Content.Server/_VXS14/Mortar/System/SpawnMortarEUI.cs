@@ -140,7 +140,7 @@ public sealed class MortarEui : BaseEui
             {
                 entMan.DeleteEntity(rocket);
 
-                // Apply distance-based accuracy scaling
+                // Apply distance-based accuracy scaling and handle explosion/entity spawning
                 if(comp != null)
                 {
                     // Get mortar component for accuracy parameters
@@ -152,12 +152,27 @@ public sealed class MortarEui : BaseEui
                     // Calculate accuracy modifier (decreases with distance)
                     var accuracyModifier = Math.Max(0.1f, mortarComp.BaseAccuracy - (distance * mortarComp.AccuracyDegradation));
 
-                    // Apply accuracy modifier to explosion parameters
-                    var adjustedTotalIntensity = comp.TotalIntensity * accuracyModifier;
-                    var adjustedSlope = comp.Slope * accuracyModifier;
-                    var adjustedMaxTileIntensity = comp.MaxTileIntensity * accuracyModifier;
+                    if (comp.UseDirectExplosion)
+                    {
+                        // Apply accuracy modifier to explosion parameters
+                        var adjustedTotalIntensity = comp.TotalIntensity * accuracyModifier;
+                        var adjustedSlope = comp.Slope * accuracyModifier;
+                        var adjustedMaxTileIntensity = comp.MaxTileIntensity * accuracyModifier;
 
-                    sysMan.GetEntitySystem<ExplosionSystem>().QueueExplosion(targetPosition, comp.Type, adjustedTotalIntensity, adjustedSlope, adjustedMaxTileIntensity, null);
+                        sysMan.GetEntitySystem<ExplosionSystem>().QueueExplosion(targetPosition, comp.Type, adjustedTotalIntensity, adjustedSlope, adjustedMaxTileIntensity, null);
+                    }
+                    else if (!string.IsNullOrEmpty(comp.ExplosionEntity))
+                    {
+                        // Spawn the specified entity at the target position
+                        var spawnedEntity = entMan.SpawnEntity(comp.ExplosionEntity, targetPosition);
+
+                        // Apply accuracy modifier to the spawned entity if it has a damage component
+                        // This is a simplified approach - more complex implementations might need specific component handling
+                        if (accuracyModifier < 1.0f)
+                        {
+                            // TODO: Apply accuracy modifier to spawned entity effects if needed
+                        }
+                    }
                 }
             }));
         }));

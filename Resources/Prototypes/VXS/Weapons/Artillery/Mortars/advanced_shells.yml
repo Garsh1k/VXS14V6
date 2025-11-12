@@ -1,0 +1,52 @@
+# Advanced mortar shells that spawn entities instead of direct explosions
+
+- type: entity
+  id: SmokeMortarShell
+  parent: DebugMortarShell
+  name: Smoke Mortar Shell
+  description: A mortar shell that deploys smoke on impact
+  components:
+  - type: MortarShell
+    delayPerTile: 0.15
+    fireSound: /Audio/Weapons/Guns/Artillery/fire1.ogg
+    preExplosionSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
+    insertSound: /Audio/Weapons/Guns/Artillery/mortarload.ogg
+    explosionEntity: Smoke
+    useDirectExplosion: false
+  - type: Tag
+    tags:
+    - MortarShell
+
+- type: entity
+  id: TearGasMortarShell
+  parent: DebugMortarShell
+  name: Tear Gas Mortar Shell
+  description: A mortar shell that deploys tear gas on impact
+  components:
+  - type: MortarShell
+    delayPerTile: 0.15
+    fireSound: /Audio/Weapons/Guns/Artillery/fire1.ogg
+    preExplosionSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
+    insertSound: /Audio/Weapons/Guns/Artillery/mortarload.ogg
+    explosionEntity: TearGasSmoke
+    useDirectExplosion: false
+  - type: Tag
+    tags:
+    - MortarShell
+
+- type: entity
+  id: EMPMortarShell
+  parent: DebugMortarShell
+  name: EMP Mortar Shell
+  description: A mortar shell that creates an EMP pulse on impact
+  components:
+  - type: MortarShell
+    delayPerTile: 0.15
+    fireSound: /Audio/Weapons/Guns/Artillery/fire1.ogg
+    preExplosionSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
+    insertSound: /Audio/Weapons/Guns/Artillery/mortarload.ogg
+    explosionEntity: EffectEmpPulse
+    useDirectExplosion: false
+  - type: Tag
+    tags:
+    - MortarShell
