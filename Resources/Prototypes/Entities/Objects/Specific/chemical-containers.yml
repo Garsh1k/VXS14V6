@@ -92,7 +92,7 @@
   parent: Jug
   suffix: carbon
   id: JugCarbon
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-carbon
@@ -107,7 +107,7 @@
   parent: Jug
   suffix: iodine
   id: JugIodine
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-iodine
@@ -122,7 +122,7 @@
   parent: Jug
   suffix: fluorine
   id: JugFluorine
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-fluorine
@@ -137,7 +137,7 @@
   parent: Jug
   suffix: chlorine
   id: JugChlorine
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-chlorine
@@ -152,7 +152,7 @@
   parent: Jug
   suffix: aluminium
   id: JugAluminium
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-aluminium
@@ -167,7 +167,7 @@
   parent: Jug
   suffix: phosphorus
   id: JugPhosphorus
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-phosphorus
@@ -182,7 +182,7 @@
   parent: Jug
   suffix: sulfur
   id: JugSulfur
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-sulfur
@@ -197,7 +197,7 @@
   parent: Jug
   suffix: silicon
   id: JugSilicon
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-silicon
@@ -212,7 +212,7 @@
   parent: Jug
   suffix: hydrogen
   id: JugHydrogen
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-hydrogen
@@ -227,7 +227,7 @@
   parent: Jug
   suffix: lithium
   id: JugLithium
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-lithium
@@ -242,7 +242,7 @@
   parent: Jug
   suffix: sodium
   id: JugSodium
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-sodium
@@ -257,7 +257,7 @@
   parent: Jug
   suffix: potassium
   id: JugPotassium
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-potassium
@@ -272,7 +272,7 @@
   parent: Jug
   suffix: radium
   id: JugRadium
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-radium
@@ -287,7 +287,7 @@
   parent: Jug
   suffix: iron
   id: JugIron
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-iron
@@ -302,7 +302,7 @@
   parent: Jug
   suffix: copper
   id: JugCopper
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-copper
@@ -317,7 +317,7 @@
   parent: Jug
   suffix: gold
   id: JugGold
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-gold
@@ -332,7 +332,7 @@
   parent: Jug
   suffix: mercury
   id: JugMercury
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-mercury
@@ -347,7 +347,7 @@
   parent: Jug
   suffix: silver
   id: JugSilver
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-silver
@@ -362,7 +362,7 @@
   parent: Jug
   suffix: ethanol
   id: JugEthanol
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-ethanol
@@ -377,7 +377,7 @@
   parent: Jug
   suffix: sugar
   id: JugSugar
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-sugar
@@ -392,7 +392,7 @@
   parent: Jug
   suffix: nitrogen
   id: JugNitrogen
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-nitrogen
@@ -407,7 +407,7 @@
   parent: Jug
   suffix: oxygen
   id: JugOxygen
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-oxygen
@@ -422,7 +422,7 @@
   parent: Jug
   suffix: Plant-B-Gone
   id: JugPlantBGone
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-plant-b-gone
@@ -437,7 +437,7 @@
   parent: Jug
   suffix: welding fuel
   id: JugWeldingFuel
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] VXS
   components:
   - type: Label
     currentLabel: reagent-name-welding-fuel
