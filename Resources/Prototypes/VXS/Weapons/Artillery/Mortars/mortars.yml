@@ -1,0 +1,28 @@
+- type: entity
+  id: DebugMortar
+  parent: BaseStructure
+  name: Mortar
+  suffix: DEBUG
+  description: pizdec
+  components:
+  - type: Sprite
+    sprite: VXS/Structures/mortar.rsi
+    state: mortar
+  - type: Mortar
+    accuracy: 0.5
+    minOffsetX: -30
+    maxOffsetX: 30
+    minOffsetY: -30
+    maxOffsetY: 30
+  - type: ContainerContainer
+    containers:
+      mortar_chamber: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      mortar_chamber:
+        name: Chamber
+        startingItem: DebugMortarShell
+        priority: 1
+        whitelist:
+          tags:
+            - MortarShell

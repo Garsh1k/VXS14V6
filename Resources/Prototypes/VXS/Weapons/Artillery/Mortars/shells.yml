@@ -1,0 +1,30 @@
+- type: entity
+  id: DebugMortarShell
+  parent: BaseItem
+  name: Mortar Shell
+  suffix: DEBUG
+  description: Mortar Shell
+  components:
+  - type: Tag
+    tags:
+      - MortarShell
+  - type: Sprite
+    sprite: VXS/Structures/mortar.rsi
+    state: shell
+  - type: MortarShell
+    delayPerTile: 0.15
+    fireSound: /Audio/Weapons/Guns/Artillery/fire1.ogg
+    preExplosionSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
