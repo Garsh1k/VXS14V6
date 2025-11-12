@@ -21,6 +21,12 @@
     },
     {
       "name": "pirate_flag"
+    },
+    {
+      "name": "SF_flag"
+    },
+    {
+      "name": "SFAF_flag"
     }
   ]
 }
