@@ -88,6 +88,8 @@ public sealed class MortarEui : BaseEui
                 targetPosition = new MapCoordinates(adjustedPosition, mortarPosition.MapId);
             }
             else
+            {
+                // If direction is zero, set a default offset to the right
                 targetPosition = new MapCoordinates(
                     new Vector2(mortarPosition.X + minDistance, mortarPosition.Y),
                     mortarPosition.MapId);
@@ -138,9 +140,25 @@ public sealed class MortarEui : BaseEui
             {
                 entMan.DeleteEntity(rocket);
 
-                // TODO: Visual and audio
+                // Apply distance-based accuracy scaling
                 if(comp != null)
-                    sysMan.GetEntitySystem<ExplosionSystem>().QueueExplosion(targetPosition, comp.Type, comp.TotalIntensity, comp.Slope, comp.MaxTileIntensity, null);
+                {
+                    // Get mortar component for accuracy parameters
+                    var mortarComp = entMan.GetComponent<SharedMortarComponent>(Mortar);
+
+                    // Calculate distance for accuracy scaling
+                    var distance = (targetPosition.Position - mortarPosition.Position).Length();
+
+                    // Calculate accuracy modifier (decreases with distance)
+                    var accuracyModifier = Math.Max(0.1f, mortarComp.BaseAccuracy - (distance * mortarComp.AccuracyDegradation));
+
+                    // Apply accuracy modifier to explosion parameters
+                    var adjustedTotalIntensity = comp.TotalIntensity * accuracyModifier;
+                    var adjustedSlope = comp.Slope * accuracyModifier;
+                    var adjustedMaxTileIntensity = comp.MaxTileIntensity * accuracyModifier;
+
+                    sysMan.GetEntitySystem<ExplosionSystem>().QueueExplosion(targetPosition, comp.Type, adjustedTotalIntensity, adjustedSlope, adjustedMaxTileIntensity, null);
+                }
             }));
         }));
 

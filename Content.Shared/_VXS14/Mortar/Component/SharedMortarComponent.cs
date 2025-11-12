@@ -11,7 +11,11 @@ namespace Content.Shared._VXS14.Mortar
     {
 
         [ViewVariables(VVAccess.ReadWrite), DataField("accuracy"), AutoNetworkedField]
-        public float Accuracy = 1f;
+        public float BaseAccuracy = 1f;
+
+        // Accuracy degradation per tile distance (higher values = faster degradation)
+        [ViewVariables(VVAccess.ReadWrite), DataField("accuracyDegradation"), AutoNetworkedField]
+        public float AccuracyDegradation = 0.05f;
 
         // Min and max offset range for X and Y coordinates
         [ViewVariables(VVAccess.ReadWrite), DataField("minOffsetX"), AutoNetworkedField]

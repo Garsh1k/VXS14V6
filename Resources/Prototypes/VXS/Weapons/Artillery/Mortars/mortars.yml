@@ -9,7 +9,8 @@
     sprite: VXS/Structures/mortar.rsi
     state: mortar
   - type: Mortar
-    accuracy: 0.5
+    baseAccuracy: 0.5
+    accuracyDegradation: 0.05
     minOffsetX: -50
     maxOffsetX: 50
     minOffsetY: -50
