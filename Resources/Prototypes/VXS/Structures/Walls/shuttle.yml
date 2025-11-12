@@ -1,0 +1,58 @@
+- type: entity
+  parent: BaseWall
+  id: ArmoredShuttleWall
+  name: armored shuttle wall
+  components:
+    - type: Sprite
+      sprite: _ADT/Structures/Walls/space_sec_wall.rsi
+    - type: Icon
+      sprite: _ADT/Structures/Walls/space_sec_wall.rsi
+    - type: IconSmooth
+      key: walls
+      base: state
+    - type: Tag
+      tags:
+        - Wall
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 550
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Girder:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: ArmoredShuttleWallDiagonal
+  name: armored shuttle wall
+  suffix: Diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _ADT/Structures/Walls/space_sec_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _ADT/Structures/Walls/space_sec_diagonal.rsi
+    state: state0
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 550
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]

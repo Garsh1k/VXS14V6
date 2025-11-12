@@ -1,0 +1,26 @@
+- type: entity
+  parent: Airlock
+  id: FleetAirlock
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Doors/Airlocks/Standart/space_sec.rsi
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    securityLevel: maxSecurity
+  - type: Wires
+    boardName: wires-board-name-highsec
+    layoutId: HighSec
+
+#Glass
+- type: entity
+  parent: AirlockGlass
+  id: FleetGlassAirlock
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Doors/Airlocks/Glass/space_sec.rsi
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    securityLevel: maxSecurity
+  - type: Wires
+    boardName: wires-board-name-highsec
+    layoutId: HighSec
