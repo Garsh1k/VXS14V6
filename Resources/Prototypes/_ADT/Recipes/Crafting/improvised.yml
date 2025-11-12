@@ -1,0 +1,12 @@
+- type: construction
+  name: wood cross
+  id: ADTWoodCross
+  graph: ADTWCross
+  startNode: start
+  targetNode: ADTWoodCompCross
+  category: construction-category-clothing
+  objectType: Item
+  description: A handmade wood cross.
+  icon:
+    sprite: _ADT/Clothing/Neck/Misc/wood_cross.rsi
+    state: icon
