@@ -18,8 +18,8 @@
   - type: TileEntityEffect
     effects:
     - !type:FlammableReaction
-      multiplier: 3.75
-      multiplierOnExisting: 0.75
+      multiplier: 5
+      multiplierOnExisting: 45
     - !type:Ignite
   - type: Transform
     anchored: true
