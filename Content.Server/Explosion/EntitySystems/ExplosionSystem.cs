@@ -67,7 +67,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     /// </summary>
     public const ushort DefaultTileSize = 1;
 
-    public const int MaxExplosionAudioRange = 30;
+    public const int MaxExplosionAudioRange = 655; // VXS
 
     public override void Initialize()
     {
@@ -340,7 +340,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         // camera shake
-        CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
+        CameraShake(iterationIntensity.Count * 16f, pos, queued.TotalIntensity); // VXS
 
         //For whatever bloody reason, sound system requires ENTITY coordinates.
         var mapEntityCoords = _transformSystem.ToCoordinates(_map.GetMap(pos.MapId), pos);
@@ -355,7 +355,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         // Use the Filter.Pvs range-multiplier option instead of AddInRange.
         // Also the default PVS range is 25*2 = 50. So capping it at 30 makes no sense here.
         // So actually maybe don't use Filter.Pvs at all and only use AddInRange?
-        var audioRange = Math.Min(iterationIntensity.Count * 2, MaxExplosionAudioRange);
+        var audioRange = Math.Min(iterationIntensity.Count * 16, MaxExplosionAudioRange); // VXS
         var filter = Filter.Pvs(pos).AddInRange(pos, audioRange);
         var sound = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
             ? queued.Proto.SmallSound
@@ -365,7 +365,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         // play far sound
         // far sound should play for anyone who wasn't in range of any of the effects of the bomb
-        var farAudioRange = iterationIntensity.Count * 5;
+        var farAudioRange = iterationIntensity.Count * 24; // VXS
         var farFilter = Filter.Empty().AddInRange(pos, farAudioRange).RemoveInRange(pos, audioRange);
         var farSound = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
             ? queued.Proto.SmallSoundFar
@@ -409,7 +409,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
                 delta = new(0.01f, 0);
 
             var distance = delta.Length();
-            var effect = 5 * MathF.Pow(totalIntensity, 0.5f) * (1 - distance / range);
+            var effect = 12 * MathF.Pow(totalIntensity, 0.5f) * (1 - distance / range); // VXS
             if (effect > 0.01f)
                 _recoilSystem.KickCamera(uid, -delta.Normalized() * effect);
         }
