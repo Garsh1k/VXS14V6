@@ -36,6 +36,21 @@ public sealed class MortarEui : BaseEui
         Mortar = uid;
     }
 
+    public override void Opened()
+    {
+        base.Opened();
+
+        // Send mortar configuration to the client
+        var entMan = IoCManager.Resolve<IEntityManager>();
+        var mortarComp = entMan.GetComponent<SharedMortarComponent>(Mortar);
+        SendMessage(new MortarSpawnExplosionEuiMsg.MortarConfig(
+            mortarComp.MinOffsetX,
+            mortarComp.MaxOffsetX,
+            mortarComp.MinOffsetY,
+            mortarComp.MaxOffsetY,
+            mortarComp.MinSafeDistance));
+    }
+
     public override void HandleMessage(EuiMessageBase msg)
     {
         base.HandleMessage(msg);
@@ -57,6 +72,27 @@ public sealed class MortarEui : BaseEui
                 mortarPosition.X + request.OffsetX,
                 mortarPosition.Y + request.OffsetY),
             mortarPosition.MapId);
+
+        // Prevent shooting at too close a range (use mortar's minimum safe distance)
+        var distanceFromMortar = (targetPosition.Position - mortarPosition.Position).Length();
+        var mortarComp = entMan.GetComponent<SharedMortarComponent>(Mortar);
+        var minDistance = mortarComp.MinSafeDistance;
+        if (distanceFromMortar < minDistance)
+        {
+            // Adjust target to minimum distance in the same direction
+            var direction = targetPosition.Position - mortarPosition.Position;
+            if (direction.Length() > 0)
+            {
+                direction = Vector2.Normalize(direction);
+                var adjustedPosition = mortarPosition.Position + direction * minDistance;
+                targetPosition = new MapCoordinates(adjustedPosition, mortarPosition.MapId);
+            }
+            else
+                targetPosition = new MapCoordinates(
+                    new Vector2(mortarPosition.X + minDistance, mortarPosition.Y),
+                    mortarPosition.MapId);
+            }
+        }
 
         // Dumb code
         var sysMan = IoCManager.Resolve<IEntitySystemManager>();

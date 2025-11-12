@@ -24,4 +24,21 @@ namespace Content.Shared._VXS14.Mortar;
             public float OffsetY;
         }
 
+        [Serializable, NetSerializable]
+        public sealed class MortarConfig : EuiMessageBase
+        {
+            public MortarConfig(float minOffsetX, float maxOffsetX, float minOffsetY, float maxOffsetY, float minSafeDistance)
+            {
+                MinOffsetX = minOffsetX;
+                MaxOffsetX = maxOffsetX;
+                MinOffsetY = minOffsetY;
+                MaxOffsetY = maxOffsetY;
+                MinSafeDistance = minSafeDistance;
+            }
+            public float MinOffsetX;
+            public float MaxOffsetX;
+            public float MinOffsetY;
+            public float MaxOffsetY;
+            public float MinSafeDistance;
+        }
     }

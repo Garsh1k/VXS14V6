@@ -5,11 +5,11 @@
         <Label Text="Mortar Control" />
         <BoxContainer Orientation="Horizontal">
             <Label Text="Offset X:" />
-            <SpinBox Name="OffsetX" />
+            <SpinBox Name="OffsetX" Value="5" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal">
             <Label Text="Offset Y:" />
-            <SpinBox Name="OffsetY" />
+            <SpinBox Name="OffsetY" Value="0" />
         </BoxContainer>
         <Button Name="Recentre" Text="Recentre" />
         <Button Name="Spawn" Text="Fire" />

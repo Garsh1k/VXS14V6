@@ -34,5 +34,9 @@ namespace Content.Shared._VXS14.Mortar
         // Sound to play before explosion
         [ViewVariables(VVAccess.ReadWrite), DataField("preExplosionSound"), AutoNetworkedField]
         public string? PreExplosionSound = "/Audio/Effects/explosionfar.ogg";
+
+        // Sound to play when the shell is inserted into the mortar
+        [ViewVariables(VVAccess.ReadWrite), DataField("insertSound"), AutoNetworkedField]
+        public string? InsertSound = "/Audio/Effects/thunk.ogg";
     }
 }

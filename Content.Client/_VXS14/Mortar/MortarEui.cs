@@ -38,6 +38,16 @@ public sealed class MortarEui : BaseEui
         _window.Close();
     }
 
+    public override void HandleMessage(EuiMessageBase msg)
+    {
+        base.HandleMessage(msg);
+
+        if (msg is MortarSpawnExplosionEuiMsg.MortarConfig config)
+        {
+            _window.SetMortarConfig(config.MinOffsetX, config.MaxOffsetX, config.MinOffsetY, config.MaxOffsetY);
+        }
+    }
+
     public void SendClosedMessage()
     {
         SendMessage(new CloseEuiMessage());

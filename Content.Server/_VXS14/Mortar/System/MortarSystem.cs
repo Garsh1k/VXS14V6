@@ -15,6 +15,9 @@ using Robust.Shared.Utility;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Audio;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._VXS14.Mortar
 {
@@ -25,8 +28,8 @@ namespace Content.Server._VXS14.Mortar
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
         public override void Initialize()
         {
@@ -34,6 +37,7 @@ namespace Content.Server._VXS14.Mortar
 
             // SubscribeNetworkEvent<MortarMessage>(OnMortarFire);
             SubscribeLocalEvent<SharedMortarComponent, GetVerbsEvent<ExamineVerb>>(OnMortarVerbUtility);
+            SubscribeLocalEvent<SharedMortarComponent, EntInsertedIntoContainerMessage>(OnItemInserted);
         }
 
         private void OnMortarVerbUtility(EntityUid uid, SharedMortarComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -53,6 +57,20 @@ namespace Content.Server._VXS14.Mortar
                 args.Verbs.Add(verb);
             }
 
+        }
+
+        private void OnItemInserted(EntityUid uid, SharedMortarComponent component, EntInsertedIntoContainerMessage args)
+        {
+            // Check if the inserted item is a mortar shell
+            if (HasComp<SharedMortarShellComponent>(args.Entity) && args.Container.ID == "mortar_chamber")
+            {
+                // Get the mortar shell component
+                if (TryComp<SharedMortarShellComponent>(args.Entity, out var shellComponent) && shellComponent.InsertSound != null)
+                {
+                    // Play the mortar shell's insert sound
+                    _audioSystem.PlayPvs(new SoundPathSpecifier(shellComponent.InsertSound), uid);
+                }
+            }
         }
 
     private void OnUsed(EntityUid uid,  EntityUid user, bool canReach = true)

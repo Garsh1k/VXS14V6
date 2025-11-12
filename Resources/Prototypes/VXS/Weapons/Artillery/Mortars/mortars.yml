@@ -10,10 +10,11 @@
     state: mortar
   - type: Mortar
     accuracy: 0.5
-    minOffsetX: -30
-    maxOffsetX: 30
-    minOffsetY: -30
-    maxOffsetY: 30
+    minOffsetX: -50
+    maxOffsetX: 50
+    minOffsetY: -50
+    maxOffsetY: 50
+    minSafeDistance: 5
   - type: ContainerContainer
     containers:
       mortar_chamber: !type:ContainerSlot
@@ -26,3 +27,5 @@
         whitelist:
           tags:
             - MortarShell
+        # insertSound:
+        #   path: /Audio/Weapons/Guns/Artillery/mortarload.ogg

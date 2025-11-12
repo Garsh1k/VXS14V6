@@ -25,5 +25,9 @@ namespace Content.Shared._VXS14.Mortar
 
         [ViewVariables(VVAccess.ReadWrite), DataField("maxOffsetY"), AutoNetworkedField]
         public float MaxOffsetY = 50f;
+
+        // Minimum safe distance to prevent self-damage (in tiles)
+        [ViewVariables(VVAccess.ReadWrite), DataField("minSafeDistance"), AutoNetworkedField]
+        public float MinSafeDistance = 5f;
     }
 }

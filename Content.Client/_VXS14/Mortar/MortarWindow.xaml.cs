@@ -36,6 +36,12 @@ public sealed partial class MortarWindow : DefaultWindow
     /// </summary>
     private bool _pausePreview;
 
+    // Default ranges in case configuration isn't received
+    private float _minOffsetX = -50f;
+    private float _maxOffsetX = 50f;
+    private float _minOffsetY = -50f;
+    private float _maxOffsetY = 50f;
+
     public MortarWindow()
     {
         Logger.InfoS("mortar-window", "Attempting to load XAML for MortarWindow");
@@ -51,10 +57,25 @@ public sealed partial class MortarWindow : DefaultWindow
         Recentre.OnPressed += (_) => ResetOffsets();
         Spawn.OnPressed += SubmitButtonOnOnPressed;
 
-        OffsetX.ValueChanged += (args) => UpdatePreview();
-        OffsetY.ValueChanged += (args) => UpdatePreview();
+        // Initialize default buttons for easy value adjustment
+        OffsetX.InitDefaultButtons();
+        OffsetY.InitDefaultButtons();
+
+        OffsetX.ValueChanged += (args) => ValidateAndPreview();
+        OffsetY.ValueChanged += (args) => ValidateAndPreview();
     }
 
+    public void SetMortarConfig(float minOffsetX, float maxOffsetX, float minOffsetY, float maxOffsetY)
+    {
+        _minOffsetX = minOffsetX;
+        _maxOffsetX = maxOffsetX;
+        _minOffsetY = minOffsetY;
+        _maxOffsetY = maxOffsetY;
+
+        // Apply the ranges to the SpinBox controls
+        OffsetX.IsValid = (value) => value >= _minOffsetX && value <= _maxOffsetX;
+        OffsetY.IsValid = (value) => value >= _minOffsetY && value <= _maxOffsetY;
+    }
 
     protected override void EnteredTree()
     {
@@ -62,12 +83,12 @@ public sealed partial class MortarWindow : DefaultWindow
     }
 
     /// <summary>
-    ///     Reset the offset values to zero.
+    ///     Reset the offset values to a safe default.
     /// </summary>
     private void ResetOffsets()
     {
         _pausePreview = true;
-        OffsetX.Value = 0;
+        OffsetX.Value = 5; // Safe default offset
         OffsetY.Value = 0;
         _pausePreview = false;
         UpdatePreview();
@@ -77,6 +98,12 @@ public sealed partial class MortarWindow : DefaultWindow
     {
         if (_pausePreview)
             return;
+    }
+
+    private void ValidateAndPreview()
+    {
+        // Let the server handle all validation - just update the preview
+        UpdatePreview();
     }
 
      private void SubmitButtonOnOnPressed(ButtonEventArgs args)

@@ -15,6 +15,7 @@
     delayPerTile: 0.15
     fireSound: /Audio/Weapons/Guns/Artillery/fire1.ogg
     preExplosionSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
+    insertSound: /Audio/Weapons/Guns/Artillery/mortarload.ogg
   - type: DamageOnLand
     damage:
       types:
