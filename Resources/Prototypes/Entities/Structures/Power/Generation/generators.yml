@@ -227,6 +227,7 @@
   - type: PowerMonitoringDevice
     sprite: Structures/Power/Generation/rtg.rsi
     state: rtg
+  - type: RadiationDecrease # VXS/220
   - type: AmbientSound
     range: 5
     sound:
