@@ -1,0 +1,70 @@
+- type: entity
+  id: ChevronBase
+  name: chevron
+  description: A small insignia that can be attached to uniforms to denote rank or position.
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Chevron
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronCaptain
+  name: captain's chevron
+  description: A golden chevron denoting the rank of Captain.
+  components:
+  - type: Chevron
+    chevronInfo: Captain
+  - type: Sprite
+    sprite: Objects/Misc/chevron.rsi
+    state: icon
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronHeadOfPersonnel
+  name: head of personnel's chevron
+  description: A golden chevron denoting the rank of Head of Personnel.
+  components:
+  - type: Chevron
+    chevronInfo: Head of Personnel
+  - type: Sprite
+    sprite: Objects/Misc/chevron.rsi
+    state: icon
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronHeadOfSecurity
+  name: head of security's chevron
+  description: A silver chevron denoting the rank of Head of Security.
+  components:
+  - type: Chevron
+    chevronInfo: Head of Security
+  - type: Sprite
+    sprite: Objects/Misc/chevron.rsi
+    state: icon
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronChiefMedicalOfficer
+  name: chief medical officer's chevron
+  description: A silver chevron denoting the rank of Chief Medical Officer.
+  components:
+  - type: Chevron
+    chevronInfo: Chief Medical Officer
+  - type: Sprite
+    sprite: Objects/Misc/chevron.rsi
+    state: icon
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronResearchDirector
+  name: research director's chevron
+  description: A silver chevron denoting the rank of Research Director.
+  components:
+  - type: Chevron
+    chevronInfo: Research Director
+  - type: Sprite
+    sprite: Objects/Misc/chevron.rsi
+    state: icon

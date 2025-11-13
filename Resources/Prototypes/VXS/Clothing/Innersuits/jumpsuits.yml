@@ -8,6 +8,8 @@
     sprite: VXS/Clothing/Innersuits/tsf.rsi
   - type: Clothing
     sprite: VXS/Clothing/Innersuits/tsf.rsi
+  - type: ChevronSlot
+    maxChevrons: 3
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -19,6 +21,8 @@
     sprite: VXS/Clothing/Innersuits/tsf_gray.rsi
   - type: Clothing
     sprite: VXS/Clothing/Innersuits/tsf_gray.rsi
+  - type: ChevronSlot
+    maxChevrons: 3
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -30,3 +34,5 @@
     sprite: VXS/Clothing/Innersuits/tsf_gold.rsi
   - type: Clothing
     sprite: VXS/Clothing/Innersuits/tsf_gold.rsi
+  - type: ChevronSlot
+    maxChevrons: 3
