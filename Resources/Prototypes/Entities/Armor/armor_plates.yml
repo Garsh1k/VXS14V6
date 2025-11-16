@@ -1,0 +1,85 @@
+# Armor plates that can be inserted into modular armor
+
+- type: entity
+  id: ArmorPlateBase
+  abstract: true
+  name: armor plate
+  description: A plate that can be inserted into compatible armor to enhance protection.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/sheets.rsi
+    state: sheet-metal
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ "ArmorPlate" ]
+  - type: ArmorPlate
+    modifiers: { }
+
+- type: entity
+  parent: ArmorPlateBase
+  id: ArmorPlateBlunt
+  name: blunt protection plate
+  description: A plate that provides additional protection against blunt damage.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/sheets.rsi
+    state: sheet-metal
+  - type: ArmorPlate
+    modifiers:
+      Blunt: 0.8 # 20% additional protection against blunt damage
+
+- type: entity
+  parent: ArmorPlateBase
+  id: ArmorPlateSlash
+  name: slash protection plate
+  description: A plate that provides additional protection against slashing damage.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/sheets.rsi
+    state: sheet-metal
+  - type: ArmorPlate
+    modifiers:
+      Slash: 0.8 # 20% additional protection against slashing damage
+
+- type: entity
+  parent: ArmorPlateBase
+  id: ArmorPlatePiercing
+  name: piercing protection plate
+  description: A plate that provides additional protection against piercing damage.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/sheets.rsi
+    state: sheet-metal
+  - type: ArmorPlate
+    modifiers:
+      Piercing: 0.7 # 30% additional protection against piercing damage
+
+- type: entity
+  parent: ArmorPlateBase
+  id: ArmorPlateHeat
+  name: heat protection plate
+  description: A plate that provides additional protection against heat damage.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/sheets.rsi
+    state: sheet-metal
+  - type: ArmorPlate
+    modifiers:
+      Heat: 0.7 # 30% additional protection against heat damage
+
+- type: entity
+  parent: ArmorPlateBase
+  id: ArmorPlateUniversal
+  name: universal protection plate
+  description: A plate that provides balanced protection against all damage types.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/sheets.rsi
+    state: sheet-metal
+  - type: ArmorPlate
+    modifiers:
+      Blunt: 0.9
+      Slash: 0.9
+      Piercing: 0.9
+      Heat: 0.9

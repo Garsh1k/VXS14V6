@@ -1,7 +1,6 @@
 # Numbers for armor here largely taken from /tg/.
 # armor.yml covers both armored vests (e.g. not just cosmetic) and armor that covers multiple bodyparts/limbs
 
-
 #Basic armor vest for inheritance
 - type: entity
   abstract: true
@@ -23,6 +22,17 @@
         Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 0.90
+  - type: ModularArmor # Add modular armor capability
+    plateSlot:
+      whitelist:
+        tags:
+        - ArmorPlate
+      insertSound:
+        !type:SoundPathSpecifier
+        path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+      ejectSound:
+        !type:SoundPathSpecifier
+        path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
