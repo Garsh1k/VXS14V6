@@ -46,16 +46,17 @@ public sealed class ArmorPlateConsumptionSystem : EntitySystem
                 continue;
             }
 
-            // Only consume if there are spendable resistances
-            if (modularArmor.PlateHardSpendableResistances.Count > 0 ||
+            // Only consume if there are spendable resistances or hard resistances
+            if (modularArmor.PlateHardResistances.Count > 0 ||
+                modularArmor.PlateHardSpendableResistances.Count > 0 ||
                 modularArmor.PlateHardSpendablePercentResistances.Count > 0)
             {
-                ConsumeSpendableResistances(armorEntity, modularArmor, args.Damage);
+                ConsumeResistances(armorEntity, modularArmor, args.Damage);
             }
         }
     }
 
-    private void ConsumeSpendableResistances(EntityUid armorUid, ModularArmorComponent modularArmor, DamageSpecifier damage)
+    private void ConsumeResistances(EntityUid armorUid, ModularArmorComponent modularArmor, DamageSpecifier damage)
     {
         // We need to find the actual plate entity to update its component
         if (!_container.TryGetContainer(armorUid, "Plate", out var container) ||
@@ -72,7 +73,33 @@ public sealed class ArmorPlateConsumptionSystem : EntitySystem
 
         bool needsUpdate = false;
 
-        // Consume hard-spendable resistances
+        // Process hard resistances first (they fully absorb damage up to their value)
+        foreach (var kvp in modularArmor.PlateHardResistances)
+        {
+            var damageType = kvp.Key;
+            var hardResistance = kvp.Value;
+
+            if (hardResistance <= 0 || !damage.DamageDict.TryGetValue(damageType, out var damageAmount) || damageAmount <= 0)
+            {
+                continue;
+            }
+
+            // If damage is less than or equal to hard resistance, it's fully absorbed
+            // No consumption needed as hard resistances are not spendable
+            var damageFloat = damageAmount.Float();
+            if (damageFloat <= hardResistance)
+            {
+                // Fully absorb the damage
+                damage.DamageDict[damageType] = 0;
+            }
+            else
+            {
+                // Damage exceeds hard resistance, reduce damage by hard resistance amount
+                damage.DamageDict[damageType] = damageAmount - hardResistance;
+            }
+        }
+
+        // Consume hard-spendable resistances (they absorb damage and get consumed)
         foreach (var kvp in modularArmor.PlateHardSpendableResistances)
         {
             var damageType = kvp.Key;
@@ -83,8 +110,13 @@ public sealed class ArmorPlateConsumptionSystem : EntitySystem
                 continue;
             }
 
+            var damageFloat = damageAmount.Float();
+
             // Calculate how much resistance we can consume
-            var consumed = MathF.Min(availableResistance, damageAmount.Float());
+            var consumed = MathF.Min(availableResistance, damageFloat);
+
+            // Reduce the damage by the consumed amount
+            damage.DamageDict[damageType] = MathF.Max(0, damageFloat - consumed);
 
             // Update both the plate component and the modular armor component
             if (armorPlate.HardSpendableResistances.ContainsKey(damageType))
@@ -106,14 +138,19 @@ public sealed class ArmorPlateConsumptionSystem : EntitySystem
                 continue;
             }
 
+            var damageFloat = damageAmount.Float();
+
             // Calculate how much resistance we can consume (percentage of damage)
-            var consumed = MathF.Min(availablePercentage * damageAmount.Float(), damageAmount.Float());
+            var consumed = MathF.Min(availablePercentage * damageFloat, damageFloat);
+
+            // Reduce the damage by the consumed amount
+            damage.DamageDict[damageType] = MathF.Max(0, damageFloat - consumed);
 
             // For percentage resistances, we reduce the percentage value itself
             // Calculate how much percentage to consume based on the damage consumed
-            if (consumed > 0 && damageAmount > 0)
+            if (consumed > 0 && damageFloat > 0)
             {
-                var percentConsumed = consumed / damageAmount.Float();
+                var percentConsumed = consumed / damageFloat;
 
                 // Update both the plate component and the modular armor component
                 if (armorPlate.HardSpendablePercentResistances.ContainsKey(damageType))
