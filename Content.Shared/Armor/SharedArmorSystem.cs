@@ -36,7 +36,9 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(ent, out var mask) && mask.IsToggled)
             return;
 
-        foreach (var armorCoefficient in ent.Comp.Modifiers.Coefficients)
+        // Use current modifiers for coefficient calculation
+        var currentModifiers = ent.Comp.GetCurrentModifiers();
+        foreach (var armorCoefficient in currentModifiers.Coefficients)
         {
             args.Args.DamageModifiers.Coefficients[armorCoefficient.Key] = args.Args.DamageModifiers.Coefficients.TryGetValue(armorCoefficient.Key, out var coefficient) ? coefficient * armorCoefficient.Value : armorCoefficient.Value;
         }
@@ -47,7 +49,9 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(uid, out var mask) && mask.IsToggled)
             return;
 
-        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
+        // Use current modifiers for damage modification
+        var currentModifiers = component.GetCurrentModifiers();
+        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, currentModifiers);
     }
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
@@ -56,7 +60,9 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(uid, out var mask) && mask.IsToggled)
             return;
 
-        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
+        // Use current modifiers for damage modification
+        var currentModifiers = component.GetCurrentModifiers();
+        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, currentModifiers);
     }
 
     private void OnArmorVerbExamine(EntityUid uid, ArmorComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -64,7 +70,8 @@ public abstract class SharedArmorSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess || !component.ShowArmorOnExamine)
             return;
 
-        var examineMarkup = GetArmorExamine(component.Modifiers);
+        var currentModifiers = component.GetCurrentModifiers();
+        var examineMarkup = GetArmorExamine(currentModifiers);
 
         var ev = new ArmorExamineEvent(examineMarkup);
         RaiseLocalEvent(uid, ref ev);
@@ -98,6 +105,42 @@ public abstract class SharedArmorSystem : EntitySystem
             msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
                 ("type", armorType),
                 ("value", flatArmor.Value)
+            ));
+        }
+
+        // Add hard resistances to examination
+        foreach (var hardResistance in armorModifiers.HardResistances)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + hardResistance.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-hard-resistance-value",
+                ("type", armorType),
+                ("value", hardResistance.Value)
+            ));
+        }
+
+        // Add hard-spendable resistances to examination
+        foreach (var hardSpendableResistance in armorModifiers.HardSpendableResistances)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + hardSpendableResistance.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-hard-spendable-resistance-value",
+                ("type", armorType),
+                ("value", hardSpendableResistance.Value)
+            ));
+        }
+
+        // Add hard-spendable-percent resistances to examination
+        foreach (var hardSpendablePercentResistance in armorModifiers.HardSpendablePercentResistances)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + hardSpendablePercentResistance.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-hard-spendable-percent-resistance-value",
+                ("type", armorType),
+                ("value", hardSpendablePercentResistance.Value)
             ));
         }
 
