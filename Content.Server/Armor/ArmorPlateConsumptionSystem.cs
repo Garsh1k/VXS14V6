@@ -16,6 +16,7 @@ public sealed class ArmorPlateConsumptionSystem : EntitySystem
     [Dependency] private readonly SharedArmorSystem _armor = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly ArmorPlateVisualSystem _visualSystem = default!;
 
     public override void Initialize()
     {
@@ -167,6 +168,9 @@ public sealed class ArmorPlateConsumptionSystem : EntitySystem
         {
             Dirty(plateEntity, armorPlate);
             Dirty(armorUid, modularArmor);
+
+            // Update the visual state of the armor plate
+            _visualSystem.UpdatePlateVisualState(plateEntity, armorPlate);
         }
     }
 }

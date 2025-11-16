@@ -39,4 +39,52 @@ public sealed partial class ArmorPlateComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, float> HardSpendablePercentResistances = new();
+
+    #region Visual States
+    /// <summary>
+    /// The sprite state used when the armor plate is in perfect condition.
+    /// </summary>
+    [DataField]
+    public string NormalSpriteState = "normal";
+
+    /// <summary>
+    /// The sprite state used when the armor plate is damaged but still functional.
+    /// </summary>
+    [DataField]
+    public string DamagedSpriteState = "damaged";
+
+    /// <summary>
+    /// The sprite state used when the armor plate is broken and provides no protection.
+    /// </summary>
+    [DataField]
+    public string BrokenSpriteState = "broken";
+
+    /// <summary>
+    /// Threshold percentage at which the plate changes to damaged state.
+    /// When spendable resistances drop below this percentage of their maximum, the plate becomes damaged.
+    /// </summary>
+    [DataField]
+    public float DamagedThreshold = 0.5f; // 50% of maximum resistance
+
+    /// <summary>
+    /// Threshold percentage at which the plate changes to broken state.
+    /// When spendable resistances drop below this percentage of their maximum, the plate becomes broken.
+    /// </summary>
+    [DataField]
+    public float BrokenThreshold = 0.1f; // 10% of maximum resistance
+    #endregion
+}
+
+[Serializable, NetSerializable]
+public enum ArmorPlateVisuals : byte
+{
+    State
+}
+
+[Serializable, NetSerializable]
+public enum ArmorPlateState : byte
+{
+    Normal,
+    Damaged,
+    Broken
 }
