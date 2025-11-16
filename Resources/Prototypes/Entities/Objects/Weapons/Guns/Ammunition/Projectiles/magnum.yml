@@ -8,6 +8,8 @@
     damage:
       types:
         Piercing: 35
+  - type: ProjectileInjury
+    caliberMultiplier: 1.8
 
 - type: entity
   id: BulletMagnumPractice
@@ -19,6 +21,9 @@
     damage:
       types:
         Blunt: 1
+  - type: ProjectileInjury
+    caliberMultiplier: 0.3
+    minimumDamage: 1.0
 
 - type: entity
   id: BulletMagnumIncendiary
@@ -31,6 +36,8 @@
       types:
         Piercing: 26
         Heat: 9
+  - type: ProjectileInjury
+    caliberMultiplier: 2.0
 
 - type: entity
   id: BulletMagnumAP
@@ -43,6 +50,8 @@
       types:
         Piercing: 26 # 20% decrease
     ignoreResistances: true
+  - type: ProjectileInjury
+    caliberMultiplier: 2.2
 
 - type: entity
   id: BulletMagnumUranium
@@ -55,3 +64,5 @@
       types:
         Radiation: 15
         Piercing: 20
+  - type: ProjectileInjury
+    caliberMultiplier: 2.1

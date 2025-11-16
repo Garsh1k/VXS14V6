@@ -8,6 +8,8 @@
     damage:
       types:
         Piercing: 16
+  - type: ProjectileInjury
+    caliberMultiplier: 1.0
 
 - type: entity
   id: BulletPistolPractice
@@ -19,6 +21,9 @@
     damage:
       types:
         Blunt: 2
+  - type: ProjectileInjury
+    caliberMultiplier: 0.2
+    minimumDamage: 1.0
 
 - type: entity
   id: BulletPistolIncendiary
@@ -31,6 +36,8 @@
       types:
         Piercing: 12
         Heat: 4
+  - type: ProjectileInjury
+    caliberMultiplier: 1.2
 
 - type: entity
   id: BulletPistolUranium
@@ -43,3 +50,5 @@
       types:
         Radiation: 6
         Piercing: 10
+  - type: ProjectileInjury
+    caliberMultiplier: 1.3

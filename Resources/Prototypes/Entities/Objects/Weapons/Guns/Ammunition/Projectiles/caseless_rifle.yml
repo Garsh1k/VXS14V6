@@ -8,6 +8,8 @@
     damage:
       types:
         Piercing: 19
+  - type: ProjectileInjury
+    caliberMultiplier: 1.1
 
 - type: entity
   id: BulletCaselessRiflePractice
@@ -19,3 +21,6 @@
     damage:
       types:
         Blunt: 2
+  - type: ProjectileInjury
+    caliberMultiplier: 0.2
+    minimumDamage: 1.0

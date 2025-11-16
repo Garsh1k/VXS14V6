@@ -14,3 +14,5 @@
     - Structural
   - type: StaminaDamageOnCollide
     damage: 60
+  - type: ProjectileInjury
+    caliberMultiplier: 4.0
