@@ -1,0 +1,168 @@
+- type: entity
+  name: AK-742M
+  parent: WeaponRifleAk
+  id: WeaponRifleAk742M
+  description: An old automatic rifle, but in a new modification. Looks familiar, doesn't it? Uses .20 rifle ammo.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Rifles/ak74m.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    cameraRecoilScalar: 1
+    projectileSpeed: 45
+    fireRate: 6
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Rifle/rifle2.ogg
+      params:
+        maxDistance: 60
+        volume: 2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/Rifle/rifleInsert2.ogg
+        ejectSound: /Audio/VXS/Gunshots/Gunsounds/Rifle/rifleMagout2.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  # - type: ClothingGrant TODO: FIX
+  #   component:
+  #   - type: OpticZoomEffect
+
+- type: entity
+  name: Lecter
+  suffix: Unloaded
+  parent: [BaseWeaponRifle, BaseRestrictedContraband]
+  id: WeaponRifleLecterUnloaded
+  description: A high end military grade assault rifle.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+  - type: Gun
+    cameraRecoilScalar: 2
+    projectileSpeed: 50
+    shotsPerBurst: 2
+    burstCooldown: 0.1
+    burstFireRateModifier: 1.5
+    selectedMode: Burst
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Rifle/rifle3.ogg
+      params:
+        maxDistance: 60
+        volume: 3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleEmpty
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/Rifle/rifleInsert.ogg
+        ejectSound: /Audio/VXS/Gunshots/Gunsounds/Rifle/rifleMagout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Lex
+  parent: BaseWeaponRifle
+  id: WeaponRifleLecterCivilian
+  description: A civilian hunting version of the Lecter battle rifle.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Rifles/lex.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: VXS/Weapons/Rifles/lex.rsi
+  - type: Gun
+    minAngle: 16
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 8
+    cameraRecoilScalar: 2
+    projectileSpeed: 45
+    fireRate: 5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Rifle/rifle3.ogg
+      params:
+        maxDistance: 60
+        volume: 3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/Rifle/rifleInsert.ogg
+        ejectSound: /Audio/VXS/Gunshots/Gunsounds/Rifle/rifleMagout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

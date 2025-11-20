@@ -1,6 +1,6 @@
 - type: entity
   id: BaseShellShotgun
-  name: shell (.50)
+  name: shell (12/70 BUCKSHOT) # VXS
   parent: BaseCartridge
   abstract: true
   components:
@@ -20,7 +20,7 @@
 
 - type: entity
   id: ShellShotgunBeanbag
-  name: shell (.50 beanbag)
+  name: shell (12/70 RUBBER) # VXS
   parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   components:
   - type: Tag
@@ -38,7 +38,7 @@
 
 - type: entity
   id: ShellShotgunSlug
-  name: shell (.50 slug)
+  name: shell (12/70 SLUG) # VXS
   parent: [ BaseShellShotgun, BaseSecurityContraband]
   components:
   - type: Sprite
@@ -52,7 +52,7 @@
 
 - type: entity
   id: ShellShotgunFlare
-  name: shell (.50 flare)
+  name: shell (12/70 FLARE) # VXS
   parent: BaseShellShotgun
   components:
   - type: Tag
@@ -70,7 +70,7 @@
 
 - type: entity
   id: ShellShotgun
-  name: shell (.50 pellet)
+  name: shell (12x70 BUCKSHOT) # VXS
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -82,7 +82,7 @@
 
 - type: entity
   id: ShellShotgunIncendiary
-  name: shell (.50 incendiary)
+  name: shell (12/70 DRAGON'S BREATH) # VXS
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -96,7 +96,7 @@
 
 - type: entity
   id: ShellShotgunPractice
-  name: shell (.50 practice)
+  name: shell (12/70 PRACTICE) # VXS
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -110,7 +110,7 @@
 
 - type: entity
   id: ShellTranquilizer
-  name: shell (.50 tranquilizer)
+  name: shell (12/70 TRANQUILIZER) # VXS
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Tag
@@ -159,7 +159,7 @@
 
 - type: entity
   id: ShellShotgunUranium
-  name: uranium shotgun shell
+  name: shell (12/70 DU) # VXS
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
     - type: Sprite

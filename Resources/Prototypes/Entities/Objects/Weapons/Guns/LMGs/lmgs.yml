@@ -31,7 +31,10 @@
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+      path: /Audio/VXS/Gunshots/Rifle/rifle4.ogg # VXS
+      params: # VXS
+        maxDistance: 60
+        volume: 4
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: ChamberMagazineAmmoProvider
@@ -102,7 +105,7 @@
       availableModes:
         - FullAuto
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+        path: /Audio/VXS/Gunshots/Rifle/rifle4.ogg # VXS
       soundEmpty:
         path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
     - type: Sprite

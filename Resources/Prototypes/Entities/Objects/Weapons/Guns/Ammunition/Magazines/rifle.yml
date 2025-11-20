@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazineRifle
-  name: "magazine (.20 rifle)"
+  name: "magazine (5.45x39mm SWT20S)" # VXS
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   id: MagazineRifle
-  name: "magazine (.20 rifle)"
+  name: "magazine (5.45x39mm SWT20S)" # VXS
   parent: BaseMagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -54,7 +54,7 @@
 
 - type: entity
   id: MagazineRifleEmpty
-  name: "magazine (.20 rifle any)"
+  name: "magazine (5.45x39mm SWT20)" # VXS
   suffix: empty
   parent: MagazineRifle
   description: 25-round double stack magazine for combat rifles.
@@ -76,7 +76,7 @@
 
 - type: entity
   id: MagazineRifleIncendiary
-  name: "magazine (.20 rifle incendiary)"
+  name: "magazine (5.45x39mm SWT20I)" # VXS
   parent: MagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold self-igniting incendiary ammunition.
   components:
@@ -103,7 +103,7 @@
 
 - type: entity
   id: MagazineRiflePractice
-  name: "magazine (.20 rifle practice)"
+  name: "magazine (5.45x39mm SWT20T)" # VXS
   parent: BaseMagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold non-harmful chalk ammunition.
   components:
@@ -130,7 +130,7 @@
 
 - type: entity
   id: MagazineRifleUranium
-  name: "magazine (.20 rifle uranium)"
+  name: "magazine (5.45x39mm SWT20DU)" # VXS
   parent: BaseMagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
   components:
