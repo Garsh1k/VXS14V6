@@ -136,3 +136,24 @@
   - type: MovementModStatusEffect
   - type: ExaminableStatusEffect
     message: bone-death-examine
+  - type: IdentityBlocker
+
+- type: entity
+  parent: WoundInternalBase
+  id: WoundOxygenDeprivation
+  name: oxygen deprivation
+  components:
+  - type: OxygenDeprivationOnDamage
+    damageThreshold: 100
+    oxygenLossPerSecond: 20
+    updateInterval: 1
+  - type: Wound
+    damage:
+      damageDict:
+        Blunt: 0
+    maximumDamage: 0
+  - type: AnalyzableWound
+    descriptions:
+      0: wound-oxygen-deprivation
+  - type: ExaminableStatusEffect
+    message: oxygen-deprivation-examine

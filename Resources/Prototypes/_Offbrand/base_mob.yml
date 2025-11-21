@@ -232,6 +232,10 @@
     oxygenRegeneration: 1
     maxPassivelyHealableDamage: 30
     damageHealing: 1
+  - type: OxygenDeprivationOnDamage
+    damageThreshold: 100
+    oxygenLossPerSecond: 20
+    updateInterval: 1
   - type: BrainDamageThresholds
     damageStateThresholds:
       70: Critical
