@@ -1,0 +1,49 @@
+- type: entity
+  name: heath
+  parent: BaseWeaponPistol
+  id: WeaponSMGVereskHeath
+  description: Designed to engage in close combat enemy personnel using individual armor protection. Uses .25 caseless.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/SMGs/veresk.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: VXS/Weapons/SMGs/veresk.rsi
+  - type: Gun
+    projectileSpeed: 35
+    fireRate: 8
+    minAngle: 6
+    maxAngle: 19
+    shotsPerBurst: 4
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Pistol/pistolSupressed.ogg
+      params:
+        maxDistance: 55
+        volume: 2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: PistolMagazineVereskHeath
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineVeresk
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeCaselessRifle

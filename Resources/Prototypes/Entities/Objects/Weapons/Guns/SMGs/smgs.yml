@@ -29,7 +29,10 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+      path: /Audio/VXS/Gunshots/SMG/smg3.ogg # VXS
+      params: # VXS
+        maxDistance: 55
+        volume: 2
     defaultDirection: 1, 0
   - type: ChamberMagazineAmmoProvider
     soundRack:
@@ -39,8 +42,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolSubMachineGun
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/SMG/smgInsert2.ogg # VXS
+        ejectSound: /Audio/VXS/Gunshots/Gunsounds/SMG/smgMagout.ogg # VXS
         priority: 2
         whitelist:
           tags:
@@ -76,7 +79,7 @@
   - type: Gun
     fireRate: 10
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      path: /Audio/VXS/Gunshots/SMG/smg1.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -110,9 +113,11 @@
     availableModes:
     - Burst
     - FullAuto
-    - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+      path: /Audio/VXS/Gunshots/SMG/smg2.ogg
+      params: # VXS
+        maxDistance: 55
+        volume: 2
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals
@@ -171,14 +176,14 @@
   description: A modern SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines.
   components:
     - type: Sprite
-      sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+      sprite: VXS/Weapons/drozd.rsi # VXS
       layers:
         - state: base
           map: ["enum.GunVisualLayers.Base"]
         - state: mag-0
           map: ["enum.GunVisualLayers.Mag"]
     - type: Clothing
-      sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+      sprite: VXS/Weapons/drozd.rsi # VXS
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus
@@ -190,7 +195,10 @@
       fireRate: 6
       burstFireRate: 18
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+        path: /Audio/VXS/Gunshots/SMG/smg1.ogg
+        params: # VXS
+          maxDistance: 55
+          volume: 2
       selectedMode: Burst
       availableModes:
       - Burst
@@ -203,8 +211,8 @@
         gun_magazine:
           name: Magazine
           startingItem: MagazinePistolSubMachineGun
-          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          insertSound: /Audio/VXS/Gunshots/Gunsounds/SMG/smgInsert2.ogg # VXS
+          ejectSound: /Audio/VXS/Gunshots/Gunsounds/SMG/smgMagout.ogg # VXS
           priority: 2
           whitelist:
             tags:
@@ -217,10 +225,6 @@
           whitelist:
             tags:
               - CartridgePistol
-    - type: MagazineVisuals
-      magState: mag
-      steps: 5
-      zeroVisible: true
     - type: Appearance
 
 - type: entity
@@ -265,8 +269,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolSubMachineGunTopMounted
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/SMG/smgInsert2.ogg # VXS
+        ejectSound: /Audio/VXS/Gunshots/Gunsounds/SMG/smgMagout.ogg # VXS
         priority: 2
         whitelist:
           tags:

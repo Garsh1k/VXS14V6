@@ -1,7 +1,7 @@
 # Empty mags
 - type: entity
   id: BaseMagazineLightRifle
-  name: "magazine (.30 rifle)"
+  name: "magazine (7.62x51mm LWT30S)" # VXS
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -36,9 +36,9 @@
 # Magazines
 - type: entity
   id: MagazineLightRifleBox
-  name: "L6 SAW magazine box (.30 rifle)"
+  name: "L6 SAW magazine box (7.62x51mm LWT30S)"
   parent: BaseMagazineLightRifle
-  description: Box containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
+  description: Box containing a 100-round belt of linked 7.62x51mm LWT30S rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: Tag
     tags:
@@ -57,7 +57,7 @@
 
 - type: entity
   id: MagazineLightRifle
-  name: "magazine (.30 rifle)"
+  name: "magazine (7.62x51mm LWT30S)"
   parent: BaseMagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -78,7 +78,7 @@
 
 - type: entity
   id: MagazineLightRifleEmpty
-  name: "magazine (.30 rifle any)"
+  name: "magazine (7.62x51mm LWT30)"
   suffix: empty
   parent: MagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles.
@@ -100,7 +100,7 @@
 
 - type: entity
   id: MagazineLightRiflePractice
-  name: "magazine (.30 rifle practice)"
+  name: "magazine (7.62x51mm LWT30T)"
   parent: BaseMagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold non-harmful chalk ammunition.
   components:
@@ -127,7 +127,7 @@
 
 - type: entity
   id: MagazineLightRifleUranium
-  name: "magazine (.30 rifle uranium)"
+  name: "magazine (7.62x51mm LWT30DU)"
   parent: BaseMagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
   components:
@@ -154,7 +154,7 @@
 
 - type: entity
   id: MagazineLightRifleIncendiary
-  name: "magazine (.30 rifle incendiary)"
+  name: "magazine (7.62x51mm LWT30I)"
   parent: MagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold self-igniting incendiary ammunition.
   components:

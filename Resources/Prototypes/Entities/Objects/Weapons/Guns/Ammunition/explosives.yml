@@ -19,6 +19,9 @@
     state: rpg
   - type: StaticPrice
     price: 20
+  - type: Construction # VXS
+    graph: RocketFugasGraph
+    node: rocketFugas
 
 - type: entity
   id: CartridgeRocketSlow

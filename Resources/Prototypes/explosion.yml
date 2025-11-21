@@ -139,3 +139,19 @@
 # STOP
 # BEFORE YOU ADD MORE EXPLOSION TYPES CONSIDER IF AN EXISTING ONE IS SUITABLE
 # ADDING NEW ONES IS PROHIBITIVELY EXPENSIVE
+# похуй мне, долбоёб ебанный - VXS
+
+- type: explosion # VXS
+  id: Thermobaric
+  damagePerIntensity:
+    types:
+      Heat: 10
+      Blunt: 15
+      Piercing: 4
+      Structural: 0.4
+  lightColor: Yellow
+  fireColor: Red
+  texturePath: /Textures/Effects/fire.rsi
+  intensityPerState: 60
+  fireStates: 6
+  fireStacks: 2

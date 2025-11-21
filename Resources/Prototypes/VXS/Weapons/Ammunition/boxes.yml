@@ -1,0 +1,30 @@
+# .25caseless
+- type: entity
+  parent: BaseMagazineBoxCaselessRifle
+  id: MagazineBoxCaselessRifleIncendiary
+  name: ammunition box (6.35x15mm AWR25I)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifleIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# .60antimat
+- type: entity
+  parent: BaseMagazineBoxAntiMateriel
+  id: MagazineBoxAntiMaterielTrasser
+  suffix: Trasser
+  name: ammunition box (12.7x99mm M50T)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMaterielTrasser
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

@@ -29,7 +29,10 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/VXS/Gunshots/Revolver/revolver1.ogg # VXS
+      params: # VXS
+        maxDistance: 58
+        volume: 3
   - type: UseDelay
     delay: 0.66
   - type: ContainerContainer
@@ -113,7 +116,7 @@
   - type: Gun
     fireRate: 3
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+      path: /Audio/VXS/Gunshots/Revolver/revolver2.ogg # VXS
 
 - type: entity
   parent: WeaponRevolverMateba
@@ -141,9 +144,10 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/VXS/Gunshots/Revolver/revolver1.ogg # VXS
       params:
-        volume: 2.25
+        volume: 3
+        maxDistance: 58 # VXS
   - type: StaticPrice
     price: 1500 # Botany can shit these out like candy, but let's see how it goes
 

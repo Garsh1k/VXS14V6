@@ -33,7 +33,10 @@
       - SemiAuto
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+      path: /Audio/VXS/Gunshots/Pistol/pistol1.ogg # VXS
+      params: # VXS
+        maxDistance: 55
+        volume: 2
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
@@ -159,9 +162,10 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      path: /Audio/VXS/Gunshots/Pistol/pistolSupressed.ogg # VXS
       params:
-        volume: -14
+        volume: -2
+        maxDistance: 25 # VXS
     availableModes:
     - SemiAuto
   - type: ItemSlots
@@ -212,7 +216,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/VXS/Gunshots/Pistol/pistol2.ogg # VXS
   - type: StealTarget
     stealGroup: OfficerHandgun
 
@@ -240,7 +244,10 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/VXS/Gunshots/Pistol/pistol2.ogg # VXS
+      params: # VXS
+        maxDistance: 55
+        volume: 3
   - type: ItemSlots
     slots:
       gun_magazine:

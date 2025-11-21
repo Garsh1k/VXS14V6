@@ -1,0 +1,129 @@
+- type: entity
+  name: Svyat
+  suffix: 338Magnum
+  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband]
+  id: WeaponSniperSvyat
+  description: The Marksman rifle is a cheaply made rifle that shoots pretty rare at this time is pretty rare. Nevertheless, still not a bad weapon. Uses .338 Magnum.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Snipers/svyat.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: VXS/Weapons/Snipers/svyat.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: Gun
+    cameraRecoilScalar: 2
+    projectileSpeed: 75
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Sniper/sniper3.ogg
+      params:
+        maxDistance: 100
+        volume: 15
+    soundEmpty:
+      path: /Audio/VXS/Gunshots/Gunsounds/Sniper/sniperEmpty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineSniper
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineSniper
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/Sniper/sniperInsert.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: EyeCursorOffset
+    maxOffset: 12
+    pvsIncrease: 24
+  - type: CursorOffsetRequiresWield
+
+- type: entity
+  name: SSLCR-M Exhaust
+  suffix: 338Magnum
+  parent: [BaseItem, BaseGunWieldable]
+  id: WeaponSniperSSLCRExhaustVSSKVikhlop
+  description: Sniper Special Large Caliber Rifle. This is a modified semi-automatic version, uses pretty rare ammo.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Snipers/exhaust.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: VXS/Weapons/Snipers/exhaust.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: GunRequiresWield
+  - type: Gun
+    cameraRecoilScalar: 1
+    projectileSpeed: 80
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Pistol/pistolSupressed.ogg
+      params:
+        maxDistance: 100
+        volume: 15
+    soundEmpty:
+      path: /Audio/VXS/Gunshots/Gunsounds/Sniper/sniperEmpty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineSniperSupressor
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineSniperSupressorTag
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/VXS/Gunshots/Gunsounds/Sniper/sniperInsert.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+    #autoCycle: false Boowmp :(
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: EyeCursorOffset
+    maxOffset: 6
+    pvsIncrease: 12
+  - type: CursorOffsetRequiresWield
