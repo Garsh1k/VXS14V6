@@ -113,7 +113,7 @@
 
 - type: entity
   id: MagazineMagnumAP
-  name: pistol magazine (11.5x30mm SA45AP)) # VXS
+  name: pistol magazine (11.5x30mm SA45AP) # VXS
   parent: BaseMagazineMagnum
   description: 7-round single stack pistol magazine. Intended to hold rare armor-piercing ammunition.
   components:

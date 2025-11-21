@@ -42,12 +42,14 @@
     - 0,0,4,2
   - type: AmmoCounter
   - type: Gun
+    cameraRecoilScalar: 10 # VXS
+    projectileSpeed: 80 # VXS
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+      path: /Audio/VXS/Gunshots/Launcher/launcher1.ogg # VXS
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -104,7 +106,7 @@
       path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
 
 - type: entity
-  name: RPG-7
+  name: RPG-22M3 # VXS
   parent: [ BaseWeaponLauncher, BaseMajorContraband ]
   id: WeaponLauncherRocket
   description: A modified ancient rocket-propelled grenade launcher.
@@ -119,9 +121,10 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
   - type: Gun
+    cameraRecoilScalar: 6 # VXS
     fireRate: 0.5
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+      path: /Audio/VXS/Gunshots/Launcher/launcher2.ogg # VXS
   - type: BallisticAmmoProvider
     whitelist:
       tags:

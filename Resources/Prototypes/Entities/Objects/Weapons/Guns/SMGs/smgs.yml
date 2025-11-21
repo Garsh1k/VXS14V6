@@ -16,8 +16,9 @@
     slots:
     - Back
     - suitStorage
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: Gun
+    projectileSpeed: 50 # VXS
     minAngle: 2
     maxAngle: 16
     fireRate: 8
@@ -101,15 +102,17 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: AmmoCounter # VXS
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
-    maxAngle: -16
+    maxAngle: -23 # VXS
   - type: Gun
     minAngle: 21
     maxAngle: 32
     shotsPerBurst: 5
+    burstCooldown: 0.1 # VXS
     availableModes:
     - Burst
     - FullAuto
@@ -184,6 +187,10 @@
           map: ["enum.GunVisualLayers.Mag"]
     - type: Clothing
       sprite: VXS/Weapons/drozd.rsi # VXS
+    - type: MagazineVisuals # VXS
+      magState: mag
+      steps: 1
+      zeroVisible: true
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus
@@ -233,6 +240,7 @@
   id: WeaponSubMachineGunWt550
   description: A truly unique firearm, the WT550 was designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
   components:
+  - type: AmmoCounter # VXS
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
     layers:

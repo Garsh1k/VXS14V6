@@ -14,6 +14,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    cameraRecoilScalar: 0 # VXS
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:

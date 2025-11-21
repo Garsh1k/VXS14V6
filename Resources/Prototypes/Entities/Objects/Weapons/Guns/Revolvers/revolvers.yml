@@ -22,8 +22,9 @@
     slots:
     - suitStorage
     - Belt
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: Gun
+    projectileSpeed: 55 # VXS
     selectedMode: SemiAuto
     fireRate: 1.5
     availableModes:
@@ -60,6 +61,7 @@
   id: WeaponRevolverDeckard
   description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 5 rounds of .45 magnum.
   components:
+  - type: AmmoCounter
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
     layers:

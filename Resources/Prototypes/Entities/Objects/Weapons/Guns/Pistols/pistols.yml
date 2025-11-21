@@ -27,6 +27,7 @@
     - suitStorage
     - Belt
   - type: Gun
+    projectileSpeed: 50
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -63,7 +64,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: MagazineVisuals
     magState: mag
     steps: 1

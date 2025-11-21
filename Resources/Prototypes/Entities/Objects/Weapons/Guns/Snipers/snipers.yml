@@ -17,14 +17,16 @@
     slots:
     - Back
     - suitStorage
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: Gun
+    projectileSpeed: 50 # VXS
+    cameraRecoilScalar: 3 # VXS
     fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+      path: /Audio/VXS/Gunshots/Sniper/sniper1.ogg
   - type: BallisticAmmoProvider
     capacity: 10
     proto: CartridgeLightRifle
@@ -105,12 +107,14 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: GunRequiresWield
   - type: Gun
+    projectileSpeed: 80 # VXS
+    cameraRecoilScalar: 5 # VXS
     fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+      path: /Audio/VXS/Gunshots/Sniper/sniper2.ogg
   - type: BallisticAmmoProvider
     whitelist:
       tags:

@@ -19,8 +19,10 @@
     slots:
     - Back
     - suitStorage
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: Gun
+    cameraRecoilScalar: 2
+    projectileSpeed: 45
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:

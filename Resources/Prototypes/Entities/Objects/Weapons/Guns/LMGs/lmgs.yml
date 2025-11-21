@@ -19,11 +19,13 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -20
+    minAngle: -4 # VXS
+    maxAngle: -18 # VXS
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
+    projectileSpeed: 65 # VXS
+    cameraRecoilScalar: 2 # VXS
+    minAngle: 4 # VXS
+    maxAngle: 28 # VXS
     angleIncrease: 4
     angleDecay: 16
     fireRate: 8

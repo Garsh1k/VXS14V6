@@ -4,6 +4,11 @@
   components:
   - type: TimedDespawn
     lifetime: 0.1 # VXS
+  - type: PointLight # VXS
+    enabled: true
+    color: "#FFE097"
+    radius: 8
+    energy: 0.2
   - type: Sprite
     drawdepth: BelowMobs
     layers:
@@ -144,11 +149,11 @@
       types:
         Piercing: 10
         Heat: 4
-  - type: PointLight
-    enabled: true
-    color: "#ff4300"
-    radius: 2.0
-    energy: 7.0
+  # - type: PointLight VXS
+  #   enabled: true
+  #   color: "#ff4300"
+  #   radius: 2.0
+  #   energy: 7.0
   - type: IgniteOnCollide
     fireStacks: 0.25
 
@@ -817,10 +822,10 @@
     intensitySlope: 6
     totalIntensity: 200
     maxTileBreak: 1
-  - type: PointLight
-    radius: 3.5
-    color: orange
-    energy: 0.5
+  # - type: PointLight VXS
+  #   radius: 3.5
+  #   color: orange
+  #   energy: 0.5
 
 - type: entity
   id: BulletWeakRocket
@@ -839,10 +844,10 @@
     intensitySlope: 1
     totalIntensity: 4 # 60 total damage to distribute over tiles
     maxTileBreak: 1
-  - type: PointLight
-    radius: 3.5
-    color: orange
-    energy: 0.5
+  # - type: PointLight VXS
+  #   radius: 3.5
+  #   color: orange
+  #   energy: 0.5
 
 - type: entity
   id: BulletGrenadeBaton
@@ -968,10 +973,10 @@
     disableDuration: 10
   - type: Ammo
     muzzleFlash: null
-  - type: PointLight
-    radius: 3.5
-    color: blue
-    energy: 0.5
+  # - type: PointLight VXS
+  #   radius: 3.5
+  #   color: blue
+  #   energy: 0.5
 
 - type: entity
   id: BulletCap
@@ -1077,10 +1082,10 @@
     intensitySlope: 6
     totalIntensity: 60
     maxTileBreak: 0
-  - type: PointLight
-    radius: 1
-    color: orange
-    energy: 0.5
+  # - type: PointLight VXS
+  #   radius: 1
+  #   color: orange
+  #   energy: 0.5
 
 - type: entity
   id: GrapplingHook

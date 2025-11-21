@@ -16,10 +16,12 @@
     slots:
     - Back
     - suitStorage
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: Gun
+    cameraRecoilScalar: 2
+    projectileSpeed: 60
     fireRate: 5
-    selectedMode: FullAuto
+    selectedMode: SemiAuto # VXS
     availableModes:
       - FullAuto
       - SemiAuto
@@ -58,13 +60,13 @@
     price: 500
 
 - type: entity
-  name: AKMS
+  name: AK-72M
   parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleAk
   description: A somewhat battered combat rifle of a design originating from old Earth. Favored by criminals, militias, and terrorists due to its famed reliability and easy-to-manufacture design. Feeds from .30 rifle magazines.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    sprite: VXS/Weapons/Rifles/ak74m.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -164,6 +166,10 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: VXS/Weapons/lecter.rsi # VXS
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
   - type: Gun
     soundGunshot:
       path: /Audio/VXS/Gunshots/Rifle/rifle3.ogg
@@ -198,7 +204,7 @@
   name: XL8
   description: |-
     The Experimental Lecter 8
-    An unreasonably expensive military grade assault rifle with integrated optic. 
+    An unreasonably expensive military grade assault rifle with integrated optic.
     Uses .20 rifle ammo.
   components:
   - type: Sprite
@@ -218,7 +224,7 @@
     - Burst
     - SemiAuto
     - FullAuto
-  
+
 - type: entity
   name: Estoc DMR
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
@@ -238,8 +244,10 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
   - type: Gun
+    cameraRecoilScalar: 2
     soundGunshot:
-      path: /Audio/VXS/Gunshots/Rifle/rifle4.ogg
+      path: /Audio/VXS/Gunshots/Rifle/rifle4.ogg # VXS
+    projectileSpeed: 75
     minAngle: 30
     maxAngle: 43
     shotsPerBurst: 3
