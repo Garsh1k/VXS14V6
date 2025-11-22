@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared._VXS.Nightvision;
 
 namespace Content.Client._VXS.Nightvision;
+
 public sealed class NightvisionOverlay : Overlay
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -64,7 +65,9 @@ public sealed class NightvisionOverlay : Overlay
         _lightManager.DrawShadows = false;
         _lightManager.DrawLighting = true;
 
+        // Apply light amplification factor to the shader
         _nightvisionShader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        _nightvisionShader?.SetParameter("light_amplification", _nightvisionComponent.LightAmplification);
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;

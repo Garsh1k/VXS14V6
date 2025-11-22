@@ -25,6 +25,10 @@ public sealed class NightvisionSystem : EntitySystem
             return;
 
         if (component.Enabled && !HasComp<NightvisionComponent>(args.Equipee))
-            AddComp<NightvisionComponent>(args.Equipee);
+        {
+            var nightVisionComp = EntityManager.AddComponent<NightvisionComponent>(args.Equipee);
+            // Set the light amplification from the clothing component
+            nightVisionComp.LightAmplification = component.LightAmplification;
+        }
     }
 }
