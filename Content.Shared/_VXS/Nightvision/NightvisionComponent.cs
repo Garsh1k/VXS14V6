@@ -1,3 +1,4 @@
+using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.GameStates;
 
@@ -15,6 +16,18 @@ public sealed partial class NightvisionComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("lightAmplification"), AutoNetworkedField]
     public float LightAmplification { get; set; } = 1.0f;
+
+    /// <summary>
+    /// Tracks whether the light is currently too intense and may cause eye damage.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("lightTooIntense"), AutoNetworkedField]
+    public bool LightTooIntense { get; set; } = false;
+
+    /// <summary>
+    /// Timer for tracking how long the light has been too intense.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("intenseLightTimer"), AutoNetworkedField]
+    public float IntenseLightTimer { get; set; } = 0f;
 }
 
 [RegisterComponent]
@@ -29,4 +42,10 @@ public sealed partial class NightvisionClothingComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("lightAmplification")]
     public float LightAmplification { get; set; } = 10.0f; // 10x amplification for VX-NVG
+
+    /// <summary>
+    /// Threshold at which light becomes too intense and may cause eye damage.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("intenseLightThreshold")]
+    public float IntenseLightThreshold { get; set; } = 5.0f;
 }
