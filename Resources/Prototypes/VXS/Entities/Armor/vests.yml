@@ -1,0 +1,33 @@
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorPlateCarrier
+  name: ballistic plate carrier
+  description: Plate carrier with additional Kevlar protection. Pretty heavy.
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/OuterClothing/Armor/bulletproof.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/OuterClothing/Armor/bulletproof.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ModularArmor
+    plateSlot:
+      whitelist:
+        tags:
+        - ArmorPlate
+      insertSound:
+        !type:SoundPathSpecifier
+        path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+      ejectSound:
+        !type:SoundPathSpecifier
+        path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
