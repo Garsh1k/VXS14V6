@@ -1,5 +1,23 @@
 - type: entity
+  id: ArmorPlateBase
   parent: BaseItem
+  abstract: true
+  name: armor plate
+  description: A plate that can be inserted into compatible armor to enhance protection.
+  components:
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags: [ "ArmorPlate" ]
+  - type: ArmorPlate
+    coefficients: { }
+    flatReductions: { }
+    hardResistances: { }
+    hardSpendableResistances: { }
+    hardSpendablePercentResistances: { }
+
+- type: entity
+  parent: ArmorPlateBase
   id: ArmorPlateZabralo
   name: Zabralo-2R armor plate
   suffix: 2R
@@ -9,13 +27,22 @@
     sprite: VXS/Objects/armorplates.rsi
     state: icon
   - type: StaticPrice
-    price: 120
+    price: 1200
   - type: Tag
     tags:
     - Armorplate
+  - type: ArmorPlate
+    flatReductions:
+      Blunt: 5.0
+      Piercing: 5.0
+    hardSpendableResistances:
+      Piercing: 50
+    coefficients:
+      Slash: 0.9
+      Heat: 0.9
 
 - type: entity
-  parent: ArmorPlateZabralo
+  parent: ArmorPlateBase
   id: ArmorPlateZabraloMod
   name: Zabralo-3R2 armor plate
   suffix: 3R2
@@ -25,4 +52,15 @@
     sprite: VXS/Objects/armorplates.rsi
     state: icon2
   - type: StaticPrice
-    price: 160
+    price: 1200
+  - type: Item
+    size: Small
+  - type: ArmorPlate
+    flatReductions:
+      Blunt: 5.0
+      Piercing: 15.0
+    hardSpendableResistances:
+      Piercing: 20
+    coefficients:
+      Slash: 0.8
+      Heat: 0.9

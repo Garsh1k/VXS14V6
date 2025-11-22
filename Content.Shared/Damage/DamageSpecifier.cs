@@ -175,9 +175,31 @@ namespace Content.Shared.Damage
 
                 float newValue = value.Float();
 
+                // Apply hard resistances that fully consume a set amount of damage
+                if (modifierSet.HardResistances.TryGetValue(key, out var hardResistance))
+                {
+                    newValue = Math.Max(0f, newValue - hardResistance);
+                }
+
+                // Apply hard-spendable resistances that consume damage but lower by that amount
+                if (modifierSet.HardSpendableResistances.TryGetValue(key, out var hardSpendableResistance) && hardSpendableResistance > 0)
+                {
+                    var hardSpendableReduction = Math.Min(newValue, hardSpendableResistance);
+                    newValue = Math.Max(0f, newValue - hardSpendableReduction);
+                }
+
+                // Apply hard-spendable-percent resistances that consume damage but lower by a percentage of the consumed damage
+                if (modifierSet.HardSpendablePercentResistances.TryGetValue(key, out var hardSpendablePercentResistance) && hardSpendablePercentResistance > 0)
+                {
+                    var hardSpendablePercentReduction = newValue * (hardSpendablePercentResistance / 100f);
+                    newValue = Math.Max(0f, newValue - hardSpendablePercentReduction);
+                }
+
+                // Apply flat reductions (existing functionality)
                 if (modifierSet.FlatReduction.TryGetValue(key, out var reduction))
                     newValue = Math.Max(0f, newValue - reduction); // flat reductions can't heal you
 
+                // Apply coefficients (existing functionality)
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                     newValue *= coefficient; // coefficients can heal you, e.g. cauterizing bleeding
 

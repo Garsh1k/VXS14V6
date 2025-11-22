@@ -1,4 +1,5 @@
-﻿using Content.Shared.Clothing.Components;
+﻿using Content.Shared.Armor.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
@@ -36,9 +37,23 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(ent, out var mask) && mask.IsToggled)
             return;
 
-        foreach (var armorCoefficient in ent.Comp.Modifiers.Coefficients)
+        // Use current modifiers for coefficient calculation
+        var currentModifiers = ent.Comp.GetCurrentModifiers();
+        foreach (var armorCoefficient in currentModifiers.Coefficients)
         {
             args.Args.DamageModifiers.Coefficients[armorCoefficient.Key] = args.Args.DamageModifiers.Coefficients.TryGetValue(armorCoefficient.Key, out var coefficient) ? coefficient * armorCoefficient.Value : armorCoefficient.Value;
+        }
+
+        // Apply modular armor plate modifiers if present
+        if (TryComp<ModularArmorComponent>(ent, out var modularArmor))
+        {
+            foreach (var plateCoefficient in modularArmor.PlateCoefficients)
+            {
+                // Apply plate coefficients as additional coefficients
+                args.Args.DamageModifiers.Coefficients[plateCoefficient.Key] = args.Args.DamageModifiers.Coefficients.TryGetValue(plateCoefficient.Key, out var coefficient)
+                    ? coefficient * plateCoefficient.Value
+                    : plateCoefficient.Value;
+            }
         }
     }
 
@@ -47,7 +62,23 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(uid, out var mask) && mask.IsToggled)
             return;
 
-        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
+        // Use current modifiers for damage modification
+        var currentModifiers = component.GetCurrentModifiers();
+        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, currentModifiers);
+
+        // Apply modular armor plate modifiers if present
+        if (TryComp<ModularArmorComponent>(uid, out var modularArmor))
+        {
+            var plateModifiers = new DamageModifierSet
+            {
+                Coefficients = new Dictionary<string, float>(modularArmor.PlateCoefficients),
+                FlatReduction = new Dictionary<string, float>(modularArmor.PlateFlatReductions),
+                HardResistances = new Dictionary<string, float>(modularArmor.PlateHardResistances),
+                HardSpendableResistances = new Dictionary<string, float>(modularArmor.PlateHardSpendableResistances),
+                HardSpendablePercentResistances = new Dictionary<string, float>(modularArmor.PlateHardSpendablePercentResistances)
+            };
+            args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, plateModifiers);
+        }
     }
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
@@ -56,7 +87,23 @@ public abstract class SharedArmorSystem : EntitySystem
         if (TryComp<MaskComponent>(uid, out var mask) && mask.IsToggled)
             return;
 
-        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
+        // Use current modifiers for damage modification
+        var currentModifiers = component.GetCurrentModifiers();
+        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, currentModifiers);
+
+        // Apply modular armor plate modifiers if present
+        if (TryComp<ModularArmorComponent>(uid, out var modularArmor))
+        {
+            var plateModifiers = new DamageModifierSet
+            {
+                Coefficients = new Dictionary<string, float>(modularArmor.PlateCoefficients),
+                FlatReduction = new Dictionary<string, float>(modularArmor.PlateFlatReductions),
+                HardResistances = new Dictionary<string, float>(modularArmor.PlateHardResistances),
+                HardSpendableResistances = new Dictionary<string, float>(modularArmor.PlateHardSpendableResistances),
+                HardSpendablePercentResistances = new Dictionary<string, float>(modularArmor.PlateHardSpendablePercentResistances)
+            };
+            args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, plateModifiers);
+        }
     }
 
     private void OnArmorVerbExamine(EntityUid uid, ArmorComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -64,7 +111,75 @@ public abstract class SharedArmorSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess || !component.ShowArmorOnExamine)
             return;
 
-        var examineMarkup = GetArmorExamine(component.Modifiers);
+        var currentModifiers = component.GetCurrentModifiers();
+        var examineMarkup = GetArmorExamine(currentModifiers);
+
+        // Add plate information if present
+        if (TryComp<ModularArmorComponent>(uid, out var modularArmor) &&
+            (modularArmor.PlateCoefficients.Count > 0 ||
+             modularArmor.PlateFlatReductions.Count > 0 ||
+             modularArmor.PlateHardResistances.Count > 0 ||
+             modularArmor.PlateHardSpendableResistances.Count > 0 ||
+             modularArmor.PlateHardSpendablePercentResistances.Count > 0))
+        {
+            examineMarkup.PushNewline();
+            examineMarkup.AddMarkupOrThrow("[color=yellow]Plate Bonuses:[/color]");
+
+            // Add coefficient bonuses
+            foreach (var plateCoefficient in modularArmor.PlateCoefficients)
+            {
+                examineMarkup.PushNewline();
+                var armorType = Loc.GetString("armor-damage-type-" + plateCoefficient.Key.ToLower());
+                examineMarkup.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
+                    ("type", armorType),
+                    ("value", MathF.Round((1f - plateCoefficient.Value) * 100, 1))
+                ));
+            }
+
+            // Add flat reduction bonuses
+            foreach (var plateFlatReduction in modularArmor.PlateFlatReductions)
+            {
+                examineMarkup.PushNewline();
+                var armorType = Loc.GetString("armor-damage-type-" + plateFlatReduction.Key.ToLower());
+                examineMarkup.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
+                    ("type", armorType),
+                    ("value", plateFlatReduction.Value)
+                ));
+            }
+
+            // Add hard resistance bonuses
+            foreach (var plateHardResistance in modularArmor.PlateHardResistances)
+            {
+                examineMarkup.PushNewline();
+                var armorType = Loc.GetString("armor-damage-type-" + plateHardResistance.Key.ToLower());
+                examineMarkup.AddMarkupOrThrow(Loc.GetString("armor-hard-resistance-value",
+                    ("type", armorType),
+                    ("value", plateHardResistance.Value)
+                ));
+            }
+
+            // Add hard-spendable resistance bonuses
+            foreach (var plateHardSpendableResistance in modularArmor.PlateHardSpendableResistances)
+            {
+                examineMarkup.PushNewline();
+                var armorType = Loc.GetString("armor-damage-type-" + plateHardSpendableResistance.Key.ToLower());
+                examineMarkup.AddMarkupOrThrow(Loc.GetString("armor-hard-spendable-resistance-value",
+                    ("type", armorType),
+                    ("value", plateHardSpendableResistance.Value)
+                ));
+            }
+
+            // Add hard-spendable-percent resistance bonuses
+            foreach (var plateHardSpendablePercentResistance in modularArmor.PlateHardSpendablePercentResistances)
+            {
+                examineMarkup.PushNewline();
+                var armorType = Loc.GetString("armor-damage-type-" + plateHardSpendablePercentResistance.Key.ToLower());
+                examineMarkup.AddMarkupOrThrow(Loc.GetString("armor-hard-spendable-percent-resistance-value",
+                    ("type", armorType),
+                    ("value", plateHardSpendablePercentResistance.Value)
+                ));
+            }
+        }
 
         var ev = new ArmorExamineEvent(examineMarkup);
         RaiseLocalEvent(uid, ref ev);
@@ -98,6 +213,42 @@ public abstract class SharedArmorSystem : EntitySystem
             msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
                 ("type", armorType),
                 ("value", flatArmor.Value)
+            ));
+        }
+
+        // Add hard resistances to examination
+        foreach (var hardResistance in armorModifiers.HardResistances)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + hardResistance.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-hard-resistance-value",
+                ("type", armorType),
+                ("value", hardResistance.Value)
+            ));
+        }
+
+        // Add hard-spendable resistances to examination
+        foreach (var hardSpendableResistance in armorModifiers.HardSpendableResistances)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + hardSpendableResistance.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-hard-spendable-resistance-value",
+                ("type", armorType),
+                ("value", hardSpendableResistance.Value)
+            ));
+        }
+
+        // Add hard-spendable-percent resistances to examination
+        foreach (var hardSpendablePercentResistance in armorModifiers.HardSpendablePercentResistances)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + hardSpendablePercentResistance.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-hard-spendable-percent-resistance-value",
+                ("type", armorType),
+                ("value", hardSpendablePercentResistance.Value)
             ));
         }
 
