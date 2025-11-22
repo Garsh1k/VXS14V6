@@ -4,10 +4,17 @@
   id: BulletAntiMateriel
   name: bullet (.60 anti-materiel)
   components:
+  - type: StunOnCollide # VXS
+    stunAmount: 0
+    knockdownAmount: 2.5
+    drop: true
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
   - type: Projectile
     damage:
       types:
-        Piercing: 70 # VXS
+        Piercing: 80 # VXS
         Blunt: 45 # VXS
         Structural: 75 # VXS
     penetrationThreshold: 500 # VXS
