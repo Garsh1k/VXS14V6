@@ -2,3 +2,5 @@
   id: Nightvision
   kind: source
   path: "/Textures/VXS/Shaders/nightvision.swsl"
+  params:
+    light_amplification: 1.0
