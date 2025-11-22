@@ -6,7 +6,7 @@
   description: A plate that can be inserted into compatible armor to enhance protection.
   components:
   - type: Item
-    size: Normal
+    size: Small
   - type: Tag
     tags: [ "ArmorPlate" ]
   - type: ArmorPlate
@@ -28,9 +28,6 @@
     state: icon
   - type: StaticPrice
     price: 1200
-  - type: Tag
-    tags:
-    - Armorplate
   - type: ArmorPlate
     flatReductions:
       Blunt: 5.0
@@ -53,8 +50,6 @@
     state: icon2
   - type: StaticPrice
     price: 1200
-  - type: Item
-    size: Small
   - type: ArmorPlate
     flatReductions:
       Blunt: 5.0
