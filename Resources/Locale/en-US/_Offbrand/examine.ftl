@@ -174,3 +174,6 @@ wound-shock-moderate-0 = [color=lightgoldenrodyellow]small blister{-wound-plural
 wound-shock-small-7 = [color=lightgoldenrodyellow]shock burn{-wound-plural-modifier-s(count: $count)}[/color]
 wound-shock-small-3 = [color=lightgoldenrodyellow]small shock burn{-wound-plural-modifier-s(count: $count)}[/color]
 wound-shock-small-0 = [color=lightgoldenrodyellow]fading shock burn{-wound-plural-modifier-s(count: $count)}[/color]
+
+oxygen-deprivation-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-BE($target) } struggling to breathe![/color]
+wound-oxygen-deprivation = [color=red]oxygen deprivation[/color]

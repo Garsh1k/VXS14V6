@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazinePistol
-  name: pistol magazine (.35 auto)
+  name: pistol magazine (9x19mm M35S) # VXS
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   id: BaseMagazinePistolHighCapacity
-  name: machine pistol magazine (.35 auto)
+  name: machine pistol magazine (9x19mm M35S) # VXS
   parent: BaseItem
   abstract: true
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   id: BaseMagazinePistolSubMachineGun  # Yeah it's weird but it's pistol caliber
-  name: SMG magazine (.35 auto)
+  name: SMG magazine (9x19mm M35S) # VXS
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -99,7 +99,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunTopMounted
-  name: WT550 magazine (.35 auto top-mounted)
+  name: WT550 magazine (9x19mm M35S) # VXS
   parent: [ BaseItem, BaseSecurityContraband ]
   description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -131,7 +131,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunTopMountedEmpty
-  name: WT550 magazine (.35 auto top-mounted any)
+  name: WT550 magazine (9x19mm M35) # VXS
   parent: MagazinePistolSubMachineGunTopMounted
   description: Unconventional 30-round top feeding magazine for the WT550 SMG.
   components:
@@ -140,7 +140,7 @@
 
 - type: entity
   id: MagazinePistol
-  name: pistol magazine (.35 auto)
+  name: pistol magazine (9x19mm M35S) # VXS
   parent: BaseMagazinePistol
   description: 10-round single-stack magazine for pistols. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -161,7 +161,7 @@
 
 - type: entity
   id: MagazinePistolEmpty
-  name: pistol magazine (.35 auto any)
+  name: pistol magazine (9x19mm M35)  # VXS
   suffix: empty
   parent: MagazinePistol
   description: 10-round single-stack magazine for pistols.
@@ -183,7 +183,7 @@
 
 - type: entity
   id: MagazinePistolIncendiary
-  name: pistol magazine (.35 auto incendiary)
+  name: pistol magazine (9x19mm M35I) # VXS
   parent: MagazinePistol
   description: 10-round single-stack magazine for pistols. Intended to hold self-igniting incendiary ammunition.
   components:
@@ -210,7 +210,7 @@
 
 - type: entity
   id: MagazinePistolPractice
-  name: pistol magazine (.35 auto practice)
+  name: pistol magazine (9x19mm M35I) # VXS
   parent: BaseMagazinePistol
   description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
   components:
@@ -237,7 +237,7 @@
 
 - type: entity
   id: MagazinePistolUranium
-  name: pistol magazine (.35 auto uranium)
+  name: pistol magazine (9x19mm M35DU) # VXS
   parent: BaseMagazinePistol
   description: 10-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition.
   components:
@@ -264,7 +264,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityEmpty
-  name: machine pistol magazine (.35 auto any)
+  name: machine pistol magazine (9x19mm M35) # VXS
   suffix: empty
   parent: BaseMagazinePistolHighCapacity
   components:
@@ -285,7 +285,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacity
-  name: machine pistol magazine (.35 auto)
+  name: machine pistol magazine (9x19mm M35S) # VXS
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -305,7 +305,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityPractice
-  name: machine pistol magazine (.35 auto practice)
+  name: machine pistol magazine (9x19mm M35T) # VXS
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -331,7 +331,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGun
-  name: SMG magazine (.35 auto)
+  name: SMG magazine (9x19mm M35S) # VXS
   parent: BaseMagazinePistolSubMachineGun
   description: 30-round double-stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -357,7 +357,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunEmpty
-  name: SMG magazine (.35 auto any)
+  name: SMG magazine (9x19mm M35) # VXS
   suffix: empty
   parent: BaseMagazinePistolSubMachineGun
   description: 30-round double-stack magazine for submachine guns.
@@ -379,7 +379,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunPractice
-  name: SMG magazine (.35 auto practice)
+  name: SMG magazine (9x19mm M35T) # VXS
   parent: BaseMagazinePistolSubMachineGun
   description: 30-round double-stack magazine for submachine guns. Intended to hold non-harmful chalk ammunition.
   components:
@@ -406,7 +406,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunUranium
-  name: SMG magazine (.35 auto uranium)
+  name: SMG magazine (9x19mm M35DU) # VXS
   parent: BaseMagazinePistolSubMachineGun
   description: 30-round double-stack magazine for submachine guns. Intended to hold exotic uranium-core ammunition.
   components:
@@ -434,7 +434,7 @@
 - type: entity
   parent: BaseMagazinePistolSubMachineGun
   id: MagazinePistolSubMachineGunIncendiary
-  name: SMG magazine (.35 auto incendiary)
+  name: SMG magazine (9x19mm M35I) # VXS
   description: 30-round double-stack magazine for submachine guns. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider

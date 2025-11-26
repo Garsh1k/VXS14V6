@@ -2,7 +2,7 @@
   abstract: true
   parent: BaseItem
   id: BaseMagazineBoxCaselessRifle
-  name: ammunition box (.25 caseless)
+  name: ammunition box (6.35x15mm AWR25S)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -28,7 +28,7 @@
 - type: entity
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRifle
-  name: ammunition box (.25 caseless)
+  name: ammunition box (6.35x15mm AWR25S)
   description: A cardboard box of .25 caseless rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -43,7 +43,7 @@
 - type: entity
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRiflePractice
-  name: ammunition box (.25 caseless practice)
+  name: ammunition box (6.35x15mm AWR25T)
   description: A cardboard box of .25 caseless rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider

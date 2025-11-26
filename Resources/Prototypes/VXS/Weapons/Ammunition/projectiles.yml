@@ -1,0 +1,314 @@
+# Rockets / Grenades
+- type: entity
+  id: BulletRocketFugas
+  name: rocket
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: fugas
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 17
+    intensitySlope: 800
+    totalIntensity: 150
+    maxTileBreak: 1
+  - type: SmokeOnTrigger
+    duration: 2
+    spreadAmount: 3
+  - type: FlashOnTrigger
+    range: 5
+  - type: ProjectileGrenade
+    fillPrototype: PelletFugasStruya
+    capacity: 1
+    randomAngle: false
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 40
+    penetrationThreshold: 1000
+    penetrationDamageTypeRequirement:
+    - Structural
+
+- type: entity
+  id: PelletFugasStruya
+  name: pellet
+  noSpawn: true
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 120
+  - type: StaminaDamageOnCollide
+    damage: 99
+  - type: TimedDespawn
+    lifetime: 0.05
+
+- type: entity
+  id: BulletRocketThermobar
+  name: rocket
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Thermobaric
+    maxIntensity: 45
+    intensitySlope: 1
+    totalIntensity: 300
+    maxTileBreak: 1
+  - type: SmokeOnTrigger
+    duration: 4
+    spreadAmount: 6
+  - type: FlashOnTrigger
+    range: 4
+
+- type: entity
+  id: BulletRocketFrag
+  name: rocket
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: SmokeOnTrigger
+    duration: 1
+    spreadAmount: 6
+  - type: FlashOnTrigger
+    range: 4
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 45
+    intensitySlope: 1.5
+    totalIntensity: 300
+
+# Sniper
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletSniperTrasser
+  name: bullet (.338 magnum)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 55
+        Blunt: 35
+        Structural: 30
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 45
+  - type: TimedDespawn
+    lifetime: 25
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletSniper
+  name: bullet (.338 magnum)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 55
+        Blunt: 35
+        Structural: 30
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 45
+  - type: TimedDespawn
+    lifetime: 25
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletAntiMaterielTrasser
+  name: bullet (.60 anti-materiel trasser)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 65
+        Blunt: 40
+        Structural: 75
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 90
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletSniperSupressorTrasser
+  name: bullet (12.7x55mm)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 35
+        Blunt: 45
+        Structural: 15
+        Asphyxiation: 10
+    penetrationThreshold: 80
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: TimedDespawn
+    lifetime: 20
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletSniperSupressor
+  name: bullet (12.7x55mm)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 35
+        Blunt: 45
+        Structural: 15
+        Asphyxiation: 10
+    penetrationThreshold: 80
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: TimedDespawn
+    lifetime: 20
+
+- type: entity
+  id: BulletRocketHADGLThermobaric
+  name: rocket
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Launchers/hadgl.rsi
+    state: bullet
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Thermobaric
+    maxIntensity: 45
+    intensitySlope: 1
+    totalIntensity: 200
+    maxTileBreak: 1
+  - type: SmokeOnTrigger
+    duration: 1
+    spreadAmount: 8
+  - type: FlashOnTrigger
+    range: 4
+
+- type: entity
+  id: BulletRocketHADGLCumulative
+  name: rocket
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Launchers/hadgl.rsi
+    state: bullet
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 100
+    intensitySlope: 800
+    totalIntensity: 300
+    maxTileBreak: 1
+  - type: SmokeOnTrigger
+    duration: 1
+    spreadAmount: 2
+  - type: FlashOnTrigger
+    range: 2
+
+# Energy
+
+- type: entity
+  name : komrad bolt
+  id: BulletEnergyLMG
+  parent: BulletDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 15
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+# Shrapnel
+
+- type: entity
+  id: PelletClusterLethalSmall
+  name: shrapnel
+  categories: [ HideSpawnMenu ]
+  parent: [BaseBullet, PelletClusterLethal]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+  - type: TimedDespawn
+    lifetime: 0.30
+
+- type: entity
+  id: PelletClusterLethalHeavy
+  name: shrapnel
+  categories: [ HideSpawnMenu ]
+  parent: [BaseBullet, PelletClusterLethal]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 75
+  - type: TimedDespawn
+    lifetime: 0.15

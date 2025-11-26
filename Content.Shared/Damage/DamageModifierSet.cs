@@ -23,5 +23,17 @@ namespace Content.Shared.Damage
 
         [DataField("flatReductions", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
         public Dictionary<string, float> FlatReduction = new();
+
+        // Hard resistances that fully consume a set amount of damage
+        [DataField("hardResistances", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
+        public Dictionary<string, float> HardResistances = new();
+
+        // Hard-spendable resistances that consume damage but lower by that amount
+        [DataField("hardSpendableResistances", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
+        public Dictionary<string, float> HardSpendableResistances = new();
+
+        // Hard-spendable-percent resistances that consume damage but lower by a percentage of the consumed damage
+        [DataField("hardSpendablePercentResistances", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
+        public Dictionary<string, float> HardSpendablePercentResistances = new();
     }
 }

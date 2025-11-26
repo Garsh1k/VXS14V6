@@ -22,14 +22,18 @@
     slots:
     - suitStorage
     - Belt
-  - type: AmmoCounter
+  # - type: AmmoCounter VXS
   - type: Gun
+    projectileSpeed: 55 # VXS
     selectedMode: SemiAuto
     fireRate: 1.5
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/VXS/Gunshots/Revolver/revolver1.ogg # VXS
+      params: # VXS
+        maxDistance: 58
+        volume: 3
   - type: UseDelay
     delay: 0.66
   - type: ContainerContainer
@@ -57,6 +61,7 @@
   id: WeaponRevolverDeckard
   description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 5 rounds of .45 magnum.
   components:
+  - type: AmmoCounter
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
     layers:
@@ -113,7 +118,7 @@
   - type: Gun
     fireRate: 3
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+      path: /Audio/VXS/Gunshots/Revolver/revolver2.ogg # VXS
 
 - type: entity
   parent: WeaponRevolverMateba
@@ -141,9 +146,10 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/VXS/Gunshots/Revolver/revolver1.ogg # VXS
       params:
-        volume: 2.25
+        volume: 3
+        maxDistance: 58 # VXS
   - type: StaticPrice
     price: 1500 # Botany can shit these out like candy, but let's see how it goes
 

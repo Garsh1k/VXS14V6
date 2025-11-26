@@ -7,7 +7,13 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 19
+        Piercing: 46 # VXS
+        Blunt: 12 # VXS
+        Asphyxiation: 6 # VXS
+  - type: StaminaDamageOnCollide # VXS
+    damage: 30
+  - type: TimedDespawn # VXS
+    lifetime: 15
   - type: ProjectileInjury
     caliberMultiplier: 1.4
 
@@ -20,7 +26,14 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2
+        Piercing: 46 # VXS
+        Blunt: 12 # VXS
+        Asphyxiation: 6 # VXS
+        Heat: 3 # VXS
+  - type: StaminaDamageOnCollide # VXS
+    damage: 29
+  - type: TimedDespawn # VXS
+    lifetime: 15
   - type: ProjectileInjury
     caliberMultiplier: 0.3
     minimumDamage: 1.0
@@ -34,8 +47,13 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 14
-        Heat: 5
+        Asphyxiation: 6 # VXS
+        Piercing: 46 # VXS
+        Heat: 11 # VXS
+  - type: StaminaDamageOnCollide # VXS
+    damage: 16
+  - type: TimedDespawn # VXS
+    lifetime: 10
   - type: ProjectileInjury
     caliberMultiplier: 1.6
 
@@ -48,7 +66,11 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 9
-        Piercing: 10
+        Radiation: 1 # VXS
+        Piercing: 58 # VXS
+  - type: StaminaDamageOnCollide # VXS
+    damage: 12
+  - type: TimedDespawn # VXS
+    lifetime: 20
   - type: ProjectileInjury
     caliberMultiplier: 1.7

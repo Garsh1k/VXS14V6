@@ -1,0 +1,194 @@
+- type: entity
+  id: PistolMagazineVereskHeath
+  name: heath magazine (6.35x15mm AWR25S)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineVeresk
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeCaselessRifle
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Magazines/veresk.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineLMGRPK
+  name: "mg magazine (5.45x39mm SWT20S)"
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    proto: CartridgeRifle
+    capacity: 65
+  - type: Tag
+    tags:
+      - MagazineLightMachineGunRPK
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Magazines/rpk.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: BaseMagazineSniper
+  name: "magazine (8.6x70mm M338S)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineSniper
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniper
+    proto: CartridgeSniper
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Magazines/svyatmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineSniperTrasser
+  name: "magazine (8.6x70mm M338T)"
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineSniper
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniper
+    proto: CartridgeSniperTrasser
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Magazines/svyatmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineSniper
+  name: "magazine (8.6x70mm M338S)"
+  parent: BaseMagazineSniper
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSniper
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineSniperSupressorTrasser
+  name: marksman short magazine (12.7x55mm M54S)
+  suffix: Trasser
+  parent: BaseMagazineSniper
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperSupressor
+    proto: CartridgeSniperSupressorTrasser
+    capacity: 5
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_rifle_mag_short.rsi
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+      - MagazineSniperSupressorTag
+
+- type: entity
+  id: MagazineSniperSupressor
+  name: marksman short magazine (12.7x55mm M33T)
+  parent: BaseMagazineSniper
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperSupressor
+    proto: CartridgeSniperSupressor
+    capacity: 5
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_rifle_mag_short.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Tag
+    tags:
+      - MagazineSniperSupressorTag

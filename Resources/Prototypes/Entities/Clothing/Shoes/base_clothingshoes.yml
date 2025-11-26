@@ -56,6 +56,12 @@
           tags:
           - Knife
           - Sidearm
+  - type: NoSlip # VXS
+  - type: SlowedOverSlippery # VXS
+    slowdownModifier: 0.8
+  - type: SpeedModifierContactCapClothing # VXS
+    maxContactSprintSlowdown: 0.8
+    maxContactWalkSlowdown: 0.8
 
 - type: entity
   abstract: true

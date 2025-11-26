@@ -1,6 +1,6 @@
 - type: entity
   id: DebugMortar
-  parent: BaseStructure
+  parent: BaseStructureDynamic
   name: Mortar
   suffix: DEBUG
   description: pizdec

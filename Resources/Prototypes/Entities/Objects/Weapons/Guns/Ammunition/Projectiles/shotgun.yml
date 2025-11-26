@@ -10,11 +10,14 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40
-        Structural: 15
+        Piercing: 28
+        Blunt: 22 # VXS
+  - type: StaminaDamageOnCollide
+    damage: 25 # VXS
+  - type: TimedDespawn # VXS
+    lifetime: 8
   - type: ProjectileInjury
     caliberMultiplier: 2.5
-
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -28,9 +31,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10
+        Blunt: 15 # VXS
   - type: StaminaDamageOnCollide
-    damage: 40 # 3 hits to stun
+    damage: 30 # VXS
   - type: ProjectileInjury
     caliberMultiplier: 0.5
     minimumDamage: 1.0
@@ -49,9 +52,10 @@
       types:
         Piercing: 10
         Structural: 15
+  - type: TimedDespawn # VXS
+    lifetime: 1
   - type: ProjectileInjury
     caliberMultiplier: 2.0
-
 
 - type: entity
   id: PelletShotgunSpread
@@ -60,8 +64,8 @@
   components:
   - type: ProjectileSpread
     proto: PelletShotgun
-    count: 6
-    spread: 15
+    count: 12
+    spread: 7
 
 - type: entity
   id: PelletShotgunIncendiary
@@ -75,10 +79,12 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7
-        Heat: 3
+        Blunt: 7 # VXS
+        Heat: 3 # VXS
   - type: IgnitionSource
     ignited: true
+  - type: TimedDespawn # VXS
+    lifetime: 3
   - type: ProjectileInjury
     caliberMultiplier: 2.2
 
@@ -89,8 +95,8 @@
   components:
   - type: ProjectileSpread
     proto: PelletShotgunIncendiary
-    count: 6
-    spread: 15
+    count: 5
+    spread: 10
 
 - type: entity
   id: PelletShotgunPractice

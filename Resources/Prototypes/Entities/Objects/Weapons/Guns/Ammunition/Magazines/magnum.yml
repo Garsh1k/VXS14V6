@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazineMagnum
-  name: pistol magazine (.45 magnum)
+  name: pistol magazine (11.5x30mm SA45S) # VXS
   parent: [ BaseMagazinePistol, BaseSecurityContraband ]
   abstract: true
   components:
@@ -16,7 +16,7 @@
 
 - type: entity
   id: MagazineMagnumEmpty
-  name: pistol magazine (.45 magnum any)
+  name: pistol magazine (11.5x30mm SA45) # VXS
   suffix: empty
   parent: BaseMagazineMagnum
   description: 7-round single stack pistol magazine.
@@ -38,7 +38,7 @@
 
 - type: entity
   id: MagazineMagnum
-  name: pistol magazine (.45 magnum)
+  name: pistol magazine (11.5x30mm SA45S) #VXS
   parent: BaseMagazineMagnum
   description: 7-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -59,7 +59,7 @@
 
 - type: entity
   id: MagazineMagnumPractice
-  name: pistol magazine (.45 magnum practice)
+  name: pistol magazine (11.5x30mm SA45T) # VXS
   parent: BaseMagazineMagnum
   description: 7-round single stack pistol magazine. Intended to hold non-harmful chalk ammunition.
   components:
@@ -86,7 +86,7 @@
 
 - type: entity
   id: MagazineMagnumUranium
-  name: pistol magazine (.45 magnum uranium)
+  name: pistol magazine (11.5x30mm SA45DU) # VXS
   parent: BaseMagazineMagnum
   description: 7-round single stack pistol magazine. Intended to hold exotic uranium-core ammunition.
   components:
@@ -113,7 +113,7 @@
 
 - type: entity
   id: MagazineMagnumAP
-  name: pistol magazine (.45 magnum armor-piercing)
+  name: pistol magazine (11.5x30mm SA45AP) # VXS
   parent: BaseMagazineMagnum
   description: 7-round single stack pistol magazine. Intended to hold rare armor-piercing ammunition.
   components:
