@@ -14,6 +14,8 @@
     damage: 28
   - type: TimedDespawn # VXS
     lifetime: 15
+  - type: ProjectileInjury
+    caliberMultiplier: 1.2
 
 - type: entity
   id: BulletRiflePractice
@@ -32,6 +34,9 @@
     damage: 27
   - type: TimedDespawn # VXS
     lifetime: 15
+  - type: ProjectileInjury
+    caliberMultiplier: 0.3
+    minimumDamage: 1.0
 
 - type: entity
   id: BulletRifleIncendiary
@@ -49,6 +54,8 @@
     damage: 19
   - type: TimedDespawn # VXS
     lifetime: 12
+  - type: ProjectileInjury
+    caliberMultiplier: 1.4
 
 - type: entity
   id: BulletRifleUranium
@@ -65,4 +72,5 @@
     damage: 19
   - type: TimedDespawn # VXS
     lifetime: 20
-
+  - type: ProjectileInjury
+    caliberMultiplier: 1.5

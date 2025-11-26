@@ -16,6 +16,8 @@
     lifetime: 10
   - type: Ammo # VXS
     muzzleFlash: null
+  - type: ProjectileInjury
+    caliberMultiplier: 1.1
 
 - type: entity
   id: BulletCaselessRiflePractice
@@ -36,3 +38,6 @@
     lifetime: 10
   - type: Ammo # VXS
     muzzleFlash: null
+  - type: ProjectileInjury
+    caliberMultiplier: 0.2
+    minimumDamage: 1.0

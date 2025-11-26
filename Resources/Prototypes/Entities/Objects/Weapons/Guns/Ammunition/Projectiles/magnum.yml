@@ -14,6 +14,8 @@
     damage: 32
   - type: TimedDespawn # VXS
     lifetime: 13
+  - type: ProjectileInjury
+    caliberMultiplier: 1.8
 
 - type: entity
   id: BulletMagnumPractice
@@ -32,6 +34,9 @@
     damage: 31
   - type: TimedDespawn # VXS
     lifetime: 13
+  - type: ProjectileInjury
+    caliberMultiplier: 0.3
+    minimumDamage: 1.0
 
 - type: entity
   id: BulletMagnumIncendiary
@@ -46,6 +51,8 @@
         Heat: 5 # VXS
   - type: TimedDespawn # VXS
     lifetime: 13
+  - type: ProjectileInjury
+    caliberMultiplier: 2.0
 
 - type: entity
   id: BulletMagnumAP
@@ -62,6 +69,8 @@
     damage: 18
   - type: TimedDespawn # VXS
     lifetime: 13
+  - type: ProjectileInjury
+    caliberMultiplier: 2.2
 
 - type: entity
   id: BulletMagnumUranium
@@ -78,3 +87,5 @@
     damage: 14
   - type: TimedDespawn # VXS
     lifetime: 20
+  - type: ProjectileInjury
+    caliberMultiplier: 2.1

@@ -24,3 +24,5 @@
     damage: 99 # VXS
   - type: TimedDespawn # VXS
     lifetime: 30
+  - type: ProjectileInjury
+    caliberMultiplier: 4.0

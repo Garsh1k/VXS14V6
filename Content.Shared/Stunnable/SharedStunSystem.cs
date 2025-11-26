@@ -10,6 +10,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
@@ -210,6 +211,10 @@ public abstract partial class SharedStunSystem : EntitySystem
 
         // Can't fall down if you can't actually be downed.
         if (!Resolve(entity, ref entity.Comp, false))
+            return false;
+
+        // Check if the entity is in critical state - if so, prevent crawling
+        if (TryComp<MobStateComponent>(entity, out var mobState) && mobState.CurrentState == MobState.Critical)
             return false;
 
         var evAttempt = new KnockDownAttemptEvent(autoStand, drop, time);
