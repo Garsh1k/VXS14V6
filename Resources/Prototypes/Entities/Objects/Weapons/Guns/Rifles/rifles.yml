@@ -283,8 +283,8 @@
     sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 6 # VXS
+    pvsIncrease: 0.6 # VXS
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

@@ -8,8 +8,6 @@
     damage:
       types:
         Piercing: 19
-  - type: ProjectileInjury
-    caliberMultiplier: 1.3
 
 - type: entity
   id: BulletMinigun
@@ -21,5 +19,3 @@
     damage:
       types:
         Piercing: 5
-  - type: ProjectileInjury
-    caliberMultiplier: 0.8

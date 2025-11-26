@@ -16,9 +16,6 @@
     damage: 55
   - type: TimedDespawn
     lifetime: 0.25
-  - type: ProjectileInjury
-    caliberMultiplier: 0.5
-    minimumDamage: 1.0
 
 - type: entity
   id: PelletClusterLethal
@@ -36,8 +33,6 @@
         Piercing: 45
   - type: TimedDespawn
     lifetime: 0.25
-  - type: ProjectileInjury
-    caliberMultiplier: 2.5
 
 - type: entity
   id: PelletClusterIncendiary
@@ -59,8 +54,6 @@
     count: 10
   - type: TimedDespawn
     lifetime: 0.25
-  - type: ProjectileInjury
-    caliberMultiplier: 1.2
 
 - type: entity
   id: PelletClusterLessLethal
@@ -78,5 +71,3 @@
         Piercing: 5
   - type: TimedDespawn
     lifetime: 0.25
-  - type: ProjectileInjury
-    caliberMultiplier: 0.8

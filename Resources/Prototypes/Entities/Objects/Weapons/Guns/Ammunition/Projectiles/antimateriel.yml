@@ -9,12 +9,12 @@
     knockdownAmount: 2.5
     drop: true
     slowdownAmount: 2.5
-    walkSpeedModifier: 0.5
-    sprintSpeedModifier: 0.5
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
   - type: Projectile
     damage:
       types:
-        Piercing: 80 # VXS
+        Piercing: 100 # VXS
         Blunt: 45 # VXS
         Structural: 75 # VXS
     penetrationThreshold: 500 # VXS
@@ -24,5 +24,3 @@
     damage: 99 # VXS
   - type: TimedDespawn # VXS
     lifetime: 30
-  - type: ProjectileInjury
-    caliberMultiplier: 4.0

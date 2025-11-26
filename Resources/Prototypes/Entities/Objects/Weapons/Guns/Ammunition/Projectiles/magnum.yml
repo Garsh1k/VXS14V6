@@ -7,15 +7,13 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 45 # VXS
-        Blunt: 12 # VXS
+        Piercing: 55 # VXS
+        Blunt: 22 # VXS
         Asphyxiation: 7 # VXS
   - type: StaminaDamageOnCollide # VXS
-    damage: 32
+    damage: 42
   - type: TimedDespawn # VXS
     lifetime: 13
-  - type: ProjectileInjury
-    caliberMultiplier: 1.8
 
 - type: entity
   id: BulletMagnumPractice
@@ -26,17 +24,14 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 45 # VXS
-        Blunt: 12 # VXS
+        Piercing: 55 # VXS
+        Blunt: 22 # VXS
         Asphyxiation: 7 # VXS
         Heat: 3 # VXS
   - type: StaminaDamageOnCollide # VXS
     damage: 31
   - type: TimedDespawn # VXS
     lifetime: 13
-  - type: ProjectileInjury
-    caliberMultiplier: 0.3
-    minimumDamage: 1.0
 
 - type: entity
   id: BulletMagnumIncendiary
@@ -47,12 +42,10 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40 # VXS
+        Piercing: 50 # VXS
         Heat: 5 # VXS
   - type: TimedDespawn # VXS
-    lifetime: 13
-  - type: ProjectileInjury
-    caliberMultiplier: 2.0
+    lifetime: 23
 
 - type: entity
   id: BulletMagnumAP
@@ -63,14 +56,12 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 26 # VXS
+        Piercing: 36 # VXS
         Blunt: 19 # VXS
   - type: StaminaDamageOnCollide
-    damage: 18
+    damage: 28
   - type: TimedDespawn # VXS
     lifetime: 13
-  - type: ProjectileInjury
-    caliberMultiplier: 2.2
 
 - type: entity
   id: BulletMagnumUranium
@@ -82,10 +73,8 @@
     damage:
       types:
         Radiation: 1 # VXS
-        Piercing: 45 # VXS
+        Piercing: 55 # VXS
   - type: StaminaDamageOnCollide
-    damage: 14
+    damage: 24
   - type: TimedDespawn # VXS
     lifetime: 20
-  - type: ProjectileInjury
-    caliberMultiplier: 2.1

@@ -7,7 +7,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 13 # VXS
+        Piercing: 33 # VXS
         Blunt: 14 # VXS
         Asphyxiation: 3 # VXS
   - type: StaminaDamageOnCollide # VXS
@@ -16,8 +16,6 @@
     lifetime: 10
   - type: Ammo # VXS
     muzzleFlash: null
-  - type: ProjectileInjury
-    caliberMultiplier: 1.1
 
 - type: entity
   id: BulletCaselessRiflePractice
@@ -29,7 +27,7 @@
     damage:
       types:
         Blunt: 14 # VXS
-        Piercing: 13 # VXS
+        Piercing: 33 # VXS
         Asphyxiation: 3 # VXS
         Heat: 2 # VXS
   - type: StaminaDamageOnCollide # VXS
@@ -38,6 +36,3 @@
     lifetime: 10
   - type: Ammo # VXS
     muzzleFlash: null
-  - type: ProjectileInjury
-    caliberMultiplier: 0.2
-    minimumDamage: 1.0

@@ -16,8 +16,6 @@
     damage: 25 # VXS
   - type: TimedDespawn # VXS
     lifetime: 8
-  - type: ProjectileInjury
-    caliberMultiplier: 2.5
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -34,9 +32,6 @@
         Blunt: 15 # VXS
   - type: StaminaDamageOnCollide
     damage: 30 # VXS
-  - type: ProjectileInjury
-    caliberMultiplier: 0.5
-    minimumDamage: 1.0
 
 - type: entity
   id: PelletShotgun
@@ -54,8 +49,6 @@
         Structural: 15
   - type: TimedDespawn # VXS
     lifetime: 1
-  - type: ProjectileInjury
-    caliberMultiplier: 2.0
 
 - type: entity
   id: PelletShotgunSpread
@@ -85,8 +78,6 @@
     ignited: true
   - type: TimedDespawn # VXS
     lifetime: 3
-  - type: ProjectileInjury
-    caliberMultiplier: 2.2
 
 - type: entity
   id: PelletShotgunIncendiarySpread
@@ -111,9 +102,6 @@
     damage:
       types:
         Blunt: 1
-  - type: ProjectileInjury
-    caliberMultiplier: 0.3
-    minimumDamage: 1.0
 
 - type: entity
   id: PelletShotgunPracticeSpread
@@ -139,8 +127,6 @@
       types:
         Piercing: 3
         Slash: 3
-  - type: ProjectileInjury
-    caliberMultiplier: 0.8
 
 - type: entity
   id: PelletShotgunImprovisedSpread
@@ -178,9 +164,6 @@
     solution: ammo
   - type: InjectableSolution
     solution: ammo
-  - type: ProjectileInjury
-    caliberMultiplier: 0.2
-    minimumDamage: 1.0
 
 - type: entity
   id: PelletShotgunFlare
@@ -228,8 +211,6 @@
     damage:
       types:
         Heat: 5
-  - type: ProjectileInjury
-    caliberMultiplier: 1.5
 
 - type: entity
   id: PelletShotgunUranium
@@ -245,8 +226,6 @@
       types:
         Radiation: 5
         Piercing: 5
-  - type: ProjectileInjury
-    caliberMultiplier: 2.3
 
 - type: entity
   id: PelletShotgunUraniumSpread
@@ -275,8 +254,6 @@
       types:
         Piercing: 25
         Structural: 5
-  - type: ProjectileInjury
-    caliberMultiplier: 3.0
 
 - type: entity
   id: PelletGrapeshotSpread
@@ -307,8 +284,6 @@
     damage:
       types:
         Slash: 25
-  - type: ProjectileInjury
-    caliberMultiplier: 1.8
 
 - type: entity
   id: PelletGlassSpread

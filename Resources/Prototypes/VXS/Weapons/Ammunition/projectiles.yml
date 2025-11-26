@@ -108,7 +108,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 55
+        Piercing: 75
         Blunt: 35
         Structural: 30
     penetrationThreshold: 100
@@ -134,7 +134,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 55
+        Piercing: 75
         Blunt: 35
         Structural: 30
     penetrationThreshold: 100
@@ -154,7 +154,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 65
+        Piercing: 100
         Blunt: 40
         Structural: 75
     penetrationThreshold: 100
@@ -180,7 +180,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 35
+        Piercing: 75
         Blunt: 45
         Structural: 15
         Asphyxiation: 10
@@ -207,7 +207,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 35
+        Piercing: 75
         Blunt: 45
         Structural: 15
         Asphyxiation: 10
