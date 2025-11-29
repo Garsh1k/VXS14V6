@@ -59,4 +59,4 @@
   - type: ProjectileGrenade
     triggerKey: timer
     fillPrototype: PelletClusterLethalSmall
-    capacity: 30
+    capacity: 20
