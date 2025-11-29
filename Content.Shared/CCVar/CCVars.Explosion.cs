@@ -83,7 +83,7 @@ public sealed partial class CCVars
     ///     This determines for how many seconds an explosion should stay visible once it has finished expanding.
     /// </summary>
     public static readonly CVarDef<float> ExplosionPersistence =
-        CVarDef.Create("explosion.persistence", 0.01f, CVar.SERVERONLY);
+        CVarDef.Create("explosion.persistence", 0.08f, CVar.SERVERONLY);
 
     /// <summary>
     ///     If an explosion covers a larger area than this number, the damaging/processing will always start during
