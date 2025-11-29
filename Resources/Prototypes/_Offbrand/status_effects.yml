@@ -437,9 +437,9 @@
   - type: DamageOverTimeStatusEffect
     damages:
       types:
-        Blunt: 0.30
+        Blunt: 0.001 # VXS
   - type: BleedMultiplierStatusEffect
-    multiplier: 0.25
+    multiplier: -4
 
 - type: entity
   parent: [BaseStatusEffectPersistentTender, MobStatusEffectBase]

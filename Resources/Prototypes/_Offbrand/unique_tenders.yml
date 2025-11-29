@@ -29,6 +29,7 @@
 - type: entity
   parent: [BasePersistentTender, BaseItem]
   id: TourniquetOffbrand
+  suffix: USE THIS, OFFBRANCH # VXS
   name: tourniquet
   description: Can be clamped on a patient to prevent bleeding, but causes bruises after sustained use.
   components:
