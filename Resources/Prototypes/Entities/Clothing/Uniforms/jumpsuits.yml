@@ -827,6 +827,8 @@
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: StaticPrice
     price: 500
+  - type: ChevronSlot # VXS
+    maxChevrons: 2
 
 - type: entity
   parent: ClothingUniformBase
@@ -842,6 +844,8 @@
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
+    - type: ChevronSlot # VXS
+      maxChevrons: 2
 
 - type: entity
   parent: [ ClothingUniformBase ]
@@ -853,6 +857,8 @@
     sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
+  - type: ChevronSlot # VXS
+    maxChevrons: 2
 
 - type: entity
   parent: UnsensoredClothingUniformBase
