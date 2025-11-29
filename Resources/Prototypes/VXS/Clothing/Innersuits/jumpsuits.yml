@@ -9,7 +9,7 @@
   - type: Clothing
     sprite: VXS/Clothing/Innersuits/tsf.rsi
   - type: ChevronSlot
-    maxChevrons: 3
+    maxChevrons: 4
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -22,7 +22,7 @@
   - type: Clothing
     sprite: VXS/Clothing/Innersuits/tsf_gray.rsi
   - type: ChevronSlot
-    maxChevrons: 3
+    maxChevrons: 4
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -35,4 +35,17 @@
   - type: Clothing
     sprite: VXS/Clothing/Innersuits/tsf_gold.rsi
   - type: ChevronSlot
-    maxChevrons: 3
+    maxChevrons: 4
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformJumpsuitFlectarn
+  name: flectarn combat shirt
+  description: Camo uniform of flectarn pattern. Comes with cargo pants.
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/Innersuits/camo.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/Innersuits/camo.rsi
+  - type: ChevronSlot
+    maxChevrons: 2
