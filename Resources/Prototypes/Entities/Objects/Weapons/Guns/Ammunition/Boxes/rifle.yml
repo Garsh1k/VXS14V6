@@ -11,7 +11,7 @@
     proto: CartridgeRifle
     capacity: 50
   - type: Item
-    size: Small
+    size: Normal # VXS
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -33,6 +33,8 @@
   - type: BallisticAmmoProvider
     capacity: 200
     proto: CartridgeRifle
+  - type: Item
+    size: Big # VXS
   - type: Sprite
     layers:
     - state: base-big
