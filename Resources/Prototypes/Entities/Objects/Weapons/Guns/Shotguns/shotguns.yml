@@ -48,6 +48,10 @@
         ents: []
   - type: StaticPrice
     price: 500
+  - type: EyeCursorOffset # VXS
+    maxOffset: 1.5
+    pvsIncrease: 0.05
+  - type: CursorOffsetRequiresWield # VXS
 
 - type: entity
   name: Bulldog

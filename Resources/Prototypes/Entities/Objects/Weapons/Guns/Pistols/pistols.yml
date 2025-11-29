@@ -72,6 +72,9 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  - type: EyeCursorOffset # VXS
+    maxOffset: 1.2
+    pvsIncrease: 0.02
 
 - type: entity
   name: viper

@@ -63,6 +63,9 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
+  - type: EyeCursorOffset # VXS
+    maxOffset: 1.3
+    pvsIncrease: 0.03
 
 - type: entity
   name: Atreides
@@ -130,6 +133,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 5000
+  - type: CursorOffsetRequiresWield # VXS
 
 - type: entity
   name: C-20r ROW #I think ROW stands for Recharging Onboard Weapon so i'm following the L6C's example
@@ -233,6 +237,7 @@
             tags:
               - CartridgePistol
     - type: Appearance
+    - type: CursorOffsetRequiresWield # VXS
 
 - type: entity
   name: WT550

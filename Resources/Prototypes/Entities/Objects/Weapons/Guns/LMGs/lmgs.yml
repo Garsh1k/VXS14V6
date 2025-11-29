@@ -69,6 +69,10 @@
     price: 500
   - type: UseDelay
     delay: 1
+  - type: CursorOffsetRequiresWield # VXS
+  - type: EyeCursorOffset # VXS
+    maxOffset: 1.5
+    pvsIncrease: 0.05
 
 - type: entity
   name: L6 SAW

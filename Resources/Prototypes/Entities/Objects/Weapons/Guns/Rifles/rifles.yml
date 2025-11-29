@@ -58,6 +58,10 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
+  - type: CursorOffsetRequiresWield # VXS
+  - type: EyeCursorOffset # VXS
+    maxOffset: 1.5
+    pvsIncrease: 0.05
 
 - type: entity
   name: AK-72M
