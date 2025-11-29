@@ -1,0 +1,62 @@
+- type: entity
+  name: thermobaric grenade
+  description: Hand-held thermobaric assault grenade designed for assaulting or smoking out enemy infantry from engineering structures.
+  parent: GrenadeBase
+  id: GrenadeThermobaric
+  components:
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Thermobaric
+    maxIntensity: 100
+    intensitySlope: 3
+    totalIntensity: 150
+  - type: TimerTrigger
+    delay: 3
+    beepSound:
+      path: "/Audio/Items/snap.ogg"
+      params:
+        volume: 20
+    initialBeepDelay: 0
+    beepInterval: 4
+  - type: Sprite
+    sprite: VXS/Weapons/Throwable/Grenades/thermobar.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+
+- type: entity
+  name: fragmentation hand-grenade
+  description: Hand-held high explosive fragmentation assault grenade designed for assaulting or smoking out enemy infantry from fortifications.
+  parent: GrenadeBase
+  id: GrenadeOF
+  components:
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 70
+    intensitySlope: 4
+    totalIntensity: 70
+  - type: TimerTrigger
+    delay: 3
+    beepSound:
+      path: "/Audio/Items/snap.ogg"
+      params:
+        volume: 20
+    initialBeepDelay: 0
+    beepInterval: 4
+  - type: Sprite
+    sprite: VXS/Weapons/Throwable/Grenades/frag.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterLethalSmall
+    capacity: 30
