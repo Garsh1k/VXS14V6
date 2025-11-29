@@ -49,3 +49,16 @@
     sprite: VXS/Clothing/Innersuits/camo.rsi
   - type: ChevronSlot
     maxChevrons: 2
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformJumpsuitCamoUniversal
+  name: universal combat shirt
+  description: Old universal camouflage combat shirt of Solfeds Internal Forces. Still better than new.
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/Innersuits/multicamo.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/Innersuits/multicamo.rsi
+  - type: ChevronSlot
+    maxChevrons: 2
