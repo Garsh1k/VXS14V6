@@ -1,0 +1,119 @@
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodOIRHPlus
+  name: O(I) Rh+ blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: O I Rh+
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodOIRHMinus
+  name: O(I) Rh- blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: O I Rh-
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodAIIRHPlus
+  name: A II Rh+ blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: A II Rh+
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodAIIRHPMinus
+  name: A II Rh- blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: A II Rh-
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodBIIIPlus
+  name: B III Rh+ blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: B III Rh+
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodBIIIMinus
+  name: B III Rh- blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: B III Rh-
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodABIVPlus
+  name: AB IV Rh+ blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: AB IV Rh+
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronBloodABIVMinus
+  name: AB IV Rh- blood type chevron
+  components:
+  - type: Chevron
+    chevronInfo: AB IV Rh-
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronFireteamAlpha
+  name: Fireteam Alpha chevron
+  components:
+  - type: Chevron
+    chevronInfo: FT Alpha
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronFireteamBravo
+  name: Fireteam Bravo chevron
+  components:
+  - type: Chevron
+    chevronInfo: FT Bravo
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronFireteamCharlie
+  name: Fireteam Charlie chevron
+  components:
+  - type: Chevron
+    chevronInfo: FT Charlie
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronFireteamDelta
+  name: Fireteam Delta chevron
+  components:
+  - type: Chevron
+    chevronInfo: FT Delta
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronFireteamEcho
+  name: Fireteam Echo chevron
+  components:
+  - type: Chevron
+    chevronInfo: FT Echo
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronTeamSolfed
+  name: Solar Federations Self Defence Armed Forces chevron
+  components:
+  - type: Chevron
+    chevronInfo: SOLFED SDAF
+
+- type: entity
+  parent: ChevronBase
+  id: ChevronTeamSyndicate
+  name: 110 AGr SOF Triglav chevron
+  components:
+  - type: Chevron
+    chevronInfo: 110 AGr SOF TRIGLAV
