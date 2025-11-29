@@ -8,6 +8,9 @@
   - type: Chevron
   - type: Item
     size: Small
+  - type: Sprite
+    sprite: Objects/Misc/chevron.rsi
+    state: icon
 
 - type: entity
   parent: ChevronBase
@@ -17,9 +20,6 @@
   components:
   - type: Chevron
     chevronInfo: Captain
-  - type: Sprite
-    sprite: Objects/Misc/chevron.rsi
-    state: icon
 
 - type: entity
   parent: ChevronBase
@@ -29,9 +29,6 @@
   components:
   - type: Chevron
     chevronInfo: Head of Personnel
-  - type: Sprite
-    sprite: Objects/Misc/chevron.rsi
-    state: icon
 
 - type: entity
   parent: ChevronBase
@@ -41,9 +38,6 @@
   components:
   - type: Chevron
     chevronInfo: Head of Security
-  - type: Sprite
-    sprite: Objects/Misc/chevron.rsi
-    state: icon
 
 - type: entity
   parent: ChevronBase
@@ -53,9 +47,6 @@
   components:
   - type: Chevron
     chevronInfo: Chief Medical Officer
-  - type: Sprite
-    sprite: Objects/Misc/chevron.rsi
-    state: icon
 
 - type: entity
   parent: ChevronBase
@@ -65,6 +56,3 @@
   components:
   - type: Chevron
     chevronInfo: Research Director
-  - type: Sprite
-    sprite: Objects/Misc/chevron.rsi
-    state: icon
