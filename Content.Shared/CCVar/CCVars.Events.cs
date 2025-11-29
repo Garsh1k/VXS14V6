@@ -11,5 +11,5 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.Server | AdminFlags.Mapping)]
     public static readonly CVarDef<bool>
-        EventsEnabled = CVarDef.Create("events.enabled", true, CVar.ARCHIVE | CVar.SERVERONLY);
+        EventsEnabled = CVarDef.Create("events.enabled", false, CVar.ARCHIVE | CVar.SERVERONLY);
 }

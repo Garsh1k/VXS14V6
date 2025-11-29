@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Whether gas differences will move entities.
     /// </summary>
     public static readonly CVarDef<bool> SpaceWind =
-        CVarDef.Create("atmos.space_wind", false, CVar.SERVERONLY);
+        CVarDef.Create("atmos.space_wind", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     Divisor from maxForce (pressureDifference * 2.25f) to force applied on objects.
@@ -27,14 +27,14 @@ public sealed partial class CCVars
     ///     Useful to prevent clipping through objects.
     /// </summary>
     public static readonly CVarDef<float> SpaceWindMaxVelocity =
-        CVarDef.Create("atmos.space_wind_max_velocity", 30f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.space_wind_max_velocity", 50f, CVar.SERVERONLY);
 
     /// <summary>
     ///     The maximum force that may be applied to an object by pushing (i.e. not throwing) atmospheric pressure differences.
     ///     A "throwing" atmospheric pressure difference ignores this limit, but not the max. velocity limit.
     /// </summary>
     public static readonly CVarDef<float> SpaceWindMaxPushForce =
-        CVarDef.Create("atmos.space_wind_max_push_force", 20f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.space_wind_max_push_force", 50f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Whether monstermos tile equalization is enabled.
@@ -57,21 +57,21 @@ public sealed partial class CCVars
     ///     Also looks weird on slow spacing for unrelated reasons. If you do want to enable this, you should probably turn on instaspacing.
     /// </summary>
     public static readonly CVarDef<bool> MonstermosRipTiles =
-        CVarDef.Create("atmos.monstermos_rip_tiles", false, CVar.SERVERONLY);
+        CVarDef.Create("atmos.monstermos_rip_tiles", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     Whether explosive depressurization will cause the grid to gain an impulse.
     ///     Needs <see cref="MonstermosEqualization"/> and <see cref="MonstermosDepressurization"/> to be enabled to work.
     /// </summary>
     public static readonly CVarDef<bool> AtmosGridImpulse =
-        CVarDef.Create("atmos.grid_impulse", false, CVar.SERVERONLY);
+        CVarDef.Create("atmos.grid_impulse", false, CVar.SERVERONLY); // Эта хуйня работает очень и очень странно
 
     /// <summary>
     ///     What fraction of air from a spaced tile escapes every tick.
     ///     1.0 for instant spacing, 0.2 means 20% of remaining air lost each time
     /// </summary>
     public static readonly CVarDef<float> AtmosSpacingEscapeRatio =
-        CVarDef.Create("atmos.mmos_spacing_speed", 0.15f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.mmos_spacing_speed", 0.9f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Minimum amount of air allowed on a spaced tile before it is reset to 0 immediately in kPa

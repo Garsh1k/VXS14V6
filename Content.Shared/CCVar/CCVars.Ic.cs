@@ -26,13 +26,13 @@ public sealed partial class CCVars
     ///     Allows flavor text (character descriptions).
     /// </summary>
     public static readonly CVarDef<bool> FlavorText =
-        CVarDef.Create("ic.flavor_text", false, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("ic.flavor_text", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Sets the maximum length for flavor text (character descriptions).
     /// </summary>
     public static readonly CVarDef<int> MaxFlavorTextLength =
-        CVarDef.Create("ic.flavor_text_length", 512, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("ic.flavor_text_length", 2048, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Sets the maximum character length of a job on an ID.
@@ -44,7 +44,7 @@ public sealed partial class CCVars
     ///     Adds a period at the end of a sentence if the sentence ends in a letter.
     /// </summary>
     public static readonly CVarDef<bool> ChatPunctuation =
-        CVarDef.Create("ic.punctuation", false, CVar.SERVER);
+        CVarDef.Create("ic.punctuation", true, CVar.SERVER);
 
     /// <summary>
     ///     Enables automatically forcing IC name rules. Uppercases the first letter of the first and last words of the name
@@ -69,7 +69,7 @@ public sealed partial class CCVars
     ///     Control displaying SSD indicators near players
     /// </summary>
     public static readonly CVarDef<bool> ICShowSSDIndicator =
-        CVarDef.Create("ic.show_ssd_indicator", true, CVar.CLIENTONLY);
+        CVarDef.Create("ic.show_ssd_indicator", false, CVar.CLIENTONLY);
 
     /// <summary>
     ///     Forces SSD characters to sleep after ICSSDSleepTime seconds
