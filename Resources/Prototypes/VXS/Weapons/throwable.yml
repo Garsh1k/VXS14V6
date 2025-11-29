@@ -11,7 +11,7 @@
     explosionType: Thermobaric
     maxIntensity: 100
     intensitySlope: 3
-    totalIntensity: 150
+    totalIntensity: 120
   - type: TimerTrigger
     delay: 3
     beepSound:
