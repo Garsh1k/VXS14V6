@@ -183,6 +183,10 @@ namespace Content.Server.Ghost
             if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
                 return;
 
+            // Prevent ghosting for critical mobs with PreventGhostTransitionComponent
+            if (HasComp<PreventGhostTransitionComponent>(uid) && _mobState.IsCritical(uid))
+                return;
+
             if (component.MustBeDead && _mobState.IsAlive(uid)) // Offbrand - exit on crit
                 return;
 

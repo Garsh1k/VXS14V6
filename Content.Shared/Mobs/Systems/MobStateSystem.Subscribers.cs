@@ -78,6 +78,8 @@ public partial class MobStateSystem
                 break;
             case MobState.Critical:
                 _standing.Stand(target);
+                // Remove the PreventGhostTransitionComponent when exiting critical state
+                RemComp<PreventGhostTransitionComponent>(target);
                 break;
             case MobState.Dead:
                 RemComp<CollisionWakeComponent>(target);
@@ -104,15 +106,21 @@ public partial class MobStateSystem
             case MobState.Alive:
                 _standing.Stand(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
+                // Remove the PreventGhostTransitionComponent when mob becomes alive
+                RemComp<PreventGhostTransitionComponent>(target);
                 break;
             case MobState.Critical:
                 _standing.Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
+                // Add the PreventGhostTransitionComponent when mob becomes critical
+                EnsureComp<PreventGhostTransitionComponent>(target);
                 break;
             case MobState.Dead:
                 EnsureComp<CollisionWakeComponent>(target);
                 _standing.Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Dead);
+                // Remove the PreventGhostTransitionComponent when mob dies
+                RemComp<PreventGhostTransitionComponent>(target);
                 break;
             case MobState.Invalid:
                 //unused;
@@ -155,7 +163,15 @@ public partial class MobStateSystem
         switch (component.CurrentState)
         {
             case MobState.Dead:
+                args.Cancel();
+                break;
             case MobState.Critical:
+                // Allow movement for critical mobs that have the PreventGhostTransitionComponent
+                if (args is UpdateCanMoveEvent && HasComp<PreventGhostTransitionComponent>(target))
+                {
+                    // Don't cancel movement for critical mobs with PreventGhostTransitionComponent
+                    break;
+                }
                 args.Cancel();
                 break;
         }
