@@ -78,6 +78,8 @@
   - type: AmmoCounter
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
+    cameraRecoilScalar: 3 # VXS
+    projectileSpeed: 45 # VXS
     fireRate: 2
     selectedMode: FullAuto
     availableModes:

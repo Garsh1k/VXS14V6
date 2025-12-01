@@ -121,7 +121,8 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
   - type: Gun
-    cameraRecoilScalar: 6 # VXS
+    cameraRecoilScalar: 12 # VXS
+    projectileSpeed: 90 # VXS
     fireRate: 0.5
     soundGunshot:
       path: /Audio/VXS/Gunshots/Launcher/launcher2.ogg # VXS
