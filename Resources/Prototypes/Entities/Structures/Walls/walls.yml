@@ -9,8 +9,9 @@
     snap:
     - Wall
   components:
-  - type: Reflect # VXS
+  - type: Ricochet # VXS
     reflectProb: 0.05
+    spread: 3
   - type: Anchorable
     flags:
     - Anchorable
