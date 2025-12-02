@@ -15,7 +15,7 @@ public sealed partial class ModularArmorComponent : Component
     /// The item slot for inserting armor plates.
     /// </summary>
     [DataField]
-    public ItemSlot PlateSlot = new();
+    public ItemSlot PlateSlot = new() { Swap = true };
 
     /// <summary>
     /// Coefficient modifiers provided by the inserted plate.
