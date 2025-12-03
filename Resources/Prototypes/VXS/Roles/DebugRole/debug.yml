@@ -1,0 +1,21 @@
+- type: job
+  id: DebugRole
+  name: Debug VXS Role
+  description: SF
+  playTimeTracker: JobDebugRole
+  startingGear: DebugRoleGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-everyone
+  access:
+  - Maintenance
+
+- type: job
+  id: DebugRole2
+  name: Debug VXS Role 2
+  description: SF2
+  playTimeTracker: JobDebugRole2
+  startingGear: DebugRoleGear2
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-everyone
+  access:
+  - Maintenance

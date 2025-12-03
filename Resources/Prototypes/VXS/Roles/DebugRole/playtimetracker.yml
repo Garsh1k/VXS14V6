@@ -1,0 +1,5 @@
+- type: playTimeTracker
+  id: JobDebugRole
+
+- type: playTimeTracker
+  id: JobDebugRole2

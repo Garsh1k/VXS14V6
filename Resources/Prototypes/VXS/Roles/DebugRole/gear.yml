@@ -1,0 +1,11 @@
+- type: startingGear
+  id: DebugRoleGear
+  equipment:
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
+
+- type: startingGear
+  id: DebugRoleGear2
+  equipment:
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey

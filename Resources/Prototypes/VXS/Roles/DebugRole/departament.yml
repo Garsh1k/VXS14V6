@@ -1,0 +1,9 @@
+- type: department
+  id: DebugDepartament
+  name: DEBUG
+  description: VXS
+  color: "#9FED58"
+  weight: 1
+  roles:
+  - DebugRole
+  - DebugRole2

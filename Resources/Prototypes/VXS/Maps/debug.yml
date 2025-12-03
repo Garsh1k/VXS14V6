@@ -1,0 +1,15 @@
+- type: gameMap
+  id: DebugVXS
+  mapName: DebugVXS
+  mapPath: /Maps/VXS/DebugMap.yml
+  minPlayers: 0
+  stations:
+    DebugVXS:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "VXSDBG"
+        - type: StationJobs
+          availableJobs:
+            DebugRole: [ -1, -1 ]
+            DebugRole2: [ -1, -1 ]
