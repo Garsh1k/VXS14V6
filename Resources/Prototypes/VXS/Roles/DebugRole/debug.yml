@@ -1,5 +1,5 @@
 - type: job
-  id: DebugRole
+  id: Syndy
   name: Debug VXS Role
   description: SF
   playTimeTracker: JobDebugRole
@@ -10,7 +10,7 @@
   - Maintenance
 
 - type: job
-  id: DebugRole2
+  id: Solfed
   name: Debug VXS Role 2
   description: SF2
   playTimeTracker: JobDebugRole2

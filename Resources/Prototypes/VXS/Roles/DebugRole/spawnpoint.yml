@@ -1,22 +1,22 @@
 - type: entity
-  id: SpawnPointDebugRole
+  id: SpawnPointSolfed
   parent: SpawnPointJobBase
   name: debug role spawner
   components:
   - type: SpawnPoint
-    job_id: DebugRole
+    job_id: Solfed
   - type: Sprite
     layers:
       - state: green
       - state: passenger
 
 - type: entity
-  id: SpawnPointDebugRole2
+  id: SpawnPointSyndy
   parent: SpawnPointJobBase
   name: debug role 2 spawner
   components:
   - type: SpawnPoint
-    job_id: DebugRole2
+    job_id: Syndy
   - type: Sprite
     layers:
       - state: green

@@ -1,0 +1,141 @@
+#Syndie
+- type: entity
+  parent: MobHuman
+  id: VXSSyndy
+  name: syndicate agent VXS
+  suffix: Human, Base
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+    hair: HairBald
+  - type: Loadout
+    prototypes: [SyndicateOperativeGearExtremelyBasic]
+    roleLoadout: [ RoleSurvivalSyndicate ]
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: GGSyndyTeam
+
+
+
+#Syndie
+- type: entity
+  parent: MobHuman
+  id: VXSSolfed
+  name: Solfed VXS
+  suffix: Human, Base
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+    hair: HairBald
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: GGSolfedTeam
+
+
+
+
+
+- type: entity
+  name: Флаг A
+  id: EFSCapturePointA
+  parent: BaseStructure
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: GG/Effects/zone.rsi
+    state: pointa
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.5
+        hard: false
+        layer:
+          - LowImpassable
+  - type: WarpPoint
+    follow: false
+    location: Точка А
+  - type: GGCapturePoint
+    pointName: A
+
+- type: entity
+  name: Флаг B
+  id: EFSCapturePointB
+  parent: BaseStructure
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: GG/Effects/zone.rsi
+    state: pointb
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.5
+        hard: false
+        layer:
+          - LowImpassable
+  - type: WarpPoint
+    follow: false
+    location: Точка B
+  - type: GGCapturePoint
+    pointName: B
+
+- type: entity
+  name: Флаг C
+  id: EFSCapturePointC
+  parent: BaseStructure
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: GG/Effects/zone.rsi
+    state: pointc
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.5
+        hard: false
+        layer:
+          - LowImpassable
+  - type: WarpPoint
+    follow: false
+    location: Точка C
+  - type: GGCapturePoint
+    pointName: C
+
+
+
+- type: entity
+  id: CapturePointRule
+  parent: BaseGameRule
+  components:
+  - type: CapturePointGameRule
+  - type: RespawnDeadRule
+  - type: RespawnTracker
+    respawnDelay: 5
+  - type: CaptureTickets
+
+- type: gamePreset
+  id: CapturePoint
+  alias:
+    - CapturePoint
+  name: death-match-title
+  description: death-match-description
+  maxPlayers: 15
+  showInVote: true
+  supportedMaps: DeathMatchMapPool
+  rules:
+    - CapturePointRule

@@ -11,5 +11,5 @@
           mapNameTemplate: "VXSDBG"
         - type: StationJobs
           availableJobs:
-            DebugRole: [ -1, -1 ]
-            DebugRole2: [ -1, -1 ]
+            Solfed: [ -1, -1 ]
+            Syndy: [ -1, -1 ]
