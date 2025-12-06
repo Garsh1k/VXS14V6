@@ -70,10 +70,10 @@
     totalIntensity: 300
     maxTileBreak: 1
   - type: SmokeOnTrigger
-    duration: 4
+    duration: 6
     spreadAmount: 6
   - type: FlashOnTrigger
-    range: 4
+    range: 8
 
 - type: entity
   id: BulletRocketFrag
@@ -86,16 +86,26 @@
     layers:
       - state: frag
   - type: SmokeOnTrigger
-    duration: 1
+    duration: 3
     spreadAmount: 6
   - type: FlashOnTrigger
     range: 4
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 45
-    intensitySlope: 1.5
-    totalIntensity: 300
+    maxIntensity: 20
+    intensitySlope: 2
+    totalIntensity: 60
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLethalHeavy
+    capacity: 30
+    randomAngle: true
+    MaxVelocity: 12
+    MinVelocity: 8
 
 # Sniper
 
@@ -296,7 +306,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 15
   - type: TimedDespawn
     lifetime: 0.30
 
@@ -309,6 +319,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 75
+        Piercing: 65
   - type: TimedDespawn
-    lifetime: 0.15
+    lifetime: 0.25

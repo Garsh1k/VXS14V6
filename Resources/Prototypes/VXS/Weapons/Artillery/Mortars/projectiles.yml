@@ -15,14 +15,17 @@
     explosionType: Default
     totalIntensity: 60
     intensitySlope: 4
-    maxIntensity: 8
+    maxIntensity: 30
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
   - type: ProjectileGrenade
     triggerKey: trigger
-    fillPrototype: PelletClusterLethalSmall
-    capacity: 30
+    fillPrototype: PelletClusterLethalHeavy
+    capacity: 20
+    randomAngle: true
+    MaxVelocity: 10
+    MinVelocity: 8
 
 - type: entity
   id: ArtilleryMarkerSmoke82mm
@@ -34,17 +37,24 @@
     visible: false
     state: icon
   - type: TriggerOnSpawn
-  - type: DeleteOnTrigger
+  - type: TimedDespawn
+    lifetime: 30
   - type: SmokeOnTrigger
     keysIn:
-    - timer
+    - trigger
     duration: 30
     spreadAmount: 50
   - type: EmitSoundOnTrigger
     keysIn:
-    - timer
+    - trigger
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 10
+    intensitySlope: 5
+    maxIntensity: 1
 
 - type: entity
   id: ArtilleryMarkerEMP82mm
@@ -61,3 +71,9 @@
     range: 5
     energyConsumption: 10000
     disableDuration: 5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 10
+    intensitySlope: 5
+    maxIntensity: 1

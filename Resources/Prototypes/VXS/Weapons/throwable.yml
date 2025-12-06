@@ -57,6 +57,9 @@
     containers:
       cluster-payload: !type:Container
   - type: ProjectileGrenade
+    randomAngle: true
+    MaxVelocity: 8
+    MinVelocity: 6
     triggerKey: timer
     fillPrototype: PelletClusterLethalSmall
     capacity: 20

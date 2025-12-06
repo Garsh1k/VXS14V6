@@ -3,6 +3,7 @@
 - type: entity
   id: CartridgeRocket
   name: PG-7VL grenade
+  suffix: cumulative # VXS
   parent: [BaseItem, BaseMajorContraband]
   description: A 1.5 warhead designed for the RPG-7 launcher. Has tubular shape.
   components:
@@ -10,9 +11,9 @@
     tags:
       - CartridgeRocket
   - type: Item
-    size: Small
+    size: Normal # VXS
   - type: CartridgeAmmo
-    proto: BulletRocket
+    proto: BulletRocketFugas # VXS
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -22,6 +23,23 @@
   - type: Construction # VXS
     graph: RocketFugasGraph
     node: rocketFugas
+  - type: Damageable # VXS
+    damageContainer: Inorganic
+  - type: Destructible # VXS
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Explosive # VXS
+    explosionType: Default
+    maxIntensity: 35
+    intensitySlope: 1
+    totalIntensity: 100
+    maxTileBreak: 1
 
 - type: entity
   id: CartridgeRocketSlow
