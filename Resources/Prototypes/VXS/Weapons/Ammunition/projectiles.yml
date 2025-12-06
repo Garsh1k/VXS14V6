@@ -14,7 +14,7 @@
     explosionType: DemolitionCharge
     maxIntensity: 17
     intensitySlope: 800
-    totalIntensity: 150
+    totalIntensity: 50
     maxTileBreak: 1
   - type: SmokeOnTrigger
     duration: 2
@@ -25,6 +25,9 @@
     fillPrototype: PelletFugasStruya
     capacity: 1
     randomAngle: false
+    triggerKey: trigger
+    MaxVelocity: 20
+    MinVelocity: 20
   - type: Projectile
     damage:
       types:
@@ -46,11 +49,12 @@
     deleteOnCollide: false
     damage:
       types:
-        Blunt: 120
+        Blunt: 30
+        Piercing: 100
   - type: StaminaDamageOnCollide
     damage: 99
   - type: TimedDespawn
-    lifetime: 0.05
+    lifetime: 0.1
 
 - type: entity
   id: BulletRocketThermobar
