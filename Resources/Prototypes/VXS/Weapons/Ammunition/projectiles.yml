@@ -3,7 +3,7 @@
   id: BulletRocketFugas
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -39,7 +39,7 @@
 - type: entity
   id: PelletFugasStruya
   name: pellet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
   - type: Sprite
@@ -60,7 +60,7 @@
   id: BulletRocketThermobar
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -83,7 +83,7 @@
   id: BulletRocketFrag
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -237,7 +237,7 @@
   id: BulletRocketHADGLThermobaric
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: VXS/Weapons/Launchers/hadgl.rsi
@@ -259,7 +259,7 @@
   id: BulletRocketHADGLCumulative
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: VXS/Weapons/Launchers/hadgl.rsi

@@ -256,6 +256,7 @@
   id: CartridgeRocketHADGLThermobaric
   name: HADGL-T
   suffix: Thermobaric
+  categories: [ HideSpawnMenu ]
   parent: [BaseItem, CartridgeRocket]
   components:
   - type: Item
@@ -284,6 +285,7 @@
   id: CartridgeRocketHADGLCumulative
   name: HADGL-C
   suffix: Cumulative
+  categories: [ HideSpawnMenu ]
   parent: [BaseItem, CartridgeRocket]
   components:
   - type: Item
