@@ -76,6 +76,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing # VXS
+    sprite: VXS/Weapons/Rifles/ak74m.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: Gun
     soundGunshot:
       path: /Audio/VXS/Gunshots/Rifle/rifle2.ogg
