@@ -106,10 +106,10 @@
   - type: ProjectileGrenade
     triggerKey: trigger
     fillPrototype: PelletClusterLethalHeavy
-    capacity: 30
+    capacity: 40
     randomAngle: true
-    MaxVelocity: 12
-    MinVelocity: 8
+    MaxVelocity: 18
+    MinVelocity: 10
 
 # Sniper
 
