@@ -1,0 +1,24 @@
+- type: entity
+  parent: Paper
+  id: PaperSolfedBucklete
+  name: solfed rifleman bucklete
+  description: Manual for a serviceman of the Solfed Self-Defense Forces. Issued to riflemans.
+  components:
+  - type: Sprite
+    layers:
+    - state: acquisition_form
+    - state: acquisition_form_header
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: Tag
+    tags:
+    - Trash
+    - Document
+    - Paper
+  - type: Paper
+    editingDisabled: true
+    content: text-solfed-bucklete
+  - type: PaperVisuals
+    footerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/barcode.svg.192dpi.png"
+    maxWritableArea: 512.0, 512.0

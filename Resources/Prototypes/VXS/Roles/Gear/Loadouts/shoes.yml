@@ -1,0 +1,9 @@
+- type: loadout
+  id: ShoesCombat
+  equipment:
+    shoes: ClothingShoesBootsCombatFilled
+
+- type: loadout
+  id: ShoesJackboots
+  equipment:
+    shoes: ClothingShoesBootsJackFilled

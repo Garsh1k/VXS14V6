@@ -1,0 +1,8 @@
+- type: loadoutGroup
+  id: ShoesCombatStandartissue
+  name: loadout-group-vxs-shoes
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ShoesJackboots
+  - ShoesCombat

@@ -1,0 +1,11 @@
+- type: loadout
+  id: ArmorPlateZabraloLoadout
+  storage:
+    back:
+    - ArmorPlateZabralo
+
+- type: loadout
+  id: ArmorPlateZabraloModLoadout
+  storage:
+    back:
+    - ArmorPlateZabraloMod

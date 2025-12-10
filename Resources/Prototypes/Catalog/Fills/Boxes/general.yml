@@ -175,17 +175,20 @@
       - state: meson
 
 - type: entity
-  name: M.R.E.
+  name: MRE Type 1A # VXS
   parent: BoxCardboard
   id: BoxMRE
-  description: A box of decades old military surplus rations. It is surprisingly not rotten.
+  description: Old dry rations from the Solfed self-defense army, designed for snacking. Not suitable for lizards or diversides. # VXS
   components:
   - type: StorageFill
     contents:
       - id: DrinkMREFlask
       - id: FoodSnackNutribrick
       - id: FoodSnackMREBrownie
-      - id: FoodCondimentPacketKetchup
+      #- id: FoodCondimentPacketKetchup VXS
+      - id: SpoonPlastic # VXS
+      - id: FoodTinMRE # VXS
+      - id: FoodSnackChocolate # VXS
   - type: Sprite
     layers:
       - state: box

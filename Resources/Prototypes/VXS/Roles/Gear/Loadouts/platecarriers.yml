@@ -1,0 +1,14 @@
+- type: loadout
+  id: ArmorPlatecarrierBasic
+  equipment:
+    outerClothing: ClothingOuterArmorPlateCarrier
+
+- type: loadout
+  id: ArmorPlatecarrierBallistic
+  equipment:
+    outerClothing: ClothingOuterArmorBasic
+
+- type: loadout
+  id: ArmorPlatecarrierBulletproof
+  equipment:
+    outerClothing: ClothingOuterArmorBulletproof

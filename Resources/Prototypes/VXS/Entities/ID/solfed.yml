@@ -1,0 +1,81 @@
+- type: entity
+  parent: DogtagBase
+  id: DogtagSolfedRifleman
+  name: standart issue dogtag
+  components:
+  - type: Sprite
+    layers:
+    - state: dogtag
+    - state: tsf
+  - type: PresetIdCard
+    job: SolfedRifleman
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedPrivate
+  name: PVT shoulderboard # Рядовой
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_one.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_one.rsi
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedEfreitor
+  name: PFC shoulderboard # Ефрейтор
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_two.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_two.rsi
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedCapral
+  name: CPL shoulderboard # Капрал
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_three.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_three.rsi
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedSergeant
+  name: SGT shoulderboard # Сержант/Старший капрал
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_four.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_four.rsi
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedStarshina
+  name: SSGT shoulderboard # Старшина/Старший сержант
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_five.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_five.rsi
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedLieutenantColonel
+  name: LtCol shoulderboard # Подполковник
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_six.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_six.rsi
+
+- type: entity
+  parent: ShoulderboardBase
+  id: ShoulderboardSolfedColonel
+  name: Col shoulderboard # Полковник
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_seven.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/ID/shoulderboard_seven.rsi

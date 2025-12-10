@@ -1,0 +1,8 @@
+- type: loadoutGroup
+  id: ArmorPlatesStandartissue
+  name: loadout-group-vxs-armorplates
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ArmorPlateZabraloLoadout
+  - ArmorPlateZabraloModLoadout

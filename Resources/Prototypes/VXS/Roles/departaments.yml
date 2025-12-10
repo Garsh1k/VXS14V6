@@ -1,0 +1,8 @@
+- type: department
+  id: SolFedArmedForces
+  name: Solar Federation SDAF
+  description: 2th army. Dont eat crayons.
+  color: "#318CE7"
+  weight: 1
+  roles:
+  - SolfedRifleman

@@ -1,0 +1,7 @@
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRiflemanSolfed
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: SFSolider
+  jobName: Rifleman

@@ -1,0 +1,29 @@
+- type: loadout
+  id: GlovesCombatStandartissue
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+- type: loadout
+  id: GlovesCombatInsuls
+  equipment:
+    gloves: ClothingHandsGlovesCombatInsulated
+
+- type: loadout
+  id: GlovesBlackStandart
+  equipment:
+    gloves: ClothingHandsGlovesColorBlack
+
+- type: loadout
+  id: GlovesBlackStandartFingerless
+  equipment:
+    gloves: ClothingHandsGlovesFingerless
+
+- type: loadout
+  id: GlovesCombatMercenaryFingerless
+  equipment:
+    gloves: ClothingHandsGlovesMercFingerless
+
+- type: loadout
+  id: GlovesCombatMercenaryCombat
+  equipment:
+    gloves: ClothingHandsMercGlovesCombat

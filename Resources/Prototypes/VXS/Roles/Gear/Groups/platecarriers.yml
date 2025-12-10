@@ -1,0 +1,9 @@
+- type: loadoutGroup
+  id: ArmorPlatecarriersStandartissue
+  name: loadout-group-vxs-platecarriers
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ArmorPlatecarrierBasic
+  - ArmorPlatecarrierBallistic
+  - ArmorPlatecarrierBulletproof

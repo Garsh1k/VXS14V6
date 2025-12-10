@@ -1,0 +1,8 @@
+- type: loadoutGroup
+  id: GlassesSolfedStandartissue
+  name: loadout-group-vxs-glasses
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - GlassesSunglasses
+  - GlassesMesonglasses

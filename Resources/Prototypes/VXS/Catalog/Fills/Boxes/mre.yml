@@ -1,0 +1,37 @@
+- type: entity
+  name: MRE Type 1B
+  parent: BoxCardboard
+  id: BoxMRE1B
+  description: Old dry rations from the Solfed self-defense army, designed for snacking. Suitable for any species excluding moths, contains bigger amount of canned meat.
+  components:
+  - type: StorageFill
+    contents:
+      - id: DrinkMREFlask
+      - id: FoodSnackNutribrick
+      - id: FoodSnackMREBrownie
+      - id: SpoonPlastic
+      - id: FoodTinMRE
+        amount: 2
+  - type: Sprite
+    layers:
+      - state: box
+      - state: writing
+
+- type: entity
+  name: MRE Type 2A
+  parent: BoxCardboard
+  id: BoxMRE2A
+  description: The standard daily ration for Solfed fighters is designed to provide a fighter with food for a day.
+  components:
+  - type: StorageFill
+    contents:
+      - id: FoodTinBeans
+      - id: FoodTinTomatoes
+      - id: FoodSnackChocolate
+      - id: SpoonPlastic
+      - id: FoodTinMRE
+        amount: 2
+  - type: Sprite
+    layers:
+      - state: box
+      - state: writing

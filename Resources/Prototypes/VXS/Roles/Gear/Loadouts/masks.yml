@@ -1,0 +1,19 @@
+- type: loadout
+  id: MaskGasmask
+  equipment:
+    mask: ClothingMaskGas
+
+- type: loadout
+  id: MaskNeckgaiter
+  equipment:
+    mask: ClothingMaskNeckGaiter
+
+- type: loadout
+  id: MaskBandanablack
+  equipment:
+    mask: ClothingMaskBandBlack
+
+- type: loadout
+  id: MaskSterilemask
+  equipment:
+    mask: ClothingMaskSterile

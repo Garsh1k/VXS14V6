@@ -1,0 +1,45 @@
+- type: entity
+  parent: Clothing
+  id: DogtagBase
+  name: dogtag
+  description: Metal plates engraved with the soldier's insignia and personal identification. Equipped with an RFID tag and anti-reading protection.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ADT/ADTGlobalEvents/ShipBattle/Objects/Misc/dogtags.rsi
+  - type: Clothing
+    slots:
+    - idcard
+    - neck
+    sprite: _ADT/ADTGlobalEvents/ShipBattle/Objects/Misc/dogtags.rsi
+  - type: Item
+    size: Tiny
+    heldPrefix: default
+    storedRotation: -90
+  - type: Access
+  - type: IdCard
+  - type: StationRecordKeyStorage
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: Clothing
+  id: ShoulderboardBase
+  name: shoulder base
+  description: A plastic plaque covered with thick fabric. It is one of the mandatory identification badges for staff officers, their absence among front-line soldiers is overlooked for obvious reasons.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/ID/shoulderboard_one.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    slots:
+    - idcard
+    - neck
+    sprite: VXS/Clothing/ID/shoulderboard_one.rsi
+  - type: Item
+    size: Tiny
+    heldPrefix: default
+    storedRotation: -90

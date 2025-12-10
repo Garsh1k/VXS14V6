@@ -1,0 +1,10 @@
+- type: loadoutGroup
+  id: MasksStandartissue
+  name: loadout-group-vxs-masks
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MaskGasmask
+  - MaskNeckgaiter
+  - MaskBandanablack
+  - MaskSterilemask

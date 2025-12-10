@@ -1,0 +1,10 @@
+- type: roleLoadout
+  id: JobSolfedRifleman
+  groups:
+  - GlassesSolfedStandartissue
+  - ShoesCombatStandartissue
+  - GlovesCombatStandartissue
+  - ArmorPlatesStandartissue
+  - ArmorPlatecarriersStandartissue
+  - MasksStandartissue
+  - HatsStandartissue

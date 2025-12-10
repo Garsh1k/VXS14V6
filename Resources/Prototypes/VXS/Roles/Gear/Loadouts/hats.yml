@@ -1,0 +1,9 @@
+- type: loadout
+  id: HatSolarGray
+  equipment:
+    head: ClothingHeadHatSolarGray
+
+- type: loadout
+  id: HatSolarFASTHelmet
+  equipment:
+    head: ClothingHeadHelmetTactical

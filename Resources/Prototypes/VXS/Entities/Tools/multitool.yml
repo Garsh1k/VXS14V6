@@ -1,0 +1,34 @@
+- type: entity
+  name: utility multitool
+  parent: BaseItem
+  id: MultitoolUtility
+  description: A multi-tool with a modest set of tools, but quite good in quality.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/debug.rsi
+    state: icon
+  - type: Clothing
+    sprite: Objects/Tools/debug.rsi
+    quickEquip: false
+    slots:
+      - Belt
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 2
+  - type: ToolTileCompatible
+  - type: Tool
+    speedModifier: 0.3
+  - type: Prying
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Cutting
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_drill.ogg
+      - behavior: Screwing
+        useSound: /Audio/Items/drill_use.ogg
+        changeSound: /Audio/Items/change_drill.ogg
+      - behavior: Slicing
+        useSound: /Audio/Items/Culinary/chop.ogg
+        changeSound: /Audio/Items/change_drill.ogg

@@ -198,6 +198,36 @@
         },
         {
             "name": "ParadoxClone"
+        },
+        {
+            "name": "SFEngineer"
+        },
+        {
+            "name": "SFLogistics"
+        },
+        {
+            "name": "SFParamed"
+        },
+        {
+            "name": "SFScientist"
+        },
+        {
+            "name": "SFSolider"
+        },
+        {
+            "name": "SolFed"
+        },
+        {
+            "name": "SyndieEngineer"
+        },
+        {
+            "name": "SyndieMarksman"
+        },
+        {
+            "name": "SyndieMedic"
+        },
+        {
+            "name": "SyndieScientist"
         }
     ]
 }
