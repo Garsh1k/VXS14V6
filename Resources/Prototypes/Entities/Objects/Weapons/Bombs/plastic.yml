@@ -84,13 +84,13 @@
   - type: ExplodeOnTrigger
     keysIn:
     - timer
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-  - type: HolidayRsiSwap
-    sprite:
-      festive: Objects/Weapons/Bombs/c4gift.rsi
+  # - type: HolidayVisuals VXS
+  #   holidays:
+  #     festive:
+  #     - FestiveSeason
+  # - type: HolidayRsiSwap VXS
+  #   sprite:
+  #     festive: Objects/Weapons/Bombs/c4gift.rsi
   - type: StaticPrice
     price: 625 # 5000 for a bundle of 8
 

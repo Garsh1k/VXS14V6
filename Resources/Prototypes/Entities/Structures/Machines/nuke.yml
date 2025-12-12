@@ -23,19 +23,19 @@
       map: ["christmas"]
       visible: false
   - type: Appearance
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-      pride:
-      - PrideMonth
+  # - type: HolidayVisuals VXS
+  #   holidays:
+  #     festive:
+  #     - FestiveSeason
+  #     pride:
+  #     - PrideMonth
   - type: GenericVisualizer
     visuals:
-      enum.HolidayVisuals.Holiday:
-        christmas:
-          festive: { visible: true }
-        pride:
-          pride: { visible: true }
+      # enum.HolidayVisuals.Holiday: VXS
+      #   christmas:
+      #     festive: { visible: true }
+      #   pride:
+      #     pride: { visible: true }
       enum.NukeVisuals.Deployed:
         enum.NukeVisualLayers.Base:
           False: { state: nuclearbomb_base }
@@ -149,19 +149,19 @@
       map: [ "pride" ]
       visible: false
   - type: Appearance
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-      pride:
-      - PrideMonth
-  - type: GenericVisualizer
-    visuals:
-      enum.HolidayVisuals.Holiday:
-        christmas:
-          festive: { visible: true }
-        pride:
-          pride: { visible: true }
+  # - type: HolidayVisuals VXS
+  #   holidays:
+  #     festive:
+  #     - FestiveSeason
+  #     pride:
+  #     - PrideMonth
+  # - type: GenericVisualizer VXS
+  #   visuals:
+  #     enum.HolidayVisuals.Holiday:
+  #       christmas:
+  #         festive: { visible: true }
+  #       pride:
+  #         pride: { visible: true }
   - type: Physics
     bodyType: Dynamic
   - type: Fixtures

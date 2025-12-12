@@ -71,17 +71,17 @@
         map: [ "light" ]
   - type: Item
     sprite: Objects/Misc/Lights/lamp.rsi
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-  - type: GenericVisualizer
-    visuals:
-      enum.HolidayVisuals.Holiday:
-        base:
-          festive: { state: christmaslamp }
-        light:
-          festive: { state: christmaslamp-on }
+  # - type: HolidayVisuals VXS
+  #   holidays:
+  #     festive:
+  #     - FestiveSeason
+  # - type: GenericVisualizer
+  #   visuals:
+  #     enum.HolidayVisuals.Holiday:
+  #       base:
+  #         festive: { state: christmaslamp }
+  #       light:
+  #         festive: { state: christmaslamp-on }
 
 - type: entity
   name: banana lamp
@@ -114,21 +114,21 @@
         map: [ "light" ]
   - type: Item
     sprite: Objects/Misc/Lights/lampgreen.rsi
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-  - type: GenericVisualizer
-    visuals:
-      enum.HolidayVisuals.Holiday:
-        base:
-          festive:
-            sprite: Objects/Misc/Lights/lamp.rsi
-            state: christmaslamp
-        light:
-          festive:
-            sprite: Objects/Misc/Lights/lamp.rsi
-            state: christmaslamp-on
+  # - type: HolidayVisuals VXS
+  #   holidays:
+  #     festive:
+  #     - FestiveSeason
+  # - type: GenericVisualizer
+  #   visuals:
+  #     enum.HolidayVisuals.Holiday:
+  #       base:
+  #         festive:
+  #           sprite: Objects/Misc/Lights/lamp.rsi
+  #           state: christmaslamp
+  #       light:
+  #         festive:
+  #           sprite: Objects/Misc/Lights/lamp.rsi
+  #           state: christmaslamp-on
 
 - type: entity
   name: interrogator lamp
