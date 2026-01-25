@@ -33,3 +33,20 @@
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: EncryptionKeyHolder
     keySlots: 2
+
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetTacticalKevlar
+  name: kevlar helmet
+  description: Standart-issue kevlar helmet with railings for various equipment to equip. Looks boring as hell.
+  components:
+  - type: Sprite
+    sprite: VXS/Clothing/Head/Hard/kevlar.rsi
+  - type: Clothing
+    sprite: VXS/Clothing/Head/Hard/kevlar.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
