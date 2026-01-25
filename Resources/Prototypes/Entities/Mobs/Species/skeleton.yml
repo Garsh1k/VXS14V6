@@ -127,6 +127,7 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+  - type: FootprintVisualizer # Corvax-Next-Footprints
 
 - type: entity
   parent: BaseSpeciesDummy
