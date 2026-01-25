@@ -1984,14 +1984,14 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: SpawnPointSyndy
+- proto: SpawnPointDebugRole
   entities:
   - uid: 10
     components:
     - type: Transform
       pos: 2.5,-12.5
       parent: 1
-- proto: SpawnPointSolfed
+- proto: SpawnPointDebugRole2
   entities:
   - uid: 884
     components:

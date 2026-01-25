@@ -5,5 +5,5 @@
   color: "#9FED58"
   weight: 1
   roles:
-  - Syndy
-  - Solfed
+  - DebugRole
+  - DebugRole2
