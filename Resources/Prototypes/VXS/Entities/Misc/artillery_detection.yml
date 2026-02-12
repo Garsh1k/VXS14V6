@@ -1,0 +1,85 @@
+# Artillery Detection System prototypes
+# Detector structure and console for tracking artillery fire
+
+- type: entity
+  id: ArtilleryDetector
+  parent: BaseStructure
+  name: artdet
+  description: "Система обнаружения артиллерийского огня. Обнаруживает выстрелы оружия в радиусе и логирует их координаты и тип оружия."
+  components:
+  - type: InteractionOutline
+  - type: ArtilleryDetector
+    detectionRadius: 100
+    detectionDelay: 2
+    accuracyX: 2
+    accuracyY: 2
+  - type: Appearance
+  - type: Sprite
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
+    state: middle
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: BasicDevice
+    transmitFrequencyId: BasicDevice
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: ArtilleryDetectionConsole
+  parent: BaseComputer
+  name: консоль журнала артиллерийского огня
+  description: Консоль для просмотра логов обнаруженного артиллерийского огня. Позволяет просматривать координаты и тип оружия, а также удалять записи из журнала.
+  components:
+  - type: ArtilleryDetectionConsole
+  - type: Computer
+    board: ArtilleryDetectionConsoleCircuitboard
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.ArtilleryDetectionConsoleUiKey.Key
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: BasicDevice
+    transmitFrequencyId: BasicDevice
+  - type: UserInterface
+    interfaces:
+      enum.ArtilleryDetectionConsoleUiKey.Key:
+        type: ArtilleryDetectionConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
