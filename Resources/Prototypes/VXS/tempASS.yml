@@ -123,19 +123,18 @@
   parent: BaseGameRule
   components:
   - type: CapturePointGameRule
-  - type: RespawnDeadRule
-  - type: RespawnTracker
-    respawnDelay: 5
+  - type: SendToLobbyOnDeathRule
   - type: CaptureTickets
+  - type: TicketDisplay
+    displayInterval: 60
 
 - type: gamePreset
   id: CapturePoint
   alias:
-    - CapturePoint
-  name: death-match-title
-  description: death-match-description
-  maxPlayers: 15
+    - PointCapture
+  name: pointcapture-title
+  description: pointcapture-description
+  maxPlayers: 100
   showInVote: true
-  supportedMaps: DeathMatchMapPool
   rules:
     - CapturePointRule

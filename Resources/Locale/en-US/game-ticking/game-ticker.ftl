@@ -47,3 +47,9 @@ preset-no-one-ready = Can't start {$presetName}. No players are ready.
 game-run-level-PreRoundLobby = Pre-round lobby
 game-run-level-InRound = In round
 game-run-level-PostRound = Post round
+
+# Messages for lobby death rule
+rule-sent-to-lobby-on-death = You have been sent to the lobby. You can rejoin the game when ready.
+
+# Messages for ticket display
+ticket-display-message = [color=red]★ TICKETS ★[/color] Syndicate: [color=red]{ $syndyTickets }[/color] | Solfed: [color=blue]{ $solfedTickets }[/color]

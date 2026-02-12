@@ -19,6 +19,10 @@
   access:
   - Maintenance
   - External
+  components:
+  - type: RoleTicketCost
+    ticketCost: 1
+    deathMessage: "Solfed Rifleman KIA. -1 ticket"
 
 - type: startingGear
   id: SolfedRiflemanGear

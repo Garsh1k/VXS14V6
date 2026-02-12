@@ -1,6 +1,9 @@
 death-match-title = DeathMatch
 death-match-description = Kill anything that moves! Normal roleplay need not apply. The first to 31 points wins!
 
+pointcapture-title = Point Capture
+pointcapture-description = Kill guys from enemy team, dont kill guys from your team and dont die. Capture points, friendly points making ticket bleed for enemy team bigger.
+
 death-match-name-player = [bold]{$name}[/bold] ([italic]{$username}[/italic])
 death-match-name-npc = [bold]{$name}[/bold]
 death-match-assist = {$primary}, assisted by {$secondary},
