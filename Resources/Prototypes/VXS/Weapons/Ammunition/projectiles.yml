@@ -154,6 +154,7 @@
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Structural
+    traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 45
   - type: TimedDespawn
@@ -174,6 +175,7 @@
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Structural
+    traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 90
   - type: TimedDespawn
@@ -201,6 +203,7 @@
     penetrationThreshold: 80
     penetrationDamageTypeRequirement:
     - Structural
+    traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 50
   - type: TimedDespawn
@@ -228,6 +231,7 @@
     penetrationThreshold: 80
     penetrationDamageTypeRequirement:
     - Structural
+    traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 50
   - type: TimedDespawn

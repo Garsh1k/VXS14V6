@@ -106,6 +106,21 @@
 
 - type: entity
   parent: MobStatusEffectBase
+  id: StatusEffectPainkillersStrongPromedol
+  name: 50 pain relief plus motor dysfunction and lower pressure
+  components:
+  - type: PainkillerStatusEffect
+    effectiveness: 50
+  - type: MeleeModifiersStatusEffect
+    attackRateMultiplier: 0.95
+    attackRateConstant: -0.05
+  - type: GunAccuracyStatusEffect
+    angleRangeModifier: 3
+  - type: VascularToneModifierStatusEffect
+    tone: 0.9
+
+- type: entity
+  parent: MobStatusEffectBase
   id: StatusEffectEpinephrine
   name: counteracts the effects of low brain health on blood pressure and increases the metabolic rate
   components:
@@ -439,7 +454,7 @@
       types:
         Blunt: 0.001 # VXS
   - type: BleedMultiplierStatusEffect
-    multiplier: -4
+    multiplier: 2
 
 - type: entity
   parent: [BaseStatusEffectPersistentTender, MobStatusEffectBase]

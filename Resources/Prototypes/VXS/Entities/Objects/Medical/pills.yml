@@ -1,0 +1,19 @@
+- type: entity
+  name: pill
+  suffix: Sorbex 10u
+  parent: Pill
+  id: PillSorbex
+  components:
+  - type: Pill
+    pillType: 20
+  - type: Sprite
+    state: pill21
+  - type: Label
+    currentLabel: sorbex 10u
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: SorbexVX
+          Quantity: 10

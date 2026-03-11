@@ -7,6 +7,7 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Projectiles;
+using Content.Shared._Offbrand.Wounds;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 
@@ -46,6 +47,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
+
+        // Raise projectile damage event so wound systems can use trauma coefficient
+        var projDmgEv = new ProjectileDamageEvent(uid, component, target, ev.Damage, component.Shooter);
+        RaiseLocalEvent(target, ref projDmgEv);
+
+        // Set the last wounding projectile component so trauma systems can use the coefficient
+        var projComp = EnsureComp<LastWoundingProjectileComponent>(target);
+        projComp.ProjectileEntity = uid;
+        projComp.TraumaCoefficient = component.TraumaCoefficient;
 
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);

@@ -1,0 +1,182 @@
+- type: entity
+  name: Cohesive dressing pack
+  suffix: VXMED
+  description: Sterile self-tightening bandage with two pads for wound immobilization and protection.
+  parent: BaseHealingItem
+  id: GauzeCohesiveVX
+  components:
+  - type: Tag
+    tags:
+    - Gauze
+  - type: Sprite
+    sprite: VXS/Objects/Medical/medical.rsi
+    state: gauze
+  - type: Item
+  - type: Healing
+    delay: 4
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -5
+        Piercing: -5
+    bloodlossModifier: -3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Tending
+    woundWhitelist:
+      tags: [WoundCut, WoundPuncture]
+    damage:
+      types:
+        Slash: -5
+        Piercing: -5
+    tendingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    tendingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+
+- type: entity
+  name: Dressing pack
+  suffix: VXMED
+  description: Sterile bandage with two pads for wound immobilization and protection.
+  parent: BaseHealingItem
+  id: GauzeCohesiveBlackVX
+  components:
+  - type: Tag
+    tags:
+    - Gauze
+  - type: Sprite
+    sprite: VXS/Objects/Medical/medical.rsi
+    state: cohesive
+  - type: Item
+  - type: Healing
+    delay: 6
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -5
+        Piercing: -5
+    bloodlossModifier: -3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Tending
+    woundWhitelist:
+      tags: [WoundCut, WoundPuncture]
+    damage:
+      types:
+        Slash: -5
+        Piercing: -5
+    tendingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    tendingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+
+- type: entity
+  name: self-absorbable suture
+  description: They hold the skin together, helping it heal properly. They dissolve on their own after a while and do not require removal. Be sure to disinfect the wound before applying them.
+  parent: BaseHealingItem
+  id: SutureSelfabsorbingVX
+  suffix: VXMED
+  components:
+  - type: Sprite
+    sprite: _Offbrand/sutures.rsi
+    state: suture
+  - type: Item
+    sprite: _Offbrand/sutures.rsi
+    heldPrefix: suture
+    storedRotation: 90
+  - type: Healing
+    delay: 8
+    damageContainers:
+    - Biological
+    damage:
+      types:
+        Slash: -10
+        Piercing: -10
+    bloodlossModifier: -1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Tending
+    woundWhitelist:
+      tags: [WoundCut, WoundPuncture]
+    damage:
+      types:
+        Slash: -10
+        Piercing: -10
+    tendingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    tendingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: Suture
+    count: 10
+
+- type: entity
+  name: z-folded hemostatic gauze
+  description: A bandage impregnated with a hemostatic and antiseptic compound, folded in a zipper, and designed specifically for wound packing. It self-dissolves when exposed to blood and does not require removal.
+  parent: BaseHealingItem
+  id: GauzeHemostaticVX
+  suffix: VXMED
+  components:
+  - type: Sprite
+    sprite: VXS/Objects/Medical/medical.rsi
+    state: regenerative-mesh
+  - type: Item
+    sprite: VXS/Objects/Medical/medical.rsi
+    state: regenerative-mesh
+    size: Tiny
+  - type: Healing
+    delay: 8
+    damageContainers:
+    - Biological
+    damage:
+      types:
+        Slash: -15
+        Piercing: -15
+    bloodlossModifier: -25
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Tending
+    woundWhitelist:
+      tags: [WoundCut, WoundPuncture]
+    damage:
+      types:
+        Slash: -15
+        Piercing: -15
+    tendingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    tendingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"

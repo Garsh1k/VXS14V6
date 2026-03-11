@@ -28,6 +28,13 @@ public sealed partial class UniqueWoundOnDamageSystem : EntitySystem
         var damageable = Comp<DamageableComponent>(ent);
         var woundable = Comp<WoundableComponent>(ent);
 
+        // Check if this entity was hit by a projectile and has a trauma coefficient
+        var traumaCoefficient = 1.0;
+        if (TryComp<LastWoundingProjectileComponent>(ent, out var lastProj))
+        {
+            traumaCoefficient = lastProj.TraumaCoefficient;
+        }
+
         foreach (var wound in ent.Comp.Wounds)
         {
             var incomingAmount = ThresholdHelpers.Count(wound.DamageTypes, delta);
@@ -36,11 +43,15 @@ public sealed partial class UniqueWoundOnDamageSystem : EntitySystem
             if (incomingAmount < wound.MinimumDamage || totalAmount < wound.MinimumTotalDamage)
                 continue;
 
-            var probability = wound.DamageProbabilityCoefficient * incomingAmount.Double() + wound.DamageProbabilityConstant;
+            var baseProbability = wound.DamageProbabilityCoefficient * incomingAmount.Double() + wound.DamageProbabilityConstant;
+            var probability = baseProbability * traumaCoefficient;
             if (!rand.Prob(probability))
                 continue;
 
             _woundable.TryWound((ent.Owner, woundable), wound.WoundPrototype, wound.WoundDamages, unique: true, refreshDamage: true);
         }
+
+        // Clear the last projectile component after processing
+        RemComp<LastWoundingProjectileComponent>(ent);
     }
 }

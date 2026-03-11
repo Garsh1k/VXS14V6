@@ -1,0 +1,83 @@
+- type: entity
+  name: tranexamic acid syringe
+  suffix: VXMED
+  parent: PrefilledSyringe
+  id: SyringeTranexamicAcidVX
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: TranexamicAcidVX
+          Quantity: 15
+
+- type: entity
+  name: sorbex syringe
+  suffix: VXMED
+  parent: PrefilledSyringe
+  id: SyringeSorbexVX
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: SorbexVX
+          Quantity: 15
+
+- type: entity
+  name: amoxiclav syringe
+  suffix: VXMED
+  parent: PrefilledSyringe
+  id: SyringeAmoxiclavVX
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: AmoxiclavVX
+          Quantity: 15
+
+- type: entity
+  name: ceftriaxone syringe
+  suffix: VXMED
+  parent: PrefilledSyringe
+  id: SyringeCeftriaxoneVX
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: CeftriaxoneVX
+          Quantity: 15
+
+- type: entity
+  name: nefopam syringe
+  suffix: VXMED
+  parent: PrefilledSyringe
+  id: SyringeNefopamVX
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: NefopamVX
+          Quantity: 15
+
+- type: entity
+  name: promedol syringe
+  suffix: VXMED
+  parent: PrefilledSyringe
+  id: SyringePromedolVX
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: PromedolVX
+          Quantity: 15

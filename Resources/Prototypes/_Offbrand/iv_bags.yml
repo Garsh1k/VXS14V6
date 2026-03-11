@@ -84,6 +84,8 @@
   - type: InteractionOutline
   - type: Physics
     bodyType: Dynamic
+  - type: Item # VXS
+    size: Large
   - type: MovedByPressure
   - type: Fixtures
     fixtures:
@@ -173,38 +175,38 @@
     containers:
     - iv_bag_slot
 
-- type: construction
-  id: IVStand
-  graph: IVStand
-  startNode: start
-  targetNode: ivstand
-  category: construction-category-machines
-  objectType: Structure
-
-- type: constructionGraph
-  id: IVStand
-  start: start
-  graph:
-  - node: start
-    edges:
-    - to: ivstand
-      steps:
-      - material: Steel
-        amount: 5
-        doAfter: 5
-  - node: ivstand
-    entity: IVStand
-    edges:
-    - to: start
-      steps:
-      - tool: Screwing
-        doAfter: 5
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 5
-      - !type:EmptyAllContainers
-      - !type:DeleteEntity
+# - type: construction VXS
+#   id: IVStand
+#   graph: IVStand
+#   startNode: start
+#   targetNode: ivstand
+#   category: construction-category-machines
+#   objectType: Structure
+#
+# - type: constructionGraph VXS
+#   id: IVStand
+#   start: start
+#   graph:
+#   - node: start
+#     edges:
+#     - to: ivstand
+#       steps:
+#       - material: Steel
+#         amount: 5
+#         doAfter: 5
+#   - node: ivstand
+#     entity: IVStand
+#     edges:
+#     - to: start
+#       steps:
+#       - tool: Screwing
+#         doAfter: 5
+#       completed:
+#       - !type:SpawnPrototype
+#         prototype: SheetSteel1
+#         amount: 5
+#       - !type:EmptyAllContainers
+#       - !type:DeleteEntity
 
 - type: entity
   parent: IVBag
@@ -296,26 +298,370 @@
         - ReagentId: Slime
           Quantity: 400
 
-- type: entityTable
-  id: BloodBagFill
-  table: !type:AllSelector
-    children:
-    - id: IVBag
-    - id: IVBag
-    - id: IVBagAmmoniaBlood
-    - id: IVBagBlood
-    - id: IVBagCopperBlood
-    - id: IVBagInsectBlood
-    - id: IVBagSap
-    - id: IVBagSlime
+# ==========================================
+# VX Medicine IV Bags - Ideal Proportions
+# ==========================================
+
+# --- PromedolVX (Strong Opioid Painkiller) ---
+# Ideal: 14% PromedolVX, 86% Saline/Ringer
+# Total: 280 units (56u Promedol + 224u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagPromedolSaline
+  suffix: promedol IV (saline), VXMED
+  name: promedol IV bag (saline)
+  description: Pre-mixed promedol solution in saline. Strong opioid painkiller for severe pain. 14% concentration.
+  components:
+  - type: Label
+    currentLabel: Promedol 14% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: PromedolVX
+          Quantity: 56
+        - ReagentId: SalineVX
+          Quantity: 224
 
 - type: entity
-  id: CrateFreezerIVBag
-  parent: CrateFreezer
-  name: iv bag freezer
-  description: Contains pre-filled IV bags for use in re-blooding patients.
+  parent: IVBag
+  id: IVBagPromedolRinger
+  suffix: promedol IV (ringer), VXMED
+  name: promedol IV bag (ringer)
+  description: Pre-mixed promedol solution in Ringer's lactate. Strong opioid painkiller for severe pain. 14% concentration.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: BloodBagFill
+  - type: Label
+    currentLabel: Promedol 14% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: PromedolVX
+          Quantity: 56
+        - ReagentId: RingerSolutionVX
+          Quantity: 224
+
+# --- NefopamVX (Non-Narcotic Painkiller) ---
+# Ideal: 20% NefopamVX, 80% Saline/Ringer
+# Total: 300 units (60u Nefopam + 240u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagNefopamSaline
+  suffix: nefopam IV (saline), VXMED
+  name: nefopam IV bag (saline)
+  description: Pre-mixed nefopam solution in saline. Non-narcotic painkiller for moderate pain. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Nefopam 20% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: NefopamVX
+          Quantity: 60
+        - ReagentId: SalineVX
+          Quantity: 240
+
+- type: entity
+  parent: IVBag
+  id: IVBagNefopamRinger
+  suffix: nefopam IV (ringer), VXMED
+  name: nefopam IV bag (ringer)
+  description: Pre-mixed nefopam solution in Ringer's lactate. Non-narcotic painkiller for moderate pain. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Nefopam 20% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: NefopamVX
+          Quantity: 60
+        - ReagentId: RingerSolutionVX
+          Quantity: 240
+
+# --- CeftriaxoneVX (Antibiotic) ---
+# Ideal: 24% CeftriaxoneVX, 76% Saline/Ringer
+# Total: 300 units (72u Ceftriaxone + 228u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagCeftriaxoneSaline
+  suffix: ceftriaxone IV (saline), VXMED
+  name: ceftriaxone IV bag (saline)
+  description: Pre-mixed ceftriaxone antibiotic solution in saline. Broad-spectrum antibiotic. 24% concentration.
+  components:
+  - type: Label
+    currentLabel: Ceftriaxone 24% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: CeftriaxoneVX
+          Quantity: 72
+        - ReagentId: SalineVX
+          Quantity: 228
+
+- type: entity
+  parent: IVBag
+  id: IVBagCeftriaxoneRinger
+  suffix: ceftriaxone IV (ringer), VXMED
+  name: ceftriaxone IV bag (ringer)
+  description: Pre-mixed ceftriaxone antibiotic solution in Ringer's lactate. Broad-spectrum antibiotic. 24% concentration.
+  components:
+  - type: Label
+    currentLabel: Ceftriaxone 24% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: CeftriaxoneVX
+          Quantity: 72
+        - ReagentId: RingerSolutionVX
+          Quantity: 228
+
+# --- AmoxiclavVX (Antibiotic) ---
+# Ideal: 20% AmoxiclavVX, 80% Saline/Ringer
+# Total: 300 units (60u Amoxiclav + 240u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagAmoxiclavSaline
+  suffix: amoxiclav IV (saline), VXMED
+  name: amoxiclav IV bag (saline)
+  description: Pre-mixed amoxiclav antibiotic solution in saline. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Amoxiclav 20% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: AmoxiclavVX
+          Quantity: 60
+        - ReagentId: SalineVX
+          Quantity: 240
+
+- type: entity
+  parent: IVBag
+  id: IVBagAmoxiclavRinger
+  suffix: amoxiclav IV (ringer), VXMED
+  name: amoxiclav IV bag (ringer)
+  description: Pre-mixed amoxiclav antibiotic solution in Ringer's lactate. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Amoxiclav 20% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: AmoxiclavVX
+          Quantity: 60
+        - ReagentId: RingerSolutionVX
+          Quantity: 240
+
+# --- TranexamicAcidVX (Hemostatic Agent) ---
+# Ideal: 20% TranexamicAcidVX, 80% Saline/Ringer
+# Total: 300 units (60u Tranexamic + 240u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagTranexamicSaline
+  suffix: tranexamic acid IV (saline), VXMED
+  name: tranexamic acid IV bag (saline)
+  description: Pre-mixed tranexamic acid solution in saline. Hemostatic agent to reduce bleeding. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Tranexamic Acid 20% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: TranexamicAcidVX
+          Quantity: 60
+        - ReagentId: SalineVX
+          Quantity: 240
+
+- type: entity
+  parent: IVBag
+  id: IVBagTranexamicRinger
+  suffix: tranexamic acid IV (ringer), VXMED
+  name: tranexamic acid IV bag (ringer)
+  description: Pre-mixed tranexamic acid solution in Ringer's lactate. Hemostatic agent to reduce bleeding. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Tranexamic Acid 20% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: TranexamicAcidVX
+          Quantity: 60
+        - ReagentId: RingerSolutionVX
+          Quantity: 240
+
+# --- KaolinVX (Clotting Agent) ---
+# Ideal: 20% KaolinVX, 80% Saline/Ringer
+# Total: 300 units (60u Kaolin + 240u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagKaolinSaline
+  suffix: kaolin IV (saline), VXMED
+  name: kaolin IV bag (saline)
+  description: Pre-mixed kaolin clotting agent in saline. Promotes blood clotting. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Kaolin 20% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: KaolinVX
+          Quantity: 60
+        - ReagentId: SalineVX
+          Quantity: 240
+
+- type: entity
+  parent: IVBag
+  id: IVBagKaolinRinger
+  suffix: kaolin IV (ringer), VXMED
+  name: kaolin IV bag (ringer)
+  description: Pre-mixed kaolin clotting agent in Ringer's lactate. Promotes blood clotting. 20% concentration.
+  components:
+  - type: Label
+    currentLabel: Kaolin 20% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: KaolinVX
+          Quantity: 60
+        - ReagentId: RingerSolutionVX
+          Quantity: 240
+
+# --- ChlorhexidineVX (Antiseptic) ---
+# Ideal: 30% ChlorhexidineVX, 70% Saline/Ringer
+# Total: 300 units (90u Chlorhexidine + 210u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagChlorhexidineSaline
+  suffix: chlorhexidine IV (saline), VXMED
+  name: chlorhexidine IV bag (saline)
+  description: Pre-mixed chlorhexidine antiseptic solution in saline. 30% concentration.
+  components:
+  - type: Label
+    currentLabel: Chlorhexidine 30% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: ChlorhexidineVX
+          Quantity: 90
+        - ReagentId: SalineVX
+          Quantity: 210
+
+- type: entity
+  parent: IVBag
+  id: IVBagChlorhexidineRinger
+  suffix: chlorhexidine IV (ringer), VXMED
+  name: chlorhexidine IV bag (ringer)
+  description: Pre-mixed chlorhexidine antiseptic solution in Ringer's lactate. 30% concentration.
+  components:
+  - type: Label
+    currentLabel: Chlorhexidine 30% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: ChlorhexidineVX
+          Quantity: 90
+        - ReagentId: RingerSolutionVX
+          Quantity: 210
+
+# --- SorbexVX (Blood Cleansing Adsorbent) ---
+# Ideal: 10% SorbexVX, 90% Saline/Ringer
+# Total: 300 units (30u Sorbex + 270u Solvent)
+- type: entity
+  parent: IVBag
+  id: IVBagSorbexSaline
+  suffix: sorbex IV (saline), VXMED
+  name: sorbex IV bag (saline)
+  description: Pre-mixed sorbex blood cleansing solution in saline. Removes toxins from bloodstream. 10% concentration.
+  components:
+  - type: Label
+    currentLabel: Sorbex 10% in Saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: SorbexVX
+          Quantity: 30
+        - ReagentId: SalineVX
+          Quantity: 270
+
+- type: entity
+  parent: IVBag
+  id: IVBagSorbexRinger
+  suffix: sorbex IV (ringer), VXMED
+  name: sorbex IV bag (ringer)
+  description: Pre-mixed sorbex blood cleansing solution in Ringer's lactate. Removes toxins from bloodstream. 10% concentration.
+  components:
+  - type: Label
+    currentLabel: Sorbex 10% in Ringer
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: SorbexVX
+          Quantity: 30
+        - ReagentId: RingerSolutionVX
+          Quantity: 270
+
+# Solutions
+
+- type: entity
+  parent: IVBag
+  id: IVBagRingersolution
+  suffix: Ringer solution, VXMED
+  name: ringer solution IV bag
+  description: Helps to save some blood
+  components:
+  - type: Label
+    currentLabel: Ringer solution
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: RingerSolutionVX
+          Quantity: 300
+
+- type: entity
+  parent: IVBag
+  id: IVBagSalinesolution
+  suffix: Saline solution, VXMED
+  name: saline solution IV bag
+  description: Helps to save some blood
+  components:
+  - type: Label
+    currentLabel: Saline solution
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 400
+        reagents:
+        - ReagentId: SalineVX
+          Quantity: 300

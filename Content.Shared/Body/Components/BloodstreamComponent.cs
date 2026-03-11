@@ -99,13 +99,13 @@ public sealed partial class BloodstreamComponent : Component
     /// How much reagent of blood should be restored each update interval?
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 BloodRefreshAmount = 1.0f;
+    public FixedPoint2 BloodRefreshAmount = 0.5f; // VXS
 
     /// <summary>
     /// How much blood needs to be in the temporary solution in order to create a puddle?
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 BleedPuddleThreshold = 2.5f; // VXS
+    public FixedPoint2 BleedPuddleThreshold = 5.5f; // VXS
 
     /// <summary>
     /// A modifier set prototype ID corresponding to how damage should be modified

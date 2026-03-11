@@ -1,0 +1,404 @@
+- type: entity
+  parent: BaseItem
+  id: BaseSolutionGlassBottle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Bottle
+    - GlassBeaker
+  - type: Sprite
+    sprite: VXS/Objects/Medical/cans.rsi
+    layers:
+      - state: small
+      - state: small1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: VXS/Objects/Medical/cans.rsi
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+  - type: MixableSolution
+    solution: beaker
+  - type: FitsInDispenser
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: InjectableSolution
+    solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: small
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior
+        solution: beaker
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 10
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 2
+    damage:
+      types:
+        Blunt: 5
+  - type: StaticPrice
+    price: 30
+  - type: DnaSubstanceTrace
+
+- type: entity
+  name: glass solution bottle
+  suffix: Empty, small
+  parent: BaseSolutionGlassBottle
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmall
+  components:
+  - type: StaticPrice
+    price: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: small
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: Item
+    sprite: VXS/Objects/Medical/cans.rsi
+    size: Tiny
+
+- type: entity
+  name: glass solution bottle
+  suffix: Empty, big
+  parent: BaseSolutionGlassBottle
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBig
+  components:
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 80
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: big
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: Sprite
+    sprite: VXS/Objects/Medical/cans.rsi
+    layers:
+      - state: big
+      - state: big1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: VXS/Objects/Medical/cans.rsi
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+
+# Promedol
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Promedol
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigPromedol
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: PromedolVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Promedol
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Promedol
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallPromedol
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: PromedolVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Promedol
+
+# Nefopam
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Nefopam
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigNefopam
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: NefopamVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Nefopam
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Nefopam
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallNefopam
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: NefopamVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Nefopam
+
+# Ceftriaxone
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Ceftriaxone
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigCeftriaxone
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: CeftriaxoneVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Ceftriaxone
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Ceftriaxone
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallCeftriaxone
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: CeftriaxoneVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Ceftriaxone
+
+# Amoxiclav
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Amoxiclav
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigAmoxiclav
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: AmoxiclavVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Amoxiclav
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Amoxiclav
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallAmoxiclav
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: AmoxiclavVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Amoxiclav
+
+# Sorbex
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Sorbex
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigSorbex
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: SorbexVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Sorbex
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Sorbex
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallSorbex
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: SorbexVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Sorbex
+
+# Saline
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Saline
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigSaline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: SalineVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Saline
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Saline
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallSaline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: SalineVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Saline
+
+# Ringer solution
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Ringer solution
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigRinger
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: RingerSolutionVXS
+            Quantity: 100
+  - type: Label
+    currentLabel: Ringer
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Ringer solution
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallRinger
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: RingerSolutionVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Ringer
+
+# Tranexamic acid
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Tranexamic acid
+  parent: SolutionGlassBottleBig
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleBigTranexamicAcid
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: TranexamicAcidVX
+            Quantity: 100
+  - type: Label
+    currentLabel: Tranexamic acid
+
+- type: entity
+  name: glass solution bottle
+  suffix: VXMED, Tranexamic acid
+  parent: SolutionGlassBottleSmall
+  description: Standard glass bottle for solutions manufactured by SolFed Medical Group. It has a sealed rubber cap for syringes.
+  id: SolutionGlassBottleSmallTranexamicAcid
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+          - ReagentId: TranexamicAcidVX
+            Quantity: 50
+  - type: Label
+    currentLabel: Tranexamic acid

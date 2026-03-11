@@ -22,18 +22,28 @@ public sealed class BrainDamageOnDamageSystem : EntitySystem
         var damageable = Comp<DamageableComponent>(ent);
         var brain = Comp<BrainDamageComponent>(ent);
 
+        // Check if this entity was hit by a projectile and has a trauma coefficient
+        var traumaCoefficient = 1.0;
+        if (TryComp<LastWoundingProjectileComponent>(ent, out var lastProj))
+        {
+            traumaCoefficient = lastProj.TraumaCoefficient;
+        }
+
         foreach (var threshold in ent.Comp.Thresholds)
         {
             var incomingAmount = ThresholdHelpers.Count(threshold.DamageTypes, delta);
             var totalAmount = ThresholdHelpers.Count(threshold.DamageTypes, damageable.Damage);
 
             var damageAmount = FixedPoint2.Max(incomingAmount - FixedPoint2.Max(threshold.MinimumTotalDamage - totalAmount, FixedPoint2.Zero), FixedPoint2.Zero);
-            var factored = FixedPoint2.New(damageAmount.Double() * threshold.ConversionFactor);
+            var factored = FixedPoint2.New(damageAmount.Double() * threshold.ConversionFactor * traumaCoefficient);
 
             if (factored <= FixedPoint2.Zero)
                 return;
 
             _brain.TryChangeBrainDamage((ent.Owner, brain), factored);
         }
+
+        // Clear the last projectile component after processing
+        RemComp<LastWoundingProjectileComponent>(ent);
     }
 }

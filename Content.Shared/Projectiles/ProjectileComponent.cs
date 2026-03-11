@@ -98,4 +98,11 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public FixedPoint2 PenetrationAmount = FixedPoint2.Zero;
+
+    /// <summary>
+    ///     Coefficient that affects the probability of causing organ damage and trauma effects.
+    ///     1.0 = normal chance, 0.5 = half chance, 2.0 = double chance.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public double TraumaCoefficient = 1.0;
 }
