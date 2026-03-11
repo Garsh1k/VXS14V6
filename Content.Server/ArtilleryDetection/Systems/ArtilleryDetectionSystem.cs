@@ -33,6 +33,11 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
     /// </summary>
     private List<(EntityUid DetectorId, ArtilleryFireEvent Event, float ScheduledTime)> _pendingDetections = new();
 
+    /// <summary>
+    /// Counter for generating local sequential IDs for events.
+    /// </summary>
+    private int _localEventIdCounter = 0;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -188,12 +193,14 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
             var filteredArtilleryType = detector.ShowArtilleryType ? artilleryType : "Unknown";
             var filteredProjectileType = detector.ShowProjectileType ? projectileType : "Unknown";
 
+            _localEventIdCounter++;
             var fireEvent = new ArtilleryFireEvent(
                 coordinates: detectedCoords,
                 weaponType: weaponType,
                 detectionTime: detectionTime,
                 artilleryType: filteredArtilleryType,
-                projectileType: filteredProjectileType
+                projectileType: filteredProjectileType,
+                localId: _localEventIdCounter
             );
 
             // Queue for delayed processing
