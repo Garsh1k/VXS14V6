@@ -14,6 +14,7 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: Anchorable
+  - type: Pullable
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: BasicDevice
@@ -63,6 +64,8 @@
     state: furke
   - type: ApcPowerReceiver
     powerLoad: 100
+  - type: Anchorable
+    delay: 1
 
 - type: entity
   id: ArtilleryDetectorTavolga
@@ -85,6 +88,8 @@
     state: lev
   - type: ApcPowerReceiver
     powerLoad: 3500
+  - type: Anchorable
+    delay: 20
 
 - type: entity
   id: ArtilleryDetectionConsole
