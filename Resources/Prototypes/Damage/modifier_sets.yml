@@ -155,6 +155,17 @@
   flatReductions:
     Blunt: 5
 
+- type: damageModifierSet # VXS
+  id: WoodStrong
+  coefficients:
+    Blunt: 0.1
+    Slash: 1.0
+    Piercing: 0.1
+    Heat: 1.0
+    Structural: 0.2
+  flatReductions:
+    Blunt: 5
+
 - type: damageModifierSet
   id: Card
   coefficients:
