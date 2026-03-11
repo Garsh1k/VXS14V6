@@ -1,27 +1,19 @@
-# Artillery Detection System prototypes
-# Detector structure and console for tracking artillery fire
-
 - type: entity
   id: ArtilleryDetector
   parent: BaseStructure
   name: artdet
+  abstract: true
   description: "Система обнаружения артиллерийского огня. Обнаруживает выстрелы оружия в радиусе и логирует их координаты и тип оружия."
   components:
   - type: InteractionOutline
   - type: ArtilleryDetector
-    detectionRadius: 100
-    detectionDelay: 2
-    accuracyX: 2
-    accuracyY: 2
-    showArtilleryType: true
-    showProjectileType: true
   - type: Appearance
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
     state: middle
   - type: ApcPowerReceiver
-    powerLoad: 50
   - type: ExtensionCableReceiver
+  - type: Anchorable
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: BasicDevice
@@ -51,89 +43,73 @@
     anchored: true
 
 - type: entity
-  id: ArtilleryDetectorFullInfo
+  id: ArtilleryDetectorMonologue
   parent: ArtilleryDetector
-  name: artdet (Full Info)
-  suffix: Full Information
-  description: "Система обнаружения артиллерийского огня с отображением всей информации о снарядах и орудиях."
+  name: 51E3P1 Monologue
+  suffix: Poor and shitty
+  description: "Дешёвая переносная звукометрическая установка обнаружения и целеуказания. Применяется для контрбатарейной борьбы."
   components:
   - type: ArtilleryDetector
     detectionRadius: 100
-    detectionDelay: 2
-    accuracyX: 2
-    accuracyY: 2
-    showArtilleryType: true
-    showProjectileType: true
-
-- type: entity
-  id: ArtilleryDetectorNoShellInfo
-  parent: ArtilleryDetector
-  name: artdet (No Shell Info)
-  suffix: Hide Projectile Type
-  description: "Система обнаружения артиллерийского огня, которая скрывает информацию о типе снаряда."
-  components:
-  - type: ArtilleryDetector
-    detectionRadius: 100
-    detectionDelay: 2
-    accuracyX: 2
-    accuracyY: 2
-    showArtilleryType: true
-    showProjectileType: false
-
-- type: entity
-  id: ArtilleryDetectorNoArtilleryInfo
-  parent: ArtilleryDetector
-  name: artdet (No Artillery Info)
-  suffix: Hide Artillery Type
-  description: "Система обнаружения артиллерийского огня, которая скрывает информацию о типе орудия."
-  components:
-  - type: ArtilleryDetector
-    detectionRadius: 100
-    detectionDelay: 2
-    accuracyX: 3
-    accuracyY: 3
-    showArtilleryType: false
-    showProjectileType: true
-
-- type: entity
-  id: ArtilleryDetectorMinimalInfo
-  parent: ArtilleryDetector
-  name: artdet (Minimal Info)
-  suffix: Hide All Extra Info
-  description: "Система обнаружения артиллерийского огня, которая показывает только координаты без информации о типах снарядов и орудий."
-  components:
-  - type: ArtilleryDetector
-    detectionRadius: 100
-    detectionDelay: 2
-    accuracyX: 5
-    accuracyY: 5
+    detectionDelay: 10
+    accuracyX: 10
+    accuracyY: 10
     showArtilleryType: false
     showProjectileType: false
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: VXS/Structures/rls.rsi
+    state: furke
+  - type: ApcPowerReceiver
+    powerLoad: 100
+
+- type: entity
+  id: ArtilleryDetectorTavolga
+  parent: ArtilleryDetector
+  name: 51E3P23M Tavolga
+  suffix: Cool and costly
+  description: "Дорогущая переносная РЛС контрбатарейной борьбы."
+  components:
+  - type: ArtilleryDetector
+    detectionRadius: 2500
+    detectionDelay: 1
+    accuracyX: 1
+    accuracyY: 1
+    showArtilleryType: true
+    showProjectileType: true
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: VXS/Structures/rls.rsi
+    state: lev
+  - type: ApcPowerReceiver
+    powerLoad: 3500
 
 - type: entity
   id: ArtilleryDetectionConsole
   parent: BaseComputer
-  name: консоль журнала артиллерийского огня
-  description: Консоль для просмотра логов обнаруженного артиллерийского огня. Позволяет просматривать координаты и тип оружия, а также удалять записи из журнала.
+  name: artillery fire journal console
+  description: I am too lazy
   components:
   - type: ArtilleryDetectionConsole
   - type: Computer
     board: ArtilleryDetectionConsoleCircuitboard
   - type: Sprite
-    sprite: Structures/Machines/computers.rsi
+    sprite: VXS/Structures/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: aiming_keyboard
     - map: ["computerLayerScreen"]
-      state: generic
+      state: gun_aiming
     - map: ["computerLayerKeys"]
-      state: generic_keys
+      state: aiming_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ActivatableUI
-    singleUser: true
+    singleUser: false
     key: enum.ArtilleryDetectionConsoleUiKey.Key
   - type: DeviceNetwork
     deviceNetId: Wired
