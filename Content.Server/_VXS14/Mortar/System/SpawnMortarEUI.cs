@@ -174,57 +174,57 @@ public sealed class MortarEui : BaseEui
                     // Calculate accuracy modifier (decreases with distance)
                     var accuracyModifier = Math.Max(0.1f, mortarComp.BaseAccuracy - (distance * mortarComp.AccuracyDegradation));
 
+                    // Register artillery detection BEFORE spawning/explosion
+                    Logger.InfoS("mortar", "=== ПОПЫТКА РЕГИСТРАЦИИ АРТИЛЛЕРИЙСКОГО ВЫСТРЕЛА ===");
+                    Logger.InfoS("mortar", $"Цель: {targetPosition}");
+                    Logger.InfoS("mortar", $"Время: {IoCManager.Resolve<IGameTiming>().CurTime}");
+
+                    var artillerySystem = sysMan.GetEntitySystem<ArtilleryDetectionSystem>();
+                    Logger.InfoS("mortar", $"Получена ссылка на ArtilleryDetectionSystem: {artillerySystem != null}");
+
+                    if (artillerySystem == null)
+                    {
+                        Logger.ErrorS("mortar", "ArtilleryDetectionSystem равна null!");
+                        return;
+                    }
+
+                    // Test the system
+                    try
+                    {
+                        artillerySystem.TestMethod();
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.ErrorS("mortar", $"Ошибка при вызове TestMethod: {ex}");
+                    }
+
+                    var mortarName = "Миномет";
+                    if (entMan.TryGetComponent<MetaDataComponent>(Mortar, out var metaData))
+                    {
+                        mortarName = metaData.EntityName ?? "Миномет";
+                    }
+
+                    var shellName = "Снаряд";
+                    if (rocket != null && entMan.TryGetComponent<MetaDataComponent>(rocket.Value, out var shellMetaData))
+                    {
+                        shellName = shellMetaData.EntityName ?? "Снаряд";
+                    }
+                    else if (rocket != null)
+                    {
+                        shellName = "Неизвестный снаряд";
+                    }
+                    var weaponType = $"{mortarName} ({shellName})";
+                    Logger.InfoS("mortar", $"Тип оружия: {weaponType}");
+
+                    artillerySystem.OnArtilleryFired(targetPosition, weaponType, IoCManager.Resolve<IGameTiming>().CurTime, mortarName, shellName);
+                    Logger.InfoS("mortar", "=== ВЫЗОВ OnArtilleryFired ЗАВЕРШЕН ===");
+
                     if (comp.UseDirectExplosion)
                     {
                         // Apply accuracy modifier to explosion parameters
                         var adjustedTotalIntensity = comp.TotalIntensity * accuracyModifier;
                         var adjustedSlope = comp.Slope * accuracyModifier;
                         var adjustedMaxTileIntensity = comp.MaxTileIntensity * accuracyModifier;
-
-                        // Register artillery detection
-                        Logger.InfoS("mortar", "=== ПОПЫТКА РЕГИСТРАЦИИ АРТИЛЛЕРИЙСКОГО ВЫСТРЕЛА ===");
-                        Logger.InfoS("mortar", $"Цель: {targetPosition}");
-                        Logger.InfoS("mortar", $"Время: {IoCManager.Resolve<IGameTiming>().CurTime}");
-
-                        var artillerySystem = sysMan.GetEntitySystem<ArtilleryDetectionSystem>();
-                        Logger.InfoS("mortar", $"Получена ссылка на ArtilleryDetectionSystem: {artillerySystem != null}");
-
-                        if (artillerySystem == null)
-                        {
-                            Logger.ErrorS("mortar", "ArtilleryDetectionSystem равна null!");
-                            return;
-                        }
-
-                        // Test the system
-                        try
-                        {
-                            artillerySystem.TestMethod();
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.ErrorS("mortar", $"Ошибка при вызове TestMethod: {ex}");
-                        }
-
-                        var mortarName = "Миномет";
-                        if (entMan.TryGetComponent<MetaDataComponent>(Mortar, out var metaData))
-                        {
-                            mortarName = metaData.EntityName ?? "Миномет";
-                        }
-
-                        var shellName = "Снаряд";
-                        if (rocket != null && entMan.TryGetComponent<MetaDataComponent>(rocket.Value, out var shellMetaData))
-                        {
-                            shellName = shellMetaData.EntityName ?? "Снаряд";
-                        }
-                        else if (rocket != null)
-                        {
-                            shellName = "Неизвестный снаряд";
-                        }
-                        var weaponType = $"{mortarName} ({shellName})";
-                        Logger.InfoS("mortar", $"Тип оружия: {weaponType}");
-
-                        artillerySystem.OnArtilleryFired(targetPosition, weaponType, IoCManager.Resolve<IGameTiming>().CurTime, mortarName, shellName);
-                        Logger.InfoS("mortar", "=== ВЫЗОВ OnArtilleryFired ЗАВЕРШЕН ===");
 
                         sysMan.GetEntitySystem<ExplosionSystem>().QueueExplosion(targetPosition, comp.Type, adjustedTotalIntensity, adjustedSlope, adjustedMaxTileIntensity, null);
                     }
