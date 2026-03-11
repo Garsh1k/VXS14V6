@@ -1,6 +1,6 @@
 - type: entity
   id: ArtilleryDetector
-  parent: BaseStructure
+  parent: BaseStructureDynamic
   name: artdet
   abstract: true
   description: "Система обнаружения артиллерийского огня. Обнаруживает выстрелы оружия в радиусе и логирует их координаты и тип оружия."
