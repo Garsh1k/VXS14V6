@@ -164,6 +164,7 @@ public sealed class MortarEui : BaseEui
                 if(comp != null)
                 {
                     Logger.InfoS("mortar", "Компонент снаряда найден, продолжаем обработку");
+                    Logger.InfoS("mortar", $"UseDirectExplosion: {comp.UseDirectExplosion}, ExplosionEntity: {comp.ExplosionEntity}");
                     // Get mortar component for accuracy parameters
                     var mortarComp = entMan.GetComponent<SharedMortarComponent>(Mortar);
 
@@ -229,6 +230,7 @@ public sealed class MortarEui : BaseEui
                     }
                     else if (!string.IsNullOrEmpty(comp.ExplosionEntity))
                     {
+                        Logger.InfoS("mortar", $"Использование ExplosionEntity вместо DirectExplosion: {comp.ExplosionEntity}");
                         // Spawn the specified entity at the target position
                         var spawnedEntity = entMan.SpawnEntity(comp.ExplosionEntity, targetPosition);
 
@@ -238,6 +240,10 @@ public sealed class MortarEui : BaseEui
                         {
                             // TODO: Apply accuracy modifier to spawned entity effects if needed
                         }
+                    }
+                    else
+                    {
+                        Logger.WarningS("mortar", "Снаряд не имеет ни UseDirectExplosion, ни ExplosionEntity!");
                     }
                 }
             }));

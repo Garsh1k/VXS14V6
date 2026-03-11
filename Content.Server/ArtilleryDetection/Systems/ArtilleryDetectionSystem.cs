@@ -133,6 +133,7 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
         _sawmill.Info($"Оружие: {weaponType}");
         _sawmill.Info($"Позиция выстрела: {firePosition.Position} на карте {mapId}");
         _sawmill.Info($"Время обнаружения: {detectionTime}");
+        _sawmill.Info($"Тип артиллерии: {artilleryType}, Тип снаряда: {projectileType}");
 
         var detectorQuery = EntityQueryEnumerator<ArtilleryDetectorComponent>();
         int detectorCount = 0;
@@ -168,6 +169,7 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
 
             foundCount++;
             _sawmill.Info($"✓ Детектор {detectorUid} в зоне действия!");
+            _sawmill.Info($"ShowArtilleryType: {detector.ShowArtilleryType}, ShowProjectileType: {detector.ShowProjectileType}");
 
             // Calculate inaccurate coordinates using robust random
             var offsetX = (float)(_random.NextGaussian() - 0.5f) * detector.AccuracyX * 2f;
