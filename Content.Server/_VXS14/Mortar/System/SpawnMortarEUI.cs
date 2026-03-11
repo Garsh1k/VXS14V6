@@ -149,17 +149,6 @@ public sealed class MortarEui : BaseEui
                 Logger.InfoS("mortar", $"Rocket entity: {rocket}");
                 Logger.InfoS("mortar", $"Target position: {targetPosition}");
 
-                // Get shell name BEFORE deleting the entity
-                var shellName = "Снаряд";
-                if (rocket != null && entMan.TryGetComponent<MetaDataComponent>(rocket.Value, out var shellMetaData))
-                {
-                    shellName = shellMetaData.EntityName ?? "Снаряд";
-                }
-                else if (rocket != null)
-                {
-                    shellName = "Неизвестный снаряд";
-                }
-
                 entMan.DeleteEntity(rocket);
 
                 Logger.InfoS("mortar", $"Проверка компонента снаряда для entity {rocket}");
@@ -215,6 +204,15 @@ public sealed class MortarEui : BaseEui
                         mortarName = metaData.EntityName ?? "Миномет";
                     }
 
+                    var shellName = "Снаряд";
+                    if (rocket != null && entMan.TryGetComponent<MetaDataComponent>(rocket.Value, out var shellMetaData))
+                    {
+                        shellName = shellMetaData.EntityName ?? "Снаряд";
+                    }
+                    else if (rocket != null)
+                    {
+                        shellName = "Неизвестный снаряд";
+                    }
                     var weaponType = $"{mortarName} ({shellName})";
                     Logger.InfoS("mortar", $"Тип оружия: {weaponType}");
 
