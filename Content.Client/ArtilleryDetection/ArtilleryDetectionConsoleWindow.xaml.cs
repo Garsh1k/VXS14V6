@@ -66,8 +66,23 @@ public sealed partial class ArtilleryDetectionConsoleWindow : FancyWindow
         for (int i = 0; i < state.Events.Count; i++)
         {
             var evt = state.Events[i];
-            var text = $"[{evt.DetectionTime:mm\\:ss}] {evt.WeaponType} - Coordinates: ({evt.DetectedCoordinates.X:F1}, {evt.DetectedCoordinates.Y:F1})";
-            EventList.AddItem(text);
+            var detailsBuilder = new System.Text.StringBuilder();
+            detailsBuilder.Append($"[{evt.DetectionTime:mm\\:ss}] {evt.WeaponType}");
+
+            // Add artillery type if available
+            if (!string.IsNullOrEmpty(evt.ArtilleryType) && evt.ArtilleryType != "Unknown")
+            {
+                detailsBuilder.Append($" | Artillery: {evt.ArtilleryType}");
+            }
+
+            // Add projectile type if available
+            if (!string.IsNullOrEmpty(evt.ProjectileType) && evt.ProjectileType != "Unknown")
+            {
+                detailsBuilder.Append($" | Projectile: {evt.ProjectileType}");
+            }
+
+            detailsBuilder.Append($" | Coordinates: ({evt.DetectedCoordinates.X:F1}, {evt.DetectedCoordinates.Y:F1})");
+            EventList.AddItem(detailsBuilder.ToString());
         }
 
         StatusLabel.Text = $"{state.Events.Count} events detected.";

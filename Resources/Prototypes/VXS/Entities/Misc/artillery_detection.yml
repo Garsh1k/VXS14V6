@@ -13,6 +13,8 @@
     detectionDelay: 2
     accuracyX: 2
     accuracyY: 2
+    showArtilleryType: true
+    showProjectileType: true
   - type: Appearance
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
@@ -47,6 +49,66 @@
             max: 4
   - type: Transform
     anchored: true
+
+- type: entity
+  id: ArtilleryDetectorFullInfo
+  parent: ArtilleryDetector
+  name: artdet (Full Info)
+  suffix: Full Information
+  description: "Система обнаружения артиллерийского огня с отображением всей информации о снарядах и орудиях."
+  components:
+  - type: ArtilleryDetector
+    detectionRadius: 100
+    detectionDelay: 2
+    accuracyX: 2
+    accuracyY: 2
+    showArtilleryType: true
+    showProjectileType: true
+
+- type: entity
+  id: ArtilleryDetectorNoShellInfo
+  parent: ArtilleryDetector
+  name: artdet (No Shell Info)
+  suffix: Hide Projectile Type
+  description: "Система обнаружения артиллерийского огня, которая скрывает информацию о типе снаряда."
+  components:
+  - type: ArtilleryDetector
+    detectionRadius: 100
+    detectionDelay: 2
+    accuracyX: 2
+    accuracyY: 2
+    showArtilleryType: true
+    showProjectileType: false
+
+- type: entity
+  id: ArtilleryDetectorNoArtilleryInfo
+  parent: ArtilleryDetector
+  name: artdet (No Artillery Info)
+  suffix: Hide Artillery Type
+  description: "Система обнаружения артиллерийского огня, которая скрывает информацию о типе орудия."
+  components:
+  - type: ArtilleryDetector
+    detectionRadius: 100
+    detectionDelay: 2
+    accuracyX: 3
+    accuracyY: 3
+    showArtilleryType: false
+    showProjectileType: true
+
+- type: entity
+  id: ArtilleryDetectorMinimalInfo
+  parent: ArtilleryDetector
+  name: artdet (Minimal Info)
+  suffix: Hide All Extra Info
+  description: "Система обнаружения артиллерийского огня, которая показывает только координаты без информации о типах снарядов и орудий."
+  components:
+  - type: ArtilleryDetector
+    detectionRadius: 100
+    detectionDelay: 2
+    accuracyX: 5
+    accuracyY: 5
+    showArtilleryType: false
+    showProjectileType: false
 
 - type: entity
   id: ArtilleryDetectionConsole

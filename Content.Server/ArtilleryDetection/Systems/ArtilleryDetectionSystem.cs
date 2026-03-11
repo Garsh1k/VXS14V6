@@ -33,6 +33,11 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
     /// </summary>
     private List<(EntityUid DetectorId, ArtilleryFireEvent Event, float ScheduledTime)> _pendingDetections = new();
 
+    /// <summary>
+    /// Counter for generating local sequential IDs for events.
+    /// </summary>
+    private int _localEventIdCounter = 0;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -126,13 +131,14 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
     /// <summary>
     /// Called when artillery (such as a mortar) fires to detect it.
     /// </summary>
-    public void OnArtilleryFired(MapCoordinates firePosition, string weaponType, TimeSpan detectionTime)
+    public void OnArtilleryFired(MapCoordinates firePosition, string weaponType, TimeSpan detectionTime, string artilleryType = "Unknown", string projectileType = "Unknown")
     {
         var mapId = firePosition.MapId;
         _sawmill.Info($"=== АРТИЛЛЕРИЙСКИЙ ВЫСТРЕЛ ОБНАРУЖЕН ===");
         _sawmill.Info($"Оружие: {weaponType}");
         _sawmill.Info($"Позиция выстрела: {firePosition.Position} на карте {mapId}");
         _sawmill.Info($"Время обнаружения: {detectionTime}");
+        _sawmill.Info($"Тип артиллерии: {artilleryType}, Тип снаряда: {projectileType}");
 
         var detectorQuery = EntityQueryEnumerator<ArtilleryDetectorComponent>();
         int detectorCount = 0;
@@ -168,6 +174,7 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
 
             foundCount++;
             _sawmill.Info($"✓ Детектор {detectorUid} в зоне действия!");
+            _sawmill.Info($"ShowArtilleryType: {detector.ShowArtilleryType}, ShowProjectileType: {detector.ShowProjectileType}");
 
             // Calculate inaccurate coordinates using robust random
             var offsetX = (float)(_random.NextGaussian() - 0.5f) * detector.AccuracyX * 2f;
@@ -182,10 +189,18 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
             _sawmill.Info($"Обнаруженные координаты (с погрешностью): {detectedCoords}");
             _sawmill.Info($"Погрешность: X={offsetX:F2}, Y={offsetY:F2}");
 
+            // Create fire event with optional artillery and projectile type information
+            var filteredArtilleryType = detector.ShowArtilleryType ? artilleryType : "Unknown";
+            var filteredProjectileType = detector.ShowProjectileType ? projectileType : "Unknown";
+
+            _localEventIdCounter++;
             var fireEvent = new ArtilleryFireEvent(
                 coordinates: detectedCoords,
                 weaponType: weaponType,
-                detectionTime: detectionTime
+                detectionTime: detectionTime,
+                artilleryType: filteredArtilleryType,
+                projectileType: filteredProjectileType,
+                localId: _localEventIdCounter
             );
 
             // Queue for delayed processing

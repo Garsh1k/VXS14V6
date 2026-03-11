@@ -35,5 +35,17 @@ public sealed partial class ArtilleryDetectorComponent : Component
     /// </summary>
     [DataField]
     public float AccuracyY = 2f;
+
+    /// <summary>
+    /// Whether the detector should display the type of artillery unit in the console.
+    /// </summary>
+    [DataField]
+    public bool ShowArtilleryType = true;
+
+    /// <summary>
+    /// Whether the detector should display the type of projectile/shell in the console.
+    /// </summary>
+    [DataField]
+    public bool ShowProjectileType = true;
 }
 
