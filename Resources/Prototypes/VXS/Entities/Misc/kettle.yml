@@ -1,0 +1,9 @@
+- type: entity
+  name: Kettlebell
+  id: Kettlebell
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: VXS/Objects/kettlebell.rsi
+    state: icon
