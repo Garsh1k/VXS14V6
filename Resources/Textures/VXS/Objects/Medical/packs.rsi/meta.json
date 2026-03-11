@@ -8,19 +8,7 @@
     "copyright": "Created by JustKekc. Modified by TooMuchGolang, inaprovaline, tranexam, nefopam",
     "states": [
         {
-            "name": "pack"
-        },
-        {
-            "name": "sodiumizole"
-        },
-        {
-            "name": "nitrofurfoll"
-        },
-        {
             "name": "anelgesin"
-        },
-        {
-            "name": "minoxide"
         },
         {
             "name": "diethamilate"
@@ -38,7 +26,7 @@
             "name": "inaprovaline"
         },
         {
-            "name": "traenxam"
+            "name": "tranexam"
         },
         {
             "name": "nefopam"
@@ -52,4 +40,4 @@
             "directions": 4
         }
     ]
-} 
+}
