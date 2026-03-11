@@ -31,6 +31,16 @@ public sealed class ArtilleryFireEvent
     /// </summary>
     public string WeaponType { get; set; } = "Unknown";
 
+    /// <summary>
+    /// Type of artillery unit (e.g., "1A103E 82mm mortar").
+    /// </summary>
+    public string ArtilleryType { get; set; } = "Unknown";
+
+    /// <summary>
+    /// Type of projectile/shell fired.
+    /// </summary>
+    public string ProjectileType { get; set; } = "Unknown";
+
     public ArtilleryFireEvent() { }
 
     public ArtilleryFireEvent(Vector2 coordinates, string weaponType, TimeSpan detectionTime)
@@ -39,5 +49,15 @@ public sealed class ArtilleryFireEvent
         DetectedCoordinates = coordinates;
         WeaponType = weaponType;
         DetectionTime = detectionTime;
+    }
+
+    public ArtilleryFireEvent(Vector2 coordinates, string weaponType, TimeSpan detectionTime, string artilleryType, string projectileType)
+    {
+        Id = Guid.NewGuid();
+        DetectedCoordinates = coordinates;
+        WeaponType = weaponType;
+        DetectionTime = detectionTime;
+        ArtilleryType = artilleryType;
+        ProjectileType = projectileType;
     }
 }

@@ -126,7 +126,7 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
     /// <summary>
     /// Called when artillery (such as a mortar) fires to detect it.
     /// </summary>
-    public void OnArtilleryFired(MapCoordinates firePosition, string weaponType, TimeSpan detectionTime)
+    public void OnArtilleryFired(MapCoordinates firePosition, string weaponType, TimeSpan detectionTime, string artilleryType = "Unknown", string projectileType = "Unknown")
     {
         var mapId = firePosition.MapId;
         _sawmill.Info($"=== АРТИЛЛЕРИЙСКИЙ ВЫСТРЕЛ ОБНАРУЖЕН ===");
@@ -182,10 +182,16 @@ public sealed class ArtilleryDetectionSystem : SharedArtilleryDetectionSystem
             _sawmill.Info($"Обнаруженные координаты (с погрешностью): {detectedCoords}");
             _sawmill.Info($"Погрешность: X={offsetX:F2}, Y={offsetY:F2}");
 
+            // Create fire event with optional artillery and projectile type information
+            var filteredArtilleryType = detector.ShowArtilleryType ? artilleryType : "Unknown";
+            var filteredProjectileType = detector.ShowProjectileType ? projectileType : "Unknown";
+
             var fireEvent = new ArtilleryFireEvent(
                 coordinates: detectedCoords,
                 weaponType: weaponType,
-                detectionTime: detectionTime
+                detectionTime: detectionTime,
+                artilleryType: filteredArtilleryType,
+                projectileType: filteredProjectileType
             );
 
             // Queue for delayed processing

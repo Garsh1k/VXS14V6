@@ -222,7 +222,7 @@ public sealed class MortarEui : BaseEui
                         var weaponType = $"{mortarName} ({shellName})";
                         Logger.InfoS("mortar", $"Тип оружия: {weaponType}");
 
-                        artillerySystem.OnArtilleryFired(targetPosition, weaponType, IoCManager.Resolve<IGameTiming>().CurTime);
+                        artillerySystem.OnArtilleryFired(targetPosition, weaponType, IoCManager.Resolve<IGameTiming>().CurTime, mortarName, shellName);
                         Logger.InfoS("mortar", "=== ВЫЗОВ OnArtilleryFired ЗАВЕРШЕН ===");
 
                         sysMan.GetEntitySystem<ExplosionSystem>().QueueExplosion(targetPosition, comp.Type, adjustedTotalIntensity, adjustedSlope, adjustedMaxTileIntensity, null);
