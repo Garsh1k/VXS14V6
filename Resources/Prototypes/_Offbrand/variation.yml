@@ -25,7 +25,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: CrateFreezerIVBag
+        #- id: CrateFreezerIVBag VXS
         - id: IVStand
         - id: IVStand
         - id: IVStand
