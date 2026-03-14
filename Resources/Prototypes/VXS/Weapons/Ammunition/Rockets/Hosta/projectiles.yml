@@ -22,7 +22,7 @@
     acceleration: 10
     topSpeed: 150
     initialSpeed: 20
-    FOV: 80
+    FOV: 30
     lockedIn: false
   - type: Destructible
     thresholds:
@@ -61,7 +61,7 @@
     acceleration: 10
     topSpeed: 150
     initialSpeed: 20
-    FOV: 80
+    FOV: 30
     lockedIn: false
   - type: Destructible
     thresholds:
@@ -124,7 +124,7 @@
     acceleration: 10
     topSpeed: 150
     initialSpeed: 20
-    FOV: 80
+    FOV: 30
     lockedIn: false
   - type: Destructible
     thresholds:

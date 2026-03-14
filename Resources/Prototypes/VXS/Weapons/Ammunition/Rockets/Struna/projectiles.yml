@@ -91,12 +91,12 @@
     lifetime: 50
   - type: VXSActiveRadioHeading
     seekRange: 150
-    rotationSpeed: 40
+    rotationSpeed: 10
     guidanceAlgorithm: PredictiveGuidance
-    acceleration: 10
-    topSpeed: 130
-    initialSpeed: 30
-    FOV: 80
+    acceleration: 5
+    topSpeed: 200
+    initialSpeed: 15
+    FOV: 70
     lockedIn: true
   - type: Destructible
     thresholds:
