@@ -1,0 +1,184 @@
+- type: entity
+  id: EWS16Raysoft
+  name: EWS-16 Raysoft
+  description: Emission Warning Station EWS-16 Raysoft. Emits a loud sound and signal when a missile radar signal is received.
+  suffix: EWS, Combined
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: VXS/Structures/Machines/ews.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    noRot: false
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.17,0.25,-0.17,-0.30"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: StaticPrice
+    price: 1000
+  - type: VXSTargetLockSiren
+    sirenSound: /Audio/Ambience/Objects/alarm.ogg
+  - type: VXSTargetLockReceiver
+  - type: VXSTargetLockSignaller
+  - type: DeviceLinkSource
+    range: 100
+    ports:
+      - VXSOnTargetLock
+
+- type: entity
+  id: EWSI8Gzhel
+  name: EWS-I8 Raysoft
+  description: Emission Warning Station EWS-I8. Emits signal when a missile radar signal is received.
+  suffix: EWS, Signal
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: VXS/Structures/Machines/ews.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    noRot: false
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.17,0.25,-0.17,-0.30"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: StaticPrice
+    price: 1000
+  - type: VXSTargetLockReceiver
+  - type: VXSTargetLockSignaller
+  - type: DeviceLinkSource
+    range: 100
+    ports:
+      - VXSOnTargetLock
+
+- type: entity
+  id: EWS17Raspberry
+  name: EWS-17 Raspberry
+  suffix: EWS, Sound
+  description: Emission Warning Station EWS-17 Raspberry, also known as Malina. Emits a loud sound when a missile radar signal is received.
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: VXS/Structures/Machines/ews.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    noRot: false
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.17,0.25,-0.17,-0.30"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: StaticPrice
+    price: 1000
+  - type: VXSTargetLockReceiver
+  - type: VXSTargetLockSiren
+    sirenSound: /Audio/VXS/Electronics/EWS/raspberry.ogg

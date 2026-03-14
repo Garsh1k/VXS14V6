@@ -1,0 +1,62 @@
+- type: entity
+  id: BaseCartridgeArtillery57mm
+  name: shell (57mm)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - ArtilleryShell57mm
+  - type: CartridgeAmmo
+    proto: BulletArtillery57mm
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: VXS/Weapons/Artillery/Ammunition/57mm.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: CartridgeArtillery57mm
+  name: shell (57mm)
+  parent: BaseCartridgeArtillery57mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery57mm
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  id: CartridgeArtillery57mmEMP
+  name: shell (57mm EMP)
+  parent: BaseCartridgeArtillery57mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery57mmEMP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#600b70"
+
+- type: entity
+  id: CartridgeArtillery57mmHE
+  name: shell (57mm HE)
+  parent: BaseCartridgeArtillery57mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery57mmHE
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]

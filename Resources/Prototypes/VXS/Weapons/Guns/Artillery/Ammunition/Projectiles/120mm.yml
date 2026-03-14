@@ -1,0 +1,109 @@
+- type: entity
+  id: BulletArtillery120mm
+  name: bullet (120mm)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 400
+        Blunt: 200
+    penetrationThreshold: 500
+    penetrationDamageTypeRequirement:
+    - Piercing
+  - type: StaminaDamageOnCollide
+    damage: 500
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+
+- type: entity
+  id: BulletArtillery120mmEMP
+  name: bullet (120mm)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 200
+        Blunt: 300
+    penetrationThreshold: 450
+    penetrationDamageTypeRequirement:
+    - Piercing
+  - type: StaminaDamageOnCollide
+    damage: 500
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+  - type: EmpOnTrigger
+    range: 6
+    energyConsumption: 570000
+    disableDuration: 10
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.45,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  id: BulletArtillery120mmHE
+  name: bullet (120mm)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 100
+        Blunt: 200
+    penetrationThreshold: 400
+    penetrationDamageTypeRequirement:
+    - Piercing
+  - type: StaminaDamageOnCollide
+    damage: 300
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 540
+    intensitySlope: 7
+    maxIntensity: 32
+  - type: DeleteOnTrigger
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.45,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable

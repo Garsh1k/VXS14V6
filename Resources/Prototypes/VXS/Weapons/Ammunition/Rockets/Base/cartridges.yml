@@ -1,0 +1,11 @@
+- type: entity
+  id: BaseCartridgeRocketAntiShip
+  name: rocket authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/Scrap/generic.rsi
+    layers:
+    - state: glass-1
+      map: [ "base" ]

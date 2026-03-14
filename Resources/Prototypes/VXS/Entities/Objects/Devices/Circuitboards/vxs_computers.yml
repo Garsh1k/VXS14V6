@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ArtilleryDetectionConsoleCircuitboard
-  name: артиллерийского журнала компьютер доска
-  description: Печатная плата компьютера для консоли журнала артиллерийского огня.
+  name: artillery detection journal board
+  description: assadsasdasdadswef4vcfaewf
   components:
     - type: Sprite
       state: cpu_security

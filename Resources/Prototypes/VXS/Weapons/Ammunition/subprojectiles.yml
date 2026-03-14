@@ -1,0 +1,61 @@
+- type: entity
+  parent: ScatteringGrenadeBase
+  id: NuclearFalloutAsh
+  categories: [ HideSpawnMenu ]
+  name: ash
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/materials.rsi
+    state: ash
+  - type: ScatteringGrenade
+    fillPrototype: NuclearAsh
+    capacity: 100
+    randomDistance: true
+    randomAngle: true
+    randomThrowDistanceMin: 10
+    randomThrowDistanceMax: 100
+  - type: SpawnOnTrigger
+    proto: TritiumGasMomentalSpawner
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 230
+    intensitySlope: 10
+    totalIntensity: 100000
+  - type: DeleteOnTrigger
+  - type: TriggerOnSpawn
+
+- type: entity
+  parent: Ash
+  id: NuclearAsh
+  suffix: NUCLEAR
+  components:
+  - type: RadiationSource
+    slope: 0.03
+    intensity: 0.6
+
+- type: entity
+  name: GasSpawnerTritiumEffect
+  description: Gas Spawner Tritium
+  id: TritiumGasMomentalSpawner
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      canCollide: false
+    - type: Fixtures
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      sprite: Structures/Storage/canister.rsi
+      state: green
+    - type: AtmosDevice
+    - type: GasMiner
+      spawnGas: Tritium
+      maxExternalPressure: 300
+      spawnAmount: 500
+    - type: TimedDespawn
+      lifetime: 0.5
+    - type: Tag
+      tags:
+      - HideContextMenu

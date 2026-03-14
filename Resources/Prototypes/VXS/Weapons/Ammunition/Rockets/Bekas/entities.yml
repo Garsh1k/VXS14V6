@@ -1,0 +1,101 @@
+- type: entity
+  id: WeaponRocketAntiShipBekasC
+  name: ARR AR Bekas-C # Совмещенный
+  parent: BaseWeaponRocketAntiShip
+  description: Long-range anti-radar missile. This one - combined warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
+    state: he
+  - type: StaticPrice
+    price: 3000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 500
+    intensitySlope: 1
+    maxIntensity: 50
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipBekasC
+    capacity: 1
+    proto: CartridgeRocketAntiShipBekasC
+
+- type: entity
+  id: WeaponRocketAntiShipBekasEMP
+  name: ARR AR Bekas-EM # ЭМИ
+  parent: BaseWeaponRocketAntiShip
+  description: Long-range anti-radar missile. This one - EMP warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
+    state: blank
+  - type: StaticPrice
+    price: 3000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 1
+    maxIntensity: 50
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipBekasEMP
+    capacity: 1
+    proto: CartridgeRocketAntiShipBekasEMP
+
+- type: entity
+  id: WeaponRocketAntiShipBekasNuclear
+  name: ARR AR Bekas-N # Ядерный
+  parent: BaseWeaponRocketAntiShip
+  description: Long-range anti-radar missile. This one - Thermonuclear warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
+    state: nuke
+  - type: StaticPrice
+    price: 3000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 1
+    maxIntensity: 50
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipBekasNuclear
+    capacity: 1
+    proto: CartridgeRocketAntiShipBekasNuclear

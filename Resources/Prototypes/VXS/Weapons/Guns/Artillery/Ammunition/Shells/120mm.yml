@@ -1,0 +1,66 @@
+- type: entity
+  id: BaseCartridgeArtillery120mm
+  name: shell (120mm)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - ArtilleryShell120mm
+  - type: CartridgeAmmo
+    proto: BulletArtillery120mm
+  - type: Item
+    size: Ginormous
+    sprite: VXS/Weapons/Artillery/Ammunition/120mm.rsi
+    heldPrefix: wielded
+  - type: Sprite
+    sprite: VXS/Weapons/Artillery/Ammunition/120mm.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 50
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+
+- type: entity
+  id: CartridgeArtillery120mm
+  name: shell (120mm)
+  parent: BaseCartridgeArtillery120mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery120mm
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  id: CartridgeArtillery120mmEMP
+  name: shell (120mm EMP)
+  parent: BaseCartridgeArtillery120mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery120mmEMP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  id: CartridgeArtillery120mmHE
+  name: shell (120mm HE)
+  parent: BaseCartridgeArtillery120mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery120mmHE
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]

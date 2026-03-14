@@ -1,0 +1,53 @@
+- type: entity
+  id: BaseCartridgeArtillery30mm
+  name: shell (30mm)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - ArtilleryShell30mm
+  - type: CartridgeAmmo
+    proto: BulletArtillery30mm
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: VXS/Weapons/Artillery/Ammunition/30mm.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: CartridgeArtillery30mm
+  name: shell (30mm)
+  parent: BaseCartridgeArtillery30mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery30mm
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#700b0b"
+
+- type: entity
+  id: CartridgeArtillery30mmEMP
+  name: shell (30mm EMP)
+  parent: BaseCartridgeArtillery30mm
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArtillery30mmEMP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#600b70"

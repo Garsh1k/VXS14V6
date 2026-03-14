@@ -1,0 +1,63 @@
+- type: entity
+  id: BaseWeaponRocketAntiShip
+  parent: ShuttleGunBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: he
+  - type: TriggerOnSignal
+  - type: StaticPrice
+    price: 1000
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:ExplodeBehavior
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              ScrapGlass:
+                min: 1
+                max: 1
+              ScrapSteel:
+                min: 1
+                max: 2
+  - type: Anchorable
+  - type: Physics
+    bodyType: Dynamic
+  - type: DeleteOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 200
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: DeviceLinkSink
+    ports:
+      - Trigger
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaHE
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaHE

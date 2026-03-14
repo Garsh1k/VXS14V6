@@ -1,0 +1,182 @@
+- type: entity
+  id: BulletRocketAntiShipStrunaHE
+  name: SSR-800ARH String
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: he
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 50
+    intensitySlope: 16
+    totalIntensity: 600
+  - type: TimedDespawn
+    lifetime: 50
+  - type: VXSActiveRadioHeading
+    seekRange: 100
+    rotationSpeed: 3
+    guidanceAlgorithm: PurePursuit
+    acceleration: 50
+    topSpeed: 100
+    initialSpeed: 50
+    FOV: 60
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipStrunaEMP
+  name: SSR-806ARHEM Arc
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: emp
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 50
+    totalIntensity: 100
+  - type: EmpOnTrigger
+    range: 5
+    energyConsumption: 10000
+    disableDuration: 15
+  - type: TimedDespawn
+    lifetime: 50
+  - type: VXSActiveRadioHeading
+    seekRange: 100
+    rotationSpeed: 3
+    guidanceAlgorithm: PurePursuit
+    acceleration: 50
+    topSpeed: 100
+    initialSpeed: 50
+    FOV: 60
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipStrunaRLS
+  name: SSR-100ARHMC Frostbush
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: he
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 50
+    intensitySlope: 16
+    totalIntensity: 600
+  - type: TimedDespawn
+    lifetime: 50
+  - type: VXSActiveRadioHeading
+    seekRange: 150
+    rotationSpeed: 40
+    guidanceAlgorithm: PredictiveGuidance
+    acceleration: 10
+    topSpeed: 130
+    initialSpeed: 30
+    FOV: 80
+    lockedIn: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipStrunaNuclear
+  name: SSR-20ARHN Mint
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: nuclear
+  - type: TimedDespawn
+    lifetime: 50
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 50
+        Structural: 500
+    deleteOnCollide: true
+  - type: VXSActiveRadioHeading
+    seekRange: 500
+    rotationSpeed: 30
+    guidanceAlgorithm: PurePursuit
+    acceleration: 100
+    topSpeed: 200
+    initialSpeed: 10
+    FOV: 90
+    lockedIn: true
+  - type: SpawnOnTrigger
+    proto: NuclearFalloutAsh
+  - type: EmpOnTrigger
+    range: 20
+    energyConsumption: 10000
+    disableDuration: 15
+  - type: Explosive
+    explosionType: FireBomb
+    maxIntensity: 30
+    intensitySlope: 3
+    totalIntensity: 2000
+  - type: DeleteOnTrigger
+
+
+
+- type: entity
+  id: BulletRocketAntiShipStrunaHERD
+  name: SSR-800ARH String-RDD
+  parent: BulletRocketAntiShipStrunaHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: he_rd
+  - type: TriggerOnEnterGrid
+
+- type: entity
+  id: BulletRocketAntiShipStrunaEMPRD
+  name: SSR-806ARHEM Arc-RD
+  parent: BulletRocketAntiShipStrunaEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: emp_rd
+  - type: TriggerOnEnterGrid

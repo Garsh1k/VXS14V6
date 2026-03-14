@@ -1,0 +1,17 @@
+- type: entity
+  id: CountermeasuresRadarA31Cartridge
+  name: radar jamming cartridge
+  parent: BaseShellShotgun
+  components:
+  - type: Tag
+    tags:
+    - RadarCountermeasuresShell
+  - type: Sprite
+    layers:
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: CountermeasuresRadarA31Pellet
+  - type: SpentAmmoVisuals
+    state: "flare"

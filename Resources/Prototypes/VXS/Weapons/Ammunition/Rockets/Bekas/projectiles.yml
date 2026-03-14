@@ -1,0 +1,116 @@
+- type: entity
+  id: BulletRocketAntiShipBekasC
+  name: ARR AR Bekas-C
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
+    layers:
+      - state: he
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 50
+    intensitySlope: 10
+    totalIntensity: 1000
+  - type: EmpOnTrigger
+    range: 8
+    energyConsumption: 10000
+    disableDuration: 30
+  - type: TimedDespawn
+    lifetime: 500
+  - type: PassiveRadioHeading
+    seekRange: 1000
+    rotationSpeed: 2
+    guidanceAlgorithm: PurePursuit
+    acceleration: 10
+    topSpeed: 100
+    initialSpeed: 30
+    FOV: 90
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipBekasEMP
+  name: ARR AR Bekas-EM
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
+    layers:
+      - state: blank
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 50
+    intensitySlope: 10
+    totalIntensity: 100
+  - type: EmpOnTrigger
+    range: 10
+    energyConsumption: 10000
+    disableDuration: 60
+  - type: TimedDespawn
+    lifetime: 500
+  - type: PassiveRadioHeading
+    seekRange: 1000
+    rotationSpeed: 2
+    guidanceAlgorithm: PurePursuit
+    acceleration: 10
+    topSpeed: 100
+    initialSpeed: 30
+    FOV: 90
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipBekasNuclear
+  name: ARR AR Bekas-N
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
+    layers:
+      - state: nuke
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 230
+    intensitySlope: 5
+    totalIntensity: 10000
+  - type: EmpOnTrigger
+    range: 9
+    energyConsumption: 10
+    disableDuration: 45
+  - type: TimedDespawn
+    lifetime: 500
+  - type: PassiveRadioHeading
+    seekRange: 1000
+    rotationSpeed: 2
+    guidanceAlgorithm: PurePursuit
+    acceleration: 10
+    topSpeed: 100
+    initialSpeed: 30
+    FOV: 90
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

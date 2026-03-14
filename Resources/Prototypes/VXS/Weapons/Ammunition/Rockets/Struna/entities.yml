@@ -1,0 +1,182 @@
+- type: entity
+  id: WeaponRocketAntiShipStrunaHE
+  name: SSR-800ARH String # ХЕ
+  parent: BaseWeaponRocketAntiShip
+  description: Short-range anti-ship missile with radar-guided basic guidance head. Designed to defeat large ships in close maneuver combat. One of these things will tear the hull of medium armored ships.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: he
+  - type: StaticPrice
+    price: 1000
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:ExplodeBehavior
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              ScrapGlass:
+                min: 1
+                max: 1
+              ScrapSteel:
+                min: 1
+                max: 2
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaHE
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaHE
+
+- type: entity
+  id: WeaponRocketAntiShipStrunaEMP
+  name: SSR-806ARHEM Arc # ЭМИ
+  parent: BaseWeaponRocketAntiShip
+  description: Short-range anti-ship missile with radar-guided basic guidance head. It's literally a string, but instead of a HE warhead, it's an EMP warhead. It is designed to disable the external equipment of large ships and the wiring of small ships.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: emp
+  - type: StaticPrice
+    price: 1200
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaEMP
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaEMP
+
+- type: entity
+  id: WeaponRocketAntiShipStrunaRLS
+  name: SSR-100ARHMC Frostbush # ХЕ но РЛС пизже
+  parent: BaseWeaponRocketAntiShip
+  description: Short-range anti-ship missile with radar-guided guidance head. An attempt by the designers to design an improved version of the string. It is recommended to launch on the move, sometimes this missile can turn around and hit the ship that launched it. HE warhead from the string is unchanged.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: inced
+  - type: StaticPrice
+    price: 2500
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaRLS
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaRLS
+
+- type: entity
+  id: WeaponRocketAntiShipStrunaNuclear
+  name: SSR-20ARHN Mint # Ядерный
+  parent: BaseWeaponRocketAntiShip
+  description: Medium-range anti-ship missile with active radar guidance and a low-yield thermonuclear warhead. No IFF system, weak radioactive emission after hitting the target, fast speed, low maneuverability. Usually after this missile hits its target, it disappears from radar.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: nuclear
+  - type: StaticPrice
+    price: 15000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 200
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 150
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 0
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaNuclear
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaNuclear
+  - type: RadiationSource
+    slope: 0.3
+    intensity: 0.6
+
+
+
+- type: entity
+  id: WeaponRocketAntiShipStrunaHERD
+  name: SSR-800ARH String-RD # ХЕ РВ
+  parent: WeaponRocketAntiShipStrunaHE
+  description: Short-range anti-ship missile with radar-guided basic guidance head. Designed to defeat large ships in close maneuver combat. One of these things will tear the hull of medium armored ships. That one with radio-detonator.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: he_rd
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaHERD
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaHERD
+
+- type: entity
+  id: WeaponRocketAntiShipStrunaEMPRD
+  name: SSR-806ARHEM Arc-RD # ЭМИ РВ
+  parent: WeaponRocketAntiShipStrunaHE
+  description: Short-range anti-ship missile with radar-guided basic guidance head. It's literally a string, but instead of a HE warhead, it's an EMP warhead. It is designed to disable the external equipment of large ships and the wiring of small ships. That one with radio-detonator.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    state: emp_rd
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipStrunaEMPRD
+    capacity: 1
+    proto: CartridgeRocketAntiShipStrunaEMPRD

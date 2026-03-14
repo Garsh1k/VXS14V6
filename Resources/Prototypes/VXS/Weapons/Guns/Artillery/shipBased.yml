@@ -1,0 +1,746 @@
+# Z-30 30mm
+
+- type: entity
+  parent: BaseControllableTurretMagazine
+  id: WeaponArtilleryZ30
+  name: Z-30
+  suffix: 30mm
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/z30.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/z30.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContentEye
+      maxZoom: 2.0,2.0
+      targetZoom: 2.0,2.0
+    - type: Eye
+      pvsScale: 5
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ArtilleryZ30Broken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 2
+                ScrapGlass:
+                  min: 0
+                  max: 1
+                ScrapSteel:
+                  min: 0
+                  max: 1
+    - type: Gun
+      fireRate: 40
+      projectileSpeed: 40
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        collection: Gunfire30mm
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          priority: 2
+          whitelist:
+            tags:
+            - ArtilleryShellBox30mm
+          insertSound:
+            path: /Audio/Machines/id_insert.ogg
+            params:
+              pitch: 2
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+    - type: MouseRotator
+      angleTolerance: 5
+      rotationSpeed: 180
+      simple4DirMode: false
+
+- type: entity
+  parent: WeaponArtilleryZ30
+  id: WeaponArtilleryZ30Turret
+  name: Z-30T
+  suffix: 30mm, Turret
+  components:
+  - type: NpcFactionMember
+    factions:
+    - PointDefenseGun
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        180
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+      AdvancedTargeting: !type:Bool
+        true
+      RangedRange: !type:Single
+        100.0
+      VisionRadius: !type:Single
+        150.0
+
+- type: entity
+  parent: BaseControllableTurretBroken
+  id: ArtilleryZ30Broken
+  name: Z-30
+  suffix: broken
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/z30.rsi
+      state: broken
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/z30.rsi
+      drawdepth: Mobs
+      layers:
+        - state: broken
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 4
+                  max: 6
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+
+# A-220M 57mm
+
+- type: entity
+  parent: BaseControllableTurret
+  id: WeaponArtilleryA220M
+  name: A-220M
+  suffix: 57mm
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a220.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a220.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContentEye
+      maxZoom: 2.5,2.5
+      targetZoom: 2.0,2.0
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 5.0
+      offsetSpeed: 0.3
+    - type: Eye
+      pvsScale: 5
+    #- type: NightVision TODO: Port both systems
+    #  overlay: true
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 400
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ArtilleryA220Broken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 4
+                ScrapGlass:
+                  min: 0
+                  max: 2
+                ScrapSteel:
+                  min: 0
+                  max: 2
+    - type: Gun
+      fireRate: 1
+      projectileSpeed: 50
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        collection: Gunfire57mm
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - ArtilleryShell57mm
+          - ArtilleryShellClip57mm
+      capacity: 20
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+
+- type: entity
+  parent: BaseControllableTurretBroken
+  id: ArtilleryA220Broken
+  name: A-220M
+  suffix: broken
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a220.rsi
+      state: broken
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a220.rsi
+      drawdepth: Mobs
+      layers:
+        - state: broken
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 450
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 6
+                  max: 12
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+
+# A-57 57mm
+
+- type: entity
+  parent: BaseControllableTurret
+  id: WeaponArtilleryA57
+  name: A-57
+  suffix: 57mm
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a57.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a57.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContentEye
+      maxZoom: 3.5,3.5
+      targetZoom: 3.0,3.0
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 5.0
+      offsetSpeed: 0.3
+    - type: Eye
+      pvsScale: 5
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 300
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 150
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ArtilleryA57Broken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 3
+                ScrapGlass:
+                  min: 0
+                  max: 2
+                ScrapSteel:
+                  min: 0
+                  max: 2
+    - type: Gun
+      fireRate: 3
+      projectileSpeed: 50
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        collection: Gunfire57mm
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - ArtilleryShell57mm
+          - ArtilleryShellClip57mm
+      capacity: 50
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+
+- type: entity
+  parent: BaseControllableTurretBroken
+  id: ArtilleryA57Broken
+  name: A-57
+  suffix: broken
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a57.rsi
+      state: broken
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a57.rsi
+      drawdepth: Mobs
+      layers:
+        - state: broken
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 4
+                  max: 6
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+
+# A-120 120mm
+
+- type: entity
+  parent: BaseControllableTurret
+  id: WeaponArtilleryA120
+  name: A-120M
+  suffix: 120mm
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a120.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a120.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContentEye
+      maxZoom: 2.5,2.5
+      targetZoom: 2.0,2.0
+    - type: Eye
+      pvsScale: 5
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ArtilleryA120Broken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 6
+                ScrapGlass:
+                  min: 1
+                  max: 2
+                ScrapSteel:
+                  min: 1
+                  max: 3
+    - type: Gun
+      fireRate: 1
+      soundGunshot:
+        collection: Gunfire120mm
+        params:
+          maxDistance: 100
+          volume: 15
+          pitch: 1
+      projectileSpeed: 75
+      shotsPerBurst: 2
+      burstCooldown: 3
+      burstFireRateModifier: 5
+      selectedMode: Burst
+      availableModes:
+      - Burst
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - ArtilleryShell120mm
+      capacity: 32
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+
+- type: entity
+  parent: BaseControllableTurretBroken
+  id: ArtilleryA120Broken
+  name: A-120M
+  suffix: broken
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a120.rsi
+      state: broken
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a120.rsi
+      drawdepth: Mobs
+      layers:
+        - state: broken
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 8
+                  max: 24
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+
+# A-100 120mm
+
+- type: entity
+  parent: BaseControllableTurret
+  id: WeaponArtilleryA100M
+  name: A-100M
+  suffix: 120mm
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a100.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a100.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContentEye
+      maxZoom: 3.5,3.5
+      targetZoom: 3.0,3.0
+    - type: Eye
+      pvsScale: 5
+    #- type: NightVision TODO: Port both systems
+    #  overlay: true
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ArtilleryA100Broken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 6
+                ScrapGlass:
+                  min: 1
+                  max: 2
+                ScrapSteel:
+                  min: 1
+                  max: 3
+    - type: Gun
+      fireRate: 0.5
+      projectileSpeed: 75
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        collection: Gunfire120mm
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - ArtilleryShell120mm
+      capacity: 16
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+
+- type: entity
+  parent: BaseControllableTurretBroken
+  id: ArtilleryA100Broken
+  name: A-100M
+  suffix: broken
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/a100.rsi
+      state: broken
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/a100.rsi
+      drawdepth: Mobs
+      layers:
+        - state: broken
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 8
+                  max: 24
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+
+# RBU-90 530mm
+
+- type: entity
+  id: WeaponRocketArtilleryRBU90
+  parent: [ShuttleGunBase, BaseControllableTurret]
+  name: RBU-90
+  suffix: 530mm, Chir
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/rbu90.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/rbu90.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContentEye
+      maxZoom: 3.5,3.5
+      targetZoom: 3.0,3.0
+    - type: Eye
+      pvsScale: 5
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 1
+                  max: 6
+                ScrapGlass:
+                  min: 1
+                  max: 2
+                ScrapSteel:
+                  min: 1
+                  max: 3
+    - type: Gun
+      fireRate: 1
+      projectileSpeed: 80
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/VXS/Gunshots/Launcher/launcher2.ogg
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - Torpedo530mm
+      capacity: 8
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+
+# RBU-30 530mm
+
+- type: entity
+  id: WeaponRocketArtilleryRBU30
+  parent: [ShuttleGunBase]
+  name: RBU-30
+  suffix: 530mm, Chir, Uncontrollable
+  components:
+    - type: Icon
+      sprite: VXS/Weapons/Artillery/rbu30.rsi
+      state: icon
+    - type: Sprite
+      sprite: VXS/Weapons/Artillery/rbu30.rsi
+      drawdepth: Mobs
+      layers:
+        - state: icon
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 1
+                  max: 6
+                ScrapGlass:
+                  min: 1
+                  max: 2
+                ScrapSteel:
+                  min: 1
+                  max: 3
+    - type: Gun
+      fireRate: 1
+      projectileSpeed: 80
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/VXS/Gunshots/Launcher/launcher2.ogg
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - Torpedo530mm
+      capacity: 4
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg

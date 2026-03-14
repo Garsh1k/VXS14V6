@@ -1,0 +1,65 @@
+- type: entity
+  id: BulletArtillery30mm
+  name: bullet (30mm)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 60
+        Blunt: 20
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Piercing
+  - type: StaminaDamageOnCollide
+    damage: 80
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+
+- type: entity
+  id: BulletArtillery30mmEMP
+  name: bullet (30mm)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Blunt: 20
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Piercing
+  - type: StaminaDamageOnCollide
+    damage: 70
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: marksman
+      shader: unshaded
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 100
+    disableDuration: 1
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.45,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable

@@ -1,0 +1,22 @@
+- type: soundCollection
+  id: Gunfire30mm
+  files:
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm1.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm2.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm3.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm4.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm5.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm6.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/30mm7.ogg
+
+- type: soundCollection
+  id: Gunfire57mm
+  files:
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/57mm1.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/57mm2.ogg
+
+- type: soundCollection
+  id: Gunfire120mm
+  files:
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/120mm1.ogg
+  - /Audio/VXS/Weaponry/Gunshots/Artillery/120mm2.ogg

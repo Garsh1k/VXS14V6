@@ -1,0 +1,5 @@
+#SS40k
+- type: sourcePort #прототип порта, который отправляет данные
+  id: TurretControllerSender
+  name: Turret Sender
+  description: Connect to anything and receive your lead-rain.

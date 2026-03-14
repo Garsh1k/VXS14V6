@@ -1,0 +1,4 @@
+- type: sourcePort
+  id: VXSOnTargetLock
+  name: vxs-signal-port-name-target-lock
+  description: vxs-signal-port-description-target-lock

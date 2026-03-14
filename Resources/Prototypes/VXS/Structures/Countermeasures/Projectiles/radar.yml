@@ -1,0 +1,20 @@
+- type: entity
+  id: CountermeasuresRadarA31Pellet
+  name: radar jamming pellet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 1
+  - type: Sprite
+    noRot: false
+    sprite: VXS/Weapons/Ammunition/Projectiles/cms.rsi
+    layers:
+    - state: radar
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 50
+  - type: VXSRetarget
+    chanceToRetarget: 0.2

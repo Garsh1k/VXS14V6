@@ -1,0 +1,118 @@
+- type: entity
+  id: BulletRocketAntiShipSwitchbladeHE
+  name: ASM-875T Switchblade-ARH
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
+    layers:
+      - state: he
+  - type: TimedDespawn
+    lifetime: 50
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 200
+        Structural: 2000
+    penetrationThreshold: 1000
+    penetrationDamageTypeRequirement:
+    - Structural
+    deleteOnCollide: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TwoStageTrigger
+    triggerDelay: 1
+    components:
+      - type: ExplodeOnTrigger
+      - type: Explosive
+        explosionType: HardBomb
+        maxIntensity: 100
+        intensitySlope: 35
+        totalIntensity: 350
+
+- type: entity
+  id: BulletRocketAntiShipSwitchbladeEMP
+  name: ASM-875EMP Switchblade-ARH
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
+    layers:
+      - state: emp
+  - type: TimedDespawn
+    lifetime: 50
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 200
+        Structural: 2000
+    penetrationThreshold: 1000
+    penetrationDamageTypeRequirement:
+    - Structural
+    deleteOnCollide: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TwoStageTrigger
+    triggerDelay: 1
+    components:
+      - type: EmpOnTrigger
+        range: 5
+        energyConsumption: 1000
+        disableDuration: 5
+
+- type: entity
+  id: BulletRocketAntiShipAwlC
+  name: ASM-880C Awl
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
+    layers:
+      - state: awl
+  - type: TimedDespawn
+    lifetime: 50
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 200
+        Structural: 2000
+    penetrationThreshold: 1000
+    penetrationDamageTypeRequirement:
+    - Structural
+    deleteOnCollide: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TwoStageTrigger
+    triggerDelay: 1
+    components:
+      - type: EmpOnTrigger
+        range: 3
+        energyConsumption: 1000
+        disableDuration: 3
+      - type: ExplodeOnTrigger
+      - type: Explosive
+        explosionType: HardBomb
+        maxIntensity: 100
+        intensitySlope: 20
+        totalIntensity: 300

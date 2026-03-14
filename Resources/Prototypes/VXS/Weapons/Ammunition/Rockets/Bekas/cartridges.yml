@@ -1,0 +1,29 @@
+- type: entity
+  id: CartridgeRocketAntiShipBekasC
+  name: ARR AR Bekas-C authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipBekasC
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipBekasEMP
+  name: ARR AR Bekas-EM authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipBekasEMP
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipBekasNuclear
+  name: ARR AR Bekas-N authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipBekasNuclear
+    deleteOnSpawn: true

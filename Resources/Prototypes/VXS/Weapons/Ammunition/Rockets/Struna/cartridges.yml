@@ -1,0 +1,59 @@
+- type: entity
+  id: CartridgeRocketAntiShipStrunaHE
+  name: SSR-800ARH String authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipStrunaHE
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipStrunaEMP
+  name: SSR-806ARHEM Arc authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipStrunaEMP
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipStrunaRLS
+  name: SSR-100ARH Frostbush authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipStrunaRLS
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipStrunaNuclear
+  name: SSR-20ARHNM Mint authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipStrunaNuclear
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipStrunaHERD
+  name: SSR-800ARH String-RD authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipStrunaHERD
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipStrunaEMPRD
+  name: SSR-806ARHEM Arc-RD authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipStrunaEMPRD
+    deleteOnSpawn: true

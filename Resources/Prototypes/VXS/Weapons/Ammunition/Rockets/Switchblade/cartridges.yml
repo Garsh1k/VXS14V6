@@ -1,0 +1,31 @@
+# СВИЧБЛЕЙД
+
+- type: entity
+  id: CartridgeRocketAntiShipSwitchbladeHE
+  name: ASM-875T Switchblade-T authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipSwitchbladeHE
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipSwitchbladeEMP
+  name: ASM-875EMP Switchblade-EM authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipSwitchbladeEMP
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipAwlC
+  name: ASM-880C Awl authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipAwlC
+    deleteOnSpawn: true

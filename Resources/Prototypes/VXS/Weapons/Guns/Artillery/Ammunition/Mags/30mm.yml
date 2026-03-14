@@ -1,0 +1,69 @@
+- type: entity
+  parent: BaseMagazineBoxRifle
+  id: MagazineBoxArtillery30mm
+  name: ammunition box (30mm)
+  suffix: 30mm
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 50
+    proto: CartridgeArtillery30mm
+  - type: Sprite
+    sprite: VXS/Weapons/Artillery/Ammunition/30mmbox.rsi
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-3
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: lethal-b
+  - type: MagazineVisuals
+    magState: magb
+    steps: 5
+    zeroVisible: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+  - type: Appearance
+  - type: Tag
+    tags:
+    - ArtilleryShellBox30mm
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  parent: BaseMagazineBoxRifle
+  id: MagazineBoxArtillery30mmEMP
+  name: ammunition box (30mm)
+  suffix: 30mm, EMP
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 50
+    proto: CartridgeArtillery30mmEMP
+  - type: Sprite
+    sprite: VXS/Weapons/Artillery/Ammunition/30mmbox.rsi
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-3
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: emp-b
+  - type: MagazineVisuals
+    magState: magb
+    steps: 5
+    zeroVisible: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+  - type: Appearance
+  - type: Tag
+    tags:
+    - ArtilleryShellBox30mm
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95

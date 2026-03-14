@@ -1,0 +1,49 @@
+- type: entity
+  id: CartridgeRocketAntiShipHostaHE
+  name: MRR-10 ARH HH Hosta-HE authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipHostaHE
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipHostaEMP
+  name: MRR-15 ARH HH Hosta-EMP authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipHostaEMP
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipHostaHERD
+  name: MRR-10 ARH HH RD Hosta-HE authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipHostaHERD
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipHostaEMPRD
+  name: MRR-15 ARH HH RD Hosta-EMP authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipHostaEMPRD
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeRocketAntiShipHostaN
+  name: MRR-60 ARH HH Hosta-N authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketAntiShipHostaN
+    deleteOnSpawn: true

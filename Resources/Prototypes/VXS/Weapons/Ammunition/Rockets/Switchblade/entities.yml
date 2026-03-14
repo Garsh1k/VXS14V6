@@ -1,0 +1,114 @@
+- type: entity
+  id: WeaponRocketAntiShipSwitchbladeHE
+  name: ASM-875T Switchblade-ARH # Тандемный c радаром
+  parent: ShuttleGunBase
+  description: An unguided rocket projectile with a shaped-charge warhead was used to make a short-range anti-ship missile with a tandem warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
+    state: he
+  - type: TriggerOnSignal
+  - type: StaticPrice
+    price: 600
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:ExplodeBehavior
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              ScrapGlass:
+                min: 1
+                max: 1
+              ScrapSteel:
+                min: 1
+                max: 2
+  - type: Anchorable
+  - type: Physics
+    bodyType: Dynamic
+  - type: DeleteOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 1
+    maxIntensity: 50
+  - type: Gun
+    projectileSpeed: 25
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 1.5
+        volume: 5
+  - type: DeviceLinkSink
+    ports:
+      - Trigger
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipSwitchbladeHE
+    capacity: 1
+    proto: CartridgeRocketAntiShipSwitchbladeHE
+  - type: FlashOnTrigger
+    range: 5
+
+- type: entity
+  id: WeaponRocketAntiShipSwitchbladeEMP
+  name: ASM-875EMP Switchblade-ARH # ЭМИ
+  parent: WeaponRocketAntiShipSwitchbladeHE
+  description: An unguided rocket projectile with a shaped-charge warhead was used to make a short-range anti-ship missile with a tandem warhead and then short-range anti-ship missile with EMP warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
+    state: emp
+  - type: StaticPrice
+    price: 600
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20
+    intensitySlope: 1
+    maxIntensity: 20
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipSwitchbladeEMP
+    capacity: 1
+    proto: CartridgeRocketAntiShipSwitchbladeEMP
+
+- type: entity
+  id: WeaponRocketAntiShipAwlC
+  name: ASM-880C Awl # Совмещенный
+  parent: WeaponRocketAntiShipSwitchbladeHE
+  description: An unguided rocket projectile with a shaped-charge warhead was used to make a short-range anti-ship missile with a tandem warhead and then short-range anti-ship missile with EMP warhead combined with HE charge.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
+    state: awl
+  - type: StaticPrice
+    price: 800
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20
+    intensitySlope: 1
+    maxIntensity: 20
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipAwlC
+    capacity: 1
+    proto: CartridgeRocketAntiShipAwlC

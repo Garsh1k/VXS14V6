@@ -3,7 +3,6 @@
   parent: BaseStructureDynamic
   name: artdet
   abstract: true
-  description: "Система обнаружения артиллерийского огня. Обнаруживает выстрелы оружия в радиусе и логирует их координаты и тип оружия."
   components:
   - type: InteractionOutline
   - type: ArtilleryDetector
@@ -101,7 +100,7 @@
   - type: Computer
     board: ArtilleryDetectionConsoleCircuitboard
   - type: Sprite
-    sprite: VXS/Structures/computers.rsi
+    sprite: VXS/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer

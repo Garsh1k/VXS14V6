@@ -1,0 +1,77 @@
+- type: entity
+  id: WeaponTorpedoAntiShipChirHE
+  name: AST-90 Chir-A # ХЕ
+  parent: BaseCartridge
+  components:
+    - type: Tag
+      tags:
+        - Cartridge
+        - Torpedo530mm
+    - type: CartridgeAmmo
+      proto: BulletTorpedoAntiShipChirEMP
+      deleteOnSpawn: true
+    - type: Item
+      size: Ginormous
+      sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+    - type: Sprite
+      sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+      state: x90a
+    - type: Appearance
+    - type: StaticPrice
+      price: 500
+    - type: MultiHandedItem
+    - type: HeldSpeedModifier
+      walkModifier: 0.3
+      sprintModifier: 0.3
+
+- type: entity
+  id: WeaponTorpedoAntiShipChirEMP
+  name: AST-90 Chir-B # ЭМИ
+  parent: BaseCartridge
+  components:
+    - type: Tag
+      tags:
+        - Cartridge
+        - Torpedo530mm
+    - type: CartridgeAmmo
+      proto: BulletTorpedoAntiShipChirEMP
+      deleteOnSpawn: true
+    - type: Item
+      size: Ginormous
+      sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+    - type: Sprite
+      sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+      state: x90b
+    - type: Appearance
+    - type: StaticPrice
+      price: 500
+    - type: MultiHandedItem
+    - type: HeldSpeedModifier
+      walkModifier: 0.3
+      sprintModifier: 0.3
+
+- type: entity
+  id: WeaponTorpedoAntiShipChirNuclear
+  name: AST-90 Chir-X # Ядерный
+  parent: BaseCartridge
+  components:
+    - type: Tag
+      tags:
+        - Cartridge
+        - Torpedo530mm
+    - type: CartridgeAmmo
+      proto: BulletTorpedoAntiShipChirNuclear
+      deleteOnSpawn: true
+    - type: Item
+      size: Ginormous
+      sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+    - type: Sprite
+      sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+      state: x90f
+    - type: Appearance
+    - type: StaticPrice
+      price: 5000
+    - type: MultiHandedItem
+    - type: HeldSpeedModifier
+      walkModifier: 0.3
+      sprintModifier: 0.3

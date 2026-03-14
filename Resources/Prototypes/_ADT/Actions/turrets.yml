@@ -1,0 +1,11 @@
+- type: entity
+  id: ControlReturnAction
+  name: Stop controlling turret
+  components:
+  - type: Action
+  - type: InstantAction
+    icon:
+      sprite: _ADT/Interface/Actions/actions_turret.rsi
+      state: stop_control
+    event: !type:ControlReturnActionEvent {}
+    useDelay: 1

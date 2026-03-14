@@ -1,0 +1,230 @@
+# С магазином
+
+- type: entity
+  parent: BaseStructure
+  id: BaseControllableTurretMagazine
+  name: base controllable turret (magazine)
+  abstract: true
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Actions
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+    - type: CombatMode
+      toggleMouseRotator: false
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                BaseControllableTurretBroken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 4
+                ScrapGlass:
+                  min: 0
+                  max: 2
+                ScrapSteel:
+                  min: 0
+                  max: 2
+    - type: Gun
+      fireRate: 12
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: MagazineAmmoProvider
+    # - type: MagazineVisuals
+    #   magState: mag
+    #   steps: 20
+    #   zeroVisible: true
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          priority: 2
+          whitelist:
+            tags:
+            - ArtilleryShellClip57mm
+          insertSound:
+            path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+            params:
+              pitch: 2
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+    - type: MouseRotator
+      angleTolerance: 5
+      rotationSpeed: 60
+      simple4DirMode: false
+    - type: NoRotateOnInteract
+    - type: NoRotateOnMove
+    - type: Input
+      context: "human"
+    - type: Appearance
+    - type: TurretControllable
+    - type: DeviceLinkSink
+      ports:
+      - Input
+
+# Без магазина
+
+- type: entity
+  parent: BaseStructure
+  id: BaseControllableTurret
+  name: base controllable turret
+  abstract: true
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Actions
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.60,-0.60,0.60,0.60"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: CombatMode
+      toggleMouseRotator: false
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                BaseControllableTurretBroken:
+                  min: 1
+                  max: 1
+                SheetSteel1:
+                  min: 1
+                  max: 4
+                ScrapGlass:
+                  min: 0
+                  max: 2
+                ScrapSteel:
+                  min: 0
+                  max: 2
+    - type: Gun
+      fireRate: 0.2
+      projectileSpeed: 25
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        collection: Gunfire30mm
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - ArtilleryShell57mm
+      capacity: 10
+      proto: null
+      soundInsert:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+      soundRack:
+        path: /Audio/_ADT/ADTGlobalEvents/ShipBattle/Weapons/Guns/MagIn/shell_in.ogg
+    - type: MouseRotator
+      angleTolerance: 5
+      rotationSpeed: 90
+      simple4DirMode: false
+    - type: NoRotateOnInteract
+    - type: NoRotateOnMove
+    - type: Input
+      context: "human"
+    - type: Appearance
+    - type: TurretControllable
+    - type: DeviceLinkSink
+      ports:
+      - Input
+
+# Сломанный
+
+- type: entity
+  parent: BaseStructure
+  id: BaseControllableTurretBroken
+  name: broken controllable turret
+  abstract: true
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 450
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 6
+                  max: 12
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable

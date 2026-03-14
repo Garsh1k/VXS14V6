@@ -1,0 +1,14 @@
+{
+  "version": 2.2,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/TauCetiStation/TauCetiClassic/commit/e02e5c2e8d458d9aeeb6828cfe8bc55d72d3ad01, recolored to old style by Morb0, modified by TooMuchGolang",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    }
+  ]
+}

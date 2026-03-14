@@ -1,0 +1,23 @@
+- type: entity
+  id: BaseBulletRocketAntiShip
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
+    layers:
+      - state: he
+  - type: ExplodeOnTrigger
+  - type: WorldLoader
+    radius: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: NpcFactionMember
+    factions:
+    - Missile

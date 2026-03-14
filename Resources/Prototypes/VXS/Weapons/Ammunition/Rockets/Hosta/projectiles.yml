@@ -1,0 +1,136 @@
+- type: entity
+  id: BulletRocketAntiShipHostaHE
+  name: MRR-10 ARH HH Hosta-HE
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    layers:
+      - state: he
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 50
+    intensitySlope: 10
+    totalIntensity: 600
+  - type: TimedDespawn
+    lifetime: 100
+  - type: VXSActiveRadioHeading
+    seekRange: 500
+    rotationSpeed: 10
+    guidanceAlgorithm: PredictiveGuidance
+    acceleration: 10
+    topSpeed: 150
+    initialSpeed: 20
+    FOV: 80
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipHostaEMP
+  name: MRR-15 ARH HH Hosta-EMP
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    layers:
+      - state: emp
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 30
+    intensitySlope: 5
+    totalIntensity: 200
+  - type: EmpOnTrigger
+    range: 8
+    energyConsumption: 10000
+    disableDuration: 10
+  - type: TimedDespawn
+    lifetime: 100
+  - type: VXSActiveRadioHeading
+    seekRange: 500
+    rotationSpeed: 10
+    guidanceAlgorithm: PredictiveGuidance
+    acceleration: 10
+    topSpeed: 150
+    initialSpeed: 20
+    FOV: 80
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BulletRocketAntiShipHostaHERD
+  name: MRR-10 ARH HH RD Hosta-HE
+  parent: BulletRocketAntiShipHostaHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    layers:
+      - state: he_rd
+  - type: TriggerOnEnterGrid
+
+- type: entity
+  id: BulletRocketAntiShipHostaEMPRD
+  name: MRR-15 ARH HH RD Hosta-EMP
+  parent: BulletRocketAntiShipHostaEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    layers:
+      - state: emp_rd
+  - type: TriggerOnEnterGrid
+
+- type: entity
+  id: BulletRocketAntiShipHostaN
+  name: MRR-60 ARH HH Hosta-N
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    layers:
+      - state: aex
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 110
+    intensitySlope: 1
+    totalIntensity: 10000
+  - type: EmpOnTrigger
+    range: 10
+    energyConsumption: 100000
+    disableDuration: 60
+  - type: TimedDespawn
+    lifetime: 100
+  - type: VXSActiveRadioHeading
+    seekRange: 500
+    rotationSpeed: 10
+    guidanceAlgorithm: PredictiveGuidance
+    acceleration: 10
+    topSpeed: 150
+    initialSpeed: 20
+    FOV: 80
+    lockedIn: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

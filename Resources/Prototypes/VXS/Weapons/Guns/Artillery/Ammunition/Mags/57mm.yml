@@ -1,0 +1,34 @@
+- type: entity
+  id: SpeedLoaderArtillery57mm
+  name: "speed loader (57mm)"
+  suffix: No Spawn, Fucking Broken # TODO: Fix functionality and add 30mm and 120mm speedloaders
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - ArtilleryShellClip57mm
+  - type: SpeedLoader
+  - type: Sprite
+    sprite: VXS/Weapons/Artillery/Ammunition/57mmclip.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-4
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Item
+    size: Large
+  - type: BallisticAmmoProvider
+    proto: CartridgeArtillery57mm
+    whitelist:
+      tags:
+        - ArtilleryShell57mm
+    capacity: 4
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []

@@ -1,0 +1,169 @@
+- type: entity
+  id: WeaponRocketAntiShipHostaHE
+  name: MRR-10 ARH HH Hosta-HE # ХЕ
+  parent: BaseWeaponRocketAntiShip
+  description: Medium-range missile with an active radar homing head combined with an inertial guidance system. This missile has High Explosive warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    state: he
+  - type: StaticPrice
+    price: 2000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipHostaHE
+    capacity: 1
+    proto: CartridgeRocketAntiShipHostaHE
+
+- type: entity
+  id: WeaponRocketAntiShipHostaEMP
+  name: MRR-15 ARH HH Hosta-EMP # ЭМИ
+  parent: BaseWeaponRocketAntiShip
+  description: Medium-range missile with an active radar homing head combined with an inertial guidance system. This missile has EMP warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    state: emp
+  - type: StaticPrice
+    price: 2000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipHostaEMP
+    capacity: 1
+    proto: CartridgeRocketAntiShipHostaEMP
+
+- type: entity
+  id: WeaponRocketAntiShipHostaHERD
+  name: MRR-10 ARH HH RD Hosta-HE # ХЕ РВ
+  parent: BaseWeaponRocketAntiShip
+  description: Medium-range missile with an active radar homing head combined with an inertial guidance system. This missile has High Explosive warhead and radio-detonator.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    state: he_rd
+  - type: StaticPrice
+    price: 2000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipHostaHERD
+    capacity: 1
+    proto: CartridgeRocketAntiShipHostaHERD
+
+- type: entity
+  id: WeaponRocketAntiShipHostaEMPRD
+  name: MRR-15 ARH HH RD Hosta-EMP # ЭМИ РВ
+  parent: BaseWeaponRocketAntiShip
+  description: Medium-range missile with an active radar homing head combined with an inertial guidance system. This missile has EMP warhead and radio-detonator.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    state: emp_rd
+  - type: StaticPrice
+    price: 2000
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipHostaEMPRD
+    capacity: 1
+    proto: CartridgeRocketAntiShipHostaEMPRD
+
+- type: entity
+  id: WeaponRocketAntiShipHostaN
+  name: MRR-60 ARH HH Hosta-N # ЯДЕРНЫЙ
+  parent: BaseWeaponRocketAntiShip
+  description: Medium-range missile with an active radar homing head combined with an inertial guidance system. This missile has Thermonuclear warhead.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
+    state: aex
+  - type: StaticPrice
+    price: 2500
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: Gun
+    projectileSpeed: 60
+    fireRate: 1
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Effects/explosion_small3.ogg
+      params:
+        pitch: 0.8
+        volume: 5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    whitelist:
+      entities:
+        - CartridgeRocketAntiShipHostaN
+    capacity: 1
+    proto: CartridgeRocketAntiShipHostaN
