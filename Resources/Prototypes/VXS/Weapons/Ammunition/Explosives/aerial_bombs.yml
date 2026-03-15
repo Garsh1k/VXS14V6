@@ -1,8 +1,8 @@
 - type: entity
-  id: VXSFAB500UMPKAerialBomb
+  id: EAB250UMPKAviaBomb
   parent: BaseStructureDynamic
-  name: FAB-500 UMPK
-  description: A standalone guided aerial bomb. Must be dropped from a space grid onto a planetary map.
+  name: EAB-250 UMPK
+  description: An aerial bomb with a planning and correction module, it has a good accuracy. Equipped with a thermally protected head and is used for attacks on ground targets.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/fab500umpk.rsi
@@ -10,6 +10,42 @@
   - type: Pullable
   - type: AerialBomb
     flightTime: 12
-    dispersionRadius: 6
-    arrivalSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
-    impactEntity: ArtilleryMarkerFrag82mm
+    dispersionRadius: 12
+    arrivalSound: /Audio/VXS/Artillery/aviabomb.ogg
+    preImpactDelay: 3
+    impactEntity: BombMarker250
+  - type: TriggerOnSignal
+    port: Trigger
+
+- type: entity
+  id: BombMarker250
+  categories: [ HideSpawnMenu ]
+  name: Bomb marker 250
+  components:
+  - type: Sprite
+    sprite: /Textures/Objects/Fun/goldbikehorn.rsi
+    visible: false
+    state: icon
+  - type: TriggerOnSpawn
+  - type: DeleteOnTrigger
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 200
+    intensitySlope: 4
+    maxIntensity: 50
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLethalHeavy
+    capacity: 50
+    randomAngle: false
+    MaxVelocity: 15
+    MinVelocity: 10
+  - type: SmokeOnTrigger
+    keysIn:
+    - trigger
+    duration: 10
+    spreadAmount: 20

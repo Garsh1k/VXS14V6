@@ -14,8 +14,14 @@ public sealed partial class SharedAerialBombComponent : Component
     [DataField("arrivalSound"), AutoNetworkedField]
     public string? ArrivalSound = "/Audio/Weapons/Guns/Artillery/mortarflyby.ogg";
 
+    [DataField("preImpactDelay"), AutoNetworkedField]
+    public float PreImpactDelay = 0.5f;
+
     [DataField("impactEntity"), AutoNetworkedField]
     public string? ImpactEntity;
+
+    [DataField("signalTargetMapName"), AutoNetworkedField]
+    public string? SignalTargetMapName;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool Dropped;
