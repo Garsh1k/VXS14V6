@@ -14,6 +14,9 @@
     - Piercing
   - type: StaminaDamageOnCollide
     damage: 80
+  - type: RadarMarker
+    color: Red
+    shape: Square
   - type: TimedDespawn
     lifetime: 30
   - type: Sprite
@@ -37,6 +40,9 @@
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Piercing
+  - type: RadarMarker
+    color: Blue
+    shape: Square
   - type: StaminaDamageOnCollide
     damage: 70
   - type: TimedDespawn

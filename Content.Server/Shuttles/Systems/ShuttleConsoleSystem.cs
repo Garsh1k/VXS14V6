@@ -270,7 +270,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>());
+            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), new List<RadarMarkerData>());
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -385,7 +385,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, new List<RadarMarkerData>());
 
         return GetNavState(
             entity,
@@ -401,13 +401,49 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, new List<RadarMarkerData>());
+
+        var markers = GetRadarMarkers(entity.Owner, entity.Comp2, entity.Comp1);
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
             angle,
-            docks);
+            docks,
+            markers);
+    }
+
+    private List<RadarMarkerData> GetRadarMarkers(EntityUid uid, TransformComponent xform, RadarConsoleComponent component)
+    {
+        var markers = new List<RadarMarkerData>();
+        var worldPos = _transform.GetWorldPosition(xform);
+        var worldRot = _transform.GetWorldRotation(xform);
+        var mapId = xform.MapID;
+
+        var markerQuery = AllEntityQuery<RadarMarkerComponent, TransformComponent, MetaDataComponent>();
+        while (markerQuery.MoveNext(out var markerUid, out var marker, out var markerXform, out var meta))
+        {
+            if (!marker.Enabled || markerXform.MapID != mapId)
+                continue;
+
+            var markerWorldPos = _transform.GetWorldPosition(markerXform);
+            var distance = (markerWorldPos - worldPos).Length();
+            if (distance > component.MaxRange)
+                continue;
+
+            markers.Add(new RadarMarkerData
+            {
+                Coordinates = GetNetCoordinates(markerXform.Coordinates),
+                Angle = markerXform.LocalRotation,
+                Enabled = marker.Enabled,
+                Shape = marker.Shape,
+                Color = marker.Color,
+                ShowName = marker.ShowName,
+                Name = marker.ShowName ? meta.EntityName : null,
+            });
+        }
+
+        return markers;
     }
 
     /// <summary>
