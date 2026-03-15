@@ -187,7 +187,7 @@ public sealed class MortarEui : BaseEui
 
                     // Register artillery detection BEFORE spawning/explosion
                     Logger.InfoS("mortar", "=== ПОПЫТКА РЕГИСТРАЦИИ АРТИЛЛЕРИЙСКОГО ВЫСТРЕЛА ===");
-                    Logger.InfoS("mortar", $"Цель: {targetPosition}");
+                    Logger.InfoS("mortar", $"Позиция миномёта: {mortarPosition}");
                     Logger.InfoS("mortar", $"Время: {IoCManager.Resolve<IGameTiming>().CurTime}");
 
                     var artillerySystem = sysMan.GetEntitySystem<ArtilleryDetectionSystem>();
@@ -199,16 +199,6 @@ public sealed class MortarEui : BaseEui
                         return;
                     }
 
-                    // Test the system
-                    try
-                    {
-                        artillerySystem.TestMethod();
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.ErrorS("mortar", $"Ошибка при вызове TestMethod: {ex}");
-                    }
-
                     var mortarName = "Миномет";
                     if (entMan.TryGetComponent<MetaDataComponent>(Mortar, out var metaData))
                     {
@@ -218,7 +208,7 @@ public sealed class MortarEui : BaseEui
                     var weaponType = $"{mortarName} ({shellName})";
                     Logger.InfoS("mortar", $"Тип оружия: {weaponType}");
 
-                    artillerySystem.OnArtilleryFired(targetPosition, weaponType, IoCManager.Resolve<IGameTiming>().CurTime, mortarName, shellName);
+                    artillerySystem.OnArtilleryFired(mortarPosition, weaponType, IoCManager.Resolve<IGameTiming>().CurTime, mortarName, shellName);
                     Logger.InfoS("mortar", "=== ВЫЗОВ OnArtilleryFired ЗАВЕРШЕН ===");
 
                     if (comp.UseDirectExplosion)

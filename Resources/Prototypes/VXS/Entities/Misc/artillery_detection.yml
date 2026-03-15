@@ -96,6 +96,7 @@
   name: artillery fire journal console
   description: I am too lazy
   components:
+  - type: DeviceList
   - type: ArtilleryDetectionConsole
   - type: Computer
     board: ArtilleryDetectionConsoleCircuitboard

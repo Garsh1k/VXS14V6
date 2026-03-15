@@ -28,18 +28,12 @@ public abstract class SharedArtilleryDetectionSystem : EntitySystem
     /// </summary>
     public void RegisterFireEvent(EntityUid detectorId, ArtilleryFireEvent fireEvent)
     {
-        Logger.DebugS("artdet.shared", $"RegisterFireEvent called for detector {detectorId}");
-        Logger.DebugS("artdet.shared", $"Event details - Weapon: {fireEvent.WeaponType}, Coords: {fireEvent.DetectedCoordinates}, Time: {fireEvent.DetectionTime}");
-
         if (!DetectorEvents.ContainsKey(detectorId))
         {
-            Logger.DebugS("artdet.shared", $"Creating new event list for detector {detectorId}");
             DetectorEvents[detectorId] = new List<ArtilleryFireEvent>();
         }
 
         DetectorEvents[detectorId].Add(fireEvent);
-        Logger.InfoS("artdet.shared", $"Event added to detector {detectorId}. Total events for this detector: {DetectorEvents[detectorId].Count}");
-        Logger.InfoS("artdet.shared", $"Total detectors with events: {DetectorEvents.Count}");
     }
 
     /// <summary>
@@ -47,16 +41,11 @@ public abstract class SharedArtilleryDetectionSystem : EntitySystem
     /// </summary>
     public List<ArtilleryFireEvent> GetFireEvents(EntityUid detectorId)
     {
-        Logger.DebugS("artdet.shared", $"GetFireEvents called for detector {detectorId}");
-        Logger.DebugS("artdet.shared", $"Total detectors in system: {DetectorEvents.Count}");
-
         if (DetectorEvents.TryGetValue(detectorId, out var events))
         {
-            Logger.DebugS("artdet.shared", $"Found {events.Count} events for detector {detectorId}");
             return new List<ArtilleryFireEvent>(events);
         }
 
-        Logger.WarningS("artdet.shared", $"No events found for detector {detectorId}");
         return new List<ArtilleryFireEvent>();
     }
 
