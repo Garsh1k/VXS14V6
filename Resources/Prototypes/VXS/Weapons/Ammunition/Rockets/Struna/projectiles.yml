@@ -1,6 +1,6 @@
 - type: entity
   id: BulletRocketAntiShipStrunaHE
-  name: STRING HE (ARH)
+  name: STRING HE (IR)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -19,7 +19,7 @@
     totalIntensity: 600
   - type: TimedDespawn
     lifetime: 50
-  - type: VXSActiveRadioHeading
+  - type: VXSActiveThrusterRadioHeading
     seekRange: 100
     rotationSpeed: 10
     guidanceAlgorithm: PurePursuit
@@ -27,7 +27,7 @@
     topSpeed: 100
     initialSpeed: 50
     FOV: 60
-    lockedIn: false
+    retargetWindow: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -39,7 +39,7 @@
 
 - type: entity
   id: BulletRocketAntiShipStrunaEMP
-  name: STRING EMP (ARH)
+  name: STRING EMP (IR)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -62,7 +62,7 @@
     disableDuration: 15
   - type: TimedDespawn
     lifetime: 50
-  - type: VXSActiveRadioHeading
+  - type: VXSActiveThrusterRadioHeading
     seekRange: 100
     rotationSpeed: 10
     guidanceAlgorithm: PurePursuit
@@ -70,7 +70,7 @@
     topSpeed: 100
     initialSpeed: 50
     FOV: 60
-    lockedIn: false
+    retargetWindow: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -82,7 +82,7 @@
 
 - type: entity
   id: BulletRocketAntiShipStrunaRLS
-  name: STRING HE (ARH) # РЛС попизже
+  name: STRING HE (IR) # ГСН попизже
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -101,7 +101,7 @@
     totalIntensity: 600
   - type: TimedDespawn
     lifetime: 65
-  - type: VXSActiveRadioHeading
+  - type: VXSActiveThrusterRadioHeading
     seekRange: 250
     rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
@@ -110,6 +110,7 @@
     initialSpeed: 20
     FOV: 60
     lockedIn: true
+    retargetWindow: 10
   - type: Destructible
     thresholds:
     - trigger:
@@ -121,7 +122,7 @@
 
 - type: entity
   id: BulletRocketAntiShipStrunaNuclear
-  name: STRING NUCLEAR (ARH)
+  name: STRING NUCLEAR (IR)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -149,7 +150,7 @@
         Blunt: 50
         Structural: 500
     deleteOnCollide: true
-  - type: VXSActiveRadioHeading
+  - type: VXSActiveThrusterRadioHeading
     seekRange: 100
     rotationSpeed: 10
     guidanceAlgorithm: PurePursuit
@@ -157,7 +158,7 @@
     topSpeed: 100
     initialSpeed: 50
     FOV: 60
-    lockedIn: false
+    retargetWindow: 4
   - type: SpawnOnTrigger
     proto: NuclearFalloutAsh
   - type: EmpOnTrigger
@@ -175,7 +176,7 @@
 
 - type: entity
   id: BulletRocketAntiShipStrunaHERD
-  name: SSR-800ARH String-RDD
+  name: SSR-800IRH String-RDD
   parent: BulletRocketAntiShipStrunaHE
   categories: [ HideSpawnMenu ]
   components:
@@ -187,7 +188,7 @@
 
 - type: entity
   id: BulletRocketAntiShipStrunaEMPRD
-  name: SSR-806ARHEM Arc-RD
+  name: SSR-806IRHEM Arc-RD
   parent: BulletRocketAntiShipStrunaEMP
   categories: [ HideSpawnMenu ]
   components:
