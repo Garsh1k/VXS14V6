@@ -33,5 +33,12 @@ namespace Content.Shared._VXS14.Mortar
         // Minimum safe distance to prevent self-damage (in tiles)
         [ViewVariables(VVAccess.ReadWrite), DataField("minSafeDistance"), AutoNetworkedField]
         public float MinSafeDistance = 5f;
+
+        // Stored target offset for auto-fire on shell insert
+        [ViewVariables(VVAccess.ReadWrite), DataField("targetOffsetX"), AutoNetworkedField]
+        public float TargetOffsetX = 5f;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField("targetOffsetY"), AutoNetworkedField]
+        public float TargetOffsetY = 0f;
     }
 }
