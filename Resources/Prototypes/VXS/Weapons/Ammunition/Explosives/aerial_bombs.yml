@@ -1,0 +1,15 @@
+- type: entity
+  id: VXSFAB500UMPKAerialBomb
+  parent: BaseStructureDynamic
+  name: FAB-500 UMPK
+  description: A standalone guided aerial bomb. Must be dropped from a space grid onto a planetary map.
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/fab500umpk.rsi
+    state: icon
+  - type: Pullable
+  - type: AerialBomb
+    flightTime: 12
+    dispersionRadius: 6
+    arrivalSound: /Audio/Weapons/Guns/Artillery/mortarflyby.ogg
+    impactEntity: ArtilleryMarkerFrag82mm
