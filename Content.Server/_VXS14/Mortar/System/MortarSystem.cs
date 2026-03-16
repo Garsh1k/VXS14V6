@@ -20,6 +20,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Server.ArtilleryDetection.Systems;
+using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
 
 namespace Content.Server._VXS14.Mortar
 {
@@ -32,14 +34,17 @@ namespace Content.Server._VXS14.Mortar
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
         public override void Initialize()
         {
             base.Initialize();
 
-            // SubscribeNetworkEvent<MortarMessage>(OnMortarFire);
             SubscribeLocalEvent<SharedMortarComponent, GetVerbsEvent<ExamineVerb>>(OnMortarVerbUtility);
             SubscribeLocalEvent<SharedMortarComponent, EntInsertedIntoContainerMessage>(OnItemInserted);
+            SubscribeLocalEvent<SharedMortarComponent, InteractUsingEvent>(OnInteractUsing,
+                after: new[] { typeof(ItemSlotsSystem) });
+            SubscribeLocalEvent<SharedMortarComponent, MortarShellLoadDoAfterEvent>(OnMortarShellLoadDoAfter);
         }
 
         private void OnMortarVerbUtility(EntityUid uid, SharedMortarComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -56,19 +61,48 @@ namespace Content.Server._VXS14.Mortar
 
         private void OnItemInserted(EntityUid uid, SharedMortarComponent component, EntInsertedIntoContainerMessage args)
         {
-            // Check if the inserted item is a mortar shell
+            // Play insert sound when a mortar shell enters the chamber
             if (HasComp<SharedMortarShellComponent>(args.Entity) && args.Container.ID == "mortar_chamber")
             {
-                // Get the mortar shell component
                 if (TryComp<SharedMortarShellComponent>(args.Entity, out var shellComponent) && shellComponent.InsertSound != null)
                 {
-                    // Play the mortar shell's insert sound
                     _audioSystem.PlayPvs(new SoundPathSpecifier(shellComponent.InsertSound), uid);
                 }
-
-                // Auto-fire immediately using stored target offsets
-                FireMortar(uid, component, component.TargetOffsetX, component.TargetOffsetY);
+                // Firing is handled by DoAfter started in OnInteractUsing
             }
+        }
+
+        private void OnInteractUsing(EntityUid uid, SharedMortarComponent component, InteractUsingEvent args)
+        {
+            // Only proceed if ItemSlotsSystem successfully handled the insertion
+            if (!args.Handled)
+                return;
+
+            // After ItemSlotsSystem has processed the interaction, check if the used item
+            // is now loaded in the mortar chamber and start the loading DoAfter.
+            var sysMan = IoCManager.Resolve<IEntitySystemManager>();
+            var itemSlots = sysMan.GetEntitySystem<ItemSlotsSystem>();
+            var rocket = itemSlots.GetItemOrNull(uid, "mortar_chamber");
+
+            if (rocket == null || rocket.Value != args.Used || !HasComp<SharedMortarShellComponent>(rocket.Value))
+                return;
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.LoadDelay,
+                new MortarShellLoadDoAfterEvent(), uid)
+            {
+                BreakOnDamage = true,
+                BreakOnMove = true,
+                NeedHand = false,
+            };
+            _doAfter.TryStartDoAfter(doAfterArgs);
+        }
+
+        private void OnMortarShellLoadDoAfter(EntityUid uid, SharedMortarComponent component, MortarShellLoadDoAfterEvent args)
+        {
+            if (args.Cancelled)
+                return;
+
+            FireMortar(uid, component, component.TargetOffsetX, component.TargetOffsetY);
         }
 
         public void FireMortar(EntityUid mortarUid, SharedMortarComponent mortarComp, float offsetX, float offsetY)
@@ -79,7 +113,7 @@ namespace Content.Server._VXS14.Mortar
 
             if (rocket == null)
             {
-                Logger.WarningS("mortar", "Нет снаряда в каморе миномёта!");
+                Logger.WarningS("mortar", "No shell in mortar chamber!");
                 return;
             }
 
@@ -115,7 +149,7 @@ namespace Content.Server._VXS14.Mortar
             }
 
             entMan.TryGetComponent<SharedMortarShellComponent>(rocket, out var comp);
-            Logger.InfoS("mortar", $"Компонент получен: {comp != null}");
+            Logger.InfoS("mortar", $"Shell component retrieved: {comp != null}");
 
             // Play fire sound at mortar position
             if (comp?.FireSound != null)
@@ -142,14 +176,14 @@ namespace Content.Server._VXS14.Mortar
 
                 timerManager.AddTimer(new Timer(500, false, () =>
                 {
-                    Logger.InfoS("mortar", "=== ТАЙМЕР СРАБОТАЛ ===");
+                    Logger.InfoS("mortar", "=== TIMER FIRED ===");
                     Logger.InfoS("mortar", $"Rocket entity: {rocket}");
                     Logger.InfoS("mortar", $"Target position: {targetPosition}");
 
-                    var shellName = "Снаряд";
+                    var shellName = "Shell";
                     if (rocket != null && entMan.TryGetComponent<MetaDataComponent>(rocket.Value, out var shellMetaData))
                     {
-                        shellName = shellMetaData.EntityName ?? "Снаряд";
+                        shellName = shellMetaData.EntityName ?? "Shell";
                     }
 
                     entMan.DeleteEntity(rocket);
@@ -162,14 +196,14 @@ namespace Content.Server._VXS14.Mortar
                         var artillerySystem = sysMan.GetEntitySystem<ArtilleryDetectionSystem>();
                         if (artillerySystem == null)
                         {
-                            Logger.ErrorS("mortar", "ArtilleryDetectionSystem равна null!");
+                            Logger.ErrorS("mortar", "ArtilleryDetectionSystem is null!");
                             return;
                         }
 
-                        var mortarName = "Миномет";
+                        var mortarName = "Mortar";
                         if (entMan.TryGetComponent<MetaDataComponent>(mortarUid, out var metaData))
                         {
-                            mortarName = metaData.EntityName ?? "Миномет";
+                            mortarName = metaData.EntityName ?? "Mortar";
                         }
 
                         var weaponType = $"{mortarName} ({shellName})";
@@ -184,12 +218,12 @@ namespace Content.Server._VXS14.Mortar
                         }
                         else if (!string.IsNullOrEmpty(comp.ExplosionEntity))
                         {
-                            Logger.InfoS("mortar", $"Использование ExplosionEntity: {comp.ExplosionEntity}");
+                            Logger.InfoS("mortar", $"Using ExplosionEntity: {comp.ExplosionEntity}");
                             entMan.SpawnEntity(comp.ExplosionEntity, targetPosition);
                         }
                         else
                         {
-                            Logger.WarningS("mortar", "Снаряд не имеет ни UseDirectExplosion, ни ExplosionEntity!");
+                            Logger.WarningS("mortar", "Shell has neither UseDirectExplosion nor ExplosionEntity!");
                         }
                     }
                 }));
