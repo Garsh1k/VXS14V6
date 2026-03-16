@@ -139,7 +139,6 @@
 # STOP
 # BEFORE YOU ADD MORE EXPLOSION TYPES CONSIDER IF AN EXISTING ONE IS SUITABLE
 # ADDING NEW ONES IS PROHIBITIVELY EXPENSIVE
-# похуй мне, долбоёб ебанный - VXS
 
 - type: explosion # VXS
   id: Thermobaric
@@ -155,3 +154,8 @@
   intensityPerState: 60
   fireStates: 6
   fireStacks: 2
+  confinedRoomMaxTiles: 64
+  fixedSpreadRange: 5
+  lungDamagePerIntensity: 1
+  heartDamagePerIntensity: 0.12
+  brainDamagePerIntensity: 0.09

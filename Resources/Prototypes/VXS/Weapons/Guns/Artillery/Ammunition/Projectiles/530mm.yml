@@ -8,6 +8,9 @@
     sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
     layers:
       - state: x90a
+  - type: RadarMarker
+    color: Red
+    shape: Square
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBomb
@@ -43,6 +46,9 @@
     sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
     layers:
       - state: x90b
+  - type: RadarMarker
+    color: Blue
+    shape: Square
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -79,6 +85,9 @@
     sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
     layers:
       - state: x90f
+  - type: RadarMarker
+    color: Red
+    shape: Square
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default

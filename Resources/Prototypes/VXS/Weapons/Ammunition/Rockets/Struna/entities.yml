@@ -1,8 +1,8 @@
 - type: entity
   id: WeaponRocketAntiShipStrunaHE
-  name: SSR-800ARH String # ХЕ
+  name: SSR-800IRH String # ХЕ
   parent: BaseWeaponRocketAntiShip
-  description: Short-range anti-ship missile with radar-guided basic guidance head. Designed to defeat large ships in close maneuver combat. One of these things will tear the hull of medium armored ships.
+  description: Short-range anti-ship missile with infrared-guided basic guidance head. Designed to defeat large ships in close maneuver combat. One of these things will tear the hull of medium armored ships.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
@@ -42,9 +42,9 @@
 
 - type: entity
   id: WeaponRocketAntiShipStrunaEMP
-  name: SSR-806ARHEM Arc # ЭМИ
+  name: SSR-806IRHEM Arc # ЭМИ
   parent: BaseWeaponRocketAntiShip
-  description: Short-range anti-ship missile with radar-guided basic guidance head. It's literally a string, but instead of a HE warhead, it's an EMP warhead. It is designed to disable the external equipment of large ships and the wiring of small ships.
+  description: Short-range anti-ship missile with infrared-guided basic guidance head. It's literally a string, but instead of a HE warhead, it's an EMP warhead. It is designed to disable the external equipment of large ships and the wiring of small ships.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
@@ -76,9 +76,9 @@
 
 - type: entity
   id: WeaponRocketAntiShipStrunaRLS
-  name: SSR-100ARHMC Frostbush # ХЕ но РЛС пизже
+  name: SSR-100IRHMC Frostbush # ХЕ но ГСН пизже
   parent: BaseWeaponRocketAntiShip
-  description: Short-range anti-ship missile with radar-guided guidance head. An attempt by the designers to design an improved version of the string. It is recommended to launch on the move, sometimes this missile can turn around and hit the ship that launched it. HE warhead from the string is unchanged.
+  description: Short-range anti-ship missile with infrared-guided guidance head. An attempt by the designers to design an improved version of the string. It is recommended to launch on the move, sometimes this missile can turn around and hit the ship that launched it. HE warhead from the string is unchanged.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
@@ -149,9 +149,9 @@
 
 - type: entity
   id: WeaponRocketAntiShipStrunaHERD
-  name: SSR-800ARH String-RD # ХЕ РВ
+  name: SSR-800IRH String-RD # ХЕ РВ
   parent: WeaponRocketAntiShipStrunaHE
-  description: Short-range anti-ship missile with radar-guided basic guidance head. Designed to defeat large ships in close maneuver combat. One of these things will tear the hull of medium armored ships. That one with radio-detonator.
+  description: Short-range anti-ship missile with thermal-guided basic guidance head. Designed to defeat large ships in close maneuver combat. One of these things will tear the hull of medium armored ships. That one with radio-detonator.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi
@@ -166,9 +166,9 @@
 
 - type: entity
   id: WeaponRocketAntiShipStrunaEMPRD
-  name: SSR-806ARHEM Arc-RD # ЭМИ РВ
+  name: SSR-806IRHEM Arc-RD # ЭМИ РВ
   parent: WeaponRocketAntiShipStrunaHE
-  description: Short-range anti-ship missile with radar-guided basic guidance head. It's literally a string, but instead of a HE warhead, it's an EMP warhead. It is designed to disable the external equipment of large ships and the wiring of small ships. That one with radio-detonator.
+  description: Short-range anti-ship missile with thermal-guided basic guidance head. It's literally a string, but instead of a HE warhead, it's an EMP warhead. It is designed to disable the external equipment of large ships and the wiring of small ships. That one with radio-detonator.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi

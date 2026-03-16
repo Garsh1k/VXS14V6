@@ -8,6 +8,9 @@
     sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
     layers:
       - state: he
+  - type: RadarMarker
+    color: Red
+    shape: Circle
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -28,7 +31,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: TwoStageTrigger
-    triggerDelay: 1
+    triggerDelay: 0.1
     components:
       - type: ExplodeOnTrigger
       - type: Explosive
@@ -47,6 +50,9 @@
     sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
     layers:
       - state: emp
+  - type: RadarMarker
+    color: Blue
+    shape: Circle
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -67,7 +73,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: TwoStageTrigger
-    triggerDelay: 1
+    triggerDelay: 0.1
     components:
       - type: EmpOnTrigger
         range: 5
@@ -84,6 +90,9 @@
     sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
     layers:
       - state: awl
+  - type: RadarMarker
+    color: Red
+    shape: Circle
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -104,7 +113,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: TwoStageTrigger
-    triggerDelay: 1
+    triggerDelay: 0.1
     components:
       - type: EmpOnTrigger
         range: 3

@@ -481,6 +481,9 @@ public sealed class ThrusterSystem : EntitySystem
 
         while (query.MoveNext(out var comp))
         {
+            if (comp.Firing)
+                comp.LastFiringTime = curTime;
+
             if (comp.NextFire > curTime)
                 continue;
 
@@ -532,6 +535,7 @@ public sealed class ThrusterSystem : EntitySystem
                 continue;
 
             comp.Firing = true;
+            comp.LastFiringTime = _timing.CurTime;
             appearanceQuery.TryGetComponent(uid, out var appearance);
             _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
         }
@@ -586,6 +590,7 @@ public sealed class ThrusterSystem : EntitySystem
 
                 appearanceQuery.TryGetComponent(uid, out var appearance);
                 comp.Firing = true;
+                comp.LastFiringTime = _timing.CurTime;
                 _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
             }
         }

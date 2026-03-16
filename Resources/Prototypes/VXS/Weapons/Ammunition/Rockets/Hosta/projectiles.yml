@@ -1,6 +1,6 @@
 - type: entity
   id: BulletRocketAntiShipHostaHE
-  name: MRR-10 ARH HH Hosta-HE
+  name: HOSTA HE (ARH)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -13,17 +13,21 @@
     maxIntensity: 50
     intensitySlope: 10
     totalIntensity: 600
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
   - type: TimedDespawn
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 10
+    rotationSpeed: 3
     guidanceAlgorithm: PredictiveGuidance
-    acceleration: 10
-    topSpeed: 150
+    acceleration: 5
+    topSpeed: 125
     initialSpeed: 20
-    FOV: 30
-    lockedIn: false
+    FOV: 50
+    lockedIn: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -35,7 +39,7 @@
 
 - type: entity
   id: BulletRocketAntiShipHostaEMP
-  name: MRR-15 ARH HH Hosta-EMP
+  name: HOSTA EMP (ARH)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -43,6 +47,10 @@
     sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
     layers:
       - state: emp
+  - type: RadarMarker
+    color: Blue
+    shape: Triangle
+    showName: true
   - type: Explosive
     explosionType: HardBomb
     maxIntensity: 30
@@ -56,13 +64,13 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 10
+    rotationSpeed: 3
     guidanceAlgorithm: PredictiveGuidance
-    acceleration: 10
-    topSpeed: 150
+    acceleration: 5
+    topSpeed: 125
     initialSpeed: 20
-    FOV: 30
-    lockedIn: false
+    FOV: 50
+    lockedIn: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -74,7 +82,7 @@
 
 - type: entity
   id: BulletRocketAntiShipHostaHERD
-  name: MRR-10 ARH HH RD Hosta-HE
+  name: HOSTA HE (ARH)
   parent: BulletRocketAntiShipHostaHE
   categories: [ HideSpawnMenu ]
   components:
@@ -86,7 +94,7 @@
 
 - type: entity
   id: BulletRocketAntiShipHostaEMPRD
-  name: MRR-15 ARH HH RD Hosta-EMP
+  name: HOSTA EMP (ARH)
   parent: BulletRocketAntiShipHostaEMP
   categories: [ HideSpawnMenu ]
   components:
@@ -98,7 +106,7 @@
 
 - type: entity
   id: BulletRocketAntiShipHostaN
-  name: MRR-60 ARH HH Hosta-N
+  name: HOSTA NUCLEAR (ARH)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -106,6 +114,10 @@
     sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
     layers:
       - state: aex
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
   - type: Explosive
     explosionType: HardBomb
     maxIntensity: 110
@@ -119,13 +131,13 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 10
+    rotationSpeed: 3
     guidanceAlgorithm: PredictiveGuidance
-    acceleration: 10
-    topSpeed: 150
+    acceleration: 5
+    topSpeed: 125
     initialSpeed: 20
-    FOV: 30
-    lockedIn: false
+    FOV: 50
+    lockedIn: true
   - type: Destructible
     thresholds:
     - trigger:

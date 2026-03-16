@@ -22,9 +22,8 @@
   - type: IgnitionSource
     ignited: true
     temperature: 1000
-  - type: TempAffectingAnomaly
-    tempChangePerSecond: 25
-    hotspotExposeTemperature: 1000
+  - type: VXSRetargetThruster
+    chanceToRetarget: 0.2
   - type: TimedDespawn
     lifetime: 6
   - type: AmbientSound

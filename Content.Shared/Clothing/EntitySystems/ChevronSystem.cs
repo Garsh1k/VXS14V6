@@ -2,16 +2,12 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
 public sealed class ChevronSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()
     {
@@ -34,14 +30,16 @@ public sealed class ChevronSystem : EntitySystem
         var enumerator = _inventory.GetSlotEnumerator((uid, inventory));
         while (enumerator.NextItem(out var item, out var slot))
         {
+            _ = slot;
+
             // Check if the item has a chevron slot component
             if (!TryComp<ChevronSlotComponent>(item, out var chevronSlot))
                 continue;
 
             // Display information for each attached chevron
-            foreach (var prototypeId in chevronSlot.AttachedChevronPrototypes)
+            for (var i = 0; i < chevronSlot.AttachedChevronPrototypes.Count; i++)
             {
-                var chevronInfo = GetChevronInfo(prototypeId);
+                var chevronInfo = GetChevronInfo(chevronSlot, i);
                 if (string.IsNullOrEmpty(chevronInfo))
                     continue;
 
@@ -95,6 +93,7 @@ public sealed class ChevronSystem : EntitySystem
 
         // Add the chevron prototype ID to the list
         chevronSlot.AttachedChevronPrototypes.Add(prototypeId);
+        chevronSlot.AttachedChevronInfos.Add(chevronComp.ChevronInfo);
         Dirty(clothing, chevronSlot);
         return true;
     }
@@ -112,14 +111,17 @@ public sealed class ChevronSystem : EntitySystem
             return false;
         }
 
-        // Remove the chevron prototype ID from the list
-        if (chevronSlot.AttachedChevronPrototypes.Remove(prototypeId))
-        {
-            Dirty(clothing, chevronSlot);
-            return true;
-        }
+        var index = chevronSlot.AttachedChevronPrototypes.IndexOf(prototypeId);
+        if (index < 0)
+            return false;
 
-        return false;
+        chevronSlot.AttachedChevronPrototypes.RemoveAt(index);
+
+        if (index < chevronSlot.AttachedChevronInfos.Count)
+            chevronSlot.AttachedChevronInfos.RemoveAt(index);
+
+        Dirty(clothing, chevronSlot);
+        return true;
     }
 
     /// <summary>
@@ -137,23 +139,14 @@ public sealed class ChevronSystem : EntitySystem
         return Math.Max(0, chevronSlot.MaxChevrons - chevronSlot.AttachedChevronPrototypes.Count);
     }
 
-    /// <summary>
-    /// Gets the chevron information for a prototype ID.
-    /// </summary>
-    /// <param name="prototypeId">The prototype ID.</param>
-    /// <returns>The chevron information, or null if not available.</returns>
-    public string? GetChevronInfo(string prototypeId)
+    public string? GetChevronInfo(ChevronSlotComponent component, int index)
     {
-        // For performance and safety, we'll use a cached approach or direct prototype lookup
-        // For now, we'll use a simple mapping based on known prototype IDs
-        return prototypeId switch
-        {
-            "ChevronCaptain" => "Captain",
-            "ChevronHeadOfPersonnel" => "Head of Personnel",
-            "ChevronHeadOfSecurity" => "Head of Security",
-            "ChevronChiefMedicalOfficer" => "Chief Medical Officer",
-            "ChevronResearchDirector" => "Research Director",
-            _ => null
-        };
+        if (index < 0 || index >= component.AttachedChevronPrototypes.Count)
+            return null;
+
+        if (index < component.AttachedChevronInfos.Count && !string.IsNullOrWhiteSpace(component.AttachedChevronInfos[index]))
+            return component.AttachedChevronInfos[index];
+
+        return component.AttachedChevronPrototypes[index];
     }
 }

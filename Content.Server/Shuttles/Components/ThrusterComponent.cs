@@ -62,6 +62,8 @@ namespace Content.Server.Shuttles.Components
 
         public bool Firing = false;
 
+        public TimeSpan LastFiringTime;
+
         /// <summary>
         /// How often thruster deals damage.
         /// </summary>

@@ -18,6 +18,11 @@ public sealed class ArtilleryDetectionConsoleState : BoundUserInterfaceState
     /// List of detected artillery fire events.
     /// </summary>
     public List<ArtilleryFireEvent> Events = new();
+
+    /// <summary>
+    /// Names of detector systems currently connected to this console.
+    /// </summary>
+    public List<string> ConnectedSystems = new();
 }
 
 /// <summary>
