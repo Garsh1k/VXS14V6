@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Administration;
+using Content.Shared.Explosion;
+using Content.Shared.Atmos;
 using Content.Shared.Explosion.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -14,6 +16,20 @@ namespace Content.Server.Explosion.EntitySystems;
 
 public sealed partial class ExplosionSystem
 {
+    private static readonly AtmosDirection[] CardinalDirections =
+    [
+        AtmosDirection.North,
+        AtmosDirection.East,
+        AtmosDirection.South,
+        AtmosDirection.West,
+    ];
+
+    private sealed class ConfinedRoomData
+    {
+        public readonly Dictionary<int, List<Vector2i>> TileLists = new();
+        public int TileCount;
+    }
+
     /// <summary>
     /// A list of grids to be reused by <see cref="GetLocalGrids"/> to avoid allocating twice for each call.
     /// </summary>
@@ -40,7 +56,7 @@ public sealed partial class ExplosionSystem
         if (totalIntensity <= 0 || slope <= 0)
             return null;
 
-        if (!_explosionTypes.TryGetValue(typeID, out var typeIndex))
+        if (!_explosionTypes.TryGetValue(typeID, out var typeIndex) || !_prototypeManager.TryIndex<ExplosionPrototype>(typeID, out var prototype))
         {
             Log.Error("Attempted to spawn explosion using a prototype that was not defined during initialization. Explosion prototype hot-reload is not currently supported.");
             return null;
@@ -97,6 +113,41 @@ public sealed partial class ExplosionSystem
             (_, spaceAngle, spaceMatrix) = _transformSystem.GetWorldPositionRotationMatrix(xform);
         }
 
+        if (epicentreGrid != null && prototype.ConfinedRoomMaxTiles is { } maxRoomTiles)
+        {
+            var epicentreGridEnt = (epicentreGrid.Value, Comp<MapGridComponent>(epicentreGrid.Value));
+            var confinedRoom = TryGetConfinedRoomData(epicentreGridEnt, initialTile, maxRoomTiles);
+
+            if (confinedRoom != null)
+            {
+                var thermobaricData = new ExplosionGridTileFlood(
+                    epicentreGridEnt,
+                    _airtightMap.GetValueOrDefault(epicentreGrid.Value, new Dictionary<Vector2i, TileData>()),
+                    maxIntensity,
+                    slope / 2,
+                    typeIndex,
+                    _gridEdges[epicentreGrid.Value],
+                    epicentreGrid.Value,
+                    Matrix3x2.Identity,
+                    Angle.Zero);
+
+                thermobaricData.TileLists = confinedRoom.TileLists;
+
+                var roomIntensity = new List<float>(confinedRoom.TileLists.Count);
+                for (var i = 0; i < confinedRoom.TileLists.Count; i++)
+                {
+                    roomIntensity.Add(maxIntensity);
+                }
+
+                return (
+                    confinedRoom.TileCount,
+                    roomIntensity,
+                    null,
+                    new Dictionary<EntityUid, ExplosionGridTileFlood> { [epicentreGrid.Value] = thermobaricData },
+                    Matrix3x2.Identity);
+            }
+        }
+
         // is the explosion starting on a grid?
         if (epicentreGrid != null)
         {
@@ -146,9 +197,12 @@ public sealed partial class ExplosionSystem
         // These variables are used to check if we can abort early.
         float previousIntensity;
         var intensityUnchangedLastLoop = false;
+        var maxSpreadIterations = prototype.FixedSpreadRange is { } fixedSpreadRange
+            ? Math.Min(MaxIterations, RangeToIterationCap(fixedSpreadRange))
+            : MaxIterations;
 
         // Main flood-fill / neighbor-finding loop
-        while (remainingIntensity > 0 && iteration <= MaxIterations && totalTiles < MaxArea)
+        while (remainingIntensity > 0 && iteration <= maxSpreadIterations && totalTiles < MaxArea)
         {
             previousIntensity = remainingIntensity;
 
@@ -253,6 +307,93 @@ public sealed partial class ExplosionSystem
         spaceData?.CleanUp();
 
         return (totalTiles, iterationIntensity, spaceData, gridData, spaceMatrix);
+    }
+
+    private int RangeToIterationCap(float range)
+    {
+        return Math.Max(1, (int) MathF.Ceiling(range * 2f + 1f));
+    }
+
+    private ConfinedRoomData? TryGetConfinedRoomData(Entity<MapGridComponent> grid, Vector2i initialTile, int maxRoomTiles)
+    {
+        if (!_map.TryGetTileRef(grid.Owner, grid.Comp, initialTile, out var initialRef) || initialRef.Tile.IsEmpty)
+            return null;
+
+        var openTiles = new Dictionary<Vector2i, int> { [initialTile] = 0 };
+        var boundaryTiles = new Dictionary<Vector2i, int>();
+        var queue = new Queue<Vector2i>();
+        queue.Enqueue(initialTile);
+
+        while (queue.TryDequeue(out var tile))
+        {
+            var distance = openTiles[tile];
+
+            foreach (var direction in CardinalDirections)
+            {
+                var neighbor = tile.Offset(direction);
+
+                if (!_map.TryGetTileRef(grid.Owner, grid.Comp, neighbor, out var neighborRef) || neighborRef.Tile.IsEmpty)
+                    return null;
+
+                if (IsConfinedTraversalBlocked(grid.Owner, tile, neighbor, direction))
+                {
+                    if (openTiles.ContainsKey(neighbor))
+                        continue;
+
+                    if (!boundaryTiles.TryGetValue(neighbor, out var boundaryDistance) || boundaryDistance > distance + 1)
+                        boundaryTiles[neighbor] = distance + 1;
+
+                    continue;
+                }
+
+                if (!openTiles.TryAdd(neighbor, distance + 1))
+                    continue;
+
+                if (openTiles.Count > maxRoomTiles)
+                    return null;
+
+                queue.Enqueue(neighbor);
+            }
+        }
+
+        var data = new ConfinedRoomData();
+
+        foreach (var (tile, distance) in openTiles)
+        {
+            if (!data.TileLists.TryGetValue(distance, out var list))
+            {
+                list = new();
+                data.TileLists[distance] = list;
+            }
+
+            list.Add(tile);
+            data.TileCount++;
+        }
+
+        foreach (var (tile, distance) in boundaryTiles)
+        {
+            if (!data.TileLists.TryGetValue(distance, out var list))
+            {
+                list = new();
+                data.TileLists[distance] = list;
+            }
+
+            list.Add(tile);
+            data.TileCount++;
+        }
+
+        return data;
+    }
+
+    private bool IsConfinedTraversalBlocked(EntityUid gridUid, Vector2i tile, Vector2i neighbor, AtmosDirection direction)
+    {
+        if (!_airtightMap.TryGetValue(gridUid, out var airtightMap))
+            return false;
+
+        if (airtightMap.TryGetValue(tile, out var source) && source.BlockedDirections.IsFlagSet(direction))
+            return true;
+
+        return airtightMap.TryGetValue(neighbor, out var target) && target.BlockedDirections.IsFlagSet(direction.GetOpposite());
     }
 
     /// <summary>
