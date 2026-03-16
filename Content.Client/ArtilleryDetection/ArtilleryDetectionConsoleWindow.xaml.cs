@@ -4,6 +4,7 @@ using Robust.Client.UserInterface.XAML;
 using Content.Shared.ArtilleryDetection;
 using Content.Client.UserInterface.Controls;
 using System;
+using System.Text;
 
 namespace Content.Client.ArtilleryDetection;
 
@@ -43,10 +44,7 @@ public sealed partial class ArtilleryDetectionConsoleWindow : FancyWindow
 
         EventList.OnItemSelected += args =>
         {
-            if (args.ItemIndex >= 0 && args.ItemIndex < _currentState?.Events.Count)
-            {
-                _selectedEventId = _currentState.Events[args.ItemIndex].Id;
-            }
+            UpdateSelectedEventDetails(args.ItemIndex);
         };
 
         OnClose += () => Close();
@@ -56,6 +54,15 @@ public sealed partial class ArtilleryDetectionConsoleWindow : FancyWindow
     {
         _currentState = state;
         EventList.Clear();
+        ConnectedSystemsList.Clear();
+
+        _selectedEventId = null;
+        EventDetailsLabel.Text = "Select an event to view details.";
+
+        foreach (var systemName in state.ConnectedSystems)
+        {
+            ConnectedSystemsList.AddItem(systemName);
+        }
 
         if (state.Events.Count == 0)
         {
@@ -66,25 +73,48 @@ public sealed partial class ArtilleryDetectionConsoleWindow : FancyWindow
         for (int i = 0; i < state.Events.Count; i++)
         {
             var evt = state.Events[i];
-            var detailsBuilder = new System.Text.StringBuilder();
-            detailsBuilder.Append($"[{evt.DetectionTime:mm\\:ss}] {evt.WeaponType}");
-
-            // Add artillery type if available
-            if (!string.IsNullOrEmpty(evt.ArtilleryType) && evt.ArtilleryType != "Unknown")
-            {
-                detailsBuilder.Append($" | Artillery: {evt.ArtilleryType}");
-            }
-
-            // Add projectile type if available
-            if (!string.IsNullOrEmpty(evt.ProjectileType) && evt.ProjectileType != "Unknown")
-            {
-                detailsBuilder.Append($" | Projectile: {evt.ProjectileType}");
-            }
-
-            detailsBuilder.Append($" | Coordinates: ({evt.DetectedCoordinates.X:F1}, {evt.DetectedCoordinates.Y:F1})");
-            EventList.AddItem(detailsBuilder.ToString());
+            var shortType = !string.IsNullOrEmpty(evt.ArtilleryType) && evt.ArtilleryType != "Unknown"
+                ? evt.ArtilleryType
+                : evt.WeaponType;
+            EventList.AddItem($"[{evt.DetectionTime:mm\\:ss}] {shortType}");
         }
 
-        StatusLabel.Text = $"{state.Events.Count} events detected.";
+        StatusLabel.Text = $"{state.Events.Count} events detected, {state.ConnectedSystems.Count} systems connected.";
+    }
+
+    private void UpdateSelectedEventDetails(int itemIndex)
+    {
+        if (_currentState == null || itemIndex < 0 || itemIndex >= _currentState.Events.Count)
+        {
+            _selectedEventId = null;
+            EventDetailsLabel.Text = "Select an event to view details.";
+            return;
+        }
+
+        var evt = _currentState.Events[itemIndex];
+        _selectedEventId = evt.Id;
+
+        var detailsBuilder = new StringBuilder();
+        detailsBuilder.Append($"Time: {evt.DetectionTime:mm\\:ss}");
+        detailsBuilder.Append('\n');
+        detailsBuilder.Append($"Weapon: {evt.WeaponType}");
+        detailsBuilder.Append('\n');
+        detailsBuilder.Append($"Coordinates: ({evt.DetectedCoordinates.X:F1}, {evt.DetectedCoordinates.Y:F1})");
+        detailsBuilder.Append('\n');
+
+        if (!string.IsNullOrEmpty(evt.ArtilleryType) && evt.ArtilleryType != "Unknown")
+        {
+            detailsBuilder.Append($"Artillery: {evt.ArtilleryType}");
+            detailsBuilder.Append('\n');
+        }
+
+        if (!string.IsNullOrEmpty(evt.ProjectileType) && evt.ProjectileType != "Unknown")
+        {
+            detailsBuilder.Append($"Projectile: {evt.ProjectileType}");
+            detailsBuilder.Append('\n');
+        }
+
+        detailsBuilder.Append($"Event ID: {evt.LocalId}");
+        EventDetailsLabel.Text = detailsBuilder.ToString();
     }
 }

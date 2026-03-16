@@ -12,6 +12,9 @@
     penetrationThreshold: 300
     penetrationDamageTypeRequirement:
     - Piercing
+  - type: RadarMarker
+    color: Red
+    shape: Square
   - type: StaminaDamageOnCollide
     damage: 120
   - type: TimedDespawn
@@ -37,6 +40,9 @@
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Piercing
+  - type: RadarMarker
+    color: Blue
+    shape: Square
   - type: StaminaDamageOnCollide
     damage: 100
   - type: TimedDespawn
@@ -78,6 +84,9 @@
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Piercing
+  - type: RadarMarker
+    color: Red
+    shape: Square
   - type: StaminaDamageOnCollide
     damage: 100
   - type: TimedDespawn

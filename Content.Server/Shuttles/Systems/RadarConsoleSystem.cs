@@ -15,10 +15,30 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
+    private const float UpdateInterval = 0.001f;
+    private float _updateTimer;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<RadarConsoleComponent, ComponentStartup>(OnRadarStartup);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _updateTimer += frameTime;
+        if (_updateTimer < UpdateInterval)
+            return;
+        _updateTimer = 0f;
+
+        var query = EntityQueryEnumerator<RadarConsoleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (_uiSystem.IsUiOpen(uid, RadarConsoleUiKey.Key))
+                UpdateState(uid, comp);
+        }
     }
 
     private void OnRadarStartup(EntityUid uid, RadarConsoleComponent component, ComponentStartup args)

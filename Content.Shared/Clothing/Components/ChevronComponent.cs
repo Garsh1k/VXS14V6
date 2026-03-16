@@ -40,4 +40,11 @@ public sealed partial class ChevronSlotComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public List<string> AttachedChevronPrototypes = new();
+
+    /// <summary>
+    /// The display text for currently attached chevrons.
+    /// Matches <see cref="AttachedChevronPrototypes"/> by index.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<string> AttachedChevronInfos = new();
 }

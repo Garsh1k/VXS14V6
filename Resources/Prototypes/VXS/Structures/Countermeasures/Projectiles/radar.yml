@@ -1,6 +1,6 @@
 - type: entity
   id: CountermeasuresRadarA31Pellet
-  name: radar jamming pellet
+  name: Undefined
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
@@ -18,3 +18,7 @@
     lifetime: 50
   - type: VXSRetarget
     chanceToRetarget: 0.2
+  - type: RadarMarker
+    color: Blue
+    shape: Triangle
+    showName: true

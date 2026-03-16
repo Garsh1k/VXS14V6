@@ -3,6 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
@@ -14,6 +15,7 @@ public sealed class ChevronInteractionSystem : EntitySystem
 {
     [Dependency] private readonly ChevronSystem _chevronSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -32,6 +34,9 @@ public sealed class ChevronInteractionSystem : EntitySystem
 
     private void OnChevronSlotInteractUsing(EntityUid uid, ChevronSlotComponent component, InteractUsingEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         // Check if the item being used is a chevron
         if (!HasComp<ChevronComponent>(args.Used))
             return;
@@ -66,7 +71,7 @@ public sealed class ChevronInteractionSystem : EntitySystem
         for (int i = 0; i < component.AttachedChevronPrototypes.Count; i++)
         {
             var prototypeId = component.AttachedChevronPrototypes[i];
-            var chevronInfo = GetChevronInfo(prototypeId);
+            var chevronInfo = _chevronSystem.GetChevronInfo(component, i);
             if (string.IsNullOrEmpty(chevronInfo))
                 continue;
 
@@ -85,6 +90,9 @@ public sealed class ChevronInteractionSystem : EntitySystem
 
     private void RemoveChevron(EntityUid clothing, ChevronSlotComponent component, string prototypeId, int index, EntityUid user)
     {
+        if (_net.IsClient)
+            return;
+
         // Check if the index is still valid and the chevron at that index matches
         if (index < component.AttachedChevronPrototypes.Count &&
             component.AttachedChevronPrototypes[index] == prototypeId)
@@ -94,7 +102,7 @@ public sealed class ChevronInteractionSystem : EntitySystem
             {
                 // Successfully detached - spawn the appropriate chevron item at the clothing's location
                 var spawnPosition = Transform(clothing).Coordinates;
-                var chevronItem = Spawn(prototypeId, spawnPosition);
+                Spawn(prototypeId, spawnPosition);
 
                 _popupSystem.PopupEntity(Loc.GetString("chevron-detached-success"), clothing, user);
                 return;
@@ -103,19 +111,5 @@ public sealed class ChevronInteractionSystem : EntitySystem
 
         // If we get here, either the index was invalid or detachment failed
         _popupSystem.PopupEntity(Loc.GetString("chevron-detached-failure"), clothing, user);
-    }
-
-    private string GetChevronInfo(string prototypeId)
-    {
-        // Use the same mapping as in ChevronSystem
-        return prototypeId switch
-        {
-            "ChevronCaptain" => "Captain",
-            "ChevronHeadOfPersonnel" => "Head of Personnel",
-            "ChevronHeadOfSecurity" => "Head of Security",
-            "ChevronChiefMedicalOfficer" => "Chief Medical Officer",
-            "ChevronResearchDirector" => "Research Director",
-            _ => "Unknown Chevron"
-        };
     }
 }

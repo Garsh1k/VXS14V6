@@ -11,6 +11,7 @@ using Content.Shared.Trigger.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Audio.Systems;
@@ -39,6 +40,7 @@ public sealed partial class TriggerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
     [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly SharedRoleSystem _role = default!;

@@ -111,6 +111,38 @@ public sealed partial class ExplosionPrototype : IPrototype
     public int FireStates = 3;
 
     /// <summary>
+    ///     If set, explosions of this type will instantly saturate enclosed rooms up to this many tiles with equal
+    ///     intensity.
+    /// </summary>
+    [DataField("confinedRoomMaxTiles")]
+    public int? ConfinedRoomMaxTiles;
+
+    /// <summary>
+    ///     Hard cap for how far this explosion may propagate when it is not saturating a confined room.
+    ///     Measured in tiles.
+    /// </summary>
+    [DataField("fixedSpreadRange")]
+    public float? FixedSpreadRange;
+
+    /// <summary>
+    ///     Additional lung damage dealt per explosion intensity.
+    /// </summary>
+    [DataField("lungDamagePerIntensity")]
+    public float LungDamagePerIntensity;
+
+    /// <summary>
+    ///     Additional heart damage dealt per explosion intensity.
+    /// </summary>
+    [DataField("heartDamagePerIntensity")]
+    public float HeartDamagePerIntensity;
+
+    /// <summary>
+    ///     Additional brain damage dealt per explosion intensity.
+    /// </summary>
+    [DataField("brainDamagePerIntensity")]
+    public float BrainDamagePerIntensity;
+
+    /// <summary>
     ///     Basic function for linear interpolation of the _tileBreakChance and _tileBreakIntensity arrays
     /// </summary>
     public float TileBreakChance(float intensity)

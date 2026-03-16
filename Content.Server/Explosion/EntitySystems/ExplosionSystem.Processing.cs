@@ -2,12 +2,15 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.Components;
+using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
@@ -202,6 +205,7 @@ public sealed partial class ExplosionSystem
         Vector2i tile,
         float throwForce,
         DamageSpecifier damage,
+        float intensity,
         MapCoordinates epicenter,
         HashSet<EntityUid> processed,
         string id,
@@ -225,7 +229,7 @@ public sealed partial class ExplosionSystem
         // process those entities
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, intensity, id, xform, fireStacks, cause);
         }
 
         // process anchored entities
@@ -235,7 +239,7 @@ public sealed partial class ExplosionSystem
         foreach (var entity in _anchored)
         {
             processed.Add(entity);
-            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause);
+            ProcessEntity(entity, epicenter, damage, throwForce, intensity, id, null, fireStacks, cause);
         }
 
         // Walls and reinforced walls will break into girders. These girders will also be considered turf-blocking for
@@ -271,7 +275,7 @@ public sealed partial class ExplosionSystem
         {
             // Here we only throw, no dealing damage. Containers n such might drop their entities after being destroyed, but
             // they should handle their own damage pass-through, with their own damage reduction calculation.
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, intensity, id, xform, null, cause);
         }
 
         return !tileBlocked;
@@ -304,6 +308,7 @@ public sealed partial class ExplosionSystem
         Vector2i tile,
         float throwForce,
         DamageSpecifier damage,
+        float intensity,
         MapCoordinates epicenter,
         HashSet<EntityUid> processed,
         string id,
@@ -324,7 +329,7 @@ public sealed partial class ExplosionSystem
         foreach (var (uid, xform) in state.Item1)
         {
             processed.Add(uid);
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, intensity, id, xform, fireStacks, cause);
         }
 
         if (throwForce <= 0)
@@ -338,7 +343,7 @@ public sealed partial class ExplosionSystem
 
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, intensity, id, xform, fireStacks, cause);
         }
     }
 
@@ -434,6 +439,7 @@ public sealed partial class ExplosionSystem
         MapCoordinates epicenter,
         DamageSpecifier? originalDamage,
         float throwForce,
+        float intensity,
         string id,
         TransformComponent? xform,
         float? fireStacksOnIgnite,
@@ -460,6 +466,7 @@ public sealed partial class ExplosionSystem
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
                 _damageableSystem.TryChangeDamage(entity, damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+                TryApplyInternalOrganBlastDamage(entity, id, intensity);
 
             }
         }
@@ -493,6 +500,45 @@ public sealed partial class ExplosionSystem
                 xform,
                 _projectileQuery,
                 throwForce);
+        }
+    }
+
+    private void TryApplyInternalOrganBlastDamage(EntityUid uid, string explosionId, float intensity)
+    {
+        if (intensity <= 0f
+            || !TryComp<BodyComponent>(uid, out var body)
+            || !_prototypeManager.TryIndex<ExplosionPrototype>(explosionId, out var prototype))
+        {
+            return;
+        }
+
+        if (prototype.LungDamagePerIntensity <= 0f
+            && prototype.HeartDamagePerIntensity <= 0f
+            && prototype.BrainDamagePerIntensity <= 0f)
+        {
+            return;
+        }
+
+        var lungDamage = prototype.LungDamagePerIntensity > 0f
+            ? FixedPoint2.New(intensity * prototype.LungDamagePerIntensity)
+            : FixedPoint2.Zero;
+        var heartDamage = prototype.HeartDamagePerIntensity > 0f
+            ? FixedPoint2.New(intensity * prototype.HeartDamagePerIntensity)
+            : FixedPoint2.Zero;
+        var brainDamage = prototype.BrainDamagePerIntensity > 0f
+            ? FixedPoint2.New(intensity * prototype.BrainDamagePerIntensity)
+            : FixedPoint2.Zero;
+
+        foreach (var organ in _bodySystem.GetBodyOrgans(uid, body))
+        {
+            if (lungDamage > FixedPoint2.Zero && TryComp<LungDamageComponent>(organ.Id, out var lung))
+                _lungDamageSystem.TryModifyDamage((organ.Id, lung), lungDamage);
+
+            if (heartDamage > FixedPoint2.Zero && TryComp<HeartrateComponent>(organ.Id, out var heart))
+                _heartSystem.ChangeHeartDamage((organ.Id, heart), heartDamage);
+
+            if (brainDamage > FixedPoint2.Zero && TryComp<BrainDamageComponent>(organ.Id, out var brain))
+                _brainDamageSystem.TryChangeBrainDamage((organ.Id, brain), brainDamage);
         }
     }
 
@@ -858,6 +904,7 @@ sealed class Explosion
                     _currentEnumerator.Current,
                     _currentThrowForce,
                     _currentDamage,
+                    _currentIntensity,
                     Epicenter,
                     ProcessedEntities,
                     ExplosionType.ID,
@@ -877,6 +924,7 @@ sealed class Explosion
                     _currentEnumerator.Current,
                     _currentThrowForce,
                     _currentDamage,
+                    _currentIntensity,
                     Epicenter,
                     ProcessedEntities,
                     ExplosionType.ID,

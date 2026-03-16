@@ -13,6 +13,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Shuttles.UI;
@@ -37,6 +39,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Angle? _rotation;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
+    private List<RadarMarkerData> _markers = new();
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
@@ -123,6 +126,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         RotateWithEntity = state.RotateWithEntity;
 
         _docks = state.Docks;
+        _markers = state.Markers;
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -290,6 +294,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
         }
 
+        DrawMarkers(handle, worldToShuttle, shuttleToView);
     }
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
@@ -333,6 +338,44 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));
                 handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, verts, color);
+            }
+        }
+    }
+
+    private void DrawMarkers(DrawingHandleScreen handle, Matrix3x2 worldToShuttle, Matrix3x2 shuttleToView)
+    {
+        foreach (var marker in _markers)
+        {
+            if (!marker.Enabled)
+                continue;
+
+            var markerCoords = EntManager.GetCoordinates(marker.Coordinates);
+            var markerWorldPos = _transform.ToMapCoordinates(markerCoords).Position;
+            var point = Vector2.Transform(markerWorldPos, worldToShuttle * shuttleToView);
+
+            switch (marker.Shape)
+            {
+                case RadarShape.Circle:
+                    handle.DrawCircle(point, 2, marker.Color);
+                    break;
+                case RadarShape.Square:
+                    var square = new UIBox2(point.X - 2, point.Y - 2, point.X + 2, point.Y + 2);
+                    handle.DrawRect(square, marker.Color);
+                    break;
+                case RadarShape.Triangle:
+                    var triangle = new Vector2[]
+                    {
+                        point + new Vector2(0, -2),
+                        point + new Vector2(-2, 2),
+                        point + new Vector2(2, 2),
+                    };
+                    handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, triangle, marker.Color);
+                    break;
+            }
+
+            if (marker.ShowName && marker.Name != null)
+            {
+                handle.DrawString(Font, point + new Vector2(4, -4), marker.Name, marker.Color);
             }
         }
     }

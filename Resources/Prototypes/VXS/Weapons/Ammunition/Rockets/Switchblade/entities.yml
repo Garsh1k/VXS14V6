@@ -1,8 +1,8 @@
 - type: entity
   id: WeaponRocketAntiShipSwitchbladeHE
-  name: ASM-875T Switchblade-ARH # Тандемный c радаром
+  name: ASM-875T Switchblade # Тандемный c радаром
   parent: ShuttleGunBase
-  description: An unguided rocket projectile with a shaped-charge warhead was used to make a short-range anti-ship missile with a tandem warhead.
+  description: Short-range anti-ship missile with a tandem warhead.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
@@ -67,9 +67,9 @@
 
 - type: entity
   id: WeaponRocketAntiShipSwitchbladeEMP
-  name: ASM-875EMP Switchblade-ARH # ЭМИ
+  name: ASM-875EMP Switchblade # ЭМИ
   parent: WeaponRocketAntiShipSwitchbladeHE
-  description: An unguided rocket projectile with a shaped-charge warhead was used to make a short-range anti-ship missile with a tandem warhead and then short-range anti-ship missile with EMP warhead.
+  description: Short-range anti-ship missile with an EMP warhead.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi
@@ -93,7 +93,7 @@
   id: WeaponRocketAntiShipAwlC
   name: ASM-880C Awl # Совмещенный
   parent: WeaponRocketAntiShipSwitchbladeHE
-  description: An unguided rocket projectile with a shaped-charge warhead was used to make a short-range anti-ship missile with a tandem warhead and then short-range anti-ship missile with EMP warhead combined with HE charge.
+  description: Short-range anti-ship missile with a combined warhead.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/switchblade.rsi

@@ -279,6 +279,9 @@
     - damageTypes: [Heat, Cold, Caustic, Shock]
       minimumTotalDamage: 200
       conversionFactor: 0.01
+    - damageTypes: [Blunt, Slash, Piercing, Heat, Cold, Caustic, Shock, Poison, Radiation, Cellular, Asphyxiation]
+      minimumTotalDamage: 210
+      conversionFactor: 100
   - type: BrainGaspThresholds
     messageThresholds:
       70: DefaultBraingasp

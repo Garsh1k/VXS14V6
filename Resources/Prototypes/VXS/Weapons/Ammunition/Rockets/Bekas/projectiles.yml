@@ -1,6 +1,6 @@
 - type: entity
   id: BulletRocketAntiShipBekasC
-  name: ARR AR Bekas-C
+  name: BEKAS C (PRH)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -8,6 +8,10 @@
     sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
     layers:
       - state: he
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
   - type: Explosive
     explosionType: HardBomb
     maxIntensity: 50
@@ -18,15 +22,15 @@
     energyConsumption: 10000
     disableDuration: 30
   - type: TimedDespawn
-    lifetime: 500
+    lifetime: 600
   - type: PassiveRadioHeading
     seekRange: 1000
-    rotationSpeed: 2
+    rotationSpeed: 0.5
     guidanceAlgorithm: PurePursuit
     acceleration: 10
     topSpeed: 100
     initialSpeed: 30
-    FOV: 90
+    FOV: 40
     lockedIn: false
   - type: Destructible
     thresholds:
@@ -39,7 +43,7 @@
 
 - type: entity
   id: BulletRocketAntiShipBekasEMP
-  name: ARR AR Bekas-EM
+  name: BEKAS EMP (PRH)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -47,6 +51,10 @@
     sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
     layers:
       - state: blank
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
   - type: Explosive
     explosionType: HardBomb
     maxIntensity: 50
@@ -60,12 +68,12 @@
     lifetime: 500
   - type: PassiveRadioHeading
     seekRange: 1000
-    rotationSpeed: 2
+    rotationSpeed: 0.5
     guidanceAlgorithm: PurePursuit
     acceleration: 10
     topSpeed: 100
     initialSpeed: 30
-    FOV: 90
+    FOV: 40
     lockedIn: false
   - type: Destructible
     thresholds:
@@ -78,19 +86,23 @@
 
 - type: entity
   id: BulletRocketAntiShipBekasNuclear
-  name: ARR AR Bekas-N
+  name: BEKAS NUCLEAR (PRH)
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
     layers:
       - state: nuke
   - type: Explosive
     explosionType: DemolitionCharge
-    maxIntensity: 230
-    intensitySlope: 5
-    totalIntensity: 10000
+    maxIntensity: 30
+    intensitySlope: 3
+    totalIntensity: 20000
   - type: EmpOnTrigger
     range: 9
     energyConsumption: 10
@@ -99,12 +111,12 @@
     lifetime: 500
   - type: PassiveRadioHeading
     seekRange: 1000
-    rotationSpeed: 2
+    rotationSpeed: 0.5
     guidanceAlgorithm: PurePursuit
     acceleration: 10
     topSpeed: 100
     initialSpeed: 30
-    FOV: 90
+    FOV: 40
     lockedIn: false
   - type: Destructible
     thresholds:
