@@ -2,6 +2,7 @@
 using Content.Shared.Trigger.Components.Conditions;
 using Content.Shared.Verbs;
 using Robust.Shared.Random;
+using System.Numerics;
 
 namespace Content.Shared.Trigger.Systems;
 
@@ -14,6 +15,8 @@ public sealed partial class TriggerSystem
         SubscribeLocalEvent<ToggleTriggerConditionComponent, AttemptTriggerEvent>(OnToggleTriggerAttempt);
         SubscribeLocalEvent<RandomChanceTriggerConditionComponent, AttemptTriggerEvent>(OnRandomChanceTriggerAttempt);
         SubscribeLocalEvent<MindRoleTriggerConditionComponent, AttemptTriggerEvent>(OnMindRoleTriggerAttempt);
+        SubscribeLocalEvent<MinimumDistanceTriggerConditionComponent, MapInitEvent>(OnMinimumDistanceMapInit);
+        SubscribeLocalEvent<MinimumDistanceTriggerConditionComponent, AttemptTriggerEvent>(OnMinimumDistanceTriggerAttempt);
 
         SubscribeLocalEvent<ToggleTriggerConditionComponent, GetVerbsEvent<AlternativeVerb>>(OnToggleGetAltVerbs);
     }
@@ -113,5 +116,49 @@ public sealed partial class TriggerSystem
                 args.Cancelled = true; // the user does not have the required role
             }
         }
+    }
+
+    private void OnMinimumDistanceMapInit(Entity<MinimumDistanceTriggerConditionComponent> ent, ref MapInitEvent args)
+    {
+        CaptureStartPosition(ent);
+    }
+
+    private void OnMinimumDistanceTriggerAttempt(Entity<MinimumDistanceTriggerConditionComponent> ent,
+        ref AttemptTriggerEvent args)
+    {
+        if (args.Key != null && !ent.Comp.Keys.Contains(args.Key))
+            return;
+
+        if (ent.Comp.MinimumDistanceTiles <= 0f)
+            return;
+
+        if (ent.Comp.StartPosition == null || ent.Comp.StartMap == null)
+            CaptureStartPosition(ent);
+
+        if (ent.Comp.StartPosition == null || ent.Comp.StartMap == null)
+            return;
+
+        var mapCoords = _transform.GetMapCoordinates(ent);
+
+        if (mapCoords.MapId != ent.Comp.StartMap.Value)
+            return;
+
+        var tileSize = 1f;
+        if (_mapManager.TryFindGridAt(mapCoords, out _, out var gridComp))
+            tileSize = gridComp.TileSize;
+
+        if (tileSize <= 0f)
+            tileSize = 1f;
+
+        var distanceTiles = Vector2.Distance(mapCoords.Position, ent.Comp.StartPosition.Value) / tileSize;
+        if (distanceTiles < ent.Comp.MinimumDistanceTiles)
+            args.Cancelled = true;
+    }
+
+    private void CaptureStartPosition(Entity<MinimumDistanceTriggerConditionComponent> ent)
+    {
+        var mapCoords = _transform.GetMapCoordinates(ent);
+        ent.Comp.StartPosition = mapCoords.Position;
+        ent.Comp.StartMap = mapCoords.MapId;
     }
 }
