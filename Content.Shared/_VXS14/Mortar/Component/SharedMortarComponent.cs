@@ -40,5 +40,9 @@ namespace Content.Shared._VXS14.Mortar
 
         [ViewVariables(VVAccess.ReadWrite), DataField("targetOffsetY"), AutoNetworkedField]
         public float TargetOffsetY = 0f;
+
+        // Time the player must hold still after inserting a shell before it fires (controls rate of fire)
+        [ViewVariables(VVAccess.ReadWrite), DataField("loadDelay"), AutoNetworkedField]
+        public TimeSpan LoadDelay = TimeSpan.FromSeconds(2);
     }
 }
