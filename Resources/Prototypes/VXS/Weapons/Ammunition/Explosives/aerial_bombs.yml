@@ -49,3 +49,5 @@
     - trigger
     duration: 10
     spreadAmount: 20
+  - type: TimedDespawn
+    lifetime: 15
