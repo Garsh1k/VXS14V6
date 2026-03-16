@@ -30,9 +30,9 @@
   - type: DeleteOnTrigger
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
-    totalIntensity: 200
-    intensitySlope: 4
+    explosionType: DemolitionCharge
+    totalIntensity: 1000
+    intensitySlope: 10
     maxIntensity: 50
   - type: ContainerContainer
     containers:
