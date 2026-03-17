@@ -6,6 +6,15 @@
   name: Z-30
   suffix: 30mm
   components:
+    - type: WeaponMonitoringProfile
+      category: NavalGun
+      fov: 360
+      seekerType: No seeker (direct fire)
+      warheadType: Kinetic / HE / EMP
+      flightTime: 0
+      deviation: 0
+      projectileSpeed: 40
+      notes: Ship-based artillery system for direct fire. Effectively targets small and low-armored medium-sized ships.
     - type: Icon
       sprite: VXS/Weapons/Artillery/z30.rsi
       state: icon
@@ -162,6 +171,15 @@
     - type: ContentEye
       maxZoom: 2.5,2.5
       targetZoom: 2.0,2.0
+    - type: WeaponMonitoringProfile
+      category: NavalGun
+      fov: 360
+      seekerType: No seeker (direct fire)
+      warheadType: Kinetic / HE / EMP
+      flightTime: 0
+      deviation: 0
+      projectileSpeed: 40
+      notes: Ship-based artillery system for direct fire. Effectively targets small and low-armored medium-sized ships.
     - type: EyeCursorOffset
       maxOffset: 10
       pvsIncrease: 5.0
@@ -280,6 +298,15 @@
       drawdepth: Mobs
       layers:
         - state: icon
+    - type: WeaponMonitoringProfile
+      category: NavalGun
+      fov: 360
+      seekerType: No seeker (direct fire)
+      warheadType: Kinetic / HE / EMP
+      flightTime: 0
+      deviation: 0
+      projectileSpeed: 40
+      notes: Ship-based artillery system for direct fire. Effectively targets small and low-armored medium-sized ships.
     - type: ContentEye
       maxZoom: 3.5,3.5
       targetZoom: 3.0,3.0
@@ -399,6 +426,15 @@
       drawdepth: Mobs
       layers:
         - state: icon
+    - type: WeaponMonitoringProfile
+      category: NavalGun
+      fov: 360
+      seekerType: No seeker (direct fire)
+      warheadType: Kinetic / HE / EMP
+      flightTime: 0
+      deviation: 0
+      projectileSpeed: 40
+      notes: Ship-based artillery system for direct fire. Effectively engages naval targets.
     - type: ContentEye
       maxZoom: 2.5,2.5
       targetZoom: 2.0,2.0
@@ -520,6 +556,15 @@
       drawdepth: Mobs
       layers:
         - state: icon
+    - type: WeaponMonitoringProfile
+      category: NavalGun
+      fov: 360
+      seekerType: No seeker (direct fire)
+      warheadType: Kinetic / HE / EMP
+      flightTime: 0
+      deviation: 0
+      projectileSpeed: 40
+      notes: Ship-based artillery system for direct fire. Effectively engages naval targets.
     - type: ContentEye
       maxZoom: 3.5,3.5
       targetZoom: 3.0,3.0
@@ -639,6 +684,15 @@
     - type: ContentEye
       maxZoom: 3.5,3.5
       targetZoom: 3.0,3.0
+    - type: WeaponMonitoringProfile
+      category: NavalGun
+      fov: 360
+      seekerType: No seeker (direct fire)
+      warheadType: HE / EMP
+      flightTime: 0
+      deviation: 0
+      projectileSpeed: 40
+      notes: Ship-based torpedo launcher for direct fire. Effectively engages heavy-armored naval targets.
     - type: Eye
       pvsScale: 5
     - type: ContainerContainer

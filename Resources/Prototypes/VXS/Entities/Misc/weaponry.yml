@@ -1,0 +1,31 @@
+- type: entity
+  id: WeaponMonitoringConsole
+  parent: BaseComputer
+  name: weapon monitoring console
+  description: Displays all anti-ship missiles, aerial bombs and naval guns on the current ship.
+  components:
+  - type: WeaponMonitoringConsole
+  - type: Computer
+    board: WeaponMonitoringConsoleCircuitboard
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: power_monitor
+    - map: ["computerLayerKeys"]
+      state: power_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ActivatableUI
+    singleUser: false
+    key: enum.WeaponMonitoringConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.WeaponMonitoringConsoleUiKey.Key:
+        type: WeaponMonitoringConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface

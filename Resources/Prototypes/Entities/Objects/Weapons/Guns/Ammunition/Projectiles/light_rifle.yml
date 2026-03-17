@@ -13,6 +13,12 @@
     traumaCoefficient: 1 # VXS
   - type: StaminaDamageOnCollide # VXS
     damage: 40
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 1
+      Blunt: 1
+  - type: ProjectileTileStaminaFalloff # VXS
+    damageReductionPerTile: 1
   - type: TimedDespawn # VXS
     lifetime: 15
 
@@ -30,6 +36,12 @@
         Asphyxiation: 6 # VXS
         Heat: 3 # VXS
     traumaCoefficient: 1 # VXS
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 1
+      Blunt: 1
+  - type: ProjectileTileStaminaFalloff # VXS
+    damageReductionPerTile: 1
   - type: StaminaDamageOnCollide # VXS
     damage: 39
   - type: TimedDespawn # VXS
@@ -48,6 +60,12 @@
         Piercing: 66 # VXS
         Heat: 11 # VXS
     traumaCoefficient: 1 # VXS
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 1
+      Blunt: 1
+  - type: ProjectileTileStaminaFalloff # VXS
+    damageReductionPerTile: 1
   - type: StaminaDamageOnCollide # VXS
     damage: 26
   - type: TimedDespawn # VXS
@@ -65,6 +83,11 @@
         Radiation: 1 # VXS
         Piercing: 78 # VXS
     traumaCoefficient: 1 # VXS
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 1
+  - type: ProjectileTileStaminaFalloff # VXS
+    damageReductionPerTile: 1
   - type: StaminaDamageOnCollide # VXS
     damage: 22
   - type: TimedDespawn # VXS

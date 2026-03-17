@@ -14,6 +14,15 @@
     totalIntensity: 500
     intensitySlope: 1
     maxIntensity: 50
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 40
+    seekerType: Antiradar
+    warheadType: EMP and HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: It locks onto the radar signal from the enemy ship's shuttle control console. It is an extremely slow and fast missile, but the self-destruct mechanism does not activate until 10 minutes have passed.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1
@@ -43,6 +52,15 @@
     state: blank
   - type: StaticPrice
     price: 3000
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 40
+    seekerType: Antiradar
+    warheadType: EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: It locks onto the radar signal from the enemy ship's shuttle control console. It is an extremely slow and fast missile, but the self-destruct mechanism does not activate until 10 minutes have passed.
   - type: Explosive
     explosionType: Default
     totalIntensity: 300
@@ -82,6 +100,15 @@
     totalIntensity: 300
     intensitySlope: 1
     maxIntensity: 50
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 40
+    seekerType: Antiradar
+    warheadType: Thermonuclear
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: It locks onto the radar signal from the enemy ship's shuttle control console. It is an extremely slow and fast missile, but the self-destruct mechanism does not activate until 10 minutes have passed.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1

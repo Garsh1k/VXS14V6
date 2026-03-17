@@ -14,6 +14,15 @@
     totalIntensity: 100
     intensitySlope: 5
     maxIntensity: 4
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 50
+    seekerType: Active radar
+    warheadType: HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: Effectively engages medium-sized naval targets at medium ranges.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1
@@ -48,6 +57,15 @@
     totalIntensity: 100
     intensitySlope: 5
     maxIntensity: 4
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 50
+    seekerType: Active radar
+    warheadType: EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: Effectively engages medium-sized naval targets at medium ranges.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1
@@ -82,6 +100,15 @@
     totalIntensity: 100
     intensitySlope: 5
     maxIntensity: 4
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 50
+    seekerType: Active radar
+    warheadType: HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: Effectively engages medium-sized naval targets at medium ranges. Has radiodetonator.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1
@@ -116,6 +143,15 @@
     totalIntensity: 100
     intensitySlope: 5
     maxIntensity: 4
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 50
+    seekerType: Active radar
+    warheadType: EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: Effectively engages medium-sized naval targets at medium ranges. Has radiodetonator.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1
@@ -150,6 +186,15 @@
     totalIntensity: 100
     intensitySlope: 5
     maxIntensity: 4
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 50
+    seekerType: Active radar
+    warheadType: Thermonuclear
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 60
+    notes: Effectively engages naval targets at medium ranges.
   - type: Gun
     projectileSpeed: 60
     fireRate: 1
