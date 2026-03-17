@@ -9,7 +9,7 @@
     layers:
       - state: he
   - type: RadarMarker
-    color: Red
+    color: Yellow
     shape: Triangle
     showName: true
   - type: Explosive

@@ -34,7 +34,7 @@ public sealed class AerialBombSystem : EntitySystem
         var verb = new ExamineVerb
         {
             Text = Loc.GetString("aerial-bomb-verb-open"),
-            Act = () => OpenUi(uid, args.User)
+            Act = () => TryOpenUi(uid, args.User)
         };
 
         args.Verbs.Add(verb);
@@ -46,13 +46,14 @@ public sealed class AerialBombSystem : EntitySystem
             args.Handled = true;
     }
 
-    private void OpenUi(EntityUid bomb, EntityUid user)
+    public bool TryOpenUi(EntityUid bomb, EntityUid user)
     {
         if (!_player.TryGetSessionByEntity(user, out var session))
-            return;
+            return false;
 
         var eui = IoCManager.Resolve<EuiManager>();
         eui.OpenEui(new AerialBombEui(bomb), session);
+        return true;
     }
 
     public bool TryDropBomb(EntityUid bomb, MapId? selectedMapId, SharedAerialBombComponent? comp = null)

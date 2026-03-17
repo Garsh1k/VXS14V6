@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ArtilleryDetectionConsoleCircuitboard
+  name: artillery detection journal board
+  description: assadsasdasdadswef4vcfaewf
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ArtilleryDetectionConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: WeaponMonitoringConsoleCircuitboard
+  name: weapon monitoring console board
+  description: Circuit board for a console that displays all ship weapons on the current grid.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: WeaponMonitoringConsole

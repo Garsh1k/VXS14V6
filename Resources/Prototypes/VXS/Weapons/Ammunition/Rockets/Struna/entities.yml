@@ -39,6 +39,15 @@
         - CartridgeRocketAntiShipStrunaHE
     capacity: 1
     proto: CartridgeRocketAntiShipStrunaHE
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 60
+    seekerType: Infrared
+    warheadType: HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 100
+    notes: Effectively engages naval targets at short ranges.
 
 - type: entity
   id: WeaponRocketAntiShipStrunaEMP
@@ -73,6 +82,15 @@
         - CartridgeRocketAntiShipStrunaEMP
     capacity: 1
     proto: CartridgeRocketAntiShipStrunaEMP
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 60
+    seekerType: Infrared
+    warheadType: EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 100
+    notes: Effectively engages naval targets at short ranges.
 
 - type: entity
   id: WeaponRocketAntiShipStrunaRLS
@@ -107,6 +125,15 @@
         - CartridgeRocketAntiShipStrunaRLS
     capacity: 1
     proto: CartridgeRocketAntiShipStrunaRLS
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 60
+    seekerType: Infrared
+    warheadType: HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 100
+    notes: Effectively engages naval targets at short ranges. Has better radar and, target lock and maneuverability. Can engage targets at medium ranges.
 
 - type: entity
   id: WeaponRocketAntiShipStrunaNuclear
@@ -144,7 +171,15 @@
   - type: RadiationSource
     slope: 0.3
     intensity: 0.6
-
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 60
+    seekerType: Infrared
+    warheadType: HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 100
+    notes: Effectively engages naval targets at short ranges. Usage of this missile is considered a war crime.
 
 
 - type: entity
@@ -163,6 +198,15 @@
         - CartridgeRocketAntiShipStrunaHERD
     capacity: 1
     proto: CartridgeRocketAntiShipStrunaHERD
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 60
+    seekerType: Infrared
+    warheadType: HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 100
+    notes: Effectively engages naval targets at short ranges. Has radiodetonator.
 
 - type: entity
   id: WeaponRocketAntiShipStrunaEMPRD
@@ -180,3 +224,12 @@
         - CartridgeRocketAntiShipStrunaEMPRD
     capacity: 1
     proto: CartridgeRocketAntiShipStrunaEMPRD
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 60
+    seekerType: Infrared
+    warheadType: EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 100
+    notes: Effectively engages naval targets at short ranges. Has radiodetonator.

@@ -64,6 +64,15 @@
     proto: CartridgeRocketAntiShipSwitchbladeHE
   - type: FlashOnTrigger
     range: 5
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 0
+    seekerType: Unguided
+    warheadType: Tandem HE
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 25
+    notes: Effectively engages heavy armored naval targets at short ranges.
 
 - type: entity
   id: WeaponRocketAntiShipSwitchbladeEMP
@@ -88,6 +97,15 @@
         - CartridgeRocketAntiShipSwitchbladeEMP
     capacity: 1
     proto: CartridgeRocketAntiShipSwitchbladeEMP
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 0
+    seekerType: Unguided
+    warheadType: Tandem EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 25
+    notes: Effectively engages electronic systems of heavy armored naval targets at short ranges.
 
 - type: entity
   id: WeaponRocketAntiShipAwlC
@@ -112,3 +130,12 @@
         - CartridgeRocketAntiShipAwlC
     capacity: 1
     proto: CartridgeRocketAntiShipAwlC
+  - type: WeaponMonitoringProfile
+    category: AntiShipMissile
+    fov: 0
+    seekerType: Unguided
+    warheadType: Tandem HE and EMP
+    flightTime: 0
+    deviation: 0
+    projectileSpeed: 25
+    notes: Effectively engages heavy armored naval targets at short ranges.

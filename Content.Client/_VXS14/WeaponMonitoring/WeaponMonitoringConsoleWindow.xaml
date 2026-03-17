@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'weapon-monitoring-window-title'}"
+                      Resizable="False"
+                      SetSize="1120 750"
+                      MinSize="1120 750">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" SetWidth="460" Margin="10 10 5 10">
+                <controls:StripeBack>
+                    <PanelContainer>
+                        <RichTextLabel Name="StationName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 3"/>
+                    </PanelContainer>
+                </controls:StripeBack>
+
+                <BoxContainer Orientation="Horizontal" Margin="0 8 0 8">
+                    <Label Text="{Loc 'weapon-monitoring-window-weapons-list'}" HorizontalExpand="True"/>
+                    <Button Name="RefreshButton" Text="{Loc 'weapon-monitoring-window-refresh'}" />
+                </BoxContainer>
+
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+                    <ItemList Name="WeaponsList" />
+                </ScrollContainer>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="5 10 10 10">
+                <Label Name="SelectedWeaponName" Text="{Loc 'weapon-monitoring-window-no-selection'}" StyleClasses="LabelBig" Margin="0 0 0 8"/>
+
+                <GridContainer Columns="2">
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-category'}"/>
+                    <Label Name="CategoryValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-fov'}"/>
+                    <Label Name="FovValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-seeker'}"/>
+                    <Label Name="SeekerValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-warhead'}"/>
+                    <Label Name="WarheadValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-flight-time'}"/>
+                    <Label Name="FlightTimeValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-deviation'}"/>
+                    <Label Name="DeviationValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-projectile-speed'}"/>
+                    <Label Name="ProjectileSpeedValue" Text="-" Margin="10 0 0 0"/>
+                </GridContainer>
+
+                <BoxContainer Orientation="Horizontal" Margin="0 12 0 0">
+                    <Button Name="SetBombTargetButton" Text="{Loc 'weapon-monitoring-window-action-bomb'}"/>
+                    <Button Name="ControlGunButton" Text="{Loc 'weapon-monitoring-window-action-gun'}" Margin="8 0 0 0"/>
+                    <Button Name="LaunchRocketButton" Text="{Loc 'weapon-monitoring-window-action-rocket'}" Margin="8 0 0 0"/>
+                </BoxContainer>
+
+                <Label Text="{Loc 'weapon-monitoring-window-notes'}" Margin="0 12 0 4"/>
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                    <RichTextLabel Name="NotesValue" Margin="8"/>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer StyleClasses="LowDivider" />
+            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
+                <Label Text="{Loc 'weapon-monitoring-window-flavor-left'}" StyleClasses="WindowFooterText" />
+                <Label Text="{Loc 'weapon-monitoring-window-flavor-right'}" StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Right" HorizontalExpand="True" Margin="0 0 5 0" />
+                <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered"
+                            VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
