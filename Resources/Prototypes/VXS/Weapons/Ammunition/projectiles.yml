@@ -134,8 +134,22 @@
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Structural
+    traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 45
+  - type: ProjectileTileDamageFalloff
+    damageReductions:
+      Piercing: 0.2
+      Blunt: 0.2
+  - type: ProjectileTileStaminaFalloff
+    damageReductionPerTile: 1
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 2.5
+    drop: false
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
   - type: TimedDespawn
     lifetime: 25
   - type: Sprite
@@ -161,6 +175,19 @@
     penetrationDamageTypeRequirement:
     - Structural
     traumaCoefficient: 2.5
+  - type: ProjectileTileDamageFalloff
+    damageReductions:
+      Piercing: 0.2
+      Blunt: 0.2
+  - type: ProjectileTileStaminaFalloff
+    damageReductionPerTile: 1
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 2.5
+    drop: false
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
   - type: StaminaDamageOnCollide
     damage: 45
   - type: TimedDespawn
@@ -184,6 +211,19 @@
     traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 90
+  - type: ProjectileTileDamageFalloff
+    damageReductions:
+      Piercing: 0.15
+      Blunt: 0.15
+  - type: ProjectileTileStaminaFalloff
+    damageReductionPerTile: 0.5
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 2.5
+    drop: true
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
   - type: TimedDespawn
     lifetime: 30
   - type: Sprite
@@ -212,6 +252,19 @@
     traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
     damage: 50
+  - type: ProjectileTileDamageFalloff
+    damageReductions:
+      Piercing: 0.15
+      Blunt: 0.15
+  - type: ProjectileTileStaminaFalloff
+    damageReductionPerTile: 0.5
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 2.5
+    drop: true
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
   - type: TimedDespawn
     lifetime: 20
   - type: Sprite
@@ -238,6 +291,19 @@
     penetrationDamageTypeRequirement:
     - Structural
     traumaCoefficient: 2.5
+  - type: ProjectileTileDamageFalloff
+    damageReductions:
+      Piercing: 0.15
+      Blunt: 0.15
+  - type: ProjectileTileStaminaFalloff
+    damageReductionPerTile: 0.5
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 2.5
+    drop: true
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
   - type: StaminaDamageOnCollide
     damage: 50
   - type: TimedDespawn

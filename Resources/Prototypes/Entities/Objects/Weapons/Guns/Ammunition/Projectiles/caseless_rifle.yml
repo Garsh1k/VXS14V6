@@ -13,6 +13,12 @@
     traumaCoefficient: 1 # VXS
   - type: StaminaDamageOnCollide # VXS
     damage: 9
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 1
+      Blunt: 1
+  - type: ProjectileTileStaminaFalloff # VXS
+    damageReductionPerTile: 1
   - type: TimedDespawn # VXS
     lifetime: 10
   - type: Ammo # VXS

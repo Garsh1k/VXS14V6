@@ -212,6 +212,13 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             return;
 
         component.Shooter = shooterId;
+
+        if (TryComp<ProjectileTileDamageFalloffComponent>(id, out var falloff))
+            falloff.StartCoordinates = Transform(id).Coordinates.ToMap(EntityManager, _transform);
+
+        if (TryComp<ProjectileTileStaminaFalloffComponent>(id, out var staminaFalloff))
+            staminaFalloff.StartCoordinates = Transform(id).Coordinates.ToMap(EntityManager, _transform);
+
         Dirty(id, component);
     }
 

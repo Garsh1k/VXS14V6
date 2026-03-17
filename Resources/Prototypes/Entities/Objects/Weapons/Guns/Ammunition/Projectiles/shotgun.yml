@@ -48,8 +48,11 @@
       types:
         Piercing: 10
         Structural: 15
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 0.5
   - type: TimedDespawn # VXS
-    lifetime: 1
+    lifetime: 1.5
 
 - type: entity
   id: PelletShotgunSpread
@@ -87,8 +90,8 @@
   components:
   - type: ProjectileSpread
     proto: PelletShotgunIncendiary
-    count: 5
-    spread: 10
+    count: 6 # VXS
+    spread: 6 # VXS
 
 - type: entity
   id: PelletShotgunPractice

@@ -22,6 +22,12 @@
     - Structural
     traumaCoefficient: 2.5
   - type: StaminaDamageOnCollide
-    damage: 99 # VXS
+    damage: 125 # VXS
+  - type: ProjectileTileDamageFalloff # VXS
+    damageReductions:
+      Piercing: 1
+      Blunt: 2
+  - type: ProjectileTileStaminaFalloff # VXS
+    damageReductionPerTile: 10
   - type: TimedDespawn # VXS
     lifetime: 30
