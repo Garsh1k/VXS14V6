@@ -5,8 +5,10 @@ using Content.Shared._VXS14.AerialBomb;
 using Content.Shared._VXS14.WeaponMonitoring;
 using Content.Shared._VXS14.WeaponMonitoring.Components;
 using Content.Shared.Mind;
-using Content.Shared.Trigger.Systems;
+using Content.Shared.Trigger.Components.Effects;
 using Content.Shared.UserInterface;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._VXS14.WeaponMonitoring;
@@ -15,7 +17,7 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AerialBombSystem _aerialBombSystem = default!;
-    [Dependency] private readonly TriggerSystem _triggerSystem = default!;
+    [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
     private const float UpdateInterval = 1.0f;
@@ -101,7 +103,11 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
                 break;
 
             case WeaponMonitoringControlAction.LaunchRocket:
-                _triggerSystem.Trigger(target, actor);
+                if (!TryComp<GunComponent>(target, out var gun))
+                    return;
+                _gun.AttemptShoot(target, gun);
+                if (HasComp<DeleteOnTriggerComponent>(target))
+                    QueueDel(target);
                 break;
         }
     }

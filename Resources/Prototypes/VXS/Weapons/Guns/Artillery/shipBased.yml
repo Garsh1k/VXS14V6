@@ -758,15 +758,6 @@
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
-    - type: WeaponMonitoringProfile
-      category: NavalGun
-      fov: 360
-      seekerType: No seeker (direct fire)
-      warheadType: HE / EMP
-      flightTime: 0
-      deviation: 0
-      projectileSpeed: 40
-      notes: Ship-based torpedo launcher for direct fire. Effectively engages heavy-armored naval targets.
     - type: Destructible
       thresholds:
         - trigger:
