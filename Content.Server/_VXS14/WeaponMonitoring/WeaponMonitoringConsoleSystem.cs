@@ -5,10 +5,12 @@ using Content.Shared._VXS14.AerialBomb;
 using Content.Shared._VXS14.WeaponMonitoring;
 using Content.Shared._VXS14.WeaponMonitoring.Components;
 using Content.Shared.Mind;
+using Content.Shared.Parallax.Biomes;
 using Content.Shared.Trigger.Components.Effects;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
+using Robust.Shared.Map;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._VXS14.WeaponMonitoring;
@@ -19,6 +21,7 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly AerialBombSystem _aerialBombSystem = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     private const float UpdateInterval = 1.0f;
     private float _updateAccumulator;
@@ -71,12 +74,15 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
         if (!actor.Valid)
             return;
 
+        if (IsPlanetMap(Transform(ent.Owner).MapID))
+            return;
+
         var target = GetEntity(args.Entity);
         if (!target.Valid || !EntityManager.EntityExists(target))
             return;
 
-        if (!TryComp<TransformComponent>(ent.Owner, out var consoleXform) ||
-            !TryComp<TransformComponent>(target, out var targetXform) ||
+        if (!TryComp(ent.Owner, out TransformComponent? consoleXform) ||
+            !TryComp(target, out TransformComponent? targetXform) ||
             consoleXform.GridUid != targetXform.GridUid)
         {
             return;
@@ -119,8 +125,9 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
 
         var entries = new List<WeaponMonitoringConsoleEntry>();
         var consoleGrid = consoleXform.GridUid;
+        var planetaryMap = IsPlanetMap(consoleXform.MapID);
 
-        if (consoleGrid != null)
+        if (!planetaryMap && consoleGrid != null)
         {
             var query = EntityQueryEnumerator<WeaponMonitoringProfileComponent, TransformComponent, MetaDataComponent>();
             while (query.MoveNext(out var uid, out var profile, out var xform, out var meta))
@@ -131,6 +138,7 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
                 entries.Add(new WeaponMonitoringConsoleEntry
                 {
                     Entity = GetNetEntity(uid),
+                    Coordinates = GetNetCoordinates(xform.Coordinates),
                     Name = meta.EntityName,
                     Category = profile.Category,
                     Fov = profile.Fov,
@@ -155,7 +163,18 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
 
         _ui.SetUiState(consoleUid, WeaponMonitoringConsoleUiKey.Key, new WeaponMonitoringConsoleState
         {
-            Entries = entries
+            Entries = entries,
+            ConsoleGrid = consoleGrid == null ? null : GetNetEntity(consoleGrid.Value),
+            PlanetaryMap = planetaryMap,
         });
+    }
+
+    private bool IsPlanetMap(MapId mapId)
+    {
+        if (!_map.MapExists(mapId))
+            return false;
+
+        var mapUid = _map.GetMapOrInvalid(mapId);
+        return HasComp<BiomeComponent>(mapUid);
     }
 }

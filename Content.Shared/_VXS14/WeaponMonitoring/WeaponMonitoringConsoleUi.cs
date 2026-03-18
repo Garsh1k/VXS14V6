@@ -1,4 +1,5 @@
 using Content.Shared._VXS14.WeaponMonitoring.Components;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._VXS14.WeaponMonitoring;
@@ -13,6 +14,8 @@ public enum WeaponMonitoringConsoleUiKey : byte
 public sealed class WeaponMonitoringConsoleState : BoundUserInterfaceState
 {
     public List<WeaponMonitoringConsoleEntry> Entries = new();
+    public NetEntity? ConsoleGrid;
+    public bool PlanetaryMap;
 }
 
 [Serializable, NetSerializable]
@@ -24,6 +27,7 @@ public sealed class RequestWeaponMonitoringRefreshMessage : BoundUserInterfaceMe
 public sealed class WeaponMonitoringConsoleEntry
 {
     public NetEntity Entity;
+    public NetCoordinates Coordinates;
     public string Name = string.Empty;
     public WeaponMonitoringCategory Category;
     public float? Fov;
@@ -38,7 +42,7 @@ public sealed class WeaponMonitoringConsoleEntry
 [Serializable, NetSerializable]
 public sealed class WeaponMonitoringControlActionMessage : BoundUserInterfaceMessage
 {
-    public NetEntity Entity;
+    public new NetEntity Entity;
     public WeaponMonitoringControlAction Action;
 
     public WeaponMonitoringControlActionMessage(NetEntity entity, WeaponMonitoringControlAction action)

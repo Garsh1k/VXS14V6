@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:ui="clr-namespace:Content.Client.Pinpointer.UI"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       Title="{Loc 'weapon-monitoring-window-title'}"
-                      Resizable="False"
-                      SetSize="1120 750"
-                      MinSize="1120 750">
+                      Resizable="True"
+                      SetSize="1300 820"
+                      MinSize="900 600">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+
+            <!-- Left panel: station name, weapon list, details, action buttons, notes -->
             <BoxContainer Orientation="Vertical" SetWidth="460" Margin="10 10 5 10">
                 <controls:StripeBack>
                     <PanelContainer>
@@ -22,10 +25,8 @@
                 <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
                     <ItemList Name="WeaponsList" />
                 </ScrollContainer>
-            </BoxContainer>
 
-            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="5 10 10 10">
-                <Label Name="SelectedWeaponName" Text="{Loc 'weapon-monitoring-window-no-selection'}" StyleClasses="LabelBig" Margin="0 0 0 8"/>
+                <Label Name="SelectedWeaponName" Text="{Loc 'weapon-monitoring-window-no-selection'}" StyleClasses="LabelBig" Margin="0 8 0 4"/>
 
                 <GridContainer Columns="2">
                     <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-category'}"/>
@@ -50,17 +51,29 @@
                     <Label Name="ProjectileSpeedValue" Text="-" Margin="10 0 0 0"/>
                 </GridContainer>
 
-                <BoxContainer Orientation="Horizontal" Margin="0 12 0 0">
+                <BoxContainer Orientation="Horizontal" Margin="0 8 0 0">
                     <Button Name="SetBombTargetButton" Text="{Loc 'weapon-monitoring-window-action-bomb'}"/>
                     <Button Name="ControlGunButton" Text="{Loc 'weapon-monitoring-window-action-gun'}" Margin="8 0 0 0"/>
                     <Button Name="LaunchRocketButton" Text="{Loc 'weapon-monitoring-window-action-rocket'}" Margin="8 0 0 0"/>
                 </BoxContainer>
 
-                <Label Text="{Loc 'weapon-monitoring-window-notes'}" Margin="0 12 0 4"/>
+                <Label Text="{Loc 'weapon-monitoring-window-notes'}" Margin="0 8 0 4"/>
                 <PanelContainer VerticalExpand="True" HorizontalExpand="True">
                     <RichTextLabel Name="NotesValue" Margin="8"/>
                 </PanelContainer>
             </BoxContainer>
+
+            <!-- Right panel: tactical map filling all remaining space -->
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="5 10 10 10">
+                <Label Text="{Loc 'weapon-monitoring-window-map'}" Margin="0 0 0 4"/>
+                <ui:NavMapControl Name="WeaponsMap" VerticalExpand="True" HorizontalExpand="True" />
+                <Label Name="PlanetaryDisabledLabel"
+                       Text="{Loc 'weapon-monitoring-window-planetary-disabled'}"
+                       Visible="False"
+                       Margin="0 8 0 0"
+                       Modulate="#ff7676"/>
+            </BoxContainer>
+
         </BoxContainer>
 
         <BoxContainer Orientation="Vertical">

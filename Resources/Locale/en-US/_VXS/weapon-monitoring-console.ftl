@@ -1,6 +1,7 @@
 weapon-monitoring-window-title = Weapon Monitoring Console
 weapon-monitoring-window-station-name = [bold]{$stationName}[/bold]
 weapon-monitoring-window-weapons-list = Weapons on current grid
+weapon-monitoring-window-map = Weaponry systems map
 weapon-monitoring-window-refresh = Refresh
 weapon-monitoring-window-no-selection = No weapon selected
 weapon-monitoring-window-category = Category:
@@ -23,5 +24,6 @@ weapon-monitoring-window-speed-value = {$value} m/s
 weapon-monitoring-window-category-missile = Anti-ship missile
 weapon-monitoring-window-category-bomb = Aerial bomb
 weapon-monitoring-window-category-gun = Naval gun
+weapon-monitoring-window-planetary-disabled = Console is unavailable on planets.
 weapon-monitoring-window-flavor-left = WEAPONS MONITORING
-weapon-monitoring-window-flavor-right = VXS Shipboard Tactical Network
+weapon-monitoring-window-flavor-right = Shipboard Tactical Network
