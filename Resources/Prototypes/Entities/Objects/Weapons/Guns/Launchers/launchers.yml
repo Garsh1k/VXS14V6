@@ -126,6 +126,9 @@
     fireRate: 0.5
     soundGunshot:
       path: /Audio/VXS/Gunshots/Launcher/launcher2.ogg # VXS
+  - type: VXSBackblastLauncher
+    projectileProto: BulletBackblastRPG22
+    speed: 26
   - type: BallisticAmmoProvider
     whitelist:
       tags:
