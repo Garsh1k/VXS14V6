@@ -94,7 +94,7 @@
     sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
     state: nuke
   - type: StaticPrice
-    price: 3000
+    price: 20000
   - type: Explosive
     explosionType: Default
     totalIntensity: 300

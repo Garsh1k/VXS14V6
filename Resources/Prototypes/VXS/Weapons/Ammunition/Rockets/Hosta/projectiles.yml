@@ -61,9 +61,9 @@
   - type: MinimumDistanceTriggerCondition
     minimumDistanceTiles: 10
   - type: EmpOnTrigger
-    range: 8
+    range: 10
     energyConsumption: 10000
-    disableDuration: 10
+    disableDuration: 15
   - type: TimedDespawn
     lifetime: 100
   - type: VXSActiveRadioHeading
