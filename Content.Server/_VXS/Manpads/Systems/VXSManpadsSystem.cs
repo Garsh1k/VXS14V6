@@ -7,6 +7,8 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Trigger;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared._VXS.Manpads.Components;
+using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Audio;
 using Robust.Shared.Map;
@@ -26,6 +28,7 @@ public sealed class VXSManpadsSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly GunSystem _gun = default!;
 
     public override void Initialize()
     {
@@ -38,11 +41,56 @@ public sealed class VXSManpadsSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
+        var defenseQuery = EntityQueryEnumerator<VXSManpadsAutoDefenseComponent, VXSManpadsLauncherComponent, GunComponent, TransformComponent>();
+        while (defenseQuery.MoveNext(out var uid, out var defense, out var launcher, out var gun, out var xform))
+        {
+            if (!defense.Enabled)
+                continue;
+
+            if (IsSpaceMap(xform.MapID, launcher.PreferredSpaceMapName))
+            {
+                launcher.CurrentTarget = null;
+                continue;
+            }
+
+            if (_timing.CurTime >= defense.NextScan)
+            {
+                defense.NextScan = _timing.CurTime + TimeSpan.FromSeconds(Math.Max(0.1f, defense.ScanInterval));
+
+                var position = _transform.GetMapCoordinates(uid, xform).Position;
+                var target = FindNearestHostileShip(position, launcher, defense.ScanRadius);
+                var changed = target != launcher.CurrentTarget;
+
+                launcher.CurrentTarget = target;
+
+                if (changed && target is not null && _timing.CurTime >= launcher.NextLockSound)
+                {
+                    launcher.NextLockSound = _timing.CurTime + TimeSpan.FromSeconds(Math.Max(0.1f, launcher.LockSoundCooldown));
+                    _audio.PlayEntity(launcher.LockSound, Filter.Pvs(uid), uid, true);
+                }
+            }
+
+            if (_timing.CurTime < defense.NextFire)
+                continue;
+
+            var currentTarget = launcher.CurrentTarget;
+            if (currentTarget is null || TerminatingOrDeleted(currentTarget.Value))
+                continue;
+
+            if (!_gun.AttemptShoot(uid, gun))
+                continue;
+
+            defense.NextFire = _timing.CurTime + TimeSpan.FromSeconds(Math.Max(0.1f, defense.FireInterval));
+        }
+
         var launcherQuery = EntityQueryEnumerator<VXSManpadsLauncherComponent>();
         while (launcherQuery.MoveNext(out var uid, out var launcher))
         {
             if (launcher.Holder is not { } holder || TerminatingOrDeleted(holder))
             {
+                if (HasComp<VXSManpadsAutoDefenseComponent>(uid))
+                    continue;
+
                 launcher.Holder = null;
                 launcher.CurrentTarget = null;
                 continue;
@@ -54,7 +102,7 @@ public sealed class VXSManpadsSystem : EntitySystem
             launcher.NextScan = _timing.CurTime + TimeSpan.FromSeconds(Math.Max(0.1f, launcher.ScanInterval));
 
             var holderPos = _transform.GetMapCoordinates(holder).Position;
-            var newTarget = FindNearestHostileShip(holderPos, launcher);
+            var newTarget = FindNearestHostileShip(holderPos, launcher, launcher.ScanRadius);
             var changed = newTarget != launcher.CurrentTarget;
 
             launcher.CurrentTarget = newTarget;
@@ -74,17 +122,23 @@ public sealed class VXSManpadsSystem : EntitySystem
 
             transfer.PendingTransfer = false;
 
-            if (transfer.Target is { } transferTarget && !TerminatingOrDeleted(transferTarget))
-            {
-                var transferTargetXform = Transform(transferTarget);
-                transfer.Destination = _transform.GetMapCoordinates(transferTarget, transferTargetXform);
-            }
-
             if (!_map.MapExists(transfer.Destination.MapId))
                 continue;
 
             _transform.SetMapCoordinates(uid, transfer.Destination);
             _transform.AttachToGridOrMap(uid, xform);
+
+            Vector2? transferDirection = null;
+            if (transfer.Target is { } transferTarget && !TerminatingOrDeleted(transferTarget))
+            {
+                var targetCoords = _transform.GetMapCoordinates(transferTarget);
+                var toTarget = targetCoords.Position - transfer.Destination.Position;
+                if (toTarget.LengthSquared() > 0.0001f)
+                {
+                    transferDirection = Vector2.Normalize(toTarget);
+                    _transform.SetWorldRotation(xform, transferDirection.Value.ToWorldAngle());
+                }
+            }
 
             var heading = CompOrNull<VXSActiveThrusterRadioHeadingComponent>(uid);
             if (heading != null && heading.TargetEntity is null && transfer.Target is not null)
@@ -100,7 +154,7 @@ public sealed class VXSManpadsSystem : EntitySystem
 
                 if (speed > 0f)
                 {
-                    var direction = _transform.GetWorldRotation(xform).ToWorldVec();
+                    var direction = transferDirection ?? _transform.GetWorldRotation(xform).ToWorldVec();
                     _physics.SetLinearVelocity(uid, direction * speed, body: body);
                 }
             }
@@ -153,7 +207,7 @@ public sealed class VXSManpadsSystem : EntitySystem
         if ((target is null || TerminatingOrDeleted(target.Value)) && ent.Comp.Holder is { } holder && !TerminatingOrDeleted(holder))
         {
             var holderPos = _transform.GetMapCoordinates(holder).Position;
-            target = FindNearestHostileShip(holderPos, ent.Comp);
+            target = FindNearestHostileShip(holderPos, ent.Comp, ent.Comp.ScanRadius);
             ent.Comp.CurrentTarget = target;
         }
 
@@ -166,7 +220,8 @@ public sealed class VXSManpadsSystem : EntitySystem
         if (!_map.MapExists(targetMap))
             return;
 
-        var targetMapCoords = _transform.GetMapCoordinates(targetUid, targetXform);
+        var launcherMapCoords = _transform.GetMapCoordinates(ent);
+        var launcherOnTargetMap = new MapCoordinates(launcherMapCoords.Position, targetMap);
 
         foreach (var projectile in args.FiredProjectiles)
         {
@@ -184,7 +239,7 @@ public sealed class VXSManpadsSystem : EntitySystem
 
             transfer.PendingTransfer = true;
             transfer.TransferAt = _timing.CurTime + TimeSpan.FromSeconds(Math.Max(0.01f, seconds));
-            transfer.Destination = targetMapCoords;
+            transfer.Destination = launcherOnTargetMap;
             transfer.Target = targetUid;
 
             var heading = CompOrNull<VXSActiveThrusterRadioHeadingComponent>(projectile);
@@ -193,7 +248,7 @@ public sealed class VXSManpadsSystem : EntitySystem
         }
     }
 
-    private EntityUid? FindNearestHostileShip(Vector2 holderPos, VXSManpadsLauncherComponent launcher)
+    private EntityUid? FindNearestHostileShip(Vector2 holderPos, VXSManpadsLauncherComponent launcher, float radius)
     {
         var closestDistSq = float.MaxValue;
         EntityUid? closest = null;
@@ -212,7 +267,7 @@ public sealed class VXSManpadsSystem : EntitySystem
 
             var gridPos = _transform.GetMapCoordinates(gridUid, gridXform).Position;
             var distanceSq = Vector2.DistanceSquared(holderPos, gridPos);
-            if (distanceSq > launcher.ScanRadius * launcher.ScanRadius)
+            if (distanceSq > radius * radius)
                 continue;
 
             if (distanceSq >= closestDistSq)

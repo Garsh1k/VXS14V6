@@ -1,0 +1,22 @@
+- type: entity
+  id: CartridgeRocketTrubostrelAA
+  name: 9K23E4 Trubostrel AA rocket
+  description: A rocket used by the 9K23 Trubostrel anti-air system. It is equipped with a semi-active radar homing guidance system, which allows it to track targets illuminated by the launcher's radar.
+  parent: BaseItem
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketTrubostrelAA
+    deleteOnSpawn: true
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.3
+    sprintModifier: 0.3
+  - type: StaticPrice
+    price: 1500
+  - type: Item
+    size: Ginormous
+    sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/chir.rsi
+    layers:
+    - state: trubostrel

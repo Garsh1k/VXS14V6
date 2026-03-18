@@ -1,0 +1,42 @@
+- type: entity
+  id: BulletRocketTrubostrelAA
+  name: Trubostrel (SARH)
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/plut.rsi
+    layers:
+      - state: icon
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 11
+    intensitySlope: 3
+    totalIntensity: 100
+  - type: TimedDespawn
+    lifetime: 50
+  - type: VXSActiveRadioHeading
+    seekRange: 500
+    rotationSpeed: 6
+    guidanceAlgorithm: PredictiveGuidance
+    acceleration: 0
+    topSpeed: 100
+    initialSpeed: 100
+    FOV: 50
+    lockedIn: true
+  - type: VXSManpadsProjectileTransfer
+    transferSpeed: 450
+    transferDistance: 1200
+  - type: VXSManpadsSpaceExplosionOnly
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
