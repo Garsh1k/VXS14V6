@@ -1,0 +1,42 @@
+- type: entity
+  id: BulletRocketPlutMANPADS
+  name: PLUT (IR)
+  parent: BaseBulletRocketAntiShip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: VXS/Weapons/Ammunition/Explosives/plut.rsi
+    layers:
+      - state: icon
+  - type: RadarMarker
+    color: Red
+    shape: Triangle
+    showName: true
+  - type: Explosive
+    explosionType: HardBomb
+    maxIntensity: 11
+    intensitySlope: 3
+    totalIntensity: 100
+  - type: TimedDespawn
+    lifetime: 50
+  - type: VXSActiveThrusterRadioHeading
+    seekRange: 100
+    rotationSpeed: 12
+    guidanceAlgorithm: PurePursuit
+    acceleration: 15
+    topSpeed: 95
+    initialSpeed: 45
+    FOV: 70
+    retargetWindow: 5
+  - type: VXSManpadsProjectileTransfer
+    transferSpeed: 450
+    transferDistance: 1200
+  - type: VXSManpadsSpaceExplosionOnly
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

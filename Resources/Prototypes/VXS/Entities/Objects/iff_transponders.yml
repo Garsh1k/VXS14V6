@@ -1,0 +1,72 @@
+- type: entity
+  id: BaseVXSIffTransponder
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: VXSIffTransponder
+    iffType: SF
+  - type: Sprite
+    sprite: VXS/Structures/Machines/ews.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    noRot: false
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.17,0.25,-0.17,-0.30"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: VXSIffTransponderSF
+  parent: BaseVXSIffTransponder
+  name: SF IFF transponder
+  components:
+  - type: VXSIffTransponder
+    iffType: SF
+
+- type: entity
+  id: VXSIffTransponderSyndicate
+  parent: BaseVXSIffTransponder
+  name: Syndicate IFF transponder
+  components:
+  - type: VXSIffTransponder
+    iffType: Syndicate
