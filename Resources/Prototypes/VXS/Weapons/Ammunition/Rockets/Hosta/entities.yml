@@ -180,7 +180,7 @@
     sprite: VXS/Weapons/Ammunition/Explosives/hosta.rsi
     state: aex
   - type: StaticPrice
-    price: 2500
+    price: 25000
   - type: Explosive
     explosionType: Default
     totalIntensity: 100
