@@ -1,6 +1,6 @@
 - type: entity
   id: BulletRocketAntiShipSwitchbladeHE
-  name: ASM-875T Switchblade-ARH
+  name: ASM-875T Switchblade
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -44,7 +44,7 @@
 
 - type: entity
   id: BulletRocketAntiShipSwitchbladeEMP
-  name: ASM-875EMP Switchblade-ARH
+  name: ASM-875EMP Switchblade
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
