@@ -11,6 +11,8 @@
   - type: RadarMarker
     color: Red
     shape: Circle
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 4
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -53,6 +55,8 @@
   - type: RadarMarker
     color: Blue
     shape: Circle
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 4
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -93,6 +97,8 @@
   - type: RadarMarker
     color: Red
     shape: Circle
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 4
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile

@@ -17,6 +17,8 @@
     maxIntensity: 50
     intensitySlope: 10
     totalIntensity: 1000
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 30
   - type: EmpOnTrigger
     range: 8
     energyConsumption: 10000
@@ -55,6 +57,8 @@
     color: Red
     shape: Triangle
     showName: true
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 30
   - type: Explosive
     explosionType: HardBomb
     maxIntensity: 50
@@ -94,6 +98,8 @@
     color: Red
     shape: Triangle
     showName: true
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 30
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/bekas.rsi
     layers:
