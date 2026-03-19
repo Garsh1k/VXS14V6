@@ -1,6 +1,6 @@
 - type: entity
   id: WeaponRocketAntiShipSwitchbladeHE
-  name: ASM-875T Switchblade # Тандемный c радаром
+  name: ASM-875T Switchblade # Тандемный
   parent: ShuttleGunBase
   description: Short-range anti-ship missile with a tandem warhead.
   components:

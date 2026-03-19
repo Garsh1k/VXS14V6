@@ -17,7 +17,7 @@
   - type: TimedDespawn
     lifetime: 50
   - type: VXSRetarget
-    chanceToRetarget: 0.2
+    chanceToRetarget: 0.1
   - type: RadarMarker
     color: Blue
     shape: Triangle

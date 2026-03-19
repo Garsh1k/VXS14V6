@@ -126,8 +126,8 @@
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 20
-    pvsIncrease: 0.20
+    maxOffset: 20 # VXS
+    pvsIncrease: 2 # VXS
   - type: StaticPrice
     price: 3500
 

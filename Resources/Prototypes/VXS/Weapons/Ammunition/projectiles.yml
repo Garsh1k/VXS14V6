@@ -117,6 +117,28 @@
     MaxVelocity: 18
     MinVelocity: 10
 
+- type: entity
+  id: BulletBackblastRPG22
+  name: backblast
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+      - state: muzzle_bullet
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 25
+        Heat: 45
+  - type: ProjectileTileDamageFalloff
+    damageReductions:
+      Blunt: 10
+      Heat: 10
+  - type: TimedDespawn
+    lifetime: 0.10
+
 # Sniper
 
 - type: entity

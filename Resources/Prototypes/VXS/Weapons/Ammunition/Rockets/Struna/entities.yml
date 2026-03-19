@@ -96,7 +96,7 @@
   id: WeaponRocketAntiShipStrunaRLS
   name: SSR-100IRHMC Frostbush # ХЕ но ГСН пизже
   parent: BaseWeaponRocketAntiShip
-  description: Short-range anti-ship missile with infrared-guided guidance head. An attempt by the designers to design an improved version of the string. It is recommended to launch on the move, sometimes this missile can turn around and hit the ship that launched it. HE warhead from the string is unchanged.
+  description: Short-range anti-ship missile with infrared-guided guidance head. An attempt by the designers to design an improved version of the string.
   components:
   - type: Sprite
     sprite: VXS/Weapons/Ammunition/Explosives/struna.rsi

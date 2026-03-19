@@ -17,6 +17,8 @@
     color: Red
     shape: Triangle
     showName: true
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 10
   - type: TimedDespawn
     lifetime: 100
   - type: VXSActiveRadioHeading
@@ -56,10 +58,12 @@
     maxIntensity: 30
     intensitySlope: 5
     totalIntensity: 200
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 10
   - type: EmpOnTrigger
-    range: 8
+    range: 10
     energyConsumption: 10000
-    disableDuration: 10
+    disableDuration: 15
   - type: TimedDespawn
     lifetime: 100
   - type: VXSActiveRadioHeading
@@ -91,6 +95,8 @@
     layers:
       - state: he_rd
   - type: TriggerOnEnterGrid
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 10
 
 - type: entity
   id: BulletRocketAntiShipHostaEMPRD
@@ -103,6 +109,8 @@
     layers:
       - state: emp_rd
   - type: TriggerOnEnterGrid
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 10
 
 - type: entity
   id: BulletRocketAntiShipHostaN
@@ -127,6 +135,8 @@
     range: 10
     energyConsumption: 100000
     disableDuration: 60
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 10
   - type: TimedDespawn
     lifetime: 100
   - type: VXSActiveRadioHeading

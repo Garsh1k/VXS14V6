@@ -23,7 +23,7 @@
     ignited: true
     temperature: 1000
   - type: VXSRetargetThruster
-    chanceToRetarget: 0.2
+    chanceToRetarget: 0.1
   - type: TimedDespawn
     lifetime: 6
   - type: AmbientSound

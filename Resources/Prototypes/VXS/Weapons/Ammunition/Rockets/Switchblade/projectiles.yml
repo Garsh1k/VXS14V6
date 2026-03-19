@@ -1,6 +1,6 @@
 - type: entity
   id: BulletRocketAntiShipSwitchbladeHE
-  name: ASM-875T Switchblade-ARH
+  name: ASM-875T Switchblade
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -11,6 +11,8 @@
   - type: RadarMarker
     color: Red
     shape: Circle
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 4
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -42,7 +44,7 @@
 
 - type: entity
   id: BulletRocketAntiShipSwitchbladeEMP
-  name: ASM-875EMP Switchblade-ARH
+  name: ASM-875EMP Switchblade
   parent: BaseBulletRocketAntiShip
   categories: [ HideSpawnMenu ]
   components:
@@ -53,6 +55,8 @@
   - type: RadarMarker
     color: Blue
     shape: Circle
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 4
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile
@@ -93,6 +97,8 @@
   - type: RadarMarker
     color: Red
     shape: Circle
+  - type: MinimumDistanceTriggerCondition
+    minimumDistanceTiles: 4
   - type: TimedDespawn
     lifetime: 50
   - type: Projectile

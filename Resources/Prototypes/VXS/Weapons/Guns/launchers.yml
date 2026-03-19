@@ -6,6 +6,9 @@
   id: WeaponLauncherHandheldDisposalThermobaric
   description: Handheld Assault Disposable Grenade Launcher Thermobaric. Used against enemy fortifications and infantry. Shoot and forget.
   components:
+  - type: VXSBackblastLauncher
+    projectileProto: BulletBackblastRPG22
+    speed: 26
   - type: Item
     size: Large
   - type: Sprite
@@ -40,6 +43,9 @@
   id: WeaponLauncherHandheldDisposalCumulative
   description: Handheld Assault Disposable Grenade Launcher Cumulative. Used against heavy fortifications and armored vehicles. Shoot and forget.
   components:
+  - type: VXSBackblastLauncher
+    projectileProto: BulletBackblastRPG22
+    speed: 26
   - type: Item
     size: Large
   - type: Sprite
@@ -67,3 +73,68 @@
     proto: CartridgeRocketHADGLCumulative
     capacity: 1
   - type: Appearance
+
+- type: entity
+  name: Plut-Z1 MANPADS
+  suffix: Solfed IFF
+  parent: BaseWeaponLauncher
+  id: WeaponLauncherMANPADSPlutSF
+  description: Portable anti-ship launcher with infrared homing. The warhead is incapable of singlehandly destroying a ship, but it can cause its detonation if it hits the ammunition. It has a built-in IFF system.
+  components:
+  - type: VXSBackblastLauncher
+    projectileProto: BulletBackblastRPG22
+    speed: 20
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: VXS/Weapons/Launchers/plut.rsi
+    layers:
+      - state: icon
+        map: [ "enum.GunVisualLayers.Base" ]
+  - type: Clothing
+    sprite: VXS/Weapons/Launchers/plut.rsi
+  - type: Gun
+    cameraRecoilScalar: 50
+    projectileSpeed: 50
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/VXS/Gunshots/Launcher/launcher2.ogg
+      params:
+        maxDistance: 50
+        volume: 2
+  - type: VXSManpadsLauncher
+    scanRadius: 200
+    scanInterval: 0.5
+    lockSound:
+      path: /Audio/VXS/Weaponry/manpadslock.ogg
+    lockSoundCooldown: 0.1
+    friendlyTransponders:
+    - SF
+  - type: BallisticAmmoProvider
+    whitelist:
+      entities:
+      - CartridgeRocketPlutMANPADS
+    cycleable: false
+    autoCycle: false
+    proto: CartridgeRocketPlutMANPADS
+    capacity: 1
+  - type: Appearance
+
+- type: entity
+  name: Plut-Z1 MANPADS
+  suffix: Syndicate IFF
+  parent: WeaponLauncherMANPADSPlutSF
+  id: WeaponLauncherMANPADSPlutSyndicate
+  description: Portable anti-ship launcher with infrared homing. The warhead is incapable of singlehandly destroying a ship, but it can cause its detonation if it hits the ammunition. It has a built-in IFF system.
+  components:
+  - type: VXSBackblastLauncher
+    projectileProto: BulletBackblastRPG22
+    speed: 20
+  - type: VXSManpadsLauncher
+    scanRadius: 200
+    scanInterval: 0.5
+    lockSound:
+      path: /Audio/VXS/Weaponry/manpadslock.ogg
+    lockSoundCooldown: 0.1
+    friendlyTransponders:
+    - Syndicate

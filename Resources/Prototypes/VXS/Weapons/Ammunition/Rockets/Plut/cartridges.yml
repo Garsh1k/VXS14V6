@@ -1,0 +1,9 @@
+- type: entity
+  id: CartridgeRocketPlutMANPADS
+  name: Plut MANPADS authorization keys
+  categories: [ HideSpawnMenu ]
+  parent: BaseCartridgeRocketAntiShip
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketPlutMANPADS
+    deleteOnSpawn: true
