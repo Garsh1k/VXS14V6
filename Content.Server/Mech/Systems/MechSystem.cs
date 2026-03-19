@@ -75,7 +75,11 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
         SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
         #endregion
+
+        InitializeADT();
     }
+
+    partial void InitializeADT();
 
     private void OnMechCanMoveEvent(EntityUid uid, MechComponent component, UpdateCanMoveEvent args)
     {
@@ -287,6 +291,8 @@ public sealed partial class MechSystem : SharedMechSystem
     private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
     {
         var ev = new MechEquipmentUiMessageRelayEvent(args);
+        if (component.PilotSlot.ContainedEntity.HasValue)
+            ev.Pilot = GetNetEntity(component.PilotSlot.ContainedEntity.Value);
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         var argEquip = GetEntity(args.Equipment);
 
