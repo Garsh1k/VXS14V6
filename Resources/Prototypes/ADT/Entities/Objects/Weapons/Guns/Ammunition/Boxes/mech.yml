@@ -5,7 +5,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/ultra_box.rsi
+    sprite: ADT_mechs/ultra_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: lightrifle
@@ -20,7 +20,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/shotgun_box.rsi
+    sprite: ADT_mechs/shotgun_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: shotgun
@@ -34,7 +34,7 @@
   name: ammo box FNX-99 "Hades"
   components:
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/hades_box.rsi
+    sprite: ADT_mechs/hades_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: lightrifleincendiary
@@ -49,7 +49,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/sniper_box.rsi
+    sprite: ADT_mechs/sniper_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: sniper
@@ -64,7 +64,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/granade_box.rsi
+    sprite: ADT_mechs/granade_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: granade
@@ -79,7 +79,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/plasma_box.rsi
+    sprite: ADT_mechs/plasma_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: plasma
