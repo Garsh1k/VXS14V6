@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Mech.Components;
+using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
@@ -20,11 +21,20 @@ using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Content.Shared.Wires;
+using Content.Server.Body.Systems;
+using Content.Shared.Tools.Systems;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
+using Content.Shared.Whitelist;
+using Content.Server.Emp;
+using Robust.Server.Audio;
+using Content.Shared.Access.Systems;
+using Content.Shared.Access.Components;
+using Robust.Shared.Random;
+using Content.Shared.ADT.Mech;
+using Content.Shared.Mech.Equipment.Components;
 
 namespace Content.Server.Mech.Systems;
 
@@ -41,8 +51,9 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
-
-    private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -65,21 +76,19 @@ public sealed partial class MechSystem : SharedMechSystem
 
 
         SubscribeLocalEvent<MechPilotComponent, ToolUserAttemptUseEvent>(OnToolUseAttempt);
-        SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnInhale);
+        // SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnInhale);  // ADT Commented
         SubscribeLocalEvent<MechPilotComponent, ExhaleLocationEvent>(OnExhale);
         SubscribeLocalEvent<MechPilotComponent, AtmosExposedGetAirEvent>(OnExpose);
 
         SubscribeLocalEvent<MechAirComponent, GetFilterAirEvent>(OnGetFilterAir);
 
         #region Equipment UI message relays
-        SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
-        SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
+        // SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);    // ADT - Moved to Shared
+        // SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);  // ADT - Moved to Shared
         #endregion
 
-        InitializeADT();
+        InitializeADT();    // ADT tweak
     }
-
-    partial void InitializeADT();
 
     private void OnMechCanMoveEvent(EntityUid uid, MechComponent component, UpdateCanMoveEvent args)
     {
@@ -99,7 +108,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        if (_toolSystem.HasQuality(args.Used, PryingQuality) && component.BatterySlot.ContainedEntity != null)
+        if (_toolSystem.HasQuality(args.Used, "Prying") && component.BatterySlot.ContainedEntity != null)
         {
             var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.BatteryRemovalDelay,
                 new RemoveBatteryEvent(), uid, target: uid, used: args.Target)
@@ -163,6 +172,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         RemoveEquipment(uid, equip, component);
+        UpdateUserInterface(uid);   // ADT Mech
     }
 
     private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
@@ -242,6 +252,15 @@ public sealed partial class MechSystem : SharedMechSystem
             _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
             return;
         }
+        // ADT Content start
+        if (TryComp<AccessReaderComponent>(uid, out var accesscomponent) && !_accessReader.IsAllowed(args.User, uid, accesscomponent))
+        {
+            _popup.PopupEntity(Loc.GetString("gateway-access-denied"), args.User);
+            _audio.PlayPvs(component.AccessDeniedSound, uid);
+            args.Handled = true;
+            return;
+        }
+        // ADT Content end
 
         TryInsert(uid, args.Args.User, component);
         _actionBlocker.UpdateCanMove(uid);
@@ -263,6 +282,14 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         var integrity = component.MaxIntegrity - args.Damageable.TotalDamage;
         SetIntegrity(uid, integrity, component);
+
+        // ADT Mech start
+        if (component.Integrity <= component.DamageToDesEqi && !component.Broken && _random.Prob(0.5f) && component.CurrentSelectedEquipment != null)
+        {
+            var ev = new MechEquipmentDestroyedEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
+        // ADT Mech end
 
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
@@ -288,20 +315,19 @@ public sealed partial class MechSystem : SharedMechSystem
         UpdateUserInterface(uid, component);
     }
 
-    private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
-    {
-        var ev = new MechEquipmentUiMessageRelayEvent(args);
-        if (component.PilotSlot.ContainedEntity.HasValue)
-            ev.Pilot = GetNetEntity(component.PilotSlot.ContainedEntity.Value);
-        var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        var argEquip = GetEntity(args.Equipment);
+    // ADT Moved to shared
+    // private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
+    // {
+    //     var ev = new MechEquipmentUiMessageRelayEvent(args);
+    //     var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+    //     var argEquip = GetEntity(args.Equipment);
 
-        foreach (var equipment in allEquipment)
-        {
-            if (argEquip == equipment)
-                RaiseLocalEvent(equipment, ev);
-        }
-    }
+    //     foreach (var equipment in allEquipment)
+    //     {
+    //         if (argEquip == equipment)
+    //             RaiseLocalEvent(equipment, ev);
+    //     }
+    // }
 
     public override void UpdateUserInterface(EntityUid uid, MechComponent? component = null)
     {
@@ -320,6 +346,8 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             EquipmentStates = ev.States
         };
+        Dirty(uid, component);  // ADT Mech
+
         _ui.SetUiState(uid, MechUiKey.Key, state);
     }
 
@@ -391,17 +419,18 @@ public sealed partial class MechSystem : SharedMechSystem
     }
 
     #region Atmos Handling
-    private void OnInhale(EntityUid uid, MechPilotComponent component, InhaleLocationEvent args)
-    {
-        if (!TryComp<MechComponent>(component.Mech, out var mech) ||
-            !TryComp<MechAirComponent>(component.Mech, out var mechAir))
-        {
-            return;
-        }
+    // private void OnInhale(EntityUid uid, MechPilotComponent component, InhaleLocationEvent args) // ADT - Moved to shared
+    // {
+    //     if (!TryComp<MechComponent>(component.Mech, out var mech) ||
+    //         !TryComp<MechAirComponent>(component.Mech, out var mechAir))
+    //     {
+    //         return;
+    //     }
 
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
-    }
+    //     if (mech.Airtight)
+    //         args.Gas = mechAir.Air;
+    // }
+    // ADT Commented
 
     private void OnExhale(EntityUid uid, MechPilotComponent component, ExhaleLocationEvent args)
     {
@@ -426,7 +455,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (mech.Airtight && TryComp(component.Mech, out MechAirComponent? air))
         {
             args.Handled = true;
-            args.Gas = air.Air;
+            args.Gas = mech.Airtight ? air.Air : _atmosphere.GetContainingMixture(component.Mech);  // ADT Tweak
             return;
         }
 

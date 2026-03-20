@@ -74,13 +74,14 @@ public abstract partial class SharedMechSystem
     {
         if (!_timing.IsFirstTimePredicted)
             return;
+        var ev = new MechEquipmentUiMessageRelayEvent(args, GetNetEntity(component.PilotSlot.ContainedEntity));
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         var argEquip = GetEntity(args.Equipment);
 
         foreach (var equipment in allEquipment)
         {
             if (argEquip == equipment)
-                RaiseLocalEvent(equipment);
+                RaiseLocalEvent(equipment, ev);
         }
     }
 }

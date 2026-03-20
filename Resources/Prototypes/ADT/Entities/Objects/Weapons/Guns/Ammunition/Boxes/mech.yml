@@ -5,7 +5,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/ultra_box.rsi
+    sprite: VXS1/Weapons/Ammo/ultra_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: lightrifle
@@ -64,7 +64,7 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: Resources/Textures/ADT_mechs/granade_box.rsi
+    sprite: VXS1/Weapons/Ammo/granade_box.rsi
     state: icon
   - type: MechMagazine
     magazinetype: granade
@@ -83,6 +83,21 @@
     state: icon
   - type: MechMagazine
     magazinetype: plasma
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: BoxAmmo57mm
+  name: 57mm ammo box
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: VXS1/Weapons/Ammo/57mmbox.rsi
+    state: 57mm-box
+  - type: MechMagazine
+    magazinetype: 57mm
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

@@ -5,8 +5,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Content.Shared.Emp;
-using Content.Shared.ADT.Mech;
+using Content.Server.Emp;
 using Content.Shared.Mech.Equipment.Components;
 
 namespace Content.Server.Mech.Systems;
@@ -14,17 +13,13 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem
 {
-    [Dependency] private readonly SharedMechSystem _mech = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-
-    partial void InitializeADT()
+    private void InitializeADT()
     {
         SubscribeLocalEvent<MechComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<MechComponent, DamageModifyEvent>(OnDamageModify);
         SubscribeLocalEvent<MechComponent, MechEquipmentDestroyedEvent>(OnEquipmentDestroyed);
         SubscribeLocalEvent<MechComponent, MechTurnLightsEvent>(OnTurnLightsEvent);
         SubscribeLocalEvent<MechComponent, MechInhaleEvent>(OnToggleInhale);
-        SubscribeLocalEvent<MechComponent, MechGunReloadMessage>(ReceiveEquipmentUiMesssages);
     }
 
     private void OnToggleInhale(EntityUid uid, MechComponent component, MechInhaleEvent args)
@@ -59,16 +54,9 @@ public sealed partial class MechSystem
 
     private void OnEquipmentDestroyed(EntityUid uid, MechComponent component, ref MechEquipmentDestroyedEvent args)
     {
-        if (!component.CurrentSelectedEquipment.HasValue)
-            return;
-
         Spawn("EffectSparks", Transform(uid).Coordinates);
+        QueueDel(component.CurrentSelectedEquipment);
         _audio.PlayPvs(component.EquipmentDestroyedSound, uid);
-
-        var equipment = component.CurrentSelectedEquipment.Value;
-        _mech.RemoveEquipment(uid, equipment, component, forced: true);
-
-        QueueDel(equipment);
     }
 
     private void OnEmpPulse(EntityUid uid, MechComponent comp, ref EmpPulseEvent args)
