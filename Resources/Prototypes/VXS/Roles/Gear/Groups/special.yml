@@ -11,7 +11,7 @@
 - type: loadoutGroup
   id: SpecialSyndyMarksman
   name: loadout-group-vxs-special
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
   - SpecialSyndyMarksmanLoadout

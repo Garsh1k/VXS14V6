@@ -4,4 +4,5 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - HatSolarFASTHelmet
   - HatMercHelmet

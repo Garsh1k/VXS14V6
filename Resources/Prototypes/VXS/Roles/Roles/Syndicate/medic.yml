@@ -13,6 +13,8 @@
   - !type:AgeRequirement # Maximum 45
     requiredAge: 45
     inverted: true
+  - !type:SexRequirement
+    sexes: [Male]
   access:
   - Maintenance
   - External

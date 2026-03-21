@@ -10,3 +10,15 @@
   - GlovesBlackStandartFingerless
   - GlovesCombatMercenaryFingerless
   - GlovesCombatMercenaryCombat
+
+- type: loadoutGroup
+  id: GlovesSyndicateStandartissue
+  name: loadout-group-vxs-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - GlovesCombatStandartissue
+  - GlovesBlackStandart
+  - GlovesBlackStandartFingerless
+  - GlovesCombatMercenaryFingerless
+  - GlovesCombatMercenaryCombat

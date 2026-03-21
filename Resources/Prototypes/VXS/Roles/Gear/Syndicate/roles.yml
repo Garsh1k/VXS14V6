@@ -3,7 +3,7 @@
   groups:
   - GlassesSolfedStandartissue
   - ShoesCombatStandartissue
-  - GlovesCombatStandartissue
+  - GlovesSyndicateStandartissue
   - ArmorPlatesStandartissue
   - ArmorPlatecarriersStandartissue
   - MasksStandartissue
@@ -12,8 +12,8 @@
   - OuterSyndicate
   - UniformsSyndicate
   - WeaponsSyndyOperative
-  - BeltsSyndy
-  - BackpacksLoadoutGeneral
+  - BeltsSyndyCommander
+  - BackpacksLoadoutGeneralNoHeavy
   - MedkitLoadout
 
 - type: roleLoadout
@@ -21,7 +21,7 @@
   groups:
   - GlassesSolfedStandartissue
   - ShoesCombatStandartissue
-  - GlovesCombatStandartissue
+  - GlovesSyndicateStandartissue
   - ArmorPlatesStandartissue
   - ArmorPlatecarriersStandartissue
   - MasksStandartissue
@@ -30,7 +30,7 @@
   - OuterSyndicate
   - UniformsSyndicate
   - WeaponsSyndyOperative
-  - BeltsSyndy
+  - BeltsSyndyOperative
   - BackpacksLoadoutGeneral
   - MedkitLoadout
 
@@ -39,7 +39,7 @@
   groups:
   - GlassesSolfedStandartissue
   - ShoesCombatStandartissue
-  - GlovesCombatStandartissue
+  - GlovesSyndicateStandartissue
   - ArmorPlatesStandartissue
   - ArmorPlatecarriersStandartissue
   - MasksStandartissue
@@ -52,14 +52,13 @@
   - BeltsSyndyMarksman
   - BackpacksLoadoutGeneral
   - MedkitLoadout
-  - SpecialSyndyMarksman
 
 - type: roleLoadout
   id: JobSyndyAssaulter
   groups:
   - GlassesSolfedStandartissue
   - ShoesCombatStandartissue
-  - GlovesCombatStandartissue
+  - GlovesSyndicateStandartissue
   - ArmorPlatesStandartissue
   - ArmorPlatecarriersStandartissue
   - MasksStandartissue
@@ -68,7 +67,7 @@
   - OuterSyndicate
   - UniformsSyndicate
   - WeaponsSyndyAssaulter
-  - BeltsSyndy
+  - BeltsSyndyAssaulter
   - BackpacksLoadoutGeneral
   - MedkitLoadout
 
@@ -77,33 +76,28 @@
   groups:
   - GlassesSolfedStandartissue
   - ShoesCombatStandartissue
-  - GlovesCombatStandartissue
+  - GlovesSyndicateStandartissue
   - ArmorPlatesStandartissue
-  - ArmorPlatecarriersStandartissue
   - MasksStandartissue
   - HeadsSyndicate
   - NeckSyndicate
-  - OuterSyndicate
   - UniformsSyndicate
   - WeaponsSyndyOperative
-  - BeltsSyndy
-  - BackpacksLoadoutCorpsman
-  - MedkitLoadout
+  - BeltsSyndyMedic
+  - BackpacksLoadoutCorpsmanNoHeavy
 
 - type: roleLoadout
   id: JobSyndyPilot
   groups:
   - GlassesSolfedStandartissue
   - ShoesCombatStandartissue
-  - GlovesCombatStandartissue
+  - GlovesSyndicateStandartissue
   - ArmorPlatesStandartissue
-  - ArmorPlatecarriersStandartissue
   - MasksStandartissue
   - HeadsSyndicate
   - NeckSyndicate
-  - OuterSyndicate
   - UniformsSyndicate
   - WeaponsSyndyPilot
-  - BeltsSyndy
-  - BackpacksLoadoutGeneral
+  - BeltsSyndyPilot
+  - BackpacksLoadoutGeneralNoHeavy
   - MedkitLoadout

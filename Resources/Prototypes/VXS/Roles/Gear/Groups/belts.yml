@@ -56,6 +56,26 @@
   - ClothingBeltMilitaryWebbingLecterGrenadesLoadout
 
 - type: loadoutGroup
+  id: BeltsSyndyCommander
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingM90Loadout
+  - ClothingBeltMilitaryWebbingVereskLoadout
+  - ClothingBeltMilitaryWebbingC20rLoadout
+
+- type: loadoutGroup
+  id: BeltsSyndyOperative
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingM90Loadout
+  - ClothingBeltMilitaryWebbingVereskLoadout
+  - ClothingBeltMilitaryWebbingC20rLoadout
+
+- type: loadoutGroup
   id: BeltsSyndyMarksman
   name: loadout-group-vxs-belts
   minLimit: 1
@@ -64,3 +84,34 @@
   - ClothingBeltMilitaryWebbingSvyatLoadout
   - ClothingBeltMilitaryWebbingHristovLoadout
   - ClothingBeltMilitaryWebbingVereskLoadout
+
+- type: loadoutGroup
+  id: BeltsSyndyAssaulter
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingM90Loadout
+  - ClothingBeltMilitaryWebbingVereskLoadout
+  - ClothingBeltMilitaryWebbingC20rLoadout
+  - ClothingBeltMilitaryWebbingBulldogLoadout
+  - ClothingBeltMilitaryWebbingL6Loadout
+
+- type: loadoutGroup
+  id: BeltsSyndyMedic
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingM90Loadout
+  - ClothingBeltMilitaryWebbingVereskLoadout
+  - ClothingBeltMilitaryWebbingC20rLoadout
+
+- type: loadoutGroup
+  id: BeltsSyndyPilot
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingVereskLoadout
+  - ClothingBeltMilitaryWebbingC20rLoadout
