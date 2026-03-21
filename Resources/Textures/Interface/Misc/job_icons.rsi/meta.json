@@ -228,6 +228,12 @@
         },
         {
             "name": "SyndieScientist"
+        },
+        {
+            "name": "SFRifleman"
+        },
+        {
+            "name": "SFPilot"
         }
     ]
 }

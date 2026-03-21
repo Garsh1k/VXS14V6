@@ -1,0 +1,61 @@
+- type: loadoutGroup
+  id: BeltsSolfedRifleman
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingLecter
+  - ClothingBeltMilitaryWebbingLecterCrowbarLoadout
+  - ClothingBeltMilitaryWebbingLecterGrenadesLoadout
+
+- type: loadoutGroup
+  id: BeltsSolfedSeniorRifleman
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingLecter
+  - ClothingBeltMilitaryWebbingLecterCrowbarLoadout
+  - ClothingBeltMilitaryWebbingLecterGrenadesLoadout
+  - ClothingBeltMilitaryWebbingRPKLoadout
+  - ClothingBeltMilitaryWebbingExhaustLoadout
+
+- type: loadoutGroup
+  id: BeltsSolfedEngineer
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingLecter
+  - ClothingBeltMilitaryWebbingLecterCrowbarLoadout
+  - ClothingBeltMilitaryWebbingEngineeringLecterLoadout
+  - ClothingBeltMilitaryWebbingEngineeringWTLoadout
+  - ClothingBeltMilitaryWebbingWTLoadout
+
+- type: loadoutGroup
+  id: BeltsSolfedCorpsman
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingLecter
+  - ClothingBeltMilitaryWebbingLecterCrowbarLoadout
+  - ClothingBeltMilitaryWebbingWTLoadout
+
+- type: loadoutGroup
+  id: BeltsSyndy
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingWTLoadout
+  - ClothingBeltMilitaryWebbingLecterGrenadesLoadout
+
+- type: loadoutGroup
+  id: BeltsSyndyMarksman
+  name: loadout-group-vxs-belts
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBeltMilitaryWebbingExhaustLoadout
+  - ClothingBeltMilitaryWebbingWTLoadout
