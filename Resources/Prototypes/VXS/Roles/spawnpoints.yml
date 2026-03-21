@@ -4,6 +4,8 @@
   name: Solfed Rifleman spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SolfedRifleman
   - type: Sprite
     layers:
@@ -16,6 +18,8 @@
   name: Solfed Senior Rifleman spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SolfedSeniorRifleman
   - type: Sprite
     layers:
@@ -28,6 +32,8 @@
   name: Solfed Engineer spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SolfedEngineer
   - type: Sprite
     layers:
@@ -40,6 +46,8 @@
   name: Solfed Corpsman spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SolfedCorpsman
   - type: Sprite
     layers:
@@ -52,6 +60,8 @@
   name: Solfed Commander spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SolfedCommander
   - type: Sprite
     layers:
@@ -64,6 +74,8 @@
   name: Solfed Pilot spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SolfedPilot
   - type: Sprite
     layers:
@@ -76,6 +88,8 @@
   name: Syndy Commander spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SyndyCommander
   - type: Sprite
     layers:
@@ -88,6 +102,8 @@
   name: Syndy Operative spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SyndyOperative
   - type: Sprite
     layers:
@@ -100,6 +116,8 @@
   name: Syndy Marksman spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SyndyMarksman
   - type: Sprite
     layers:
@@ -112,6 +130,8 @@
   name: Syndy Assaulter spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SyndyAssaulter
   - type: Sprite
     layers:
@@ -124,6 +144,8 @@
   name: Syndy Combat Medic spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SyndyMedic
   - type: Sprite
     layers:
@@ -136,6 +158,8 @@
   name: Syndy Pilot spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: SyndyPilot
   - type: Sprite
     layers:

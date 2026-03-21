@@ -1,0 +1,25 @@
+- type: gameMap
+  id: HvorostovoBengalsk
+  mapName: Hvorostovo Bengalsk
+  mapPath: /Maps/VXS/HvorostovoBengalsk.yml
+  minPlayers: 0
+  stations:
+    HvorostovoBengalsk:
+      stationProto: SolfedPlanetMap
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Hvorostovo-Bengalsk"
+        - type: StationJobs
+          availableJobs:
+            SolfedCommander: [ 1, 1 ]
+            SolfedRifleman: [ -1, -1 ]
+            SolfedCorpsman: [ 3, 3 ]
+            SolfedEngineer: [ 3, 3 ]
+            SolfedPilot: [ 1, 1 ]
+            SolfedSeniorRifleman: [ 5, 5 ]
+            SyndyAssaulter: [ 5, 5 ]
+            SyndyCommander: [ 3, 3 ]
+            SyndyMarksman: [ 3, 3 ]
+            SyndyMedic: [ 3, 3 ]
+            SyndyOperative: [ -1, -1 ]
+            SyndyPilot: [ 1, 1 ]

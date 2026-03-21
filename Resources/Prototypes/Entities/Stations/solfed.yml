@@ -1,0 +1,9 @@
+# VXS
+- type: entity
+  id: SolfedPlanetMap
+  parent:
+    - BaseStation
+    - BaseStationJobsSpawning
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
