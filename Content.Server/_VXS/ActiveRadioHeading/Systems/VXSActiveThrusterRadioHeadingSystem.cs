@@ -32,6 +32,17 @@ public sealed class VXSActiveThrusterRadioHeadingSystem : EntitySystem
 
             _physics.SetLinearVelocity(uid, _transform.GetWorldRotation(xform).ToWorldVec() * comp.Speed);
 
+            // Handle Type-3 ECCM inertial flight: skip guidance and target search while active.
+            if (TryComp<VXSCountermeasureResistanceComponent>(uid, out var eccm) &&
+                eccm.Type == CountermeasureResistanceType.InertialFlight &&
+                eccm.InInertialFlight)
+            {
+                if (_timing.CurTime >= eccm.InertialFlightEndTime)
+                    eccm.InInertialFlight = false; // timer expired — fall through to normal logic below
+                else
+                    continue; // still in inertial flight, fly straight
+            }
+
             if (!TerminatingOrDeleted(comp.TargetEntity))
             {
                 if ((comp.GuidanceAlgorithm & GuidanceType.PredictiveGuidance) != 0)

@@ -30,6 +30,9 @@
     initialSpeed: 50
     FOV: 60
     retargetWindow: 4
+  - type: VXSCountermeasureResistance
+    type: FovNarrowing
+    narrowedFOV: 15
   - type: Destructible
     thresholds:
     - trigger:
@@ -75,6 +78,9 @@
     initialSpeed: 50
     FOV: 60
     retargetWindow: 4
+  - type: VXSCountermeasureResistance
+    type: FovNarrowing
+    narrowedFOV: 15
   - type: Destructible
     thresholds:
     - trigger:
@@ -117,6 +123,9 @@
     FOV: 60
     lockedIn: true
     retargetWindow: 10
+  - type: VXSCountermeasureResistance
+    type: FovNarrowing
+    narrowedFOV: 15
   - type: Destructible
     thresholds:
     - trigger:

@@ -5,6 +5,7 @@ using Content.Shared._VXS.Manpads.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Projectiles;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._VXS.ActiveRadioHeading.Systems;
 
@@ -14,6 +15,7 @@ public sealed class VXSActiveRadioHeadingSystem : EntitySystem
     [Dependency] private readonly RotateToFaceSystem _rotate = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Update(float frameTime)
     {
@@ -29,6 +31,17 @@ public sealed class VXSActiveRadioHeadingSystem : EntitySystem
                 comp.Speed = comp.TopSpeed;
 
             _physics.SetLinearVelocity(uid, _transform.GetWorldRotation(xform).ToWorldVec() * comp.Speed);
+
+            // Handle Type-3 ECCM inertial flight: skip guidance and target search while active.
+            if (TryComp<VXSCountermeasureResistanceComponent>(uid, out var eccm) &&
+                eccm.Type == CountermeasureResistanceType.InertialFlight &&
+                eccm.InInertialFlight)
+            {
+                if (_timing.CurTime >= eccm.InertialFlightEndTime)
+                    eccm.InInertialFlight = false; // timer expired — fall through to normal logic below
+                else
+                    continue; // still in inertial flight, fly straight
+            }
 
             if (!TerminatingOrDeleted(comp.TargetEntity)) // also checks for nullity
             {

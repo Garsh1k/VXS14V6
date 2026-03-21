@@ -30,6 +30,9 @@
     initialSpeed: 20
     FOV: 50
     lockedIn: true
+  - type: VXSCountermeasureResistance
+    type: InertialFlight
+    inertialFlightDuration: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -75,6 +78,9 @@
     initialSpeed: 20
     FOV: 50
     lockedIn: true
+  - type: VXSCountermeasureResistance
+    type: InertialFlight
+    inertialFlightDuration: 4
   - type: Destructible
     thresholds:
     - trigger:
