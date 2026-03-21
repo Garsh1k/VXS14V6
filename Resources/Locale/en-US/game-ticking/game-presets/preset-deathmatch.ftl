@@ -4,6 +4,12 @@ death-match-description = Kill anything that moves! Normal roleplay need not app
 pointcapture-title = Point Capture
 pointcapture-description = Kill guys from enemy team, dont kill guys from your team and dont die. Capture points, friendly points making ticket bleed for enemy team bigger.
 
+ticket-battle-title = Ticket Battle
+ticket-battle-description = Two teams (Solfed vs Syndicate) start with 100 tickets. Every death deducts that role's ticket cost. The first team to reach 0 tickets loses!
+ticket-battle-victory-solfed = [bold][color=blue]Solfed wins the battle![/color][/bold]
+ticket-battle-victory-syndy = [bold][color=red]Syndicate wins the battle![/color][/bold]
+ticket-battle-score = Final score — Solfed: { $solfed } | Syndicate: { $syndy }
+
 death-match-name-player = [bold]{$name}[/bold] ([italic]{$username}[/italic])
 death-match-name-npc = [bold]{$name}[/bold]
 death-match-assist = {$primary}, assisted by {$secondary},
