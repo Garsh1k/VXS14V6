@@ -11,6 +11,7 @@ weapon-monitoring-window-warhead = Warhead type:
 weapon-monitoring-window-flight-time = Flight time:
 weapon-monitoring-window-deviation = Deviation:
 weapon-monitoring-window-projectile-speed = Projectile speed:
+weapon-monitoring-window-locked-target = Locked target:
 weapon-monitoring-window-action-bomb = Set bomb target
 weapon-monitoring-window-action-gun = Control gun
 weapon-monitoring-window-action-rocket = Launch rocket

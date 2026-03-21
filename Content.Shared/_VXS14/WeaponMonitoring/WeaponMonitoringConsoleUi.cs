@@ -36,6 +36,7 @@ public sealed class WeaponMonitoringConsoleEntry
     public float? FlightTime;
     public float? Deviation;
     public float? ProjectileSpeed;
+    public string LockedTarget = string.Empty;
     public string Notes = string.Empty;
 }
 
