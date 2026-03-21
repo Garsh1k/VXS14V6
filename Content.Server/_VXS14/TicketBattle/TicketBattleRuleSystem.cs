@@ -42,8 +42,7 @@ public sealed class TicketBattleRuleSystem : GameRuleSystem<TicketBattleGameRule
 
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
-        SubscribeLocalEvent<GGSolfedTeamComponent, MobStateChangedEvent>(OnSolfedDeath);
-        SubscribeLocalEvent<GGSyndyTeamComponent, MobStateChangedEvent>(OnSyndyDeath);
+        SubscribeLocalEvent<MobStateChangedEvent>(OnMobDeath);
     }
 
     protected override void Started(
@@ -131,9 +130,15 @@ public sealed class TicketBattleRuleSystem : GameRuleSystem<TicketBattleGameRule
     // Death handlers
     // ------------------------------------------------------------------ //
 
-    private void OnSolfedDeath(Entity<GGSolfedTeamComponent> ent, ref MobStateChangedEvent args)
+    private void OnMobDeath(MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead)
+            return;
+
+        var isSolfed = HasComp<GGSolfedTeamComponent>(args.Target);
+        var isSyndy  = HasComp<GGSyndyTeamComponent>(args.Target);
+
+        if (!isSolfed && !isSyndy)
             return;
 
         var cost = GetTicketCost(args.Target);
@@ -144,28 +149,17 @@ public sealed class TicketBattleRuleSystem : GameRuleSystem<TicketBattleGameRule
             if (!GameTicker.IsGameRuleActive(uid, gameRule))
                 continue;
 
-            rule.SolfedTickets = Math.Max(0, rule.SolfedTickets - cost);
-            Log.Info($"[TicketBattle] Solfed player KIA → -{cost} ticket(s) → {rule.SolfedTickets} remaining");
-            SyncTicketsComponent(uid, rule);
-            CheckVictory(uid, rule);
-        }
-    }
+            if (isSolfed)
+            {
+                rule.SolfedTickets = Math.Max(0, rule.SolfedTickets - cost);
+                Log.Info($"[TicketBattle] Solfed player KIA → -{cost} ticket(s) → {rule.SolfedTickets} remaining");
+            }
+            else
+            {
+                rule.SyndyTickets = Math.Max(0, rule.SyndyTickets - cost);
+                Log.Info($"[TicketBattle] Syndy player KIA → -{cost} ticket(s) → {rule.SyndyTickets} remaining");
+            }
 
-    private void OnSyndyDeath(Entity<GGSyndyTeamComponent> ent, ref MobStateChangedEvent args)
-    {
-        if (args.NewMobState != MobState.Dead)
-            return;
-
-        var cost = GetTicketCost(args.Target);
-
-        var query = EntityQueryEnumerator<TicketBattleGameRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var rule, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleActive(uid, gameRule))
-                continue;
-
-            rule.SyndyTickets = Math.Max(0, rule.SyndyTickets - cost);
-            Log.Info($"[TicketBattle] Syndy player KIA → -{cost} ticket(s) → {rule.SyndyTickets} remaining");
             SyncTicketsComponent(uid, rule);
             CheckVictory(uid, rule);
         }
