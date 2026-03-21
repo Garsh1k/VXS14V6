@@ -17,6 +17,11 @@
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
+  - type: EmitSoundOnLand
+    sound:
+      collection: CannonCasing57mmInt
+      params:
+        volume: -1
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice

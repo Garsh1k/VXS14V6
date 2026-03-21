@@ -2,7 +2,7 @@
   id: SDVatTank
   parent: BaseMech
   name: T62M-1
-  description: fucking niggers kill yourself
+  description: aaa
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -89,7 +89,7 @@
   id: Abrams
   parent: SDVatTank
   name: M1A1 "Abrams"
-  description: fucking niggers kill yourself
+  description: aa
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -267,10 +267,10 @@
     range: 4
 
 - type: entity
-  id: BTRhexalitk17
+  id: IFVHexalit
   parent: SDVatTank
-  name: k17 Hexalit
-  description: fucking niggers kill yourself
+  name: IFV-17 Hexalit
+  description: Wow, IFV made from plastic
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -279,12 +279,54 @@
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: k17
+  - type: Physics
+    bodyType: KinematicController
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSkates
+  - type: AmbientSound
+    range: 5
+    volume: -6
+    sound:
+      path: /Audio/VXS/Effects/vehicleengineidle.ogg
+  - type: Armor
+    showArmorOnExamine: false
+    modifiers:
+      coefficients:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0.3
+        Heat: 0.1
+      flatReductions:
+        Piercing: 70
+        Asphyxiation: 100
   - type: Mech
     baseState: k17
     openState: k17-open
     brokenState: k17-broken
+    maxintegrity: 500
     startingEquipment: ["MechGun2A75","MechGunAGS","ADTMechGunUltraAC2"]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: ContainerFill
     containers:
       mech-battery-slot:
       - PowerCellAntiqueProto
+  - type: MovementSpeedModifier
+    weightlessModifier: 0
+    acceleration: 2
+    friction: 2
+    frictionNoInput: 7
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 7
