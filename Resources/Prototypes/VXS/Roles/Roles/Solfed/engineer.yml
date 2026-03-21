@@ -31,7 +31,7 @@
     id: DogtagSolfedEngineer
     ears: ClothingHeadsetAltSOLFED
     gloves: ClothingHandsGlovesCombatInsulated
-    back: ClothingDuffelLoadouts
+    back: ClothingBackpackDuffel
   storage:
     back:
     - BoxMRE

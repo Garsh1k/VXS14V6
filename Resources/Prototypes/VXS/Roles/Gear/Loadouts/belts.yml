@@ -37,3 +37,38 @@
   id: ClothingBeltMilitaryWebbingWTLoadout
   equipment:
     belt: ClothingBeltMilitaryWebbingWT
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingVereskLoadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingVeresk
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingC20rLoadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingC20r
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingM90Loadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingM90
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingBulldogLoadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingBulldog
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingL6Loadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingL6
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingSvyatLoadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingSvyat
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingHristovLoadout
+  equipment:
+    belt: ClothingBeltMilitaryWebbingHristov

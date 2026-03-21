@@ -12,7 +12,17 @@
 - type: loadout
   id: ClothingMANPADSSF
   equipment:
-    back: WeaponLauncherMANPADSPlutSF
+    back: WeaponLauncherMANPADSPlutSyndicate
+
+- type: loadout
+  id: ClothingHADGLThermobaricLoadout
+  equipment:
+    back: WeaponLauncherHandheldDisposalThermobaric
+
+- type: loadout
+  id: ClothingHADGLCumulativeLoadout
+  equipment:
+    back: WeaponLauncherHandheldDisposalCumulative
 
 - type: loadout
   id: ClothingBackpackDuffelMedicalReanimationLoadout

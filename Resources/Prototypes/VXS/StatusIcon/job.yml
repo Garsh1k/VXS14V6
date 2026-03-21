@@ -51,15 +51,15 @@
   id: JobIconSyndyCommander
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SFSolider
-  jobName: FieldCommander
+    state: SyndieScientist
+  jobName: SyndyCommander
 
 - type: jobIcon
   parent: JobIcon
   id: JobIconSyndyOperative
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SFSolider
+    state: Syndicate
   jobName: Operative
 
 - type: jobIcon
@@ -67,7 +67,7 @@
   id: JobIconSyndyMarksman
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SFSolider
+    state: SyndieMarksman
   jobName: Marksman
 
 - type: jobIcon
@@ -75,7 +75,7 @@
   id: JobIconSyndyAssaulter
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SFSolider
+    state: Syndicate
   jobName: Assaulter
 
 - type: jobIcon
@@ -83,7 +83,7 @@
   id: JobIconSyndyMedic
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SFParamed
+    state: SyndieMedic
   jobName: CombatMedic
 
 - type: jobIcon
@@ -91,5 +91,5 @@
   id: JobIconSyndyPilot
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SFPilot
+    state: SyndieEngineer
   jobName: SyndyPilot

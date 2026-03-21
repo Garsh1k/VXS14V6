@@ -8,14 +8,11 @@
   supervisors: job-supervisors-hos
   canBeAntag: false
   requirements:
-  - !type:AgeRequirement # Minimum 18
-    requiredAge: 18
+  - !type:AgeRequirement # Minimum 16
+    requiredAge: 16
   - !type:AgeRequirement # Maximum 45
     requiredAge: 45
     inverted: true
-  - !type:SpeciesRequirement
-    species:
-    - Human
   access:
   - Maintenance
   - External
@@ -27,6 +24,5 @@
 - type: startingGear
   id: SyndyAssaulterGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
     id: DogtagSyndyAssaulter
     ears: ClothingHeadsetAltSyndy

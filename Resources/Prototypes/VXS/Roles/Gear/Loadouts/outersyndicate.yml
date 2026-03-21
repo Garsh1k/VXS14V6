@@ -2,3 +2,8 @@
   id: OuterVestWebLoadout
   equipment:
     outerClothing: ClothingOuterVestWeb
+
+- type: loadout
+  id: OuterArmorPlateCarrierLoadout
+  equipment:
+    outerClothing: ClothingOuterArmorPlateCarrier

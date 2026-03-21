@@ -13,11 +13,6 @@
   - !type:AgeRequirement # Maximum 45
     requiredAge: 45
     inverted: true
-  - !type:SpeciesRequirement
-    species:
-    - Human
-    - Reptilian
-    - Moth
   access:
   - Maintenance
   - External

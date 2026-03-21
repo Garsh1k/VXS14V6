@@ -17,3 +17,33 @@
   id: UniformCasualPurpleLoadout
   equipment:
     jumpsuit: ClothingUniformJumpsuitCasualPurple
+
+- type: loadout
+  id: UniformLawyerBlackLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+
+- type: loadout
+  id: UniformOperativeLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+
+- type: loadout
+  id: UniformHawaiBlackLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlack
+
+- type: loadout
+  id: UniformHawaiBlueLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlue
+
+- type: loadout
+  id: UniformHawaiRedLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiRed
+
+- type: loadout
+  id: UniformHawaiYellowLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiYellow

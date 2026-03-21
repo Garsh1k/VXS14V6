@@ -48,7 +48,11 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ClothingBeltMilitaryWebbingWTLoadout
+  - ClothingBeltMilitaryWebbingVereskLoadout
+  - ClothingBeltMilitaryWebbingC20rLoadout
+  - ClothingBeltMilitaryWebbingM90Loadout
+  - ClothingBeltMilitaryWebbingBulldogLoadout
+  - ClothingBeltMilitaryWebbingL6Loadout
   - ClothingBeltMilitaryWebbingLecterGrenadesLoadout
 
 - type: loadoutGroup
@@ -57,5 +61,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ClothingBeltMilitaryWebbingExhaustLoadout
-  - ClothingBeltMilitaryWebbingWTLoadout
+  - ClothingBeltMilitaryWebbingSvyatLoadout
+  - ClothingBeltMilitaryWebbingHristovLoadout
+  - ClothingBeltMilitaryWebbingVereskLoadout

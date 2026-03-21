@@ -46,7 +46,7 @@
 
 - type: loadoutGroup
   id: WeaponsSyndyMarksmanSMG
-  name: loadout-group-vxs-weapons-secondary
+  name: loadout-group-vxs-weapons
   minLimit: 0
   maxLimit: 1
   loadouts:

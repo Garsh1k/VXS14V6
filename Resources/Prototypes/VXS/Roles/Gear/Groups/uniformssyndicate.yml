@@ -1,6 +1,6 @@
 - type: loadoutGroup
   id: UniformsSyndicate
-  name: loadout-group-vxs-uniforms
+  name: loadout-group-security-jumpsuit
   minLimit: 0
   maxLimit: 1
   loadouts:
@@ -8,3 +8,9 @@
   - UniformCasualRedLoadout
   - UniformCasualGreenLoadout
   - UniformCasualPurpleLoadout
+  - UniformLawyerBlackLoadout
+  - UniformOperativeLoadout
+  - UniformHawaiBlackLoadout
+  - UniformHawaiBlueLoadout
+  - UniformHawaiRedLoadout
+  - UniformHawaiYellowLoadout

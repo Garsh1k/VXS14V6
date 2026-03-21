@@ -13,9 +13,6 @@
   - !type:AgeRequirement # Maximum 45
     requiredAge: 45
     inverted: true
-  - !type:SpeciesRequirement
-    species:
-    - Human
   access:
   - Maintenance
   - External
@@ -27,6 +24,5 @@
 - type: startingGear
   id: SyndyPilotGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
     id: DogtagSyndyPilot
     ears: ClothingHeadsetAltSyndy
