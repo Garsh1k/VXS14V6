@@ -1,0 +1,17 @@
+- type: entity
+  id: CountermeasuresHeatA23KSD10MCartridge
+  name: 23mm infrared jamming cartridge (A23KSD10M)
+  parent: BaseShellShotgun
+  components:
+  - type: Tag
+    tags:
+    - HeatCountermeasuresShell
+  - type: Sprite
+    layers:
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: CountermeasuresHeatA23KSD10MPelletSpread
+  - type: SpentAmmoVisuals
+    state: "flare"

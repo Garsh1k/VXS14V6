@@ -1,0 +1,35 @@
+- type: entity
+  name: thermal countermeasure system A23KSD10M
+  id: WeaponUtilityShipFlaregunA23KSD10M
+  parent: [ ShuttleGunBase ]
+  components:
+  - type: Sprite
+    sprite: VXS/Structures/Machines/cms.rsi
+    layers:
+    - state: icon
+  - type: Gun
+    projectileSpeed: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+    tags:
+      - HeatCountermeasuresShell
+    proto: CountermeasuresHeatA23KSD10MCartridge
+    capacity: 2
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
