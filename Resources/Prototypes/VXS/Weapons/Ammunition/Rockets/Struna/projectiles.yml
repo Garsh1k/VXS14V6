@@ -23,7 +23,7 @@
     lifetime: 50
   - type: VXSActiveThrusterRadioHeading
     seekRange: 100
-    rotationSpeed: 10
+    rotationSpeed: 25
     guidanceAlgorithm: PurePursuit
     acceleration: 15
     topSpeed: 100
@@ -71,7 +71,7 @@
     lifetime: 50
   - type: VXSActiveThrusterRadioHeading
     seekRange: 100
-    rotationSpeed: 10
+    rotationSpeed: 25
     guidanceAlgorithm: PurePursuit
     acceleration: 15
     topSpeed: 100
@@ -115,7 +115,7 @@
     lifetime: 65
   - type: VXSActiveThrusterRadioHeading
     seekRange: 250
-    rotationSpeed: 15
+    rotationSpeed: 35
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 10
     topSpeed: 80
@@ -169,7 +169,7 @@
     deleteOnCollide: true
   - type: VXSActiveThrusterRadioHeading
     seekRange: 100
-    rotationSpeed: 10
+    rotationSpeed: 20
     guidanceAlgorithm: PurePursuit
     acceleration: 15
     topSpeed: 100

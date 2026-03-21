@@ -23,7 +23,7 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 3
+    rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 5
     topSpeed: 125
@@ -71,7 +71,7 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 3
+    rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 5
     topSpeed: 125
@@ -147,7 +147,7 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 3
+    rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 5
     topSpeed: 125
