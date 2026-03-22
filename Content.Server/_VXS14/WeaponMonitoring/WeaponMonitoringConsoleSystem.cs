@@ -34,6 +34,8 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly VXSActiveRadioHeadingSystem _activeRadioHeading = default!;
+    [Dependency] private readonly VXSActiveThrusterRadioHeadingSystem _activeThrusterRadioHeading = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -216,10 +218,10 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
         foreach (var projectile in args.FiredProjectiles)
         {
             if (TryComp<VXSActiveRadioHeadingComponent>(projectile, out var activeHeading))
-                activeHeading.TargetEntity = targetUid;
+                _activeRadioHeading.SetNewTarget((projectile, activeHeading), targetUid);
 
             if (TryComp<VXSActiveThrusterRadioHeadingComponent>(projectile, out var thrusterHeading))
-                thrusterHeading.TargetEntity = targetUid;
+                _activeThrusterRadioHeading.SetNewTarget((projectile, thrusterHeading), targetUid);
         }
     }
 
