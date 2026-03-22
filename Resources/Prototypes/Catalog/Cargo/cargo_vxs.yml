@@ -1,0 +1,258 @@
+# VXS Military / Medical / Engineering cargo listings
+
+# --- Armory ---
+
+- type: cargoProduct
+  id: VXCrateMortar82mm
+  icon:
+    sprite: Structures/Storage/Crates/plasma.rsi
+    state: icon
+  product: CrateMortar82mm
+  cost: 3500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMortar82mmSmoke
+  icon:
+    sprite: Structures/Storage/Crates/plasma.rsi
+    state: icon
+  product: CrateMortar82mmSmoke
+  cost: 2800
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateAmmo545x39
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    state: base
+  product: CrateAmmo545x39
+  cost: 1500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateAmmo57mm
+  icon:
+    sprite: Structures/Storage/Crates/generic.rsi
+    state: icon
+  product: CrateAmmo57mm
+  cost: 2500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateRPG22Gunpowder
+  icon:
+    sprite: Structures/Storage/Crates/plasma.rsi
+    state: icon
+  product: CrateRPG22Gunpowder
+  cost: 2000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateRPG22Thermobaric
+  icon:
+    sprite: Structures/Storage/Crates/plasma.rsi
+    state: icon
+  product: CrateRPG22Thermobaric
+  cost: 2500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateRPG22Fragmentation
+  icon:
+    sprite: Structures/Storage/Crates/plasma.rsi
+    state: icon
+  product: CrateRPG22Fragmentation
+  cost: 2000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateAIL2MMineFlatpack
+  icon:
+    sprite: Structures/Storage/Crates/weapon.rsi
+    state: icon
+  product: CrateAIL2MMineFlatpack
+  cost: 3000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateGrenadeOF
+  icon:
+    sprite: VXS/Weapons/Throwable/Grenades/frag.rsi
+    state: icon
+  product: CrateGrenadeOF
+  cost: 1800
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateGrenadeThermobaric
+  icon:
+    sprite: VXS/Weapons/Throwable/Grenades/thermobar.rsi
+    state: icon
+  product: CrateGrenadeThermobaric
+  cost: 2500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateC4
+  icon:
+    sprite: Structures/Storage/Crates/weapon.rsi
+    state: icon
+  product: CrateC4
+  cost: 4000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateNightVision
+  icon:
+    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
+    state: icon
+  product: CrateNightVision
+  cost: 2500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateAmmo9x19
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: base
+  product: CrateAmmo9x19
+  cost: 1200
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: VXCrateAmmo762x51
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+    state: base
+  product: CrateAmmo762x51
+  cost: 2000
+  category: cargoproduct-category-name-armory
+  group: market
+
+# --- Engineering ---
+
+- type: cargoProduct
+  id: VXCrateLVCable
+  icon:
+    sprite: Objects/Tools/cable-coils.rsi
+    state: coillv-30
+  product: CrateLVCable
+  cost: 400
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: VXCratePortableGenerator
+  icon:
+    sprite: Structures/Power/Generation/portable_generator.rsi
+    state: portgen3
+  product: CratePortableGenerator
+  cost: 1500
+  category: cargoproduct-category-name-engineering
+  group: market
+
+# Artillery detector 51E3P1 Monologue + console (both packed inside)
+- type: cargoProduct
+  id: VXCrateArtilleryDetectorPoor
+  icon:
+    sprite: VXS/Structures/rls.rsi
+    state: furke
+  product: CrateArtilleryDetectorPoor
+  cost: 3000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+# --- Medical ---
+
+- type: cargoProduct
+  id: VXCrateSalineSolution
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateSalineSolution
+  cost: 800
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateRingerSolution
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateRingerSolution
+  cost: 800
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMedAntibiotics
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateVXMedAntibiotics
+  cost: 2500
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMedPainManagement
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateVXMedPainManagement
+  cost: 2500
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMedHemostatic
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateVXMedHemostatic
+  cost: 2000
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMedAntiseptic
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateVXMedAntiseptic
+  cost: 1500
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMedBloodCleansing
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateVXMedBloodCleansing
+  cost: 2000
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VXCrateMedSutureBandages
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateMedicalSutureBandages
+  cost: 1500
+  category: cargoproduct-category-name-medical
+  group: market

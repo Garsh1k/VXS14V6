@@ -31,6 +31,16 @@
   - UplinkAmmo
 
 - type: listing
+  id: UplinkVXCrateMortar82mmSmoke
+  name: uplink-vx-crate-mortar-82mm-smoke-name
+  description: uplink-vx-crate-mortar-82mm-smoke-desc
+  productEntity: CrateMortar82mmSmoke
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+- type: listing
   id: UplinkVXCrateAmmo545x39
   name: uplink-vx-crate-ammo-545x39-name
   description: uplink-vx-crate-ammo-545x39-desc
@@ -207,6 +217,16 @@
   productEntity: CratePortableGenerator
   cost:
     Telecrystal: 3
+  categories:
+  - UplinkSupport
+
+- type: listing
+  id: UplinkVXCrateArtilleryDetectorPoor
+  name: uplink-vx-crate-artillery-detector-poor-name
+  description: uplink-vx-crate-artillery-detector-poor-desc
+  productEntity: CrateArtilleryDetectorPoor
+  cost:
+    Telecrystal: 6
   categories:
   - UplinkSupport
 

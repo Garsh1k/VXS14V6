@@ -16,6 +16,22 @@
       - id: MortarFragShell
         amount: 4
 
+# Mortar 82mm Smoke Ammunition Crate
+- type: entity
+  id: CrateMortar82mmSmoke
+  parent: CrateGenericSteel
+  name: smoke mortar ammunition crate
+  description: A crate of 82mm smoke mortar shells for screening and concealment.
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: StorageFill
+    contents:
+      - id: MortarSmokeShell
+        amount: 4
+
 # 5.45x39mm Ammunition Crate
 - type: entity
   id: CrateAmmo545x39
@@ -148,6 +164,20 @@
   - type: StorageFill
     contents:
       - id: PortableGeneratorJrPacman
+        amount: 1
+
+# Poor Artillery Detector Crate
+- type: entity
+  id: CrateArtilleryDetectorPoor
+  parent: CrateGenericSteel
+  name: poor artillery detector crate
+  description: A crate containing a cheap artillery detector and its journal console.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ArtilleryDetectorMonologue
+        amount: 1
+      - id: ArtilleryDetectionConsole
         amount: 1
 
 # 9x19mm Ammunition Crate
