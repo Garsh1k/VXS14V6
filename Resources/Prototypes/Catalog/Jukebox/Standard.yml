@@ -41,18 +41,6 @@
     path: /Audio/Jukebox/sunset.ogg
 
 - type: jukebox
-  id: nigger
-  name: Alabama nigger
-  path:
-    path: /Audio/Jukebox/alabama-nigger.ogg
-
-- type: jukebox
-  id: hitler
-  name: Am Adolf Hitler platz
-  path:
-    path: /Audio/Jukebox/Am-Adolf-Hitler-Platz.ogg
-
-- type: jukebox
   id: jobApplication
   name: Job
   path:
