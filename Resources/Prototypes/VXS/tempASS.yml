@@ -42,7 +42,7 @@
 
 
 - type: entity
-  name: Флаг A
+  name: Point A
   id: EFSCapturePointA
   parent: BaseStructure
   components:
@@ -67,7 +67,7 @@
     pointName: A
 
 - type: entity
-  name: Флаг B
+  name: Point B
   id: EFSCapturePointB
   parent: BaseStructure
   components:
@@ -92,7 +92,7 @@
     pointName: B
 
 - type: entity
-  name: Флаг C
+  name: Point C
   id: EFSCapturePointC
   parent: BaseStructure
   components:
