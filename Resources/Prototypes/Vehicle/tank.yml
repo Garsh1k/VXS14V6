@@ -280,7 +280,7 @@
     - map: [ "enum.MechVisualLayers.Base" ]
       state: k17
   - type: Physics
-    bodyType: KinematicController
+    bodyType: Dynamic
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSkates
@@ -325,8 +325,15 @@
       - PowerCellAntiqueProto
   - type: MovementSpeedModifier
     weightlessModifier: 0
-    acceleration: 2
-    friction: 2
-    frictionNoInput: 7
+    acceleration: 1
+    friction: 1
+    frictionNoInput: 1
     baseWalkSpeed: 4.5
     baseSprintSpeed: 7
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 5
+    ignoreWhitelist:
+      tags:
+      - Flesh
