@@ -5,6 +5,7 @@ store-category-weapons = Weaponry
 store-category-ammo = Ammo
 store-category-explosives = Explosives
 store-category-chemicals = Chemicals
+store-category-support = Support
 store-category-deception = Deception
 store-category-disruption = Disruption
 store-category-implants = Implants

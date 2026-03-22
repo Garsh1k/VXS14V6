@@ -1,0 +1,237 @@
+# Military Equipment Crates for VXS14
+
+# Mortar 82mm Ammunition Crate
+- type: entity
+  id: CrateMortar82mm
+  parent: CrateGenericSteel
+  name: mortar ammunition crate
+  description: A crate of 82mm mortar shells. Handle with care!
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: StorageFill
+    contents:
+      - id: MortarFragShell
+        amount: 4
+
+# 5.45x39mm Ammunition Crate
+- type: entity
+  id: CrateAmmo545x39
+  parent: CrateGenericSteel
+  name: 5.45x39mm ammunition crate
+  description: A crate containing ammunition boxes and magazines for 5.45x39mm rifles.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineBoxRifle
+        amount: 2
+      - id: MagazineRifleEmpty
+        amount: 6
+
+# 57mm Artillery Ammunition Crate (IFV)
+- type: entity
+  id: CrateAmmo57mm
+  parent: CrateGenericSteel
+  name: 57mm artillery ammunition crate
+  description: A crate containing 57mm shells for IFV and other light artillery platforms.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxAmmo57mm
+        amount: 4
+
+# HADGL-T (Thermobaric) Launcher Crate
+- type: entity
+  id: CrateHADGLThermobaric
+  parent: CrateGenericSteel
+  name: HADGL-T crate
+  description: Contains two HADGL-100T Lancer thermobaric disposable grenade launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherHandheldDisposalThermobaric
+        amount: 2
+
+# HADGL-C (Cumulative) Launcher Crate
+- type: entity
+  id: CrateHADGLCumulative
+  parent: CrateGenericSteel
+  name: HADGL-C crate
+  description: Contains two HADGL-100C Basalt anti-tank disposable grenade launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherHandheldDisposalCumulative
+        amount: 2
+
+# RPG-22-M2 Gunpowder/Propellant Crate
+- type: entity
+  id: CrateRPG22Gunpowder
+  parent: CrateGenericSteel
+  name: RPG-22-M2 powder charge crate
+  description: A crate containing powder charges (PG-22) for RPG-22-M2 rockets.
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: StorageFill
+    contents:
+      - id: CartridgeRocketGunpowderRPG
+        amount: 6
+
+# RPG-22-M2 Thermobaric Warhead Crate
+- type: entity
+  id: CrateRPG22Thermobaric
+  parent: CrateGenericSteel
+  name: RPG-22-M2 thermobaric warhead crate
+  description: A crate containing thermobaric (TBG-7V) warheads for RPG-22-M2 rockets.
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: StorageFill
+    contents:
+      - id: CartridgeRocketThermobar
+        amount: 4
+
+# RPG-22-M2 Fragmentation Warhead Crate
+- type: entity
+  id: CrateRPG22Fragmentation
+  parent: CrateGenericSteel
+  name: RPG-22-M2 fragmentation warhead crate
+  description: A crate containing fragmentation (OG-7V) warheads for RPG-22-M2 rockets.
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/plasma.rsi
+  - type: StorageFill
+    contents:
+      - id: CartridgeRocketFrag
+        amount: 4
+
+# AIL-2M Mine Flatpack Crate
+- type: entity
+  id: CrateAIL2MMineFlatpack
+  parent: CrateGenericSteel
+  name: AIL-2M mine flatpack crate
+  description: A crate containing several AIL-2M anti-infantry landmines in flatpack form for rapid deployment.
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlatpackLandmineAIL
+        amount: 6
+
+# Low Voltage Cable Crate
+- type: entity
+  id: CrateLVCable
+  parent: CrateGenericSteel
+  name: low voltage cable crate
+  description: A crate containing rolls of low voltage electrical cable for power distribution.
+  components:
+  - type: StorageFill
+    contents:
+      - id: CableApcStack
+        amount: 4
+
+# Portable Power Generator Crate
+- type: entity
+  id: CratePortableGenerator
+  parent: CrateGenericSteel
+  name: portable power generator crate
+  description: A crate containing portable power generation equipment for field operations and emergency power supply.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PortableGeneratorJrPacman
+        amount: 1
+
+# 9x19mm Ammunition Crate
+- type: entity
+  id: CrateAmmo9x19
+  parent: CrateGenericSteel
+  name: 9x19mm ammunition crate
+  description: A crate containing boxes of 9x19mm ammunition.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineBoxPistol
+        amount: 4
+
+# .25 Caseless Ammunition Crate
+- type: entity
+  id: CrateAmmo25Caseless
+  parent: CrateGenericSteel
+  name: .25 caseless ammunition crate
+  description: A crate containing boxes of .25 caseless ammunition.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineBoxCaselessRifle
+        amount: 4
+
+# 7.62x51mm Ammunition Crate
+- type: entity
+  id: CrateAmmo762x51
+  parent: CrateGenericSteel
+  name: 7.62x51mm ammunition crate
+  description: A crate containing boxes of 7.62x51mm ammunition.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineBoxLightRifle
+        amount: 4
+
+# OF Grenade Crate
+- type: entity
+  id: CrateGrenadeOF
+  parent: CrateGenericSteel
+  name: OF grenade crate
+  description: A crate containing fragmentation hand grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeOF
+        amount: 6
+
+# Thermobaric Grenade Crate
+- type: entity
+  id: CrateGrenadeThermobaric
+  parent: CrateGenericSteel
+  name: thermobaric grenade crate
+  description: A crate containing thermobaric hand grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeThermobaric
+        amount: 6
+
+# C4 Crate
+- type: entity
+  id: CrateC4
+  parent: CrateGenericSteel
+  name: C4 crate
+  description: A crate containing plastic explosive charges for breaching and sabotage.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxC4Kit
+        amount: 2
+
+# Night Vision Crate
+- type: entity
+  id: CrateNightVision
+  parent: CrateGenericSteel
+  name: night vision crate
+  description: A crate containing night vision goggles and spare medium power cells.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesNightvision
+        amount: 2
+      - id: PowerCellMedium
+        amount: 4
