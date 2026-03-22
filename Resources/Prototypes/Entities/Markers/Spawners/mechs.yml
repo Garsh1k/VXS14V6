@@ -13,6 +13,20 @@
       - MechRipleyBattery
 
 - type: entity
+  name: K17 IFV Hexalit Spawner
+  id: SpawnMechK17
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Fun/btr.rsi
+        state: k17
+  - type: ConditionalSpawner
+    prototypes:
+      - IFVHexalit
+
+- type: entity
   name: H.O.N.K. Spawner
   id: SpawnMechHonker
   parent: MarkerBase

@@ -4,6 +4,8 @@
   name: debug role spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: Solfed
   - type: Sprite
     layers:
@@ -16,6 +18,8 @@
   name: debug role 2 spawner
   components:
   - type: SpawnPoint
+    spawn_type: LateJoin
+    round_start: true
     job_id: Syndy
   - type: Sprite
     layers:

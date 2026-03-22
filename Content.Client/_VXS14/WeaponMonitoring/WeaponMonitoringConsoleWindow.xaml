@@ -49,6 +49,9 @@
 
                     <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-projectile-speed'}"/>
                     <Label Name="ProjectileSpeedValue" Text="-" Margin="10 0 0 0"/>
+
+                    <Label StyleClasses="StatusFieldTitle" Text="{Loc 'weapon-monitoring-window-locked-target'}"/>
+                    <Label Name="LockedTargetValue" Text="-" Margin="10 0 0 0"/>
                 </GridContainer>
 
                 <BoxContainer Orientation="Horizontal" Margin="0 8 0 0">

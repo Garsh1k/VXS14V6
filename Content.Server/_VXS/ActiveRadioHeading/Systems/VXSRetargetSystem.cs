@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server._VXS.ActiveRadioHeading.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._VXS.ActiveRadioHeading.Systems;
 
@@ -12,6 +13,7 @@ public sealed class VXSRetargetSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly VXSActiveRadioHeadingSystem _activeRadioHeading = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -42,6 +44,29 @@ public sealed class VXSRetargetSystem : EntitySystem
 
             if (Math.Abs(angleDifference.Theta) > missile.Comp1.FOV * Math.PI / 180f / 2f)
                 continue;
+
+            // --- Countermeasure resistance ---
+            if (TryComp<VXSCountermeasureResistanceComponent>(missile, out var eccm))
+            {
+                switch (eccm.Type)
+                {
+                    case CountermeasureResistanceType.FovNarrowing:
+                        // Narrow the seeker FOV instead of retargeting.
+                        missile.Comp1.FOV = Math.Min(missile.Comp1.FOV, eccm.NarrowedFOV);
+                        continue;
+
+                    case CountermeasureResistanceType.InertialFlight:
+                        // Switch to inertial flight; seeker will re-enable after the timer.
+                        eccm.InInertialFlight = true;
+                        eccm.InertialFlightEndTime = _timing.CurTime + eccm.InertialFlightDuration;
+                        missile.Comp1.TargetEntity = null;
+                        continue;
+
+                    case CountermeasureResistanceType.None:
+                    default:
+                        break;
+                }
+            }
 
             if (!_random.Prob(ent.Comp.ChanceToRetarget))
                 continue;

@@ -1,0 +1,8 @@
+- type: loadoutGroup
+  id: HeadsSyndicate
+  name: loadout-group-vxs-hats
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - HatSolarFASTHelmet
+  - HatMercHelmet

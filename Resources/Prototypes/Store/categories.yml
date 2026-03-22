@@ -60,6 +60,11 @@
   priority: 4
 
 - type: storeCategory
+  id: UplinkSupport
+  name: store-category-support
+  priority: 5
+
+- type: storeCategory
   id: UplinkDeception
   name: store-category-deception
   priority: 5

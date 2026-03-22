@@ -1,0 +1,127 @@
+# Medical Supply Crates for VXS14
+
+# Saline Solution Crate (Medical)
+- type: entity
+  id: CrateSalineSolution
+  parent: CrateFreezer
+  name: saline solution crate
+  description: A crate containing IV bags of sterile saline solution for medical use.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagSalinesolution
+        amount: 2
+
+# Ringer's Solution Crate (Medical)
+- type: entity
+  id: CrateRingerSolution
+  parent: CrateFreezer
+  name: Ringer's solution crate
+  description: A crate containing IV bags of Ringer's solution for medical use.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagRingersolution
+        amount: 2
+
+# VXMed Antibiotics Crate
+- type: entity
+  id: CrateVXMedAntibiotics
+  parent: CrateFreezer
+  name: antibiotics IV crate
+  description: A crate containing various antibiotic IV solutions for treating infections.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagCeftriaxoneSaline
+        amount: 2
+      - id: IVBagCeftriaxoneRinger
+        amount: 2
+      - id: IVBagAmoxiclavSaline
+        amount: 2
+      - id: IVBagAmoxiclavRinger
+        amount: 2
+
+# VXMed Pain Management Crate
+- type: entity
+  id: CrateVXMedPainManagement
+  parent: CrateFreezer
+  name: pain management crate
+  description: A crate containing potent painkillers and analgesic solutions for severe injuries.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagPromedolSaline
+        amount: 2
+      - id: IVBagPromedolRinger
+        amount: 2
+      - id: IVBagNefopamSaline
+        amount: 2
+      - id: IVBagNefopamRinger
+        amount: 2
+
+# VXMed Hemostatic Supplies Crate
+- type: entity
+  id: CrateVXMedHemostatic
+  parent: CrateFreezer
+  name: hemostatic supplies crate
+  description: A crate containing hemostatic agents to control bleeding and promote clotting.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagKaolinSaline
+        amount: 2
+      - id: IVBagKaolinRinger
+        amount: 2
+      - id: IVBagTranexamicSaline
+        amount: 2
+      - id: IVBagTranexamicRinger
+        amount: 2
+
+# VXMed Antiseptic Solutions Crate
+- type: entity
+  id: CrateVXMedAntiseptic
+  parent: CrateFreezer
+  name: antiseptic solutions crate
+  description: A crate of various antiseptic and antimicrobial IV solutions for surface disinfection and internal use.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagChlorhexidineSaline
+        amount: 2
+      - id: IVBagChlorhexidineRinger
+        amount: 2
+
+# Blood Cleansing Crate
+- type: entity
+  id: CrateVXMedBloodCleansing
+  parent: CrateFreezer
+  name: blood cleansing crate
+  description: A crate containing blood purification solutions and detoxification agents.
+  components:
+  - type: StorageFill
+    contents:
+      - id: IVBagSorbexSaline
+        amount: 2
+      - id: IVBagSorbexRinger
+        amount: 2
+
+# Medical Supplies - Sutures and Bandages Crate
+- type: entity
+  id: CrateMedicalSutureBandages
+  parent: CrateMedical
+  name: medical sutures and bandages crate
+  description: A comprehensive crate of wound care supplies including sutures, gauze, hemostatic packs, and other dressing materials.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Suture
+        amount: 3
+      - id: SutureSelfabsorbingVX
+        amount: 2
+      - id: GauzeCohesiveVX
+        amount: 3
+      - id: GauzeHemostaticVX
+        amount: 3
+      - id: FoodCondimentPacketKaolin
+        amount: 4

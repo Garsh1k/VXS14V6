@@ -16,6 +16,14 @@
   - /Audio/VXS/Weaponry/Gunshots/Artillery/57mm2.ogg
 
 - type: soundCollection
+  id: CannonCasing57mmInt
+  files:
+  - /Audio/VXS/Effects/Cannon_Casing_Int_1.ogg
+  - /Audio/VXS/Effects/Cannon_Casing_Int_2.ogg
+  - /Audio/VXS/Effects/Cannon_Casing_Int_3.ogg
+  - /Audio/VXS/Effects/Cannon_Casing_Int_4.ogg
+
+- type: soundCollection
   id: Gunfire120mm
   files:
   - /Audio/VXS/Weaponry/Gunshots/Artillery/120mm1.ogg

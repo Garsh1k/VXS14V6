@@ -1,0 +1,152 @@
+- type: entity
+  id: ClothingBeltMilitaryWebbingLecterMags
+  name: Lecter mags webbing
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled, Lecter
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle
+        amount: 8
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingLecterCrowbar
+  name: Assault lecter mags webbing
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled, Lecter, Crowbar
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle
+        amount: 7
+      - id: Crowbar
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingLecterGrenades
+  name: Lecter mags and grenades webbing
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled, Lecter, Grenades
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle
+        amount: 5
+      - id: GrenadeOF
+        amount: 2
+      - id: SmokeGrenade
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingRPK
+  name: RPK mags webbbing
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled, RPK
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineLMGRPK
+        amount: 4
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingExhaust
+  name: Exhaust mags webbbing
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled, Exhaust
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineSniperSupressor
+        amount: 6
+      - id: MagazineSniperSupressorTrasser
+        amount: 2
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingWT
+  parent: ClothingBeltMilitaryWebbing
+  name: WT550 SMG webbing
+  suffix: Filled, Toolbelt, WT550
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunTopMounted
+        amount: 8
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingVeresk
+  parent: ClothingBeltMilitaryWebbing
+  name: Veresk SMG webbing
+  suffix: Filled, Veresk
+  components:
+  - type: StorageFill
+    contents:
+      - id: PistolMagazineVereskHeath
+        amount: 8
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingC20r
+  parent: ClothingBeltMilitaryWebbing
+  name: C-20r SMG webbing
+  suffix: Filled, C-20r
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGun
+        amount: 8
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingM90
+  parent: ClothingBeltMilitaryWebbing
+  name: M90 rifle webbing
+  suffix: Filled, M90
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle
+        amount: 8
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingBulldog
+  parent: ClothingBeltMilitaryWebbing
+  name: Bulldog shotgun webbing
+  suffix: Filled, Bulldog
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineShotgun
+        amount: 6
+      - id: MagazineShotgunSlug
+        amount: 2
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingL6
+  parent: ClothingBeltMilitaryWebbing
+  name: L6 SAW webbing
+  suffix: Filled, L6
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineLightRifleBox
+        amount: 3
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingSvyat
+  parent: ClothingBeltMilitaryWebbing
+  name: Svyat sniper webbing
+  suffix: Filled, Svyat
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineSniper
+        amount: 6
+      - id: MagazineSniperTrasser
+        amount: 2
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingHristov
+  parent: ClothingBeltMilitaryWebbing
+  name: Hristov ammo webbing
+  suffix: Filled, Hristov
+  components:
+  - type: StorageFill
+    contents:
+      - id: CartridgeAntiMateriel
+        amount: 12

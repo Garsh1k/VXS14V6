@@ -1,17 +1,28 @@
+using System.Numerics;
 using Content.Server._VXS14.AerialBomb;
+using Content.Server._VXS.ActiveRadioHeading.Components;
+using Content.Server._VXS.ActiveRadioHeading.Systems;
+using Content.Server.Shuttles.Components;
 using Content.Shared._ADT.SS40k.Turrets;
 using Content.Shared._ADT.SS40k.Turrets.Components;
 using Content.Shared._VXS14.AerialBomb;
 using Content.Shared._VXS14.WeaponMonitoring;
 using Content.Shared._VXS14.WeaponMonitoring.Components;
+using Content.Shared._VXS.Manpads.Components;
 using Content.Shared.Mind;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Projectiles;
 using Content.Shared.Trigger.Components.Effects;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._VXS14.WeaponMonitoring;
 
@@ -22,9 +33,16 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly VXSActiveRadioHeadingSystem _activeRadioHeading = default!;
+    [Dependency] private readonly VXSActiveThrusterRadioHeadingSystem _activeThrusterRadioHeading = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private const float UpdateInterval = 1.0f;
     private float _updateAccumulator;
+    private readonly Dictionary<EntityUid, EntityUid> _pendingRocketTargets = new();
 
     public override void Initialize()
     {
@@ -36,6 +54,8 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
             subs.Event<RequestWeaponMonitoringRefreshMessage>(OnRefreshRequested);
             subs.Event<WeaponMonitoringControlActionMessage>(OnControlAction);
         });
+
+        SubscribeLocalEvent<WeaponMonitoringProfileComponent, AmmoShotEvent>(OnAmmoShot);
     }
 
     public override void Update(float frameTime)
@@ -111,6 +131,10 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
             case WeaponMonitoringControlAction.LaunchRocket:
                 if (!TryComp<GunComponent>(target, out var gun))
                     return;
+
+                if (TryResolveMissileLock(target, out var lockedTarget))
+                    _pendingRocketTargets[target] = lockedTarget;
+
                 _gun.AttemptShoot(target, gun);
                 if (HasComp<DeleteOnTriggerComponent>(target))
                     QueueDel(target);
@@ -147,6 +171,9 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
                     FlightTime = profile.FlightTime,
                     Deviation = profile.Deviation,
                     ProjectileSpeed = profile.ProjectileSpeed,
+                    LockedTarget = profile.Category == WeaponMonitoringCategory.AntiShipMissile
+                        ? GetLockedTargetDisplayName(uid)
+                        : string.Empty,
                     Notes = profile.Notes,
                 });
             }
@@ -176,5 +203,372 @@ public sealed class WeaponMonitoringConsoleSystem : EntitySystem
 
         var mapUid = _map.GetMapOrInvalid(mapId);
         return HasComp<BiomeComponent>(mapUid);
+    }
+
+    private void OnAmmoShot(Entity<WeaponMonitoringProfileComponent> ent, ref AmmoShotEvent args)
+    {
+        if (ent.Comp.Category != WeaponMonitoringCategory.AntiShipMissile)
+            return;
+
+        if (!_pendingRocketTargets.Remove(ent.Owner, out var targetUid))
+            return;
+
+        if (TerminatingOrDeleted(targetUid))
+            return;
+
+        foreach (var projectile in args.FiredProjectiles)
+        {
+            if (TryComp<VXSActiveRadioHeadingComponent>(projectile, out var activeHeading))
+                _activeRadioHeading.SetNewTarget((projectile, activeHeading), targetUid);
+
+            if (TryComp<VXSActiveThrusterRadioHeadingComponent>(projectile, out var thrusterHeading))
+                _activeThrusterRadioHeading.SetNewTarget((projectile, thrusterHeading), targetUid);
+        }
+    }
+
+    private string GetLockedTargetDisplayName(EntityUid launcher)
+    {
+        if (!TryResolveMissileLock(launcher, out var target))
+            return Loc.GetString("weapon-monitoring-window-value-unknown");
+
+        if (IsCountermeasureEntity(target))
+            return "Undefined";
+
+        var grid = ResolveTargetGrid(target);
+        if (grid is null)
+            return Loc.GetString("weapon-monitoring-window-value-unknown");
+
+        if (EntityManager.TryGetComponent<MetaDataComponent>(grid.Value, out var gridMeta))
+            return gridMeta.EntityName;
+
+        return Loc.GetString("weapon-monitoring-window-value-unknown");
+    }
+
+    private bool TryResolveMissileLock(EntityUid launcher, out EntityUid target)
+    {
+        target = default;
+
+        if (!EntityManager.TryGetComponent<TransformComponent>(launcher, out var launcherXform))
+            return false;
+
+        var seeker = GetMissileSeekerMode(launcher);
+        if (seeker == MissileSeekerMode.None)
+            return false;
+
+        switch (seeker)
+        {
+            case MissileSeekerMode.ActiveRadar:
+                return TryResolveActiveRadarTarget(launcher, launcherXform, out target);
+            case MissileSeekerMode.ActiveThruster:
+                return TryResolveThrusterTarget(launcher, launcherXform, out target);
+            default:
+                return false;
+        }
+    }
+
+    private MissileSeekerMode GetMissileSeekerMode(EntityUid launcher)
+    {
+        if (!TryComp<BallisticAmmoProviderComponent>(launcher, out var ammoProvider))
+            return MissileSeekerMode.None;
+
+        EntProtoId? projectileProto = null;
+
+        if (ammoProvider.Entities.Count > 0)
+        {
+            var cartridge = ammoProvider.Entities[^1];
+            if (TryComp<CartridgeAmmoComponent>(cartridge, out var cartAmmo))
+                projectileProto = cartAmmo.Prototype;
+        }
+
+        if (projectileProto == null && ammoProvider.Proto != null &&
+            _prototype.TryIndex<EntityPrototype>(ammoProvider.Proto, out var cartridgeProto) &&
+            cartridgeProto.TryGetComponent<CartridgeAmmoComponent>(out var protoAmmo, EntityManager.ComponentFactory))
+        {
+            projectileProto = protoAmmo.Prototype;
+        }
+
+        if (projectileProto == null || !_prototype.TryIndex<EntityPrototype>(projectileProto, out var projectilePrototype))
+            return MissileSeekerMode.None;
+
+        if (projectilePrototype.TryGetComponent<VXSActiveRadioHeadingComponent>(out _, EntityManager.ComponentFactory))
+            return MissileSeekerMode.ActiveRadar;
+
+        if (projectilePrototype.TryGetComponent<VXSActiveThrusterRadioHeadingComponent>(out _, EntityManager.ComponentFactory))
+            return MissileSeekerMode.ActiveThruster;
+
+        return MissileSeekerMode.None;
+    }
+
+    private bool TryResolveActiveRadarTarget(EntityUid launcher, TransformComponent launcherXform, out EntityUid target)
+    {
+        target = default;
+
+        var missileComp = new VXSActiveRadioHeadingComponent();
+        var shooterGridUid = launcherXform.GridUid;
+        var shooterIffType = shooterGridUid.HasValue ? GetGridIffType(shooterGridUid.Value) : null;
+
+        var retargetQuery = EntityQueryEnumerator<VXSRetargetComponent, TransformComponent>();
+        if (TryFindClosestTarget(
+                missileComp,
+                launcherXform,
+                retargetQuery,
+                shooterGridUid,
+                shooterIffType,
+                out target))
+        {
+            return true;
+        }
+
+        var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent>();
+        if (!TryFindClosestTarget(
+                missileComp,
+                launcherXform,
+                consoleQuery,
+                shooterGridUid,
+                shooterIffType,
+                out var targetConsole))
+        {
+            return false;
+        }
+
+        if (EntityManager.TryGetComponent<TransformComponent>(targetConsole, out var targetXform) && targetXform.GridUid.HasValue)
+        {
+            target = targetXform.GridUid.Value;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryResolveThrusterTarget(EntityUid launcher, TransformComponent launcherXform, out EntityUid target)
+    {
+        target = default;
+
+        var missileComp = new VXSActiveThrusterRadioHeadingComponent();
+        var shooterGridUid = launcherXform.GridUid;
+        var shooterIffType = shooterGridUid.HasValue ? GetGridIffType(shooterGridUid.Value) : null;
+
+        var retargetQuery = EntityQueryEnumerator<VXSRetargetThrusterComponent, TransformComponent>();
+        if (TryFindClosestTarget(
+                missileComp,
+                launcherXform,
+                retargetQuery,
+                shooterGridUid,
+                shooterIffType,
+                out target))
+        {
+            return true;
+        }
+
+        var thrusterQuery = EntityQueryEnumerator<ThrusterComponent, TransformComponent>();
+        if (!TryFindClosestThrusterTarget(
+                missileComp,
+                launcherXform,
+                thrusterQuery,
+                shooterGridUid,
+                shooterIffType,
+                out var targetThruster))
+        {
+            return false;
+        }
+
+        if (EntityManager.TryGetComponent<TransformComponent>(targetThruster, out var targetXform) && targetXform.GridUid.HasValue)
+        {
+            target = targetXform.GridUid.Value;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryFindClosestTarget<T>(
+        VXSActiveRadioHeadingComponent missileComp,
+        TransformComponent missileXform,
+        EntityQueryEnumerator<T, TransformComponent> query,
+        EntityUid? shooterGridUid,
+        VXSManpadsIffType? shooterIffType,
+        out EntityUid target)
+        where T : IComponent
+    {
+        var closestDistance = float.MaxValue;
+        EntityUid? closestTargetUid = null;
+
+        var missilePos = _transform.ToMapCoordinates(missileXform.Coordinates).Position;
+        var worldRotation = _transform.GetWorldRotation(missileXform);
+        var halfFovRad = missileComp.FOV * Math.PI / 180f;
+        var seekRangeSq = missileComp.SeekRange * missileComp.SeekRange;
+
+        while (query.MoveNext(out var candidateUid, out _, out var candidateXform))
+        {
+            var targetPos = _transform.ToMapCoordinates(candidateXform.Coordinates).Position;
+            var distanceSq = Vector2.DistanceSquared(missilePos, targetPos);
+            if (distanceSq > seekRangeSq)
+                continue;
+
+            var angle = (targetPos - missilePos).ToWorldAngle();
+            var angleDifference = Angle.ShortestDistance(angle, worldRotation);
+            if (Math.Abs(angleDifference) > halfFovRad)
+                continue;
+
+            if (shooterGridUid.HasValue && candidateXform.GridUid.HasValue && shooterGridUid.Value == candidateXform.GridUid.Value)
+                continue;
+
+            if (shooterIffType.HasValue && candidateXform.GridUid.HasValue &&
+                GetGridIffType(candidateXform.GridUid.Value) == shooterIffType.Value)
+            {
+                continue;
+            }
+
+            var distance = MathF.Sqrt(distanceSq);
+            if (distance >= closestDistance)
+                continue;
+
+            closestDistance = distance;
+            closestTargetUid = candidateUid;
+        }
+
+        target = closestTargetUid ?? default;
+        return closestTargetUid != null;
+    }
+
+    private bool TryFindClosestTarget<T>(
+        VXSActiveThrusterRadioHeadingComponent missileComp,
+        TransformComponent missileXform,
+        EntityQueryEnumerator<T, TransformComponent> query,
+        EntityUid? shooterGridUid,
+        VXSManpadsIffType? shooterIffType,
+        out EntityUid target)
+        where T : IComponent
+    {
+        var closestDistance = float.MaxValue;
+        EntityUid? closestTargetUid = null;
+
+        var missilePos = _transform.ToMapCoordinates(missileXform.Coordinates).Position;
+        var worldRotation = _transform.GetWorldRotation(missileXform);
+        var halfFovRad = missileComp.FOV * Math.PI / 180f;
+        var seekRangeSq = missileComp.SeekRange * missileComp.SeekRange;
+
+        while (query.MoveNext(out var candidateUid, out _, out var candidateXform))
+        {
+            var targetPos = _transform.ToMapCoordinates(candidateXform.Coordinates).Position;
+            var distanceSq = Vector2.DistanceSquared(missilePos, targetPos);
+            if (distanceSq > seekRangeSq)
+                continue;
+
+            var angle = (targetPos - missilePos).ToWorldAngle();
+            var angleDifference = Angle.ShortestDistance(angle, worldRotation);
+            if (Math.Abs(angleDifference) > halfFovRad)
+                continue;
+
+            if (shooterGridUid.HasValue && candidateXform.GridUid.HasValue && shooterGridUid.Value == candidateXform.GridUid.Value)
+                continue;
+
+            if (shooterIffType.HasValue && candidateXform.GridUid.HasValue &&
+                GetGridIffType(candidateXform.GridUid.Value) == shooterIffType.Value)
+            {
+                continue;
+            }
+
+            var distance = MathF.Sqrt(distanceSq);
+            if (distance >= closestDistance)
+                continue;
+
+            closestDistance = distance;
+            closestTargetUid = candidateUid;
+        }
+
+        target = closestTargetUid ?? default;
+        return closestTargetUid != null;
+    }
+
+    private bool TryFindClosestThrusterTarget(
+        VXSActiveThrusterRadioHeadingComponent missileComp,
+        TransformComponent missileXform,
+        EntityQueryEnumerator<ThrusterComponent, TransformComponent> query,
+        EntityUid? shooterGridUid,
+        VXSManpadsIffType? shooterIffType,
+        out EntityUid target)
+    {
+        var closestDistance = float.MaxValue;
+        EntityUid? closestTargetUid = null;
+        var curTime = _timing.CurTime;
+
+        var missilePos = _transform.ToMapCoordinates(missileXform.Coordinates).Position;
+        var worldRotation = _transform.GetWorldRotation(missileXform);
+        var halfFovRad = missileComp.FOV * Math.PI / 180f;
+        var seekRangeSq = missileComp.SeekRange * missileComp.SeekRange;
+
+        while (query.MoveNext(out var candidateUid, out var thruster, out var candidateXform))
+        {
+            if (!thruster.Firing && curTime - thruster.LastFiringTime > missileComp.RetargetWindow)
+                continue;
+
+            var targetPos = _transform.ToMapCoordinates(candidateXform.Coordinates).Position;
+            var distanceSq = Vector2.DistanceSquared(missilePos, targetPos);
+            if (distanceSq > seekRangeSq)
+                continue;
+
+            var angle = (targetPos - missilePos).ToWorldAngle();
+            var angleDifference = Angle.ShortestDistance(angle, worldRotation);
+            if (Math.Abs(angleDifference) > halfFovRad)
+                continue;
+
+            if (shooterGridUid.HasValue && candidateXform.GridUid.HasValue && shooterGridUid.Value == candidateXform.GridUid.Value)
+                continue;
+
+            if (shooterIffType.HasValue && candidateXform.GridUid.HasValue &&
+                GetGridIffType(candidateXform.GridUid.Value) == shooterIffType.Value)
+            {
+                continue;
+            }
+
+            var distance = MathF.Sqrt(distanceSq);
+            if (distance >= closestDistance)
+                continue;
+
+            closestDistance = distance;
+            closestTargetUid = candidateUid;
+        }
+
+        target = closestTargetUid ?? default;
+        return closestTargetUid != null;
+    }
+
+    private EntityUid? ResolveTargetGrid(EntityUid target)
+    {
+        if (TryComp<MapGridComponent>(target, out _))
+            return target;
+
+        if (!EntityManager.TryGetComponent<TransformComponent>(target, out var xform))
+            return null;
+
+        return xform.GridUid;
+    }
+
+    private bool IsCountermeasureEntity(EntityUid target)
+    {
+        return HasComp<VXSRetargetComponent>(target) || HasComp<VXSRetargetThrusterComponent>(target);
+    }
+
+    private VXSManpadsIffType? GetGridIffType(EntityUid gridUid)
+    {
+        if (TryComp<VXSIffTransponderComponent>(gridUid, out var directTransponder))
+            return directTransponder.IffType;
+
+        var children = new HashSet<Entity<VXSIffTransponderComponent>>();
+        _lookup.GetChildEntities(gridUid, children);
+        foreach (var child in children)
+        {
+            return child.Comp.IffType;
+        }
+
+        return null;
+    }
+
+    private enum MissileSeekerMode : byte
+    {
+        None,
+        ActiveRadar,
+        ActiveThruster,
     }
 }

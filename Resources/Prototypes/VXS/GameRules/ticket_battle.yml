@@ -1,0 +1,29 @@
+# ------------------------------------------------------------------ #
+# Ticket Battle – game rule entity
+# ------------------------------------------------------------------ #
+- type: entity
+  id: TicketBattleRule
+  parent: BaseGameRule
+  components:
+  - type: TicketBattleGameRule
+    initialTickets: 100
+  - type: RespawnTracker
+    respawnDelay: 10
+    deleteBody: false
+  - type: CaptureTickets
+  - type: TicketDisplay
+    displayInterval: 60
+
+# ------------------------------------------------------------------ #
+# Game preset
+# ------------------------------------------------------------------ #
+- type: gamePreset
+  id: TicketBattle
+  alias:
+    - ticketbattle
+  name: ticket-battle-title
+  description: ticket-battle-description
+  maxPlayers: 100
+  showInVote: true
+  rules:
+    - TicketBattleRule

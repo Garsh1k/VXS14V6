@@ -1,0 +1,16 @@
+- type: loadoutGroup
+  id: UniformsSyndicate
+  name: loadout-group-security-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UniformCasualBlueLoadout
+  - UniformCasualRedLoadout
+  - UniformCasualGreenLoadout
+  - UniformCasualPurpleLoadout
+  - UniformLawyerBlackLoadout
+  - UniformOperativeLoadout
+  - UniformHawaiBlackLoadout
+  - UniformHawaiBlueLoadout
+  - UniformHawaiRedLoadout
+  - UniformHawaiYellowLoadout

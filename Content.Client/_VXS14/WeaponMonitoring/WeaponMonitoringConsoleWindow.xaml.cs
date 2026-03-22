@@ -146,6 +146,9 @@ public sealed partial class WeaponMonitoringConsoleWindow : FancyWindow
         FlightTimeValue.Text = FormatValue(entry.FlightTime, "weapon-monitoring-window-flight-time-value");
         DeviationValue.Text = FormatValue(entry.Deviation, "weapon-monitoring-window-deviation-value");
         ProjectileSpeedValue.Text = FormatValue(entry.ProjectileSpeed, "weapon-monitoring-window-speed-value");
+        LockedTargetValue.Text = string.IsNullOrWhiteSpace(entry.LockedTarget)
+            ? Loc.GetString("weapon-monitoring-window-value-unknown")
+            : entry.LockedTarget;
 
         var notes = string.IsNullOrWhiteSpace(entry.Notes)
             ? Loc.GetString("weapon-monitoring-window-notes-empty")
@@ -170,6 +173,7 @@ public sealed partial class WeaponMonitoringConsoleWindow : FancyWindow
         FlightTimeValue.Text = "-";
         DeviationValue.Text = "-";
         ProjectileSpeedValue.Text = "-";
+        LockedTargetValue.Text = "-";
         NotesValue.SetMessage(Loc.GetString("weapon-monitoring-window-notes-empty"));
         SetBombTargetButton.Disabled = true;
         ControlGunButton.Disabled = true;

@@ -9,13 +9,8 @@
     - UplinkAmmo
     - UplinkExplosives
     - UplinkChemicals
-    - UplinkDeception
-    - UplinkDisruption
-    - UplinkImplants
-    - UplinkAllies
+    - UplinkSupport
     - UplinkWearables
-    - UplinkJob
-    - UplinkPointless
     currencyWhitelist:
     - Telecrystal
     balance:

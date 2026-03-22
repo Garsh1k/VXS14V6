@@ -1,0 +1,17 @@
+- type: loadout
+  id: C4BoxLoadout
+  storage:
+    back:
+    - BoxC4Kit
+
+- type: loadout
+  id: ThermobaricHADGL
+  storage:
+    back:
+    - WeaponLauncherHandheldDisposalThermobaric
+
+- type: loadout
+  id: SpecialSyndyMarksmanLoadout
+  equipment:
+    pocket1: Rangefinder
+    pocket2: HandheldGPSBasic

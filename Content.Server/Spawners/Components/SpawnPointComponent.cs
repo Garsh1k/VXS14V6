@@ -19,6 +19,12 @@ public sealed partial class SpawnPointComponent : Component, ISpawnPoint
     [DataField("spawn_type"), ViewVariables(VVAccess.ReadWrite)]
     public SpawnPointType SpawnType { get; set; } = SpawnPointType.Unset;
 
+    /// <summary>
+    /// Allows LateJoin spawn points to also be valid during roundstart job spawning.
+    /// </summary>
+    [DataField("round_start"), ViewVariables(VVAccess.ReadWrite)]
+    public bool RoundStart { get; set; }
+
     public override string ToString()
     {
         return $"{Job} {SpawnType}";

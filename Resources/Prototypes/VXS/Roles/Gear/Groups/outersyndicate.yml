@@ -1,0 +1,8 @@
+- type: loadoutGroup
+  id: OuterSyndicate
+  name: loadout-group-vxs-platecarriers
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - OuterVestWebLoadout
+  - OuterArmorPlateCarrierLoadout

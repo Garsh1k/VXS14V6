@@ -1,0 +1,35 @@
+- type: entity
+  name: radar countermeasure system A31ARC10M
+  id: WeaponUtilityShipFlaregunA31ARC10M
+  parent: [ ShuttleGunBase ]
+  components:
+  - type: Sprite
+    sprite: VXS/Structures/Machines/cmr.rsi
+    layers:
+    - state: icon
+  - type: Gun
+    projectileSpeed: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+    tags:
+      - RadarCountermeasuresShell
+    proto: CountermeasuresRadarA31ARC10MCartridge
+    capacity: 2
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]

@@ -1,0 +1,27 @@
+- type: entity
+  id: CountermeasuresRadarA31ARC10MPelletSpread
+  categories: [ HideSpawnMenu ]
+  parent: CountermeasuresRadarA31Pellet
+  components:
+  - type: ProjectileSpread
+    proto: CountermeasuresRadarA31Pellet
+    count: 8
+    spread: 30
+
+- type: entity
+  id: CountermeasuresRadarA31ARC10MCartridge
+  name: radar jamming cartridge (A31ARC10M)
+  parent: BaseShellShotgun
+  components:
+  - type: Tag
+    tags:
+    - RadarCountermeasuresShell
+  - type: Sprite
+    layers:
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: CountermeasuresRadarA31ARC10MPelletSpread
+  - type: SpentAmmoVisuals
+    state: "flare"

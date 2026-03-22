@@ -23,13 +23,16 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 3
+    rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 5
     topSpeed: 125
     initialSpeed: 20
     FOV: 50
     lockedIn: true
+  - type: VXSCountermeasureResistance
+    mode: InertialFlight
+    inertialFlightDuration: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -68,13 +71,16 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 3
+    rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 5
     topSpeed: 125
     initialSpeed: 20
     FOV: 50
     lockedIn: true
+  - type: VXSCountermeasureResistance
+    mode: InertialFlight
+    inertialFlightDuration: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -141,7 +147,7 @@
     lifetime: 100
   - type: VXSActiveRadioHeading
     seekRange: 500
-    rotationSpeed: 3
+    rotationSpeed: 15
     guidanceAlgorithm: PredictiveGuidance
     acceleration: 5
     topSpeed: 125

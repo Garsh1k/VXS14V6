@@ -1,0 +1,47 @@
+- type: loadoutGroup
+  id: BackpacksLoadoutGeneral
+  name: loadout-group-vxs-backpacks
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBackpackLoadouts
+  - ClothingDuffelLoadouts
+  - ClothingHADGLCumulativeLoadout
+  - ClothingHADGLThermobaricLoadout
+  - ClothingMANPADSSF
+
+- type: loadoutGroup
+  id: BackpacksLoadoutGeneralNoHeavy
+  name: loadout-group-vxs-backpacks
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBackpackLoadouts
+  - ClothingDuffelLoadouts
+
+- type: loadoutGroup
+  id: BackpacksLoadoutCorpsman
+  name: loadout-group-vxs-backpacks
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBackpackLoadouts
+  - ClothingDuffelLoadouts
+  - ClothingBackpackDuffelMedicalReanimationLoadout
+  - ClothingBackpackDuffelMedicalSurgicalLoadout
+  - ClothingBackpackDuffelMedicalTherapyLoadout
+  - ClothingHADGLCumulativeLoadout
+  - ClothingHADGLThermobaricLoadout
+  - ClothingMANPADSSF
+
+- type: loadoutGroup
+  id: BackpacksLoadoutCorpsmanNoHeavy
+  name: loadout-group-vxs-backpacks
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBackpackLoadouts
+  - ClothingDuffelLoadouts
+  - ClothingBackpackDuffelMedicalReanimationLoadout
+  - ClothingBackpackDuffelMedicalSurgicalLoadout
+  - ClothingBackpackDuffelMedicalTherapyLoadout
