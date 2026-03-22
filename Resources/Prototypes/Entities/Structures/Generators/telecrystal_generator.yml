@@ -1,0 +1,43 @@
+- type: entity
+  id: TelecrystalGenerator
+  name: telecrystal generator
+  description: An experimental device that generates telecrystals through exotic matter manipulation. Produces one telecrystal every half minute, or maybe two.
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Structures/dispensers.rsi
+    state: industrial-working
+    snapCardinals: true
+  - type: Transform
+    noRot: false
+  - type: TimedSpawner
+    prototypes:
+      - Telecrystal1
+    chance: 1.0
+    intervalSeconds: 30
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25, -0.4, 0.25, 0.4"
+        density: 190
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
