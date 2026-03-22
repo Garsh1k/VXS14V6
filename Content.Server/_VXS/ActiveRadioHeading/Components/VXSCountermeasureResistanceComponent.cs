@@ -28,7 +28,7 @@ public sealed partial class VXSCountermeasureResistanceComponent : Component
     /// <summary>
     /// Which countermeasure resistance mode this missile uses.
     /// </summary>
-    [DataField(required: true)]
+    [DataField("mode", required: true)]
     public CountermeasureResistanceType Type = CountermeasureResistanceType.None;
 
     /// <summary>

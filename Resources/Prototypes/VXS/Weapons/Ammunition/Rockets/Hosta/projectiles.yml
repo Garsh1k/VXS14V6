@@ -31,7 +31,7 @@
     FOV: 50
     lockedIn: true
   - type: VXSCountermeasureResistance
-    type: InertialFlight
+    mode: InertialFlight
     inertialFlightDuration: 4
   - type: Destructible
     thresholds:
@@ -79,7 +79,7 @@
     FOV: 50
     lockedIn: true
   - type: VXSCountermeasureResistance
-    type: InertialFlight
+    mode: InertialFlight
     inertialFlightDuration: 4
   - type: Destructible
     thresholds:

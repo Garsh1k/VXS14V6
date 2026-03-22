@@ -31,7 +31,7 @@
     FOV: 60
     retargetWindow: 4
   - type: VXSCountermeasureResistance
-    type: FovNarrowing
+    mode: FovNarrowing
     narrowedFOV: 15
   - type: Destructible
     thresholds:
@@ -79,7 +79,7 @@
     FOV: 60
     retargetWindow: 4
   - type: VXSCountermeasureResistance
-    type: FovNarrowing
+    mode: FovNarrowing
     narrowedFOV: 15
   - type: Destructible
     thresholds:
@@ -124,7 +124,7 @@
     lockedIn: true
     retargetWindow: 10
   - type: VXSCountermeasureResistance
-    type: FovNarrowing
+    mode: FovNarrowing
     narrowedFOV: 15
   - type: Destructible
     thresholds:
